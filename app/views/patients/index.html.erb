@@ -1,15 +1,15 @@
-<div class="container">
+<% if signed_in? %>
+  <%= render "helpers/doctor_header" %>
+<% else %>
+  <%= render "helpers/sign_in_header" %>
+<% end %>
+
+<%= render "helpers/sign_in_modal" %>  
+
+<div class="container wrap">
   <div class="row">
     <div class="home-header col-xs-12">
-      <div class="doctor-sign-in">
-        <button type="button"
-                class="btn btn-primary btn-circle"
-                data-toggle="modal"
-                data-target="#sign-in-modal">
-          Sign In
-        </button>
-        <%= render "helpers/sign_in_modal" %>
-      </div>
+
       <h1 class="text-center home-title">William Davis, MD</h1>      
     </div>
   </div>
@@ -41,5 +41,6 @@
       </address>
     </div>    
   </div>
-
 </div>
+
+<%= render "helpers/footer" %>
