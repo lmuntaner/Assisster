@@ -11,6 +11,7 @@ Assisster.Routers.AppRouter = Backbone.Router.extend({
     var dashboardView = new Assisster.Views.DashboardView();
     
     this._swapView(dashboardView);
+    dashboardView.onRender();
   },
   
   _swapView: function(view) {

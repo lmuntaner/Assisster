@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require underscore
 //= require backbone
+//= require moment
+//= require fullcalendar
 //= require bootstrap
 //= require assisster
 //= require_tree ../templates
