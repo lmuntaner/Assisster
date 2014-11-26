@@ -1,4 +1,6 @@
 Assisster.Models.Appointment = Backbone.Model.extend({
+  urlRoot: "/api/appointments/",
+  
   convertToEvent: function() {
     var eventObject = {};
     eventObject.title = this.escape('title');

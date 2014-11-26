@@ -3,7 +3,7 @@ Assisster.Views.CalendarView = Backbone.View.extend({
   
   initialize: function () {
     this.listenTo(this.collection, "add", this.addToCalendar);
-    this.listenTo(this.collection, "sync", this.render);
+    this.listenToOnce(this.collection, "sync", this.render);
   },
   
   addToCalendar: function (appointment) {
@@ -44,7 +44,12 @@ Assisster.Views.CalendarView = Backbone.View.extend({
       startTime: startTime,
       endTime: endTime
     });
-    this.collection.add(appointment);
+    var view = this;
+    appointment.save({}, {
+      success: function (model) {
+        view.collection.add(model);
+      }
+    })
   },
   
   render: function () {
