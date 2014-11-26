@@ -36,20 +36,26 @@ Assisster.Views.CalendarView = Backbone.View.extend({
   },
   
   createAppointment: function(date) {
-    var title = "Super appointment!";
-    var startTime = date.toJSON();
-    var endTime = date.add(30, "m").toJSON();
-    var appointment = new Assisster.Models.Appointment({
-      title: title,
-      startTime: startTime,
-      endTime: endTime
+    var appointmentForm = new Assisster.Views.AppointmentForm({
+      collection: this.collection,
+      date: date
     });
-    var view = this;
-    appointment.save({}, {
-      success: function (model) {
-        view.collection.add(model);
-      }
-    })
+    this.$el.append(appointmentForm.render().$el);
+    this.$('#appointment-modal').modal();
+    // var title = "Super appointment!";
+    // var startTime = date.toJSON();
+    // var endTime = date.add(30, "m").toJSON();
+    // var appointment = new Assisster.Models.Appointment({
+    //   title: title,
+    //   startTime: startTime,
+    //   endTime: endTime
+    // });
+    // var view = this;
+    // appointment.save({}, {
+    //   success: function (model) {
+    //     view.collection.add(model);
+    //   }
+    // })
   },
   
   render: function () {
