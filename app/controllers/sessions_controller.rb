@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
 
     if @doctor
       sign_in(@doctor)
-      redirect_to doctor_url(@doctor)
+      redirect_to dashboard_url
     else
       flash.now[:errors] = ["Invalid email or password"]
       fail
