@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get "/dashboard", to: "doctors#show"
   
   namespace :api, defaults: {format: :json} do
-    resources :doctors, only: [:show] do
+    resources :doctors, only: [:index] do
       resources :appointments, only: [:create, :update]
     end
   end

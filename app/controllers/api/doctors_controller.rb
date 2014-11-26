@@ -1,10 +1,10 @@
 class Api::DoctorsController < ApplicationController
   before_action :ensure_signed_in
   
-  def show
+  def index
     @doctor = current_doctor
     
-    render :show
+    render :index
   end
   
   private

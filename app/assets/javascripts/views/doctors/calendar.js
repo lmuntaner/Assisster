@@ -1,26 +1,17 @@
 Assisster.Views.CalendarView = Backbone.View.extend({
   template: _.template('<div id="calendar"></div>'),
+  
   initialize: function () {
-    this.listenTo(this.collection, "add", this.addAppointment);
+    this.listenTo(this.collection, "add", this.addToCalendar);
+    this.listenTo(this.collection, "sync", this.render);
   },
   
-  addAppointment: function (appointment) {
+  addToCalendar: function (appointment) {
     $('#calendar').fullCalendar('addEventSource', [appointment.convertToEvent()]);
   },
   
   appointments: function () {
-    var arrayAppointments = [
-      {
-        title: "Super appointment!",
-        start: "2014-11-26T17:00:00.000Z",
-        end: "2014-11-26T17:30:00.000Z"
-      },
-      {
-        title: "Super second appointment!",
-        start: "2014-11-26T18:00:00.000Z",
-        end: "2014-11-26T18:30:00.000Z"
-      }
-    ];
+    var arrayAppointments = []
     this.collection.each(function(appointment) {
       arrayAppointments.push(appointment.convertToEvent());
     });
@@ -29,7 +20,6 @@ Assisster.Views.CalendarView = Backbone.View.extend({
   },
 
   onRender: function () {
-    var appointments = this.appointments();
     $('#calendar').fullCalendar({
       header: {
         left: 'month,agendaWeek,agendaDay',
@@ -40,8 +30,9 @@ Assisster.Views.CalendarView = Backbone.View.extend({
       editable: true,
       defaultView: 'agendaWeek',
       dayClick: this.createAppointment.bind(this),
-      events: appointments
+      events: this.appointments()
     });
+    
   },
   
   createAppointment: function(date) {
