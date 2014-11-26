@@ -13,6 +13,7 @@ gem 'jquery-ui-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'ejs'
+gem 'newrelic_rpm'
 # gem 'sdoc', '~> 0.4.0',          group: :doc
 
 group :doc do
