@@ -3,7 +3,12 @@ Assisster.Views.AppointmentForm = Backbone.View.extend({
   className: "appointment-form-container",
   
   events: {
-    
+    "click input[type='submit']": "cancel",
+  },
+  
+  cancel: function (event) {
+    event.preventDefault();
+    this.$('#appointment-modal').modal('hide');
   },
   
   render: function () {
