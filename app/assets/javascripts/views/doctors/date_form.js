@@ -3,8 +3,7 @@ Assisster.Views.DateForm = Backbone.View.extend({
 	className: "row",
 	
 	events: {
-		"change .setTimepicker": "updateTime",
-		"change .setDatepicker": "updateDate"
+		"change .setTimepicker": "updateTime"
 	},
 	
 	initialize: function (options) {
@@ -20,11 +19,7 @@ Assisster.Views.DateForm = Backbone.View.extend({
 		
 		return this;
 	},
-	
-	updateDate: function () {
-		debugger;
-	},
-	
+
 	updateTime: function (event) {
 		var timeArray = event.currentTarget.value.split(":");
 		var newHour = timeArray[0];

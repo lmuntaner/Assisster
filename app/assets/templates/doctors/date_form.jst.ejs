@@ -2,12 +2,14 @@
 <div class="col-xs-6 col-sm-6 col-md-6">
   <div class="form-group">
     <input class="form-control input-sm setDatepicker"
+					 name="appointment[<%= this.position === 'From' ? 'startTimeDate' : 'endTimeDate' %>]"
 					 value='<%= date.format("M/D/YYYY") %>'>
   </div>
 </div>
 <div class="col-xs-6 col-sm-6 col-md-6">
   <div class="form-group">
     <input class="form-control input-sm setTimepicker"
+					 name="appointment[<%= this.position === 'From' ? 'startTimeHour' : 'endTimeHour' %>]"
 					 value='<%= date.format("h:mm A") %>'>
   </div>
 </div>

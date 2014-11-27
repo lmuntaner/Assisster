@@ -26,7 +26,6 @@ Assisster.Views.CalendarView = Backbone.View.extend({
         center: 'title',
         right: 'today prev,next'
       },
-      // timezone: "local",
       editable: true,
       defaultView: 'agendaWeek',
       dayClick: this.createAppointment.bind(this),
