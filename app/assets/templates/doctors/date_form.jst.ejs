@@ -1,0 +1,14 @@
+<h6 class="label-appointment-modal"><%= this.position %></h6>
+<div class="col-xs-6 col-sm-6 col-md-6">
+  <div class="form-group">
+    <input class="form-control input-sm setDatepicker"
+					 value='<%= date.format("M/D/YYYY") %>'>
+  </div>
+</div>
+<div class="col-xs-6 col-sm-6 col-md-6">
+  <div class="form-group">
+    <input class="form-control input-sm"
+					 id="<%= this.position === 'From' ? 'setTimepicker' : '' %>"
+					 value='<%= date.format("h:mm A") %>'>
+  </div>
+</div>

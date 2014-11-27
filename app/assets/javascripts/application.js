@@ -12,7 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.all
 //= require jquery.serializejson.js
+//= require jquery.timepicker.js
 //= require underscore
 //= require backbone
 //= require moment
