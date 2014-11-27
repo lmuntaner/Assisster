@@ -22,7 +22,7 @@ Assisster.Views.DateForm = Backbone.View.extend({
 	},
 	
 	updateDate: function () {
-		
+		debugger;
 	},
 	
 	updateTime: function (event) {
