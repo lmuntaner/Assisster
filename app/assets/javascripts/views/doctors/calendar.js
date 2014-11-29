@@ -42,9 +42,7 @@ Assisster.Views.CalendarView = Backbone.View.extend({
       dayClick: this.createAppointment.bind(this),
 			eventClick: this.updateAppointment.bind(this),
       events: this.appointments(),
-			eventRender: function(event, element) {
-				this.renderEvent(event, element);
-			}.bind(this)
+			eventRender: this.renderEvent,
     });  
   },
 	
@@ -65,9 +63,9 @@ Assisster.Views.CalendarView = Backbone.View.extend({
   },
 	
 	renderEvent: function(event, element) {
-		var firstText = event.start.format("h:mm") + ": " + event.fname + " " + event.lname;
+		var firstText = event.start.format("h:mm") + ": " + event.title;
 		element.find("div.fc-time span").text(firstText);
-		var lastText = event.title;
+		var lastText = event.fname + " " + event.lname;
 		element.find("div.fc-title").text(lastText);
 	},
 	

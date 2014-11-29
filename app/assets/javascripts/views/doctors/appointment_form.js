@@ -59,26 +59,28 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 		event.preventDefault();
 		var params = $(event.currentTarget).parent().serializeJSON().appointment;
 		if (this.validateForm(params)) {
-			var title = params.title;
 			var stringStartTime = params.startTimeDate + " " + params.startTimeHour;
 	    var startTime = moment.utc(stringStartTime, "M/D/YYYY h:mm a");
 			var stringEndTime = params.endTimeDate + " " + params.endTimeHour;
 		  var endTime = moment.utc(stringEndTime, "M/D/YYYY h:mm a");
 	    var view = this;
-			this.model.set({
-	      title: title,
+			var appointmentParams = {
+	      title: params.title,
 	      startTime: startTime,
-	      endTime: endTime
-	    });
+	      endTime: endTime,
+				email: params.email,
+				fname: params.fname,
+				lname: params.lname
+	    };
 			if (this.model.isNew()) {
-		    this.model.save({}, {
+		    this.model.save(appointmentParams, {
 		      success: function (model) {
 		        view.collection.add(model);
 		      }
 		    })				
 			} else {
 				var calendarEvent = this.event;
-				this.model.save({}, {
+				this.model.save(appointmentParams, {
 					success: function (model) {
 						view.collection.remove(model);
 						view.collection.add(model);

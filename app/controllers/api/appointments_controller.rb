@@ -24,7 +24,8 @@ class Api::AppointmentsController < ApplicationController
   private
   
   def appointment_params
-    params.require(:appointment).permit(:title, :startTime, :endTime)
+    params.require(:appointment).permit(:title, :startTime, :endTime,
+                                        :email, :fname, :lname)
   end
   
   def ensure_signed_in
