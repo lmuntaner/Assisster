@@ -70,7 +70,6 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 	      startTime: startTime,
 	      endTime: endTime
 	    });
-			debugger;
 			if (this.model.isNew()) {
 		    this.model.save({}, {
 		      success: function (model) {
