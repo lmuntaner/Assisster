@@ -43,6 +43,7 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 			eventClick: this.updateAppointment.bind(this),
       events: this.appointments(),
 			eventRender: this.renderEvent,
+			eventDrop: this.updateAppointmentDragging.bind(this)
     });  
   },
 	
@@ -78,5 +79,14 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 			event: event
 		});
 		this.renderAppointmentForm(appointmentForm);
+	},
+	
+	updateAppointmentDragging: function (event) {
+		var appointment = this.collection.get(event.id);
+		
+		appointment.save({
+			startTime: event.start,
+			endTime: event.end
+		});
 	},
 })
