@@ -1,4 +1,4 @@
-Assisster.Routers.AppRouter = Backbone.Router.extend({
+Assisster.Routers.DoctorRouter = Backbone.Router.extend({
   routes: {
     "": "dashboard"
   },

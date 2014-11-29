@@ -4,9 +4,16 @@ window.Assisster = {
   Views: {},
   Routers: {},
   initialize: function (options) {
-    new Assisster.Routers.AppRouter({
-      $rootEl: options.$rootEl
-    });
+		if (options.page === "doctor") {
+	    new Assisster.Routers.DoctorRouter({
+	      $rootEl: options.$rootEl
+	    });			
+		} else {
+	    new Assisster.Routers.PatientRouter({
+	      $rootEl: options.$rootEl
+	    });
+		}
+
     Backbone.history.start();
   }
 }
