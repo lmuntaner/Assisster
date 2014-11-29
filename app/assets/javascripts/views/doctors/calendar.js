@@ -11,17 +11,6 @@ Assisster.Views.CalendarView = Backbone.View.extend({
     $('#calendar').fullCalendar('addEventSource', [appointment.convertToEvent()]);
   },
   
-  // appointments: function () {
-  //   var arrayAppointments = []
-  //   this.collection.each(function(appointment) {
-  // 			if (!appointment.get('office_hour')) {
-  // 	      arrayAppointments.push(appointment.convertToEvent());
-  // 			}
-  //   });
-  //
-  //   return arrayAppointments;
-  // },
-  
   createAppointment: function(date) {
 		var appointment = new Assisster.Models.Appointment();
     var appointmentForm = new Assisster.Views.AppointmentForm({

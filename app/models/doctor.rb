@@ -16,6 +16,7 @@ class Doctor < ActiveRecord::Base
   validates :email, :dr_session_token, uniqueness: true
   
   has_many :appointments
+  has_many :services
   
   attr_reader :password
   

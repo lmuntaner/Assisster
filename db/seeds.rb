@@ -1,5 +1,7 @@
 
 first_doctor = Doctor.create!(email: "william@wheat.com", password:"wheatbelly")
+first_doctor.services.create(title: "Full recovery", duration_min: 60,
+                             description: "This is the best service ever")
 
 now = DateTime.now
 zone = ActiveSupport::TimeZone.new("Pacific Time (US & Canada)")
