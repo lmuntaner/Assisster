@@ -3,18 +3,26 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
   className: "appointment-form-container",
   
   events: {
-    "click input[value='Cancel']": "cancel",
-		"click input[value='Save']": "save"
+		"click #submit-appointment-form": "save",
+		"click #cancel-appointment-form": "cancel"
   },
 	
 	initialize: function(options) {
-		this.date = options.date;
+		var startTime, endTime;
+		if (options.date) {
+			this.date = options.date;
+			startTime = this.date.clone();	
+			endTime = this.date.add(30, 'm').clone();
+		} else {
+			startTime = moment.utc(this.model.escape('startTime'));
+			endTime = moment.utc(this.model.escape('endTime'));	
+		}
 		this.fromDateForm = new Assisster.Views.DateForm({
-			date: this.date.clone(),
+			date: startTime,
 			position: "From"
 		});
 		this.toDateForm = new Assisster.Views.DateForm({
-			date: this.date.add(30, 'm').clone(),
+			date: endTime,
 			position: "To"
 		});
 		this.selectorDate = "#appointment-modal .form-inputs";
@@ -22,12 +30,11 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 		this.addSubview(this.selectorDate, this.fromDateForm);
 		this.addSubview(this.selectorDate, this.toDateForm);
 	},
-  
-  cancel: function (event) {
-    event.preventDefault();
-    this.$('#appointment-modal').modal('hide');
+	
+	cancel: function () {
+		this.$('#appointment-modal').modal('hide');
 		this.remove();
-  },
+	},
 	
 	onRender: function () {
 		this.$('.setDatepicker').datepicker();
@@ -36,7 +43,8 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
   
   render: function () {
     var renderedContent = this.template({
-    	date: this.date
+    	date: this.date,
+			appointment: this.model
     });
     this.$el.html(renderedContent);
 		this.attachSubview(this.selectorDate, this.fromDateForm);
@@ -45,50 +53,39 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 		
     return this;
   },
-	
-	setMomentObject: function (dateObject, date, time) {
-		var dateArray = date.split('/');
-		dateObject.date(dateArray[1]);
-		dateObject.month(dateArray[0]);
-		dateObject.year(dateArray[2]);
-		var timeArray = time.split(":");
-		var sum = (timeArray[1].slice(2, 4) === 'am' ? 0 : 12)
-		dateObject.hour(parseInt(timeArray[0]) + sum);
-		dateObject.minute(parseInt(timeArray[1].slice(0,2)));
-		
-		return dateObject;
-	},
-	
+
 	save: function (event) {
 		event.preventDefault();
 		var params = $(event.currentTarget).parent().serializeJSON().appointment;
 		if (this.validateForm(params)) {
 			var title = params.title;
-	    var startTime = this.setMomentObject(this.fromDateForm.date,
-																			params.startTimeDate,
-																			params.startTimeHour);
-	    var endTime = this.setMomentObject(this.toDateForm.date,
-																			params.endTimeDate,
-																			params.endTimeHour);
-			var appointment = new Assisster.Models.Appointment({
+			var stringStartTime = params.startTimeDate + " " + params.startTimeHour;
+	    var startTime = moment.utc(stringStartTime, "M/D/YYYY h:mm a");
+			var stringEndTime = params.endTimeDate + " " + params.endTimeHour;
+		  var endTime = moment.utc(stringEndTime, "M/D/YYYY h:mm a");
+	    var view = this;
+			this.model.set({
 	      title: title,
 	      startTime: startTime,
 	      endTime: endTime
 	    });
-	    var view = this;
-	    appointment.save({}, {
-	      success: function (model) {
-	        view.collection.add(model);
-	      }
-	    })
+			if (this.model.isNew) {
+		    this.model.save({}, {
+		      success: function (model) {
+		        view.collection.add(model);
+		      }
+		    })				
+			} else {
+				this.model.save();
+			}
+			this.$('#appointment-modal').modal('hide');
 			this.remove();
-			this.$('#appointment-modal').modal('hide');			
 		} else {
 			var $errors = $('<span>').text('Error!').addClass('error');
 			this.$('#appointment-modal .panel-body').prepend($errors);
 		}
 	},
-
+	
 	validateForm: function (params) {
 		return this.validateTitle(params.title);
 	},

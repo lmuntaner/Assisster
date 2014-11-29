@@ -3,6 +3,7 @@ Assisster.Views.CalendarView = Backbone.View.extend({
   
   initialize: function () {
     this.listenTo(this.collection, "add", this.addToCalendar);
+		// this.listenTo(this.collection, "change:title", this.renderUpdated);
     this.listenToOnce(this.collection, "sync", this.render);
   },
   
@@ -18,7 +19,17 @@ Assisster.Views.CalendarView = Backbone.View.extend({
     
     return arrayAppointments;
   },
-
+  
+  createAppointment: function(date) {
+		var appointment = new Assisster.Models.Appointment();
+    var appointmentForm = new Assisster.Views.AppointmentForm({
+      collection: this.collection,
+      date: date,
+			model: appointment
+    });
+    this.renderAppointmentForm(appointmentForm);
+  },
+	
   onRender: function () {
     $('#calendar').fullCalendar({
       header: {
@@ -29,24 +40,35 @@ Assisster.Views.CalendarView = Backbone.View.extend({
       editable: true,
       defaultView: 'agendaWeek',
       dayClick: this.createAppointment.bind(this),
+			eventClick: this.updateAppointment.bind(this),
       events: this.appointments()
     });
     
   },
-  
-  createAppointment: function(date) {
-    var appointmentForm = new Assisster.Views.AppointmentForm({
-      collection: this.collection,
-      date: date
-    });
+	
+	renderAppointmentForm: function (appointmentForm) {
     this.$el.append(appointmentForm.render().$el);
     this.$('#appointment-modal').modal();
-  },
+	},
   
   render: function () {
     this.$el.html(this.template());
     this.onRender();
 
     return this;
-  }
+  },
+	
+	renderUpdated: function (appointment) {
+		debugger;
+	},
+	
+	updateAppointment: function(event, jsEvent, view) {
+		var appointment = this.collection.get(event.id);
+		
+		var appointmentForm = new Assisster.Views.AppointmentForm({
+			collection: this.collection,
+			model: appointment
+		})
+		this.renderAppointmentForm(appointmentForm);
+	},
 })
