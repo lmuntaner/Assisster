@@ -14,4 +14,10 @@ zone = ActiveSupport::TimeZone.new("Pacific Time (US & Canada)")
                                startTime: appointment,
                                endTime: appointment.in(3600))
   end
+  
+  office_hour = now.next_day(i).midnight
+  first_doctor.appointments.create(title: "office hour",
+                                   startTime: office_hour,
+                                   endTime: office_hour.in(3600 * 8),
+                                   office_hour: true)
 end

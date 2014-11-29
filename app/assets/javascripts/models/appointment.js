@@ -11,6 +11,9 @@ Assisster.Models.Appointment = Backbone.Model.extend({
 		eventObject.fname = this.escape('fname');
 		eventObject.lname = this.escape('lname');
 		
+		if (this.get('office_hour')) {
+			eventObject.rendering = "background";
+		}
     return eventObject;
   },
 })
