@@ -14,6 +14,7 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 			startTime = this.date.clone();	
 			endTime = this.date.add(30, 'm').clone();
 		} else {
+			this.event = options.event;
 			startTime = moment.utc(this.model.escape('startTime'));
 			endTime = moment.utc(this.model.escape('endTime'));	
 		}
@@ -69,14 +70,21 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 	      startTime: startTime,
 	      endTime: endTime
 	    });
-			if (this.model.isNew) {
+			debugger;
+			if (this.model.isNew()) {
 		    this.model.save({}, {
 		      success: function (model) {
 		        view.collection.add(model);
 		      }
 		    })				
 			} else {
-				this.model.save();
+				var calendarEvent = this.event;
+				this.model.save({}, {
+					success: function (model) {
+						view.collection.remove(model);
+						view.collection.add(model);
+					}
+				});
 			}
 			this.$('#appointment-modal').modal('hide');
 			this.remove();

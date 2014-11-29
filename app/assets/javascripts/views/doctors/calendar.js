@@ -3,7 +3,7 @@ Assisster.Views.CalendarView = Backbone.View.extend({
   
   initialize: function () {
     this.listenTo(this.collection, "add", this.addToCalendar);
-		// this.listenTo(this.collection, "change:title", this.renderUpdated);
+		this.listenTo(this.collection, "remove", this.removeFromCalendar);
     this.listenToOnce(this.collection, "sync", this.render);
   },
   
@@ -42,9 +42,12 @@ Assisster.Views.CalendarView = Backbone.View.extend({
       dayClick: this.createAppointment.bind(this),
 			eventClick: this.updateAppointment.bind(this),
       events: this.appointments()
-    });
-    
+    });  
   },
+	
+	removeFromCalendar: function (appointment) {
+		$('#calendar').fullCalendar('removeEvents', [appointment.id]);
+	},
 	
 	renderAppointmentForm: function (appointmentForm) {
     this.$el.append(appointmentForm.render().$el);
@@ -64,11 +67,12 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 	
 	updateAppointment: function(event, jsEvent, view) {
 		var appointment = this.collection.get(event.id);
-		
+
 		var appointmentForm = new Assisster.Views.AppointmentForm({
 			collection: this.collection,
-			model: appointment
-		})
+			model: appointment,
+			event: event
+		});
 		this.renderAppointmentForm(appointmentForm);
 	},
 })
