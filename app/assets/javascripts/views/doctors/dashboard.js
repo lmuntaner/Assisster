@@ -10,7 +10,7 @@ Assisster.Views.DashboardView = Backbone.CompositeView.extend({
       collection: this.collection
     });
     this.addSubview("div.dashboard-body", calendarView);
-    this.listenTo(this.model, "sync", this.render)
+    this.listenTo(this.model, "sync", this.render);
   },
   
   render: function () {

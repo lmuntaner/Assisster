@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   get "/dashboard", to: "doctors#show"
   get "/appointment", to: "patients#appointment"
   
-  resources :appointments, only: [:create, :index]
   
   namespace :api, defaults: {format: :json} do
+    resources :services, only: [:index]
     resources :doctors, only: [:index]
     resources :appointments, only: [:create, :update]
   end
