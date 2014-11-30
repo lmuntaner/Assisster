@@ -6,11 +6,10 @@ Assisster.Views.ChooseTime = Backbone.View.extend({
 		this.date = options.date;
 		this.collection = new Assisster.Collections.Appointments();
 		this.collection.getDateAppointments(this.date, this.model);
-		this.listenTo(this.collection, "add", this.render)
+		this.listenTo(this.collection, "add", this.render);
 	},
 	
 	render: function () {
-		debugger;
 		var renderedContent = this.template({
 			date: this.date
 		});
