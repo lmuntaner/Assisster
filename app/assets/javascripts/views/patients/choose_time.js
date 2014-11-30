@@ -40,7 +40,8 @@ Assisster.Views.ChooseTime = Backbone.View.extend({
 						var thisAppointmentEnd = newFreeSlot.get('endTime').toJSON();
 						if (nextAppointmentStart < thisAppointmentEnd) {
 							startTime = moment.utc(view.collection.models[newIndex].get('endTime'));
-							endTime = startTime.clone().add(view.duration);	
+							endTime = startTime.clone().add(view.duration);
+							newIndex = newIndex + 1;
 						} else {
 							freeSlots.push(newFreeSlot);
 							startTime.add(view.duration);
@@ -51,7 +52,6 @@ Assisster.Views.ChooseTime = Backbone.View.extend({
 						startTime.add(view.duration);
 						endTime.add(view.duration);	
 					}
-					newIndex++;
 				}
 				debugger;
 			}
