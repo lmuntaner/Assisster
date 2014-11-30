@@ -45,11 +45,6 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 	removeFromCalendar: function (appointment) {
 		$('#calendar').fullCalendar('removeEvents', [appointment.id]);
 	},
-	
-	renderAppointmentForm: function (appointmentForm) {
-    this.$el.append(appointmentForm.render().$el);
-    this.$('#appointment-modal').modal();
-	},
 
   render: function () {
     this.$el.html(this.template());
@@ -57,12 +52,20 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 
     return this;
   },
-	
+		
+	renderAppointmentForm: function (appointmentForm) {
+    this.$el.append(appointmentForm.render().$el);
+    this.$('#appointment-modal').modal();
+	},
+
 	renderEvent: function(event, element) {
 		var firstText = event.start.format("h:mm") + ": " + event.title;
 		element.find("div.fc-time span").text(firstText);
 		var lastText = event.fname + " " + event.lname;
 		element.find("div.fc-title").text(lastText);
+		var tooltip = event.title;
+		$(element).attr("data-original-title", tooltip)
+		$(element).tooltip({ container: "body"})
 	},
 	
 	updateAppointment: function(event, jsEvent, view) {
