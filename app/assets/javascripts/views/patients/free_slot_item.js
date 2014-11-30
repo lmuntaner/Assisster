@@ -3,6 +3,10 @@ Assisster.Views.FreeSlotItem = Backbone.View.extend({
 	tagName: "a",
 	className: "free-slot-item list-group-item",
 	
+	events: {
+		"click": "selectSlot"
+	},
+	
 	render: function () {
 		var renderedContent = this.template({
 			appointment: this.model
@@ -10,5 +14,11 @@ Assisster.Views.FreeSlotItem = Backbone.View.extend({
 		this.$el.html(renderedContent);
 		
 		return this;
-	}
+	},
+	
+	selectSlot: function (event) {
+		var $target = $(event.currentTarget);
+		$('a.free-slot-item').removeClass('active');
+		$target.addClass('active');
+	},
 })
