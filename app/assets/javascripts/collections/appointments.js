@@ -21,5 +21,9 @@ Assisster.Collections.Appointments = Backbone.Collection.extend({
     });
 		
 		return arrayOfficeHours;
+	},
+	
+	getFreeTimeSlots: function (date, service) {
+		
 	}
 });

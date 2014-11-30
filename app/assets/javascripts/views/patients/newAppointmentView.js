@@ -13,6 +13,7 @@ Assisster.Views.NewAppointmentView = Backbone.CompositeView.extend({
 		var renderedContent = this.template();
 		this.$el.html(renderedContent);
 		this.attachSubviews();
+		this.onRender();
 		
 		return this;
 	}
