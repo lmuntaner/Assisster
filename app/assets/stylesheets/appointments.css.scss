@@ -2,6 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+/* Doctor Calendar */
+
+.calendar-tooltip + .tooltip > .tooltip-inner {
+	background-color: #777;
+}
+
+/* Doctor Appointment Form */
+
 .appointment-content {
 	position: absolute;
 	top: 200px;

@@ -64,8 +64,9 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 		var lastText = event.fname + " " + event.lname;
 		element.find("div.fc-title").text(lastText);
 		var tooltip = event.title;
+		$(element).addClass("calendar-tooltip");
 		$(element).attr("data-original-title", tooltip)
-		$(element).tooltip({ container: "body"})
+		$(element).tooltip({ container: "body"});
 	},
 	
 	updateAppointment: function(event, jsEvent, view) {
