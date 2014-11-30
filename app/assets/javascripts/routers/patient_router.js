@@ -1,21 +1,14 @@
 Assisster.Routers.PatientRouter = Backbone.Router.extend({
 	routes: {
-		"": "index",
-		":id": "choose_appointment"
+		"success": "success_appointment",
+		":id": "choose_appointment",
+		"": "index"
 	},
 	
   initialize: function(options) {
     this.$rootEl = options.$rootEl;
 		this.collection = new Assisster.Collections.Services();
 		this.collection.fetch();
-  },
-	
-	index: function () {
-    var newAppointmentView = new Assisster.Views.NewAppointmentView({
-    	collection: this.collection
-    });
-    
-    this._swapView(newAppointmentView);
   },
 	
 	choose_appointment: function (id) {
@@ -25,8 +18,22 @@ Assisster.Routers.PatientRouter = Backbone.Router.extend({
 		});
 		
 		this._swapView(chooseAppointmentView);
+	},	
+	
+	index: function () {
+    var newAppointmentView = new Assisster.Views.NewAppointmentView({
+    	collection: this.collection
+    });
+    
+    this._swapView(newAppointmentView);
+  },
+	
+	success_appointment: function () {
+		var successAppointmentView = new Assisster.Views.SuccessAppointment();
+		
+		this._swapView(successAppointmentView)
 	},
-  
+
   _swapView: function(view) {
     this._currentView && this._currentView.remove();
     this.$rootEl.html(view.render().$el);
