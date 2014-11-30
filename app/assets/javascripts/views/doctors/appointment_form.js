@@ -12,7 +12,7 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 		if (options.date) {
 			this.date = options.date;
 			startTime = this.date.clone();	
-			endTime = this.date.add(30, 'm').clone();
+			endTime = this.date.clone().add(30, 'm');
 		} else {
 			this.event = options.event;
 			startTime = moment.utc(this.model.escape('startTime'));

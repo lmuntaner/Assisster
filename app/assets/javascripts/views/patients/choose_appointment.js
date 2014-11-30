@@ -7,9 +7,7 @@ Assisster.Views.ChooseAppointment = Backbone.CompositeView.extend({
 	
 	initialize: function (options) {
 		this.listenTo(this.model, "sync", this.render);
-		this.chooseDateView = new Assisster.Views.ChooseDate({
-			model: this.model
-		});
+		this.chooseDateView = new Assisster.Views.ChooseDate();
 		this.addSubview("div.choose-appointment-body", this.chooseDateView);
 	},
 	
