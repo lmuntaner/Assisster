@@ -1,6 +1,6 @@
-Assisster.Views.ChooseTime = Backbone.View.extend({
+Assisster.Views.ChooseTime = Backbone.CompositeView.extend({
 	template: JST["patients/choose_time"],
-	className: "col-xs-6 choose-time-slot",
+	className: "row col-xs-7 choose-time-slot",
 	
 	initialize: function (options) {
 		this.date = options.date;
@@ -10,22 +10,34 @@ Assisster.Views.ChooseTime = Backbone.View.extend({
 		this.duration = moment.duration(this.model.get('duration_min'), 'minutes');
 	},
 	
+	onRender: function () {
+		this.resetSubviews();
+		var view = this;
+		this.setFreeSlots().forEach(function (freeSlot) {
+			var freeSlotItem = new Assisster.Views.FreeSlotItem({
+				model: freeSlot
+			});
+			view.addSubview("div.list-group", freeSlotItem);
+		});
+	},
+	
 	render: function () {
 		var renderedContent = this.template({
 			date: this.date
 		});
 		this.$el.html(renderedContent);
-		this.setFreeSlots();
+		this.onRender();
+		this.attachSubviews();
 		
 		return this;
 	},
 	
 	setFreeSlots: function () {
 		var view = this;
+		var freeSlots = [];
 		this.collection.each(function (appointment, index) {
 			if (appointment.get('office_hour')) {
 				var newIndex = index + 1;
-				var freeSlots = [];
 				var startTime = moment.utc(appointment.get('startTime'));
 				var endTime = startTime.clone().add(view.duration);
 				var officeHourEndTime = moment.utc(appointment.get('endTime'));
@@ -53,8 +65,9 @@ Assisster.Views.ChooseTime = Backbone.View.extend({
 						endTime.add(view.duration);	
 					}
 				}
-				debugger;
 			}
 		});
+		
+		return freeSlots;
 	},
 })
