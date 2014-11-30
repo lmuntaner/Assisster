@@ -1,6 +1,13 @@
 Assisster.Collections.Appointments = Backbone.Collection.extend({
   model: Assisster.Models.Appointment,
 	
+	addModels: function (objects) {
+		var collection = this;
+		objects.forEach(function (object) {
+			collection.create(object)
+		});
+	},
+	
 	getAppointments: function () {
 		var arrayAppointments = [];
     this.each(function(appointment) {
@@ -23,7 +30,13 @@ Assisster.Collections.Appointments = Backbone.Collection.extend({
 		return arrayOfficeHours;
 	},
 	
-	getFreeTimeSlots: function (date, service) {
-		
+	getDateAppointments: function (date, service) {
+		var url = "api/services/" + service.id + "/" + date.format("D-M-YYYY");
+		var collection = this;
+		$.ajax({
+			type: "get",
+			url: url,
+			success: this.addModels.bind(this)
+		});
 	},
 });

@@ -29,7 +29,7 @@ Assisster.Views.ChooseAppointment = Backbone.CompositeView.extend({
 	},
 	
 	showTimeSlots: function (event) {
-		var date = event.date.toDateString();
+		var date = moment(event.date);
 		if (this.chooseTimeView) {
 			this.chooseTimeView.remove();
 			this.removeSubview("div.choose-appointment-body", this.chooseTimeView);
