@@ -1,0 +1,1 @@
+json.extract!(@service, :id, :title, :doctor_id, :description, :duration_min)

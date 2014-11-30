@@ -7,3 +7,32 @@
 .home-title {
   margin: 50px auto 100px;
 }
+
+/* Make an appointment */
+
+.new-appointment-title {
+  border-bottom: 1px solid #e0e2e3;
+  padding: 20px;
+}
+
+.new-appointment-body {
+  margin: 30px 0 30px;
+}
+
+/* Choose a service */
+
+ul.services {
+	list-style: none;
+}
+
+div.service-content a {
+	float: left;
+	margin-top: 10px;
+}
+
+div.service-description {
+	margin-left: 30px;
+	float: left;
+	width: 50%;
+  border-bottom: 1px solid #e0e2e3;
+}
