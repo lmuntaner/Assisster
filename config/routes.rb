@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   
   
   namespace :api, defaults: {format: :json} do
-    resources :services, only: [:index, :show]
+    resources :services, only: [:index, :show] do
+      get "/:date", to: "services#getFreeSlots"
+    end
     resources :doctors, only: [:index]
     resources :appointments, only: [:create, :update]
   end

@@ -9,4 +9,10 @@ class Api::ServicesController < ApplicationController
     @service = Service.find(params[:id])
     render :show
   end
+  
+  def getFreeSlots
+    @service = Service.find(params[:service_id])
+    @doctor = @service.doctor
+    
+  end
 end
