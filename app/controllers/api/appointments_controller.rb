@@ -21,6 +21,17 @@ class Api::AppointmentsController < ApplicationController
     end
   end
   
+  def getDateAppointments
+    @service = Service.find(params[:service_id])
+    @doctor = @service.doctor
+    date = Date.parse(params[:date])
+    @appointments = @doctor.appointments.where({
+      startTime: date.midnight..(date.midnight + 1.day)
+    }).order(startTime: :asc)
+    
+    render :date_appointments
+  end
+  
   private
   
   def appointment_params

@@ -2,13 +2,17 @@
 #
 # Table name: appointments
 #
-#  id         :integer          not null, primary key
-#  title      :string(255)      not null
-#  doctor_id  :integer          not null
-#  created_at :datetime
-#  updated_at :datetime
-#  startTime  :datetime         not null
-#  endTime    :datetime
+#  id          :integer          not null, primary key
+#  title       :string(255)      not null
+#  doctor_id   :integer          not null
+#  created_at  :datetime
+#  updated_at  :datetime
+#  email       :string(255)
+#  fname       :string(255)
+#  lname       :string(255)
+#  startTime   :datetime
+#  endTime     :datetime
+#  office_hour :boolean          default(FALSE)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
