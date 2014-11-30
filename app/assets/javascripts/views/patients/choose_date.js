@@ -1,6 +1,6 @@
 Assisster.Views.ChooseDate = Backbone.CompositeView.extend({
 	template: JST["patients/choose_date"],
-	className: "col-xs-2",
+	className: "col-xs-3",
 	
 	render: function () {
 		var renderedContent = this.template();
