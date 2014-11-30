@@ -20,5 +20,10 @@ Assisster.Views.FreeSlotItem = Backbone.View.extend({
 		var $target = $(event.currentTarget);
 		$('a.free-slot-item').removeClass('active');
 		$target.addClass('active');
+		var slotShowView = new Assisster.Views.SlotShow({
+			model: this.model
+		});
+		
+		$('div.chosen-time').html(slotShowView.render().$el);
 	},
 })

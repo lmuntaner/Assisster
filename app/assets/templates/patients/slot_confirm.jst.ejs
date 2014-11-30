@@ -1,0 +1,8 @@
+<h4>Confirm Appointment for:</h4>
+<h5>
+	<%= appointment.get('startTime').format('dddd, MMMM Do') %>
+</h5>
+<h5>
+	From: <%= appointment.get('startTime').format('h:mm') %> to: <%= appointment.get('endTime').format('h:mm') %>
+</h5>
+<button class="btn btn-success">Make an appointment</button>

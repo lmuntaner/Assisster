@@ -1,6 +1,6 @@
 Assisster.Views.ChooseTime = Backbone.CompositeView.extend({
 	template: JST["patients/choose_time"],
-	className: "row col-xs-7 choose-time-slot",
+	className: "row col-xs-8 choose-time-slot",
 	
 	initialize: function (options) {
 		this.date = options.date;
@@ -15,7 +15,7 @@ Assisster.Views.ChooseTime = Backbone.CompositeView.extend({
 		var view = this;
 		this.setFreeSlots().forEach(function (freeSlot) {
 			var freeSlotItem = new Assisster.Views.FreeSlotItem({
-				model: freeSlot
+				model: freeSlot,
 			});
 			view.addSubview("div.list-group", freeSlotItem);
 		});
