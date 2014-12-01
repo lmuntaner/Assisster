@@ -3,8 +3,6 @@ Assisster.Views.CalendarContainer = Backbone.CompositeView.extend({
   className: "row",
   
   initialize: function () {
-    this.model = new Assisster.Models.Doctor();
-    this.model.fetch();
     this.collection = this.model.appointments();
     var calendarView = new Assisster.Views.CalendarView({
       collection: this.collection
