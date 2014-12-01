@@ -1,5 +1,6 @@
 Assisster.Routers.DoctorRouter = Backbone.Router.extend({
   routes: {
+		"calendar": "calendar",
     "": "dashboard"
   },
   
@@ -13,6 +14,13 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
     this._swapView(dashboardView);
     dashboardView.onRender();
   },
+	
+	calendar: function () {
+    var calendarContainerView = new Assisster.Views.CalendarContainer();
+    
+    this._swapView(calendarContainerView);
+    calendarContainerView.onRender();
+	},
   
   _swapView: function(view) {
     this._currentView && this._currentView.remove();
