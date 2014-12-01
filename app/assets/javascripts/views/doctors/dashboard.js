@@ -3,7 +3,6 @@ Assisster.Views.DashboardView = Backbone.CompositeView.extend({
   className: "row",
   
   initialize: function () {
-    this.collection = this.model.appointments();
     this.dashboardHomeView = new Assisster.Views.DashboardHome({
       collection: this.collection
     });

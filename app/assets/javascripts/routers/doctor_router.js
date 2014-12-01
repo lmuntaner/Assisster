@@ -7,12 +7,14 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
   initialize: function(options) {
     this.model = new Assisster.Models.Doctor();
     this.model.fetch();
+		this.collection = this.model.appointments();
     this.$rootEl = options.$rootEl;
   },
   
   dashboard: function() {
     var dashboardView = new Assisster.Views.DashboardView({
-    	model: this.model
+    	model: this.model,
+			collection: this.collection
     });
     
     this._swapView(dashboardView);
@@ -20,7 +22,8 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
 	
 	calendar: function () {
     var calendarContainerView = new Assisster.Views.CalendarContainer({
-    	model: this.model
+    	model: this.model,
+			collection: this.collection
     });
     
     this._swapView(calendarContainerView);
