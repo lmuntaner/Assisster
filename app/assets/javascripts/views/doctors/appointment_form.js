@@ -9,6 +9,18 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 	
 	initialize: function(options) {
 		var startTime, endTime;
+		
+		if (options.coordinates[0] < 1000) {
+			this.$el.css('left', options.coordinates[0])			
+		} else {
+			this.$el.css('left', options.coordinates[0] - 300)
+		}
+		if (options.coordinates[1] < 400) {
+			this.$el.css('top', options.coordinates[1] - 150)			
+		} else {
+			this.$el.css('top', options.coordinates[1] - 300)	
+		}
+		
 		if (options.date) {
 			this.date = options.date;
 			startTime = this.date.clone();	
@@ -18,6 +30,7 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 			startTime = moment.utc(this.model.escape('startTime'));
 			endTime = moment.utc(this.model.escape('endTime'));	
 		}
+		
 		this.fromDateForm = new Assisster.Views.DateForm({
 			date: startTime,
 			position: "From"
@@ -26,14 +39,12 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 			date: endTime,
 			position: "To"
 		});
-		this.selectorDate = "#appointment-modal .form-inputs";
-		
+		this.selectorDate = "div.form-inputs";
 		this.addSubview(this.selectorDate, this.fromDateForm);
 		this.addSubview(this.selectorDate, this.toDateForm);
 	},
 	
 	cancel: function () {
-		this.$('#appointment-modal').modal('hide');
 		this.remove();
 	},
 	

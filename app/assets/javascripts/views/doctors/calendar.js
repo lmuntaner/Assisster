@@ -54,7 +54,6 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 		
 	renderAppointmentForm: function (appointmentForm) {
     this.$el.append(appointmentForm.render().$el);
-    this.$('#appointment-modal').modal();
 	},
 
 	renderEvent: function(event, element) {
@@ -63,20 +62,26 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 		var lastText = event.fname + " " + event.lname;
 		element.find("div.fc-title").html(lastText);
 		var tooltip = event.title;
-		$(element).addClass("calendar-tooltip");
 		$(element).attr("data-original-title", tooltip);
 		$(element).tooltip({ container: "body"});
 	},
 	
 	updateAppointment: function(event, jsEvent, view) {
 		var appointment = this.collection.get(event.id);
-
-		var appointmentForm = new Assisster.Views.AppointmentForm({
+		var coordinates = [jsEvent.pageX, jsEvent.pageY];
+		
+		if (this.appointmentForm) {
+			this.appointmentForm.remove();
+		}
+		
+		this.appointmentForm = new Assisster.Views.AppointmentForm({
 			collection: this.collection,
 			model: appointment,
+			coordinates: coordinates,
 			event: event
 		});
-		this.renderAppointmentForm(appointmentForm);
+		
+		this.renderAppointmentForm(this.appointmentForm);
 	},
 	
 	updateAppointmentDraggOrResize: function (event) {

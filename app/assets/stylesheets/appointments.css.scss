@@ -4,15 +4,20 @@
 
 /* Doctor Calendar */
 
-.calendar-tooltip + .tooltip > .tooltip-inner {
-	background-color: #777;
+.tooltip > .tooltip-inner {
+	background-color: #003366;
+}
+
+.tooltip > .tooltip-arrow {
+	border-color: #003366 transparent;
 }
 
 /* Doctor Appointment Form */
 
-.appointment-content {
-	position: absolute;
-	top: 200px;
+.appointment-form-container {
+	width: 300px;
+	z-index: 1;
+	position: fixed;
 }
 
 .centered-form {

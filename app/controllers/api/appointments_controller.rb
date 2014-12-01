@@ -1,8 +1,12 @@
 class Api::AppointmentsController < ApplicationController
-  before_action :ensure_signed_in
+  before_action :ensure_signed_in, only: [:update]
   
   def create
-    appointment = current_doctor.appointments.new(appointment_params)
+    if (current_doctor)
+      appointment = current_doctor.appointments.new(appointment_params)
+    else
+      appointment = Appointment.new(appointment_params)
+    end
     
     if appointment.save
       render json: appointment
@@ -36,7 +40,7 @@ class Api::AppointmentsController < ApplicationController
   
   def appointment_params
     params.require(:appointment).permit(:title, :startTime, :endTime,
-                                        :email, :fname, :lname)
+                                        :email, :fname, :lname, :doctor_id)
   end
   
   def ensure_signed_in
