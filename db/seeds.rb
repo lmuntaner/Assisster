@@ -14,7 +14,7 @@ day = DateTime.now.change(hour: 8)
 7.times do |i|
   new_day = day.next_day(i)
   next if new_day.saturday? || new_day.sunday?
-  5.times do |j|
+  4.times do |j|
     appointment = new_day.in(7200 * j);
     first_doctor.appointments.create(title: first_doctor.services.sample.title,
                                email: Faker::Internet.email,

@@ -1,6 +1,15 @@
 Assisster.Models.Appointment = Backbone.Model.extend({
   urlRoot: "/api/appointments/",
-  
+	
+	initialize: function () {
+		if (this.get('startTime')) {
+			this.startTime = moment.utc(this.get('startTime'));			
+		}
+		if (this.get('endTime')) {
+			this.endTime = moment.utc(this.get('endTime'));
+		}
+	},
+
   convertToEvent: function() {
     var eventObject = {};
 		eventObject.id = this.id;
@@ -16,4 +25,16 @@ Assisster.Models.Appointment = Backbone.Model.extend({
 		}
     return eventObject;
   },
+	
+	date: function () {
+		return this.startTime.format("dddd, MMMM Do");
+	},
+	
+	fullName: function () {
+		return this.escape('fname') + " " + this.escape("lname");
+	},
+	
+	time: function () {
+		return this.startTime.format("h:mm a") + " - " + this.endTime.format("h:mm a");
+	},
 })
