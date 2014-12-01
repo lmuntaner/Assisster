@@ -2,13 +2,16 @@
 <ul class="services">
 	<% services.each(function (service) { %>
 		<li>
-			<div class="service-content">
-				<a class="btn btn-default service-button"
-					 href="#<%= service.id %>"
-					 role="button">
-					 <%= service.escape('title') %>
-				</a>
-				<div class="service-description">
+			<div class="service-content row">
+				<div class="service-title col-xs-2">
+					<a class="btn btn-default service-button"
+						 href="#<%= service.id %>"
+						 role="button">
+						 <%= service.escape('title') %>
+					</a>
+				</div>
+				<div class="service-description col-xs-6">
+					<span class="duration">Duration: <%= service.escape('duration_min') %> min</span>
 					<h5>Description:</h5>
 					<p><%= service.escape('description') %></p>
 				</div>

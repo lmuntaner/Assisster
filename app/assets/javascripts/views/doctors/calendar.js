@@ -59,12 +59,12 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 
 	renderEvent: function(event, element) {
 		var firstText = event.start.format("h:mm") + ": " + event.title;
-		element.find("div.fc-time span").text(firstText);
+		element.find("div.fc-time span").html(firstText);
 		var lastText = event.fname + " " + event.lname;
-		element.find("div.fc-title").text(lastText);
+		element.find("div.fc-title").html(lastText);
 		var tooltip = event.title;
 		$(element).addClass("calendar-tooltip");
-		$(element).attr("data-original-title", tooltip)
+		$(element).attr("data-original-title", tooltip);
 		$(element).tooltip({ container: "body"});
 	},
 	
