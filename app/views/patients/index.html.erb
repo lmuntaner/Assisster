@@ -9,26 +9,36 @@
 <div class="container wrap">
   <div class="row">
     <div class="home-header col-xs-12">
-
-      <h1 class="text-center home-title">William Davis, MD</h1>      
+      <h1 class="text-center home-title">Dr. William Davis</h1>
+			<h4 class="text-center home-subtitle">Author of <span>Wheat Belly</span></h4>     
     </div>
   </div>
   <div class="row">
     <div class="col-xs-6">
-      <h3>Services:</h3>
+      <h3 class="home-title-section">About my book:</h3>
       <dl class="dl-horizontal">
-        <dt>About Wheat:</dt>
-        <dd>This a test for a first sevice!</dd>
+        <dt>Modern Wheat:</dt>
+        <dd>
+					<p>Modern wheat is no more real wheat than a chimpanzee is an approximation of a human.</p>
+				</dd>
         <dt>Wheat and health:</dt>
-        <dd>This a test for a first sevice!</dd>
+        <dd>
+					<p>Wheat products elevate blood sugar levels more than virtually any other carbohydrate, from beans to candy bars.</p>
+				</dd>
         <dt>Symptoms:</dt>
-        <dd>This a test for a first sevice!</dd>
+        <dd>
+					<p>The bigger the wheat belly in males, the more estrogen is produced by fat tissue, and the larger the breasts. The bigger your wheat belly, the more inflammatory responses that are triggered: heart disease and cancer.</p>
+				</dd>
       </dl>
-			<a class="btn btn-success" href="/appointment" role="button">Make an appointment</a>
+			<div class="appointment-button-index">
+				<a class="btn btn-success" href="/appointment" role="button">
+					Make an appointment
+				</a>
+			</div>
     </div>
     <div class="col-xs-4">
-      <h3>Contact</h3>
-      <img src="http://www.annarosell.es/mapa2.png">
+      <h3 class="home-title-section">Contact</h3>
+      <div id="map-canvas"></div>
       <address>
         <strong>William Davis, MD</strong><br>
         795 Folsom Ave, Suite 600<br>
@@ -45,3 +55,25 @@
 </div>
 
 <%= render "helpers/footer" %>
+
+<script type="text/javascript">
+	function init_map(){
+		var myOptions = {
+			zoom:14,
+			center: new google.maps.LatLng(37.7821343,-122.4006397),
+			mapTypeId: google.maps.MapTypeId.ROADMAP};
+			map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
+			marker = new google.maps.Marker({ 
+				map: map,
+				position: new google.maps.LatLng(37.7821343, -122.4006397)
+			});
+			infowindow = new google.maps.InfoWindow({ 
+				content:"<b>Dr. William Davis</b>"
+			});
+			google.maps.event.addListener(marker, "click", function() {
+				infowindow.open(map,marker);
+			});
+			infowindow.open(map,marker);
+		}
+		google.maps.event.addDomListener(window, 'load', init_map);
+</script>
