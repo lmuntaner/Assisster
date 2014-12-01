@@ -28,7 +28,6 @@ Assisster.Views.CalendarView = Backbone.View.extend({
         center: 'title',
         right: 'today prev,next'
       },
-			slotDuration: '00:15:00',
 			scrollTime: '08:00:00',
 			height: 500,
       editable: true,
