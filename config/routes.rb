@@ -13,5 +13,7 @@ Rails.application.routes.draw do
     end
     resources :doctors, only: [:index]
     resources :appointments, only: [:create, :update]
+    resources :confirm_appointments, only: [:update]
+    resources :cancel_appointments, only: [:update]
   end
 end
