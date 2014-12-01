@@ -8,6 +8,10 @@ Assisster.Collections.Appointments = Backbone.Collection.extend({
 		});
 	},
 	
+  comparator: function(appointment) {
+    return appointment.get('created_at');
+  },
+	
 	getAppointments: function () {
 		var arrayAppointments = [];
     this.each(function(appointment) {
@@ -38,5 +42,10 @@ Assisster.Collections.Appointments = Backbone.Collection.extend({
 			url: url,
 			success: this.addModels.bind(this)
 		});
+	},
+	
+	recentAppointments: function (n) {
+		var num_appointments = this.length;
+		return this.slice(num_appointments - n - 1, num_appointments);
 	},
 });

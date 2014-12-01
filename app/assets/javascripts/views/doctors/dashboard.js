@@ -4,17 +4,17 @@ Assisster.Views.DashboardView = Backbone.CompositeView.extend({
   
   initialize: function () {
     this.collection = this.model.appointments();
-    var dashboardHomeView = new Assisster.Views.DashboardHome({
+    this.dashboardHomeView = new Assisster.Views.DashboardHome({
       collection: this.collection
     });
-    this.addSubview("div.dashboard-body", dashboardHomeView);
+    this.addSubview("div.dashboard-body", this.dashboardHomeView);
     this.listenTo(this.model, "sync", this.render);
   },
   
   render: function () {
     var renderedContent = this.template();
     this.$el.html(renderedContent);
-    this.attachSubviews();
+    this.attachSubview("div.dashboard-body", this.dashboardHomeView);
     
     return this;
   },
