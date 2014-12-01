@@ -20,7 +20,7 @@ window.Assisster = {
 
 
 // AppAcademy Composite View extension!!
-// Added: onRender, resetSubviews
+// Added: onRender, resetSubviews, attachPrependSubview, attachPrependSubviews
 Backbone.CompositeView = Backbone.View.extend({
   addSubview: function (selector, subview) {
     this.subviews(selector).push(subview);
@@ -52,6 +52,21 @@ Backbone.CompositeView = Backbone.View.extend({
       view.$(selector).empty();
       _(subviews).each(function (subview) {
         view.attachSubview(selector, subview);
+      });
+    });
+  },
+	
+  attachPrependSubview: function (selector, subview) {
+    this.$(selector).prepend(subview.render().$el);
+    subview.delegateEvents();
+  },
+
+  attachPrependSubviews: function () {
+    var view = this;
+    _(this.subviews()).each(function (subviews, selector) {
+      view.$(selector).empty();
+      _(subviews).each(function (subview) {
+        view.attachPrependSubview(selector, subview);
       });
     });
   },

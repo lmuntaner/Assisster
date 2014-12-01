@@ -24,7 +24,7 @@ Assisster.Views.RecentAppointmentsIndex = Backbone.CompositeView.extend({
   render: function () {
     var renderedContent = this.template();
     this.$el.html(renderedContent);
-		this.attachSubviews();
+		this.attachPrependSubviews();
     
     return this;
   },
