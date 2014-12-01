@@ -20,10 +20,12 @@ day = DateTime.now.change(hour: 8)
                                email: Faker::Internet.email,
                                fname: Faker::Name.first_name,
                                lname: Faker::Name.last_name,
+                               status: "approved",
                                startTime: appointment,
                                endTime: appointment.in(3600))
   end
   first_doctor.appointments.create(title: "office hour",
+                                   status: "approved",
                                    startTime: new_day,
                                    endTime: new_day.in(3600 * 8),
                                    office_hour: true)

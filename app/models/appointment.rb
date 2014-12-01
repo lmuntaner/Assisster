@@ -16,7 +16,7 @@
 #
 
 class Appointment < ActiveRecord::Base
-  validates :title, :startTime, :doctor, presence: true
+  validates :title, :startTime, :doctor, :status, presence: true
   
   belongs_to :doctor
 end

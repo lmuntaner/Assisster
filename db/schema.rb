@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141129212544) do
+ActiveRecord::Schema.define(version: 20141201222753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "appointments", force: true do |t|
-    t.string   "title",                       null: false
-    t.integer  "doctor_id",                   null: false
+    t.string   "title",                           null: false
+    t.integer  "doctor_id",                       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20141129212544) do
     t.datetime "startTime"
     t.datetime "endTime"
     t.boolean  "office_hour", default: false
+    t.string   "status",      default: "Pending"
   end
 
   add_index "appointments", ["doctor_id"], name: "index_appointments_on_doctor_id", using: :btree
