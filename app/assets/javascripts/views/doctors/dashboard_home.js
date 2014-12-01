@@ -6,14 +6,21 @@ Assisster.Views.DashboardHome = Backbone.CompositeView.extend({
 		this.recentAppointmentsIndex = new Assisster.Views.RecentAppointmentsIndex({
 			collection: this.collection
 		});
+		
+		this.pendingAppointmentsIndex = new Assisster.Views.PendingAppointmentsIndex({
+			collection: this.collection
+		});
 
 		this.addSubview("div.appointments-lists", this.recentAppointmentsIndex);
+		this.addSubview("div.appointments-lists", this.pendingAppointmentsIndex);
+		
     this.listenTo(this.collection, "sync", this.render);
   },
   
   render: function () {
     var renderedContent = this.template();
     this.$el.html(renderedContent);
+		this.attachSubview("div.appointments-lists", this.pendingAppointmentsIndex);
 		this.attachSubview("div.appointments-lists", this.recentAppointmentsIndex);
     
     return this;

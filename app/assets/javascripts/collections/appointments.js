@@ -44,6 +44,10 @@ Assisster.Collections.Appointments = Backbone.Collection.extend({
 		});
 	},
 	
+	pendingAppointments: function () {
+		return this.where({ appointment_status: "Pending" });
+	},
+	
 	recentAppointments: function (n) {
 		var num_appointments = this.length;
 		return this.slice(num_appointments - n - 1, num_appointments - 1);

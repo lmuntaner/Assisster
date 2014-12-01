@@ -6,7 +6,9 @@ Assisster.Views.SlotShow = Backbone.View.extend({
 	},
 	
 	createAppointment: function (event) {
-		this.model.set({ 'doctor_id': window.Doctor.id });
+		this.model.set({
+			'doctor_id': window.Doctor.id,
+		});
 		this.model.save({}, {
 			success: function () {
 				Backbone.history.navigate("success", { trigger: true });				
