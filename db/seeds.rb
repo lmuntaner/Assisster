@@ -9,13 +9,13 @@ first_doctor.services.create(title: "Holistic consultation", duration_min: 90,
 first_doctor.services.create(title: "Gut problems", duration_min: 30,
                             description: "We will focus our efforts on solving you gut problems")
 
-now = DateTime.now
+day = DateTime.now.change(hour: 8)
                            
 7.times do |i|
-  day = now.next_day(i)
-  next if day.saturday? || day.sunday?
+  new_day = day.next_day(i)
+  next if new_day.saturday? || new_day.sunday?
   5.times do |j|
-    appointment = day.midnight.in(7200 * j);
+    appointment = new_day.in(7200 * j);
     first_doctor.appointments.create(title: first_doctor.services.sample.title,
                                email: Faker::Internet.email,
                                fname: Faker::Name.first_name,
@@ -23,10 +23,8 @@ now = DateTime.now
                                startTime: appointment,
                                endTime: appointment.in(3600))
   end
-  
-  office_hour = now.next_day(i).midnight
   first_doctor.appointments.create(title: "office hour",
-                                   startTime: office_hour,
-                                   endTime: office_hour.in(3600 * 8),
+                                   startTime: new_day,
+                                   endTime: new_day.in(3600 * 8),
                                    office_hour: true)
 end
