@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       get "/:date", to: "appointments#getDateAppointments"
     end
     resources :doctors, only: [:index]
-    resources :appointments, only: [:create, :update]
+    resources :appointments, only: [:create, :update, :show]
     resources :confirm_appointments, only: [:update]
     resources :cancel_appointments, only: [:update]
   end

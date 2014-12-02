@@ -14,6 +14,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'ejs'
 gem 'newrelic_rpm'
 gem 'faker'
+gem 'pusher'
 # gem 'sdoc', '~> 0.4.0',          group: :doc
 
 group :doc do

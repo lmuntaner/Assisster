@@ -1,5 +1,10 @@
 class Api::AppointmentsController < ApplicationController
-  before_action :ensure_signed_in, only: [:update]
+  before_action :ensure_signed_in, only: [:update, :show]
+  
+  def show
+    @appointment = Appointment.find(params[:id])
+    render :show
+  end
   
   def create
     if (current_doctor)
@@ -9,6 +14,7 @@ class Api::AppointmentsController < ApplicationController
     end
     
     if appointment.save
+      trigger_appointment_event(appointment)
       render json: appointment
     else
       render json: appointment.errors.full_messages, status: :unprocessable_entity
@@ -19,6 +25,7 @@ class Api::AppointmentsController < ApplicationController
     appointment = Appointment.find(params[:id])
     
     if appointment.update(appointment_params)
+      trigger_appointment_event(appointment)
       render json: appointment
     else
       render json: appointment.errors.full_messages, status: :unprocessable_entity

@@ -21,6 +21,7 @@
 //= require moment
 //= require fullcalendar
 //= require bootstrap
+//= require pusher.min
 //= require assisster
 //= require_tree ../templates
 //= require_tree ./models

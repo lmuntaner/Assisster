@@ -1,3 +1,9 @@
+require 'pusher'
+
+Pusher.app_id = '98767'
+Pusher.key = 'b364d5eaf36fa6f4f92f'
+Pusher.secret = '438fbab515c29863104b'
+
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -29,5 +35,11 @@ class ApplicationController < ActionController::Base
     
     def ensure_signed_in
       redirect_to root_url unless signed_in?
+    end
+    
+    def trigger_appointment_event(appointment)
+      Pusher.trigger('appointment-channel',
+                     'appointment-event',
+                     {:appointment => appointment.as_json})
     end
 end
