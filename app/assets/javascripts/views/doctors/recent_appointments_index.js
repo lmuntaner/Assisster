@@ -7,7 +7,6 @@ Assisster.Views.RecentAppointmentsIndex = Backbone.CompositeView.extend({
 		this.getRecentAppointments();
 		this.listenTo(this.collection, "sync add", this.getRecentAppointments);
 		this.listenTo(this.recentCollection, "sync", this.render);
-		this.listenToPusher();
   },
 	
 	getRecentAppointments: function () {
@@ -20,25 +19,6 @@ Assisster.Views.RecentAppointmentsIndex = Backbone.CompositeView.extend({
 				model: appointment
 			});
 			view.addSubview('table.recents', recentAppointmentItem);
-		});
-	},
-	
-	listenToPusher: function () {
-		if (!this.pusher) {
-			this.pusher = new Pusher('b364d5eaf36fa6f4f92f');			
-		}
-		if (!this.channel) {
-			this.channel = this.pusher.subscribe('appointment-channel');			
-		}
-		var view = this;
-		this.channel.bind('appointment-event', function(data) {
-			var appointment = view.collection.get(data.appointment.id);
-			if (appointment) {
-				appointment.fetch();
-			} else {
-				appointment = new Assisster.Models.Appointment(data.appointment);
-				view.collection.add(appointment, {at: 0});
-			}
 		});
 	},
   

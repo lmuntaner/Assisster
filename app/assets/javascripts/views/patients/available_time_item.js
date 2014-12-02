@@ -1,10 +1,10 @@
-Assisster.Views.FreeSlotItem = Backbone.View.extend({
-	template: JST["patients/free_slot_item"],
+Assisster.Views.AvailableTimeItem = Backbone.View.extend({
+	template: JST["patients/available_time_item"],
 	tagName: "a",
-	className: "free-slot-item list-group-item",
+	className: "available-time-item list-group-item",
 	
 	events: {
-		"click": "selectSlot"
+		"click": "selectTime"
 	},
 	
 	render: function () {
@@ -16,9 +16,9 @@ Assisster.Views.FreeSlotItem = Backbone.View.extend({
 		return this;
 	},
 	
-	selectSlot: function (event) {
+	selectTime: function (event) {
 		var $target = $(event.currentTarget);
-		$('a.free-slot-item').removeClass('active');
+		$('a.available-time-item').removeClass('active');
 		$target.addClass('active');
 		var slotShowView = new Assisster.Views.SlotShow({
 			model: this.model

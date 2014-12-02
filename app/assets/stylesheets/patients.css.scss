@@ -70,10 +70,14 @@ span.duration {
   margin: 20px 0 30px;
 }
 
-/* Choose a time slot */
+/* Choose a available time */
 
-.choose-time-slot {
+.choose-available-time {
 	margin-left: 30px;
+}
+
+a.available-time-item {
+	width: 200px;
 }
 
 /* Confirm appointment */
