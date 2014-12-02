@@ -10,6 +10,7 @@ first_doctor.services.create(title: "Gut problems", duration_min: 30,
                             description: "We will focus our efforts on solving you gut problems")
 
 day = DateTime.now.change(hour: 8)
+statuses = ['Approved', 'Pending']
                            
 7.times do |i|
   new_day = day.next_day(i)
@@ -20,7 +21,7 @@ day = DateTime.now.change(hour: 8)
                                email: Faker::Internet.email,
                                fname: Faker::Name.first_name,
                                lname: Faker::Name.last_name,
-                               appointment_status: "Approved",
+                               appointment_status: statuses.sample,
                                startTime: appointment,
                                endTime: appointment.in(3600))
   end

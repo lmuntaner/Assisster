@@ -2,13 +2,12 @@ Assisster.Views.SlotShow = Backbone.View.extend({
 	template: JST["patients/slot_confirm"],
 	
 	events: {
-		"submit form": "createAppointment"
+		"click form>button": "createAppointment"
 	},
 	
 	createAppointment: function (event) {
 		event.preventDefault();
-		var params = $(event.currentTarget).serializeJSON().appointment;
-		debugger;
+		var params = $(event.currentTarget).parent().serializeJSON().appointment;
 		if (this.validateForm(params)) {
 	    var view = this;
 			var appointmentParams = {
