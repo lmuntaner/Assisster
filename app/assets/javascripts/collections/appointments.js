@@ -62,6 +62,9 @@ Assisster.Collections.Appointments = Backbone.Collection.extend({
 	
 	recentAppointments: function (n) {
 		var num_appointments = this.length;
-		return this.sort().slice(num_appointments - n - 1, num_appointments);
+		debugger;
+		return this.sort().where({
+			office_hour: false
+		}).slice(num_appointments - n - 1, num_appointments);
 	},
 });

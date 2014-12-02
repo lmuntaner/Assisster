@@ -2,7 +2,8 @@ Assisster.Views.ChooseAppointment = Backbone.CompositeView.extend({
 	template: JST["patients/choose_appointment"],
 	
 	events: {
-		"changeDate #datepicker>input": "showTimeSlots"
+		"click": "preventDefault",
+		"changeDate .date-pick": "showTimeSlots"
 	},
 	
 	initialize: function (options) {
@@ -11,8 +12,14 @@ Assisster.Views.ChooseAppointment = Backbone.CompositeView.extend({
 		this.addSubview("div.choose-appointment-body", this.chooseDateView);
 	},
 	
+	preventDefault: function (event) {
+		event.preventDefault();
+	},
+	
 	onRender: function () {
-		this.$('#datepicker input').datepicker();
+		$('.date-pick').datepicker({
+			todayHighlight: true
+		});
 	},
 	
 	render: function () {
