@@ -11,14 +11,21 @@ Assisster.Views.CalendarView = Backbone.View.extend({
     $('#calendar').fullCalendar('addEventSource', [appointment.convertToEvent()]);
   },
   
-  createAppointment: function(date) {
+  createAppointment: function(date, jsEvent) {
 		var appointment = new Assisster.Models.Appointment();
-    var appointmentForm = new Assisster.Views.AppointmentForm({
+		var coordinates = [jsEvent.pageX, jsEvent.pageY];
+		
+		if (this.appointmentForm) {
+			this.appointmentForm.remove();
+		}
+		
+    this.appointmentForm = new Assisster.Views.AppointmentForm({
       collection: this.collection,
       date: date,
-			model: appointment
+			model: appointment,
+			coordinates: coordinates,
     });
-    this.renderAppointmentForm(appointmentForm);
+    this.renderAppointmentForm(this.appointmentForm);
   },
 	
   onRender: function () {
