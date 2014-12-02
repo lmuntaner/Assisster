@@ -34,7 +34,7 @@ Assisster.Views.CalendarView = Backbone.View.extend({
       defaultView: 'agendaWeek',
       dayClick: this.createAppointment.bind(this),
 			eventClick: this.updateAppointment.bind(this),
-      events: this.collection.getAppointments().concat(this.collection.getOfficeHours()),
+      events: this.collection.getConfirmedAppointments().concat(this.collection.getOfficeHours()),
 			eventRender: this.renderEvent,
 			eventDrop: this.updateAppointmentDraggOrResize.bind(this),
 			eventResize: this.updateAppointmentDraggOrResize.bind(this)

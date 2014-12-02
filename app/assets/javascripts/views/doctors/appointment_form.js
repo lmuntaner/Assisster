@@ -4,6 +4,7 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
   
   events: {
 		"click #submit-appointment-form": "save",
+		"click #close-appointment-form": "closeView",
 		"click #cancel-appointment-form": "cancel"
   },
 	
@@ -44,7 +45,21 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 		this.addSubview(this.selectorDate, this.toDateForm);
 	},
 	
-	cancel: function () {
+	cancel: function (event) {
+		var appointment = this.model;
+		var view = this;
+		var url = "/api/cancel_appointments/" + this.model.id;
+		$.ajax({
+			type: "PATCH",
+			url: url,
+			success: function () {
+				$('#calendar').fullCalendar('removeEvents', [appointment.id]);
+				view.remove();
+			}
+		})
+	},
+	
+	closeView: function () {
 		this.remove();
 	},
 	

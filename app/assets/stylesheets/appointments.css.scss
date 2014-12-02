@@ -15,7 +15,7 @@
 /* Doctor Appointment Form */
 
 .appointment-form-container {
-	width: 300px;
+	width: 330px;
 	z-index: 1;
 	position: fixed;
 }
@@ -42,4 +42,8 @@
 	font-size: 12px;
 	color: red;
 	padding-bottom: 15px;
+}
+
+.appointment-form-container button.cancel {
+	float: right;
 }

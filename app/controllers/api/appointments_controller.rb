@@ -30,7 +30,8 @@ class Api::AppointmentsController < ApplicationController
     @doctor = @service.doctor
     date = Date.parse(params[:date])
     @appointments = @doctor.appointments.where({
-      startTime: date.midnight..(date.midnight + 1.day)
+      startTime: date.midnight..(date.midnight + 1.day),
+      appointment_status: ["Approved", "Pending"]
     }).order(startTime: :asc)
     
     render :date_appointments

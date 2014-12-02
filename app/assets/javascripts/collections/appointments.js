@@ -12,6 +12,18 @@ Assisster.Collections.Appointments = Backbone.Collection.extend({
     return appointment.get('created_at');
   },
 	
+	getConfirmedAppointments: function () {
+		var arrayAppointments = [];
+    this.each(function(appointment) {
+			if (!appointment.get('office_hour') &&
+					appointment.get('appointment_status') === "Approved") {
+	      			arrayAppointments.push(appointment.convertToEvent());				
+			}
+    });
+		
+		return arrayAppointments;
+	},
+	
 	getAppointments: function () {
 		var arrayAppointments = [];
     this.each(function(appointment) {
@@ -50,6 +62,6 @@ Assisster.Collections.Appointments = Backbone.Collection.extend({
 	
 	recentAppointments: function (n) {
 		var num_appointments = this.length;
-		return this.slice(num_appointments - n - 1, num_appointments - 1);
+		return this.sort().slice(num_appointments - n - 1, num_appointments);
 	},
 });
