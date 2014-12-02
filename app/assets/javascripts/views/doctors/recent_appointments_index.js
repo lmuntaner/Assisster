@@ -37,7 +37,7 @@ Assisster.Views.RecentAppointmentsIndex = Backbone.CompositeView.extend({
 				appointment.fetch();
 			} else {
 				appointment = new Assisster.Models.Appointment(data.appointment);
-				view.collection.add(appointment);
+				view.collection.add(appointment, {at: 0});
 			}
 		});
 	},
