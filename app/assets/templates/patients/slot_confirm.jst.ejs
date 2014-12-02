@@ -5,4 +5,34 @@
 <h5>
 	From: <%= appointment.get('startTime').format('h:mm') %> to: <%= appointment.get('endTime').format('h:mm') %>
 </h5>
-<button class="btn btn-success">Make appointment</button>
+<div class="errors">
+</div>
+<form role="form">
+	<div class="form-inputs">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
+					<input type="text" name="appointment[email]" class="form-control input-sm" placeholder="Email">
+				</div>
+			</div>
+		</div>
+				
+		<div class="row">
+			<div class="col-xs-6 col-sm-12 col-md-6">
+				<div class="form-group">
+					<input type="text" name="appointment[fname]" class="form-control input-sm" placeholder="First Name">
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-12 col-md-6">
+				<div class="form-group">
+					<input type="text" name="appointment[lname]" class="form-control input-sm" placeholder="Last Name">
+				</div>
+			</div>
+		</div>				
+	</div>
+
+	<button type="submit"
+					class="btn btn-success">
+					Confirm
+	</button>
+</form>
