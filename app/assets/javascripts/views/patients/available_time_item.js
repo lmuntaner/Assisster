@@ -17,6 +17,8 @@ Assisster.Views.AvailableTimeItem = Backbone.View.extend({
 	},
 	
 	selectTime: function (event) {
+		$('.choose-time').removeClass('active-step');
+		$('.chosen-time').addClass('active-step');
 		var $target = $(event.currentTarget);
 		$('a.available-time-item').removeClass('active');
 		$target.addClass('active');

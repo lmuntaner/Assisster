@@ -17,9 +17,8 @@ Assisster.Views.ChooseAppointment = Backbone.CompositeView.extend({
 	},
 	
 	onRender: function () {
-		$('.date-pick').datepicker({
-			todayHighlight: true
-		});
+		$('.date-pick').datepicker();
+		this.chooseDateView.$el.addClass('active-step');
 	},
 	
 	render: function () {
@@ -34,6 +33,7 @@ Assisster.Views.ChooseAppointment = Backbone.CompositeView.extend({
 	},
 	
 	showTimeSlots: function (event) {
+		this.chooseDateView.$el.removeClass('active-step');
 		var date = moment(event.date);
 		if (this.chooseTimeView) {
 			this.chooseTimeView.remove();

@@ -42,14 +42,19 @@ Assisster.Views.CalendarView = Backbone.View.extend({
       dayClick: this.createAppointment.bind(this),
 			eventClick: this.updateAppointment.bind(this),
       events: this.collection.getConfirmedAppointments().concat(this.collection.getOfficeHours()),
-			eventRender: this.renderEvent,
+			eventDragStart: this.removeTooltip,
 			eventDrop: this.updateAppointmentDraggOrResize.bind(this),
+			eventRender: this.renderEvent,
 			eventResize: this.updateAppointmentDraggOrResize.bind(this)
     });  
   },
 	
 	removeFromCalendar: function (appointment) {
 		$('#calendar').fullCalendar('removeEvents', [appointment.id]);
+	},
+	
+	removeTooltip: function () {
+		$(this).tooltip('destroy');
 	},
 
   render: function () {

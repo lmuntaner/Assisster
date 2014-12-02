@@ -41,6 +41,11 @@ div.appointment-button-index {
   margin: 30px 0 30px;
 }
 
+.active-step {
+	background-color: #f5f5f5;
+	border-radius: 5px;
+}
+
 /* Choose a service */
 
 ul.services {
@@ -88,4 +93,5 @@ a.available-time-item {
 
 div.chosen-time {
 	margin-left: 30px;
+	padding-bottom: 15px;
 }

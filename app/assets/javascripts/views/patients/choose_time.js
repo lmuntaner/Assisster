@@ -13,7 +13,8 @@ Assisster.Views.ChooseTime = Backbone.CompositeView.extend({
 	onRender: function () {
 		this.resetSubviews();
 		var view = this;
-		this.setAvailableSlots().forEach(function (availableTime) {
+		var availableSlots = this.setAvailableSlots();
+		availableSlots.forEach(function (availableTime) {
 			var availableTimeItem = new Assisster.Views.AvailableTimeItem({
 				model: availableTime,
 			});
