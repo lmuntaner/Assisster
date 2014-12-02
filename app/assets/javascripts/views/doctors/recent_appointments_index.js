@@ -24,10 +24,14 @@ Assisster.Views.RecentAppointmentsIndex = Backbone.CompositeView.extend({
 	},
 	
 	listenToPusher: function () {
-		var pusher = new Pusher('b364d5eaf36fa6f4f92f');
-		var channel = pusher.subscribe('appointment-channel');
+		if (!this.pusher) {
+			this.pusher = new Pusher('b364d5eaf36fa6f4f92f');			
+		}
+		if (!this.channel) {
+			this.channel = this.pusher.subscribe('appointment-channel');			
+		}
 		var view = this;
-		channel.bind('appointment-event', function(data) {
+		this.channel.bind('appointment-event', function(data) {
 			var appointment = view.collection.get(data.appointment.id);
 			if (appointment) {
 				appointment.fetch();

@@ -65,7 +65,7 @@ Assisster.Collections.Appointments = Backbone.Collection.extend({
 			office_hour: false
 		});
 		var num_appointments = appointments.length;
-		return appointments.slice(num_appointments - n - 1, num_appointments);
+		return appointments.slice(num_appointments - n, num_appointments);
 	},
 	
 	todaysAppointments: function () {
