@@ -1407,7 +1407,7 @@
 		startDate: -Infinity,
 		startView: 0,
 		todayBtn: false,
-		todayHighlight: false,
+		todayHighlight: true,
 		weekStart: 0
 	};
 	var locale_opts = $.fn.datepicker.locale_opts = [
