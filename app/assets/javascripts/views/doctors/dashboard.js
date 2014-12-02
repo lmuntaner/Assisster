@@ -7,6 +7,7 @@ Assisster.Views.DashboardView = Backbone.CompositeView.extend({
       collection: this.collection
     });
     this.addSubview("div.dashboard-body", this.dashboardHomeView);
+		
     this.listenTo(this.model, "sync", this.render);
   },
   
