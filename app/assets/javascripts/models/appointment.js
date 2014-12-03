@@ -19,6 +19,7 @@ Assisster.Models.Appointment = Backbone.Model.extend({
 		eventObject.email = this.escape('email');
 		eventObject.fname = this.escape('fname');
 		eventObject.lname = this.escape('lname');
+		eventObject.lname = this.escape('phone_number');
 		eventObject.appointment_status = this.escape('appointment_status');
 		
 		if (this.get('office_hour')) {

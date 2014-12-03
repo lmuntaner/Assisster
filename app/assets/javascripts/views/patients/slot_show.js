@@ -14,6 +14,7 @@ Assisster.Views.SlotShow = Backbone.View.extend({
 				email: params.email,
 				fname: params.fname,
 				lname: params.lname,
+				phone_number: params.phone_number,
 				doctor_id: window.Doctor.id
 	    };
 	    this.model.save(appointmentParams, {
