@@ -2,8 +2,11 @@ Assisster.Views.CalendarView = Backbone.View.extend({
   template: _.template('<div id="calendar"></div>'),
   
   initialize: function (options) {
-		this.listenTo(this.collection, "add", this.addToCalendar);
 		this.listenTo(this.collection, "remove", this.removeFromCalendar);
+		
+		setTimeout(function () {
+			this.listenTo(this.collection, "add", this.addToCalendar);
+		}.bind(this), 500)
   },
   
   addToCalendar: function (appointment) {
@@ -38,7 +41,7 @@ Assisster.Views.CalendarView = Backbone.View.extend({
     this.renderAppointmentForm(this.appointmentForm);
   },
 	
-  onRender: function () {
+	onRender: function () {
     $('#calendar').fullCalendar({
       header: {
         left: 'month,agendaWeek,agendaDay',
@@ -51,7 +54,7 @@ Assisster.Views.CalendarView = Backbone.View.extend({
       defaultView: 'agendaWeek',
       dayClick: this.createAppointment.bind(this),
 			eventClick: this.updateAppointment.bind(this),
-      events: this.collection.getConfirmedAppointments().concat(this.collection.getOfficeHours()),
+      events:this.collection.getConfirmedAppointments().concat(this.collection.getOfficeHours()),
 			eventDragStart: this.removeTooltip,
 			eventDrop: this.updateAppointmentDraggOrResize.bind(this),
 			eventRender: this.renderEvent,
@@ -66,7 +69,6 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 
   render: function () {
     this.$el.html(this.template());
-    this.onRender();
     return this;
   },
 		
@@ -75,7 +77,7 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 	},
 
 	renderEvent: function(event, element) {
-		// console.log("rendering event");
+		console.log("rendering event");
 		var firstText = event.start.format("h:mm") + ": " + event.title;
 		element.find("div.fc-time span").html(firstText);
 		var lastText = event.fname + " " + event.lname;

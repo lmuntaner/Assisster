@@ -20,7 +20,7 @@ Assisster.Collections.Appointments = Backbone.Collection.extend({
 	      			arrayAppointments.push(appointment.convertToEvent());
 			}
     });
-		
+		console.log(arrayAppointments.length)
 		return arrayAppointments;
 	},
 	
