@@ -77,7 +77,6 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 	},
 
 	renderEvent: function(event, element) {
-		console.log("rendering event");
 		var firstText = event.start.format("h:mm") + ": " + event.title;
 		element.find("div.fc-time span").html(firstText);
 		var lastText = event.fname + " " + event.lname;

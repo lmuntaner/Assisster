@@ -2,9 +2,10 @@ Assisster.Views.AppointmentsItem = Backbone.View.extend({
 	template: JST["doctors/appointments_item"],
 	tagName: "tr",
 	
-	initialize: function() {
+	initialize: function(options) {
 		this.listenTo(this.model, "sync", this.render);
 		this.$el.attr('data-id', this.model.id);
+		this.parentView = options.parentView;
 	},
 	
 	render: function() {
@@ -20,6 +21,7 @@ Assisster.Views.AppointmentsItem = Backbone.View.extend({
 			this.$el.addClass('success');
 		}
 		this.$el.html(renderedContent);
+		this.parentView.onRender();
 		
 		return this;
 	},

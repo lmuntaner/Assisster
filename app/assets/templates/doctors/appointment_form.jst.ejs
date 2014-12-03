@@ -45,11 +45,14 @@
 							class="btn btn-default">
 							Close
 			</button>
-			<button type="button"
-							id="cancel-appointment-form"
-							class="btn btn-danger cancel">
-							Cancel Appointment
-			</button>
+			<% if (!appointmet.isNew()) {
+				<button type="button"
+								id="cancel-appointment-form"
+								class="btn btn-danger cancel">
+								Cancel Appointment
+				</button>			
+			<% } %>
+
 		</form>
 	</div>
 </div> <!-- /.modal-content -->

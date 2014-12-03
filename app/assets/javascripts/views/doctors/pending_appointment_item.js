@@ -12,16 +12,18 @@ Assisster.Views.PendingAppointmentItem = Backbone.View.extend({
 	},
 	
 	updateStatus: function (event) {
-		var action = $(event.currentTarget).text().toLowerCase();
-		var view = this;
-		var url = "/api/" + action + "_appointments/" + this.model.id;
-		$.ajax({
-			type: "PATCH",
-			url: url,
-			success: function () {
-				view.remove();
-			}
-		})
+		// var action = $(event.currentTarget).text().toLowerCase();
+		// var view = this;
+		// var url = "/api/" + action + "_appointments/" + this.model.id;
+		// $.ajax({
+		// 	type: "PATCH",
+		// 	url: url,
+		// 	success: function () {
+		// 		view.remove();
+		// 	}
+		// });
+		
+		this.showForm(event);
 	},
 	
 	render: function() {
@@ -31,5 +33,16 @@ Assisster.Views.PendingAppointmentItem = Backbone.View.extend({
 		this.$el.html(renderedContent);
 		
 		return this;
-	}
+	},
+	
+	showForm: function (event) {
+		var coordinates = [event.clientX, event.clientY];
+		
+    var confirmationForm = new Assisster.Views.ConfirmationForm({
+			model: this.model,
+			coordinates: coordinates,
+    });
+		
+		this.$el.append(confirmationForm.render().$el);
+	},
 })

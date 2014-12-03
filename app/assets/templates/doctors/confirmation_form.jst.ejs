@@ -1,0 +1,36 @@
+<div class="modal-content appointment-content">
+	<div class="panel-heading">
+		<h3 class="panel-title">Send a message</h3>
+	</div>
+	<div class="panel-body">
+		<form role="form">
+			<div class="form-inputs">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						<div class="form-group">
+							<input type="text" name="phone_number" class="form-control input-sm" placeholder="Phone number">
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						<div class="form-group">
+							<textarea name="message"
+												class="form-control textarea-sm"
+												placeholder="Write a message...">Appointment Confirmed for: <%= appointment.date() %> at <%= appointment.time() %></textarea>
+						</div>
+					</div>
+				</div>			
+			</div>
+
+			<button type="button"
+							id="send-message"
+							class="btn btn-primary">
+							Send
+			</button>
+			<button type="button"
+							id="cancel"
+							class="btn btn-default">
+							Cancel
+			</button>
+		</form>
+	</div>
+</div> <!-- /.modal-content -->
