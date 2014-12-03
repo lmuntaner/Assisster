@@ -13,13 +13,23 @@ Assisster.Views.AppointmentsIndex = Backbone.CompositeView.extend({
 		var appointmentItem = new Assisster.Views.AppointmentsItem({
 			model: appointment
 		});
-		this.addSubview('table.appointments', appointmentItem);
+		this.addSubview('tbody.appointments', appointmentItem);
+	},
+	
+	onRender: function () {
+		var options = {
+			valueNames: ['table-fname', 'table-lname', 'table-email', 'table-title',
+										'table-date', 'table-time', 'table-status']
+		}
+		
+		var appointmentList = new List('appointments', options)
 	},
 	
 	render: function () {
 		var renderedContent = this.template();
 		this.$el.html(renderedContent);
 		this.attachSubviews();
+		this.onRender();
 		
 		return this;
 	},

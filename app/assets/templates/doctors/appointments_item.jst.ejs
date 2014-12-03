@@ -1,5 +1,7 @@
-<td><%= appointment.fullName() %></td>
-<td><%= appointment.date() %></td>
-<td><%= appointment.time() %></td>
-<td><%= appointment.escape('title') %></td>
-<td><%= appointment.escape('appointment_status') %></td>
+<td class="table-fname"><%= appointment.escape('fname') %></td>
+<td class="table-lname"><%= appointment.escape('lname') %></td>
+<td class="table-email"><%= appointment.escape('email') %></td>
+<td class="table-title"><%= appointment.escape('title') %></td>
+<td class="table-date"><%= appointment.date() %></td>
+<td class="table-time"><%= appointment.time() %></td>
+<td class="table-status"><%= appointment.escape('appointment_status') %></td>

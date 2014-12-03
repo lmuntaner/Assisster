@@ -65,6 +65,30 @@ table.appointments-table-header {
 }
 
 .table-appointments-container {
-	height: 380px;
+	height: 460px;
 	overflow: auto;
+}
+
+.table-fname {
+	width: 100px;
+}
+
+.table-lname {
+	width: 100px;
+}
+
+.table-email {
+	width: 290px;
+}
+
+.table-title {
+	width: 180px;
+}
+
+.table-date {
+	width: 155px;
+}
+
+.table-time {
+	width: 160px;
 }
