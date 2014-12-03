@@ -5,11 +5,13 @@
 /* Doctor Calendar */
 
 .tooltip > .tooltip-inner {
-	background-color: #003366;
+	background-color: #fff;
+	border: solid 1px #000;
+	color: #000;
 }
 
 .tooltip > .tooltip-arrow {
-	border-color: #003366 transparent;
+	border-color: #000 transparent;
 }
 
 /* Doctor Appointment Form */

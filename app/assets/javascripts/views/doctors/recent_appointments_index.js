@@ -35,8 +35,20 @@ Assisster.Views.RecentAppointmentsIndex = Backbone.CompositeView.extend({
   },
 	
 	showForm: function (event) {
-		var $target = $(event.currentTarget);
-		var id = $target.data('id');
+		var coordinates = [event.clientX, event.clientY];
+		var id = $(event.currentTarget).data('id');
 		var appointment = this.collection.get(id);
+		
+		if (this.appointmentForm) {
+			this.appointmentForm.remove();
+		}
+		
+    this.appointmentForm = new Assisster.Views.AppointmentForm({
+      collection: this.collection,
+			model: appointment,
+			coordinates: coordinates,
+    });
+		
+		this.$el.append(this.appointmentForm.render().$el);
 	},
 })
