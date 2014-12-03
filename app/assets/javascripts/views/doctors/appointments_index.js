@@ -7,6 +7,7 @@ Assisster.Views.AppointmentsIndex = Backbone.CompositeView.extend({
 	},
 	
   initialize: function (options) {
+		debugger;
 		this.setApppointmentsSubviews();
 		this.listenTo(this.collection, "sync", this.render);
 		this.listenTo(this.collection, "add", this.onRender);
@@ -28,7 +29,9 @@ Assisster.Views.AppointmentsIndex = Backbone.CompositeView.extend({
 										'table-date', 'table-time', 'table-status']
 		};
 		
-		this.appointmentList = new List('appointments', this.listOptions);			
+		setTimeout(function () {
+			this.appointmentList = new List('appointments', this.listOptions);
+		}.bind(this), 500);			
 	},
 	
 	render: function () {
