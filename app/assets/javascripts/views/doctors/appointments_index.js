@@ -7,7 +7,6 @@ Assisster.Views.AppointmentsIndex = Backbone.CompositeView.extend({
 	},
 	
   initialize: function (options) {
-		debugger;
 		this.setApppointmentsSubviews();
 		this.listenTo(this.collection, "sync", this.render);
 		this.listenTo(this.collection, "add", this.onRender);
@@ -17,8 +16,7 @@ Assisster.Views.AppointmentsIndex = Backbone.CompositeView.extend({
 	
 	addAppointmentSubview: function (appointment) {
 		var appointmentItem = new Assisster.Views.AppointmentsItem({
-			model: appointment,
-			parentView: this
+			model: appointment
 		});
 		this.addSubview('tbody.appointments', appointmentItem);
 	},

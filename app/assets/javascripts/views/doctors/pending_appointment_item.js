@@ -12,16 +12,16 @@ Assisster.Views.PendingAppointmentItem = Backbone.View.extend({
 	},
 	
 	updateStatus: function (event) {
-		// var action = $(event.currentTarget).text().toLowerCase();
-		// var view = this;
-		// var url = "/api/" + action + "_appointments/" + this.model.id;
-		// $.ajax({
-		// 	type: "PATCH",
-		// 	url: url,
-		// 	success: function () {
-		// 		view.remove();
-		// 	}
-		// });
+		var action = $(event.currentTarget).text().toLowerCase();
+		var view = this;
+		var url = "/api/" + action + "_appointments/" + this.model.id;
+		$.ajax({
+			type: "PATCH",
+			url: url,
+			success: function () {
+				view.remove();
+			}
+		});
 		
 		if (action === "confirm") {
 			this.showForm(event);
