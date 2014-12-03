@@ -24,9 +24,9 @@ Assisster.Views.AppointmentsIndex = Backbone.CompositeView.extend({
 		var options = {
 			valueNames: ['table-fname', 'table-lname', 'table-email', 'table-title',
 										'table-date', 'table-time', 'table-status']
-		}
+		};
 		
-		var appointmentList = new List('appointments', options)
+		var appointmentList = new List('appointments', options);
 	},
 	
 	render: function () {
