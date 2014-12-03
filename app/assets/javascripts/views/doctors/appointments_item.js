@@ -12,6 +12,7 @@ Assisster.Views.AppointmentsItem = Backbone.View.extend({
 			appointment: this.model
 		});
 		var appointmentStauts = this.model.get('appointment_status');
+		this.$el.removeAttr('class');
 		if (appointmentStauts === "Cancelled") {
 			this.$el.addClass('danger');
 		} else if (appointmentStauts === "Pending") {

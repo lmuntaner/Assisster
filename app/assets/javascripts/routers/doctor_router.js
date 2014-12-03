@@ -10,6 +10,7 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
     this.model.fetch();
 		this.collection = this.model.appointments();
     this.$rootEl = options.$rootEl;
+		this.listenToPusher();
   },
 	
 	allAppointments: function () {
@@ -38,6 +39,26 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
     
     this._swapView(dashboardView);
   },
+	
+	listenToPusher: function () {
+		if (!this.pusher) {
+			this.pusher = new Pusher('b364d5eaf36fa6f4f92f');			
+		}
+		if (!this.channel) {
+			this.channel = this.pusher.subscribe('appointment-channel');			
+		}
+		var router = this;
+		this.channel.bind('appointment-event', function(data) {
+			var appointment = router.collection.get(data.appointment.id);
+			if (appointment) {
+				appointment.fetch();
+			} else {
+				appointment = new Assisster.Models.Appointment(data.appointment);
+				var num_length = router.collection.length;
+				router.collection.add(appointment, {at: 0});
+			}
+		});
+	},
 
   _swapView: function(view) {
     this._currentView && this._currentView.remove();
