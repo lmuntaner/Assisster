@@ -1,6 +1,7 @@
 Assisster.Routers.DoctorRouter = Backbone.Router.extend({
   routes: {
 		"calendar": "calendar",
+		"appointments": "allAppointments",
     "": "dashboard"
   },
   
@@ -10,15 +11,14 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
 		this.collection = this.model.appointments();
     this.$rootEl = options.$rootEl;
   },
-  
-  dashboard: function() {
-    var dashboardView = new Assisster.Views.DashboardView({
-    	model: this.model,
+	
+	allAppointments: function () {
+    var appointmentsView = new Assisster.Views.AppointmentsView({
 			collection: this.collection
     });
     
-    this._swapView(dashboardView);
-  },
+    this._swapView(appointmentsView);
+	},
 	
 	calendar: function () {
     var calendarContainerView = new Assisster.Views.CalendarContainer({
@@ -29,7 +29,16 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
     this._swapView(calendarContainerView);
     calendarContainerView.onRender();
 	},
-  
+	
+  dashboard: function() {
+    var dashboardView = new Assisster.Views.DashboardView({
+    	model: this.model,
+			collection: this.collection
+    });
+    
+    this._swapView(dashboardView);
+  },
+
   _swapView: function(view) {
     this._currentView && this._currentView.remove();
     this.$rootEl.html(view.render().$el);

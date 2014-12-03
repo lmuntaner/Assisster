@@ -18,14 +18,6 @@ window.Assisster = {
   }
 }
 
-// Pusher tests
-// var pusher = new Pusher('b364d5eaf36fa6f4f92f');
-// var channel = pusher.subscribe('my-channel');
-// channel.bind('my-event', function(data) {
-//   alert('An event was triggered with message: ' + data.message);
-// });
-
-
 
 // AppAcademy Composite View extension!!
 // Added: onRender, resetSubviews, attachPrependSubview, attachPrependSubviews
