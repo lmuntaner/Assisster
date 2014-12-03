@@ -9,6 +9,7 @@ Assisster.Views.PendingAppointmentItem = Backbone.View.extend({
 	
 	initialize: function() {
 		this.listenTo(this.model, "sync", this.render);
+		this.$el.attr('data-id', this.model.id);
 	},
 	
 	updateStatus: function (event) {
@@ -22,10 +23,6 @@ Assisster.Views.PendingAppointmentItem = Backbone.View.extend({
 				view.remove();
 			}
 		});
-		
-		if (action === "confirm") {
-			this.showForm(event);
-		}
 	},
 	
 	render: function() {
@@ -35,16 +32,5 @@ Assisster.Views.PendingAppointmentItem = Backbone.View.extend({
 		this.$el.html(renderedContent);
 		
 		return this;
-	},
-	
-	showForm: function (event) {
-		var coordinates = [event.clientX, event.clientY];
-		
-    var confirmationForm = new Assisster.Views.ConfirmationForm({
-			model: this.model,
-			coordinates: coordinates,
-    });
-		
-		this.$el.append(confirmationForm.render().$el);
 	},
 })

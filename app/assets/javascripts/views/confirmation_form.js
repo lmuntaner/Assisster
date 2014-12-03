@@ -58,7 +58,6 @@ Assisster.Views.ConfirmationForm = Backbone.View.extend({
 				view.remove();
 			},
 			error: function () {
-				debugger;
 				view.remove();
 			}
 		});
