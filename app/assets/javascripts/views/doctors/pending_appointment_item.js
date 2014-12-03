@@ -23,7 +23,9 @@ Assisster.Views.PendingAppointmentItem = Backbone.View.extend({
 		// 	}
 		// });
 		
-		this.showForm(event);
+		if (action === "confirm") {
+			this.showForm(event);
+		}
 	},
 	
 	render: function() {
