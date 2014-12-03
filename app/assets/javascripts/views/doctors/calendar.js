@@ -46,22 +46,20 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 			eventDrop: this.updateAppointmentDraggOrResize.bind(this),
 			eventRender: this.renderEvent,
 			eventResize: this.updateAppointmentDraggOrResize.bind(this)
-    });  
+    });
   },
-	
+
 	removeFromCalendar: function (appointment) {
 		$('#calendar').fullCalendar('removeEvents', [appointment.id]);
 	},
 	
 	removeTooltip: function () {
-		console.log("Removing tooltip");
 		$(this).tooltip('destroy');
 	},
 
   render: function () {
     this.$el.html(this.template());
     this.onRender();
-
     return this;
   },
 		
@@ -70,14 +68,14 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 	},
 
 	renderEvent: function(event, element) {
-		console.log("Rendering event");
+		// console.log("Rendering event");
 		var firstText = event.start.format("h:mm") + ": " + event.title;
 		element.find("div.fc-time span").html(firstText);
 		var lastText = event.fname + " " + event.lname;
 		element.find("div.fc-title").html(lastText);
-		var tooltip = event.title;
-		$(element).attr("data-original-title", tooltip);
-		$(element).tooltip({ container: "body"});
+		// var tooltip = event.title;
+		// $(element).attr("data-original-title", tooltip);
+		// $(element).tooltip({ container: "body"});
 	},
 	
 	updateAppointment: function(event, jsEvent, view) {
