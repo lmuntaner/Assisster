@@ -2,14 +2,22 @@ Assisster.Views.CalendarView = Backbone.View.extend({
   template: _.template('<div id="calendar"></div>'),
   
   initialize: function () {
-    this.listenTo(this.collection, "add", this.addToCalendar);
+		this.calendarCollection = new Assisster.Collections.CalendarAppointments();
+		this.calendarCollection.fetch();
+		this.listenTo(this.calendarCollection, "add", this.addToCalendar);
 		this.listenTo(this.collection, "remove", this.removeFromCalendar);
-    this.listenToOnce(this.collection, "sync", this.render);
   },
   
   addToCalendar: function (appointment) {
     $('#calendar').fullCalendar('addEventSource', [appointment.convertToEvent()]);
   },
+	
+	addTooltip: function (event) {
+		var tooltip = event.title;
+		$(this).attr("data-original-title", tooltip);
+		$(this).tooltip({ container: "body"});
+		$(this).tooltip('show');
+	},
   
   createAppointment: function(date, jsEvent) {
 		var appointment = new Assisster.Models.Appointment();
@@ -41,20 +49,17 @@ Assisster.Views.CalendarView = Backbone.View.extend({
       defaultView: 'agendaWeek',
       dayClick: this.createAppointment.bind(this),
 			eventClick: this.updateAppointment.bind(this),
-      events: this.collection.getConfirmedAppointments().concat(this.collection.getOfficeHours()),
+      events: [],
 			eventDragStart: this.removeTooltip,
 			eventDrop: this.updateAppointmentDraggOrResize.bind(this),
 			eventRender: this.renderEvent,
-			eventResize: this.updateAppointmentDraggOrResize.bind(this)
+			eventResize: this.updateAppointmentDraggOrResize.bind(this),
+			eventMouseover: this.addTooltip
     });
   },
-
+	
 	removeFromCalendar: function (appointment) {
 		$('#calendar').fullCalendar('removeEvents', [appointment.id]);
-	},
-	
-	removeTooltip: function () {
-		$(this).tooltip('destroy');
 	},
 
   render: function () {
@@ -68,14 +73,11 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 	},
 
 	renderEvent: function(event, element) {
-		// console.log("Rendering event");
+		// console.log("rendering event");
 		var firstText = event.start.format("h:mm") + ": " + event.title;
 		element.find("div.fc-time span").html(firstText);
 		var lastText = event.fname + " " + event.lname;
 		element.find("div.fc-title").html(lastText);
-		// var tooltip = event.title;
-		// $(element).attr("data-original-title", tooltip);
-		// $(element).tooltip({ container: "body"});
 	},
 	
 	updateAppointment: function(event, jsEvent, view) {

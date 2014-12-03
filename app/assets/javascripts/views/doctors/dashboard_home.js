@@ -1,6 +1,6 @@
 Assisster.Views.DashboardHome = Backbone.CompositeView.extend({
   template: JST["doctors/dashboard_home"],
-	className: "row",
+	className: "row dashboard-home",
 	
   initialize: function () {
 		this.recentAppointmentsIndex = new Assisster.Views.RecentAppointmentsIndex({

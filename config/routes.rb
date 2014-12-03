@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   root to: "patients#index"
   
   resource :session, only: [:create, :destroy]
-  # resources :doctors, only: [:show]
   get "/dashboard", to: "doctors#show"
   get "/appointment", to: "patients#appointment"
   
@@ -11,6 +10,7 @@ Rails.application.routes.draw do
     resources :services, only: [:index, :show] do
       get "/:date", to: "appointments#getDateAppointments"
     end
+    resources :calendar_appointments, only: [:index]
     resources :doctors, only: [:index]
     resources :appointments, only: [:create, :update, :show]
     resources :confirm_appointments, only: [:update]
