@@ -1,10 +1,8 @@
 Assisster.Views.CalendarView = Backbone.View.extend({
   template: _.template('<div id="calendar"></div>'),
   
-  initialize: function () {
-		this.calendarCollection = new Assisster.Collections.CalendarAppointments();
-		this.calendarCollection.fetch();
-		this.listenTo(this.calendarCollection, "add", this.addToCalendar);
+  initialize: function (options) {
+		this.listenTo(this.collection, "add", this.addToCalendar);
 		this.listenTo(this.collection, "remove", this.removeFromCalendar);
   },
   
@@ -49,7 +47,7 @@ Assisster.Views.CalendarView = Backbone.View.extend({
       defaultView: 'agendaWeek',
       dayClick: this.createAppointment.bind(this),
 			eventClick: this.updateAppointment.bind(this),
-      events: [],
+      events: this.collection.getConfirmedAppointments().concat(this.collection.getOfficeHours()),
 			eventDragStart: this.removeTooltip,
 			eventDrop: this.updateAppointmentDraggOrResize.bind(this),
 			eventRender: this.renderEvent,

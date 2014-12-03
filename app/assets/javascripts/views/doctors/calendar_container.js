@@ -2,9 +2,10 @@ Assisster.Views.CalendarContainer = Backbone.CompositeView.extend({
   template: JST["doctors/calendar_container"],
   className: "row",
   
-  initialize: function () {
+  initialize: function (options) {
     this.calendarView = new Assisster.Views.CalendarView({
       collection: this.collection
+			// calendarCollection: options.calendarCollection
     });
     this.addSubview("div.dashboard-body", this.calendarView);
     this.listenTo(this.model, "sync", this.render);
