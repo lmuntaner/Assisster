@@ -1,4 +1,4 @@
-Assisster.Views.AppointmentItem = Backbone.View.extend({
+Assisster.Views.AppointmentsItem = Backbone.View.extend({
 	template: JST["doctors/appointments_item"],
 	tagName: "tr",
 	
@@ -8,7 +8,6 @@ Assisster.Views.AppointmentItem = Backbone.View.extend({
 	},
 	
 	render: function() {
-		debugger;
 		var renderedContent = this.template({
 			appointment: this.model
 		});

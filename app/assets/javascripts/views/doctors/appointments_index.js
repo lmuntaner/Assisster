@@ -3,24 +3,32 @@ Assisster.Views.AppointmentsIndex = Backbone.CompositeView.extend({
 	className: "appointments-index",
 	
   initialize: function (options) {
-		var view = this;
-		this.collection.each(function (appointment) {
-			var appointmentItem = new Assisster.Views.AppointmentItem({
-				model: appointment
-			});
-			view.addSubview('table.appointments', appointmentItem);
-		});
-		
+		this.setApppointmentsSubviews();
 		this.listenTo(this.collection, "sync add remove", this.render);
+		this.listenTo(this.collection, "sync", this.setAppointmentsSubviews);
+		this.listenTo(this.collection, "add", this.addAppointmentSubview);
   },
+	
+	addAppointmentSubview: function (appointment) {
+		var appointmentItem = new Assisster.Views.AppointmentsItem({
+			model: appointment
+		});
+		this.addSubview('table.appointments', appointmentItem);
+	},
 	
 	render: function () {
 		var renderedContent = this.template();
 		this.$el.html(renderedContent);
 		this.attachSubviews();
-		debugger;
 		
 		return this;
-	}
+	},
+	
+	setApppointmentsSubviews: function () {
+		var view = this;
+		this.collection.each(function (appointment) {
+			view.addAppointmentSubview(appointment);
+		});
+	},
 })
 

@@ -59,3 +59,12 @@
 	border-radius: 5px;
 	height: 500px;
 }
+
+table .appointments-table-header {
+	margin-bottom: 1px;
+}
+
+.table-appointments-container {
+	height: 380px;
+	overflow: auto;
+}
