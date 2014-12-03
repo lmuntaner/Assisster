@@ -54,6 +54,7 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 	},
 	
 	removeTooltip: function () {
+		console.log("Removing tooltip");
 		$(this).tooltip('destroy');
 	},
 
@@ -69,6 +70,7 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 	},
 
 	renderEvent: function(event, element) {
+		console.log("Rendering event");
 		var firstText = event.start.format("h:mm") + ": " + event.title;
 		element.find("div.fc-time span").html(firstText);
 		var lastText = event.fname + " " + event.lname;

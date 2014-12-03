@@ -3,17 +3,17 @@ Assisster.Views.CalendarContainer = Backbone.CompositeView.extend({
   className: "row",
   
   initialize: function () {
-    var calendarView = new Assisster.Views.CalendarView({
+    this.calendarView = new Assisster.Views.CalendarView({
       collection: this.collection
     });
-    this.addSubview("div.dashboard-body", calendarView);
+    this.addSubview("div.dashboard-body", this.calendarView);
     this.listenTo(this.model, "sync", this.render);
   },
   
   render: function () {
     var renderedContent = this.template();
     this.$el.html(renderedContent);
-    this.attachSubviews();
+    this.attachSubview("div.dashboard-body", this.calendarView);
     this.onRender();
     
     return this;

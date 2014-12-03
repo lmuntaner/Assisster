@@ -4,6 +4,7 @@ Assisster.Views.RecentAppointmentItem = Backbone.View.extend({
 	
 	initialize: function() {
 		this.listenTo(this.model, "sync", this.render);
+		this.$el.attr('data-id', this.model.id);
 	},
 	
 	render: function() {
@@ -21,5 +22,5 @@ Assisster.Views.RecentAppointmentItem = Backbone.View.extend({
 		this.$el.html(renderedContent);
 		
 		return this;
-	}
+	},
 })

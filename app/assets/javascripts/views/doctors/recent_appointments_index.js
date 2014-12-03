@@ -2,6 +2,10 @@ Assisster.Views.RecentAppointmentsIndex = Backbone.CompositeView.extend({
   template: JST["doctors/recent_appointments_index"],
 	className: "recent-list",
 	
+	events: {
+		"click tr": "showForm"
+	},
+	
   initialize: function () {
 		this.recentCollection = new Assisster.Collections.Appointments();
 		this.getRecentAppointments();
@@ -29,4 +33,10 @@ Assisster.Views.RecentAppointmentsIndex = Backbone.CompositeView.extend({
     
     return this;
   },
+	
+	showForm: function (event) {
+		var $target = $(event.currentTarget);
+		var id = $target.data('id');
+		var appointment = this.collection.get(id);
+	},
 })
