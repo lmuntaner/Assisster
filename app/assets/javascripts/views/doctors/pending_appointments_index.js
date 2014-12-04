@@ -3,7 +3,6 @@ Assisster.Views.PendingAppointmentsIndex = Backbone.CompositeView.extend({
 	className: "pending-list",
 	
 	events: {
-		// "click button.confirm": "showConfirmationForm",
 		"click td:not(.pending-button)": "showForm"
 	},
 	
@@ -11,7 +10,7 @@ Assisster.Views.PendingAppointmentsIndex = Backbone.CompositeView.extend({
 		this.pendingCollection = new Assisster.Collections.Appointments();
 		this.getPendingAppointments();
 		this.listenTo(this.collection, "sync add", this.getPendingAppointments);
-		this.listenTo(this.pendingCollection, "sync add", this.render);
+		this.listenTo(this.pendingCollection, "sync", this.render);
   },
 	
 	getPendingAppointments: function () {
