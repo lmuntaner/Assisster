@@ -1,7 +1,7 @@
 Assisster.Views.TodaysAppointmentItem = Backbone.View.extend({
 	template: JST["doctors/todays_appointment_item"],
 	tagName: "li",
-	className: "list-group-item",
+	className: "list-group-item clickable",
 	
 	initialize: function() {
 		this.listenTo(this.model, "sync", this.render);

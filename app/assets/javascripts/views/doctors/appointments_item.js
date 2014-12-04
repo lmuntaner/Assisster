@@ -1,6 +1,7 @@
 Assisster.Views.AppointmentsItem = Backbone.View.extend({
 	template: JST["doctors/appointments_item"],
 	tagName: "tr",
+	className: "clickable",
 	
 	initialize: function(options) {
 		this.listenTo(this.model, "sync", this.render);
@@ -12,7 +13,7 @@ Assisster.Views.AppointmentsItem = Backbone.View.extend({
 			appointment: this.model
 		});
 		var appointmentStauts = this.model.get('appointment_status');
-		this.$el.removeAttr('class');
+		this.$el.removeClass('danger warning success');
 		if (appointmentStauts === "Cancelled") {
 			this.$el.addClass('danger');
 		} else if (appointmentStauts === "Pending") {

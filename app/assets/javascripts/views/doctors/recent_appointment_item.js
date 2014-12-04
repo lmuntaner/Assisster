@@ -1,6 +1,7 @@
 Assisster.Views.RecentAppointmentItem = Backbone.View.extend({
 	template: JST["doctors/recent_appointment_item"],
 	tagName: "tr",
+	className: "clickable",
 	
 	initialize: function() {
 		this.listenTo(this.model, "sync", this.render);

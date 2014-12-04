@@ -1,6 +1,7 @@
 Assisster.Views.PendingAppointmentItem = Backbone.View.extend({
 	template: JST["doctors/pending_appointment_item"],
 	tagName: "tr",
+	className: "clickable",
 	
 	events: {
 		"click button.confirm": "updateStatus",
