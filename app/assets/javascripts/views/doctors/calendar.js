@@ -1,5 +1,5 @@
 Assisster.Views.CalendarView = Backbone.View.extend({
-  template: _.template('<div id="calendar"></div>'),
+  template: _.template('<div id="calendar" class="row"></div>'),
   
   initialize: function (options) {
 		this.listenTo(this.collection, "remove", this.removeFromCalendar);

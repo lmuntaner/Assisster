@@ -1,6 +1,6 @@
 Assisster.Views.AppointmentsIndex = Backbone.CompositeView.extend({
 	template: JST['doctors/appointments_index'],
-	className: "appointments-index",
+	className: "appointments-index row",
 	
 	events: {
 		"click tr": "showForm"
