@@ -116,9 +116,20 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 	},
 	
 	updateEvent: function (appointment) {
-		var calendarEvent = $('#calendar').fullCalendar( 'clientEvents', appointment.id)[0];
-		calendarEvent.start = moment.utc(appointment.get('startTime'));
-		calendarEvent.end = moment.utc(appointment.get('endTime'));
-		$('#calendar').fullCalendar( 'updateEvent', calendarEvent );
+		var calendarEvent = $('#calendar').fullCalendar( 'clientEvents', appointment.id )[0];
+		if (calendarEvent) {
+			if (appointment.get('appointment_status') === "Approved") {
+				calendarEvent.start = moment.utc(appointment.get('startTime'));
+				calendarEvent.end = moment.utc(appointment.get('endTime'));
+				calendarEvent.title = appointment.get('title');
+				calendarEvent.email = appointment.get('email');
+				calendarEvent.phone_number = appointment.get('phone_number');
+				calendarEvent.fname = appointment.get('fname');
+				calendarEvent.lname = appointment.get('lname');
+				$('#calendar').fullCalendar( 'updateEvent', calendarEvent );			
+			} else {
+				$('#calendar').fullCalendar( 'removeEvents', appointment.id );
+			}
+		}
 	},
 })
