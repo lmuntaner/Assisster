@@ -22,9 +22,24 @@
 	padding: 10px 0;
 	margin-bottom: 10px;
 	border-bottom: solid 1px #ddd;
+	height: 50px;
 }
 
-.calendar-header span.legend {
+.calendar-header span {
+	margin: 0 10px;
+	color: #777;
+	margin-bottom: 10px;
+}
+
+.calendar-header div {
+	width: 300px;
+}
+
+div.left-calendar-header {
+	float: left;
+}
+
+div.right-calendar-header {
 	float: right;
 }
 
@@ -32,17 +47,8 @@ button.create-office-hours {
 	float: right;
 }
 
-.calendar-header button {
-	margin-right: 20px;
-}
-
-.office-hour-legend {
-	height: 16px;
-	width: 32px;
-	background-color: #8fdf82;
-	border: solid 1px #ddd;
-	display: inline-block;
-	margin-right: 10px;
+div.center-calendar-header {
+	margin: 0 auto;
 }
 
 /* Dashboard home View */

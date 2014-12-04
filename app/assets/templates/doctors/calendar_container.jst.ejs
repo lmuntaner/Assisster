@@ -10,17 +10,32 @@
 </div>
 <div class="dashboard-body">
 	<div class="calendar-header">
-		<button type="button"
-						class="btn btn-primary btn-sm create-appointment"
-						data-toggle="tooltip"
-						data-placement="top"
-						title="You can click on the calendar as well">
-						Create Appointment
-		</button>
-		<button type="button"
-						class="btn btn-success btn-sm create-office-hours">
-						Create Office Hours
-		</button>
-		<!-- <span class="legend"><div class="office-hour-legend"></div>Office Hours</span> -->
+		<div class='left-calendar-header'>
+			<button type="button"
+							class="btn btn-primary btn-sm create-appointment"
+							data-toggle="tooltip"
+							data-placement="top"
+							title="You can click on the calendar as well">
+							Create Appointment
+			</button>
+		</div>
+		<div class='right-calendar-header'>
+			<button type="button"
+							class="btn btn-success btn-sm create-office-hours">
+							Create Office Hours
+			</button>
+		</div>		
+		<div class="center-calendar-header text-center">
+			<button type="button"
+							class="btn btn-default btn-xs zoom-out-calendar">
+							-
+			</button>
+			<span>Zoom</span>
+			<button type="button"
+							class="btn btn-default btn-xs zoom-in-calendar">
+							+
+			</button>
+		</div>
+
 	</div>
 </div>
