@@ -9,7 +9,7 @@ Assisster.Collections.Appointments = Backbone.Collection.extend({
 	},
 	
   comparator: function(appointment) {
-    return appointment.get('created_at');
+    return appointment.get('updated_at');
   },
 	
 	getConfirmedAppointments: function () {
