@@ -19,7 +19,7 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 		if (options.coordinates[1] < 400) {
 			this.$el.css('top', options.coordinates[1] - 150)			
 		} else {
-			this.$el.css('top', options.coordinates[1] - 300)	
+			this.$el.css('top', options.coordinates[1] - 430)	
 		}
 
 		if (options.date) {
