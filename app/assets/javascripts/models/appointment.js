@@ -41,7 +41,7 @@ Assisster.Models.Appointment = Backbone.Model.extend({
 	},
 	
 	today: function () {
-		var today = moment();
+		var today = moment().format('YYYY-MM-DD');
 		return this.startTime.isSame(today, "days") &&
 					 (this.get('appointment_status') === "Approved");
 	},
