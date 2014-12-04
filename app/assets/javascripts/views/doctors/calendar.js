@@ -3,6 +3,7 @@ Assisster.Views.CalendarView = Backbone.View.extend({
   
   initialize: function (options) {
 		this.listenTo(this.collection, "remove", this.removeFromCalendar);
+		this.listenTo(this.collection, "sync", this.updateEvent);
 		
 		setTimeout(function () {
 			this.listenTo(this.collection, "add", this.addToCalendar);
@@ -10,7 +11,9 @@ Assisster.Views.CalendarView = Backbone.View.extend({
   },
   
   addToCalendar: function (appointment) {
-    $('#calendar').fullCalendar('addEventSource', [appointment.convertToEvent()]);
+		if (appointment.get("appointment_status") === 'Approved') {
+	    $('#calendar').fullCalendar('addEventSource', [appointment.convertToEvent()]);			
+		}
   },
 	
 	addTooltip: function (event) {
@@ -110,5 +113,12 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 			startTime: event.start,
 			endTime: event.end
 		});
+	},
+	
+	updateEvent: function (appointment) {
+		var calendarEvent = $('#calendar').fullCalendar( 'clientEvents', appointment.id)[0];
+		calendarEvent.start = moment.utc(appointment.get('startTime'));
+		calendarEvent.end = moment.utc(appointment.get('endTime'));
+		$('#calendar').fullCalendar( 'updateEvent', calendarEvent );
 	},
 })

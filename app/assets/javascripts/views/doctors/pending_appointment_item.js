@@ -6,11 +6,10 @@ Assisster.Views.PendingAppointmentItem = Backbone.View.extend({
 	events: {
 		"click button.confirm": "updateStatus",
 		"click button.cancel": "updateStatus"
-		// "click button.confirm": "showConfirmationForm"
 	},
 	
 	initialize: function() {
-		this.listenTo(this.model, "sync", this.render);
+		// this.listenTo(this.model, "sync", this.render);
 		this.$el.attr('data-id', this.model.id);
 	},
 	

@@ -2,12 +2,6 @@ Assisster.Models.Appointment = Backbone.Model.extend({
   urlRoot: "/api/appointments/",
 	
 	initialize: function () {
-		if (this.get('startTime')) {
-			this.startTime = moment.utc(this.get('startTime'));			
-		}
-		if (this.get('endTime')) {
-			this.endTime = moment.utc(this.get('endTime'));
-		}
 	},
 
   convertToEvent: function() {
@@ -29,20 +23,28 @@ Assisster.Models.Appointment = Backbone.Model.extend({
   },
 	
 	date: function () {
-		return this.startTime.format("dddd, MMM Do");
+		return this.startTime().format("dddd, MMM Do");
+	},
+	
+	endTime: function () {
+		return moment.utc(this.get('endTime'));
 	},
 	
 	fullName: function () {
 		return this.escape('fname') + " " + this.escape("lname");
 	},
 	
+	startTime: function () {
+		return moment.utc(this.get('startTime'));
+	},
+	
 	time: function () {
-		return this.startTime.format("h:mm a") + " - " + this.endTime.format("h:mm a");
+		return this.startTime().format("h:mm a") + " - " + this.endTime().format("h:mm a");
 	},
 	
 	today: function () {
 		var today = moment().format('YYYY-MM-DD');
-		return this.startTime.isSame(today, "days") &&
+		return this.startTime().isSame(today, "days") &&
 					 (this.get('appointment_status') === "Approved");
 	},
 })
