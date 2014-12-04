@@ -13,11 +13,6 @@ Assisster.Views.CalendarView = Backbone.View.extend({
     $('#calendar').fullCalendar('addEventSource', [appointment.convertToEvent()]);
   },
 	
-	createTooltipTemplate: function (event) {
-		var template = '<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>';
-		return template
-	},
-	
 	addTooltip: function (event) {
 		var tooltip = event.title;
 		$(this).attr("data-original-title", tooltip);
