@@ -48,7 +48,8 @@ class Api::AppointmentsController < ApplicationController
   
   def appointment_params
     params.require(:appointment).permit(:title, :startTime, :endTime, :appointment_status,
-                                        :email, :fname, :lname, :doctor_id, :phone_number)
+                                        :email, :fname, :lname, :doctor_id, :phone_number,
+                                        :office_hour)
   end
   
   def ensure_signed_in
