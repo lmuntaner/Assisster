@@ -23,7 +23,7 @@
           <ul class="dropdown-menu" role="menu">
             <li><a href="<%= dashboard_url %>">Dashboard</a></li>
             <li><a href='<%= "#{dashboard_url}#calendar" %>'>Calendar</a></li>
-            <li><a href="#">Something else here</a></li>
+            <li><a href='<%= "#{dashboard_url}#appointments" %>'>Appointments</a></li>
             <li class="divider"></li>
             <li>
               <%= button_to "Sign out", session_url, method: :delete, class: "btn btn-link" %>
