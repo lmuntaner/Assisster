@@ -1,5 +1,6 @@
 Assisster.Views.AppointmentsView = Backbone.CompositeView.extend({
 	template: JST['doctors/appointments'],
+	className: "row",
 	
   initialize: function (options) {
     this.appointmentsIndex = new Assisster.Views.AppointmentsIndex({
