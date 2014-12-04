@@ -7,7 +7,7 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 		
 		setTimeout(function () {
 			this.listenTo(this.collection, "add", this.addToCalendar);
-		}.bind(this), 500)
+		}.bind(this), 1000)
   },
   
   addToCalendar: function (appointment) {
@@ -130,6 +130,8 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 			} else {
 				$('#calendar').fullCalendar( 'removeEvents', appointment.id );
 			}
+		} else {
+			this.addToCalendar(appointment);
 		}
 	},
 })
