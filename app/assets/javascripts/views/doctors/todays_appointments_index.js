@@ -2,6 +2,10 @@ Assisster.Views.TodaysAppointmentsIndex = Backbone.CompositeView.extend({
   template: JST["doctors/todays_appointments_index"],
 	className: "panel panel-primary today-appointments-index",
 	
+	events: {
+		"click li": "showForm"
+	},
+	
   initialize: function () {
 		this.getTodaysAppointments();
 		this.listenTo(this.collection, "sync add", this.getTodaysAppointments);
@@ -31,4 +35,22 @@ Assisster.Views.TodaysAppointmentsIndex = Backbone.CompositeView.extend({
     
     return this;
   },
+	
+	showForm: function (event) {
+		var coordinates = [event.clientX, event.clientY];
+		var id = $(event.currentTarget).data('id');
+		var appointment = this.collection.get(id);
+		
+		if (this.appointmentForm) {
+			this.appointmentForm.remove();
+		}
+		
+    this.appointmentForm = new Assisster.Views.AppointmentForm({
+      collection: this.collection,
+			model: appointment,
+			coordinates: coordinates,
+    });
+		
+		this.$el.append(this.appointmentForm.render().$el);
+	},
 })

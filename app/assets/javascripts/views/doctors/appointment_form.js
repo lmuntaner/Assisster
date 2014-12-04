@@ -21,20 +21,20 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 		} else {
 			this.$el.css('top', options.coordinates[1] - 300)	
 		}
-		
+
 		if (options.date) {
 			this.date = options.date;
 			startTime = this.date.clone();	
 			endTime = this.date.clone().add(30, 'm');
-		} else if (this.event) {
-			this.event = options.event;
-			startTime = moment.utc(this.model.escape('startTime'));
-			endTime = moment.utc(this.model.escape('endTime'));	
-		} else {
+		} else if (this.model.isNew()){
 			startTime = moment();
 			endTime = moment().add(30, "minutes");
+		} else {
+			this.event = options.event;
+			startTime = moment.utc(this.model.escape('startTime'));
+			endTime = moment.utc(this.model.escape('endTime'));
 		}
-		
+				
 		this.fromDateForm = new Assisster.Views.DateForm({
 			date: startTime,
 			position: "From"

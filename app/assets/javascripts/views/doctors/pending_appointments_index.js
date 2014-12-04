@@ -3,7 +3,8 @@ Assisster.Views.PendingAppointmentsIndex = Backbone.CompositeView.extend({
 	className: "pending-list",
 	
 	events: {
-		"click button.confirm": "showForm"
+		"click button.confirm": "showConfirmationForm",
+		"click tr": "showForm"
 	},
 	
   initialize: function () {
@@ -34,7 +35,7 @@ Assisster.Views.PendingAppointmentsIndex = Backbone.CompositeView.extend({
     return this;
   },
 	
-	showForm: function (event) {
+	showConfirmationForm: function (event) {
 		var coordinates = [event.clientX, event.clientY];
 		var id = $(event.currentTarget).parent().parent().data('id');
 		var appointment = this.collection.get(id);
@@ -45,5 +46,23 @@ Assisster.Views.PendingAppointmentsIndex = Backbone.CompositeView.extend({
     });
 		
 		$('body').append(confirmationForm.render().$el);
+	},
+	
+	showForm: function (event) {
+		var coordinates = [event.clientX, event.clientY];
+		var id = $(event.currentTarget).data('id');
+		var appointment = this.collection.get(id);
+		
+		if (this.appointmentForm) {
+			this.appointmentForm.remove();
+		}
+		
+    this.appointmentForm = new Assisster.Views.AppointmentForm({
+      collection: this.collection,
+			model: appointment,
+			coordinates: coordinates,
+    });
+		
+		this.$el.append(this.appointmentForm.render().$el);
 	},
 })
