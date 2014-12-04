@@ -8,6 +8,7 @@ Assisster.Views.ConfirmationForm = Backbone.View.extend({
 	},
 	
 	initialize: function (options) {
+		this.callback = options.callback;
 		if (options.coordinates[0] < 1000) {
 			this.$el.css('left', options.coordinates[0])			
 		} else {
@@ -21,6 +22,7 @@ Assisster.Views.ConfirmationForm = Backbone.View.extend({
 	},
 	
 	closeView: function () {
+		this.callback("confirm", this.model.id);
 		this.remove();
 	},
 	
@@ -54,10 +56,11 @@ Assisster.Views.ConfirmationForm = Backbone.View.extend({
 			url: url,
 			// contentType: "application/json",
 			success: function () {
-				debugger;
+				view.callback("confirm", view.model.id);
 				view.remove();
 			},
 			error: function () {
+				view.callback("confirm", view.model.id);
 				view.remove();
 			}
 		});

@@ -6,6 +6,7 @@ Assisster.Views.PendingAppointmentItem = Backbone.View.extend({
 	events: {
 		"click button.confirm": "updateStatus",
 		"click button.cancel": "updateStatus"
+		// "click button.confirm": "showConfirmationForm"
 	},
 	
 	initialize: function() {
@@ -13,19 +14,14 @@ Assisster.Views.PendingAppointmentItem = Backbone.View.extend({
 		this.$el.attr('data-id', this.model.id);
 	},
 	
-	updateStatus: function (event) {
-		var action = $(event.currentTarget).text().toLowerCase();
-		var view = this;
-		var url = "/api/" + action + "_appointments/" + this.model.id;
+	requestToServer: function (action, id) {
+		var url = "/api/" + action + "_appointments/" + id;
 		$.ajax({
 			type: "PATCH",
-			url: url,
-			success: function () {
-				view.remove();
-			}
+			url: url
 		});
 	},
-	
+
 	render: function() {
 		var renderedContent = this.template({
 			appointment: this.model
@@ -33,5 +29,26 @@ Assisster.Views.PendingAppointmentItem = Backbone.View.extend({
 		this.$el.html(renderedContent);
 		
 		return this;
+	},
+	
+	showConfirmationForm: function (event) {
+		var coordinates = [event.clientX, event.clientY];
+		
+    var confirmationForm = new Assisster.Views.ConfirmationForm({
+			model: this.model,
+			coordinates: coordinates,
+			callback: this.requestToServer
+    });
+		
+		$('body').append(confirmationForm.render().$el);
+	},
+	
+	updateStatus: function (event) {
+		var action = $(event.currentTarget).text().toLowerCase();
+		if (action === "confirm") {
+			this.showConfirmationForm(event);
+		} else {
+			this.requestToServer(action, this.model.id);			
+		}
 	},
 })
