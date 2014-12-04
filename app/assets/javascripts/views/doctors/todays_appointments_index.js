@@ -15,11 +15,8 @@ Assisster.Views.TodaysAppointmentsIndex = Backbone.CompositeView.extend({
 	getTodaysAppointments: function () {
 		this.resetSubviews();
 		var view = this;
-		var todaysAppointments = this.collection.todaysAppointments().sort();
-		var sortedAppointments = todaysAppointments.sort(function (a, b) {
-			return b.startTime - a.startTime
-		});
-		sortedAppointments.forEach(function (appointment) {
+		var todaysAppointments = this.collection.todaysAppointments();
+		todaysAppointments.forEach(function (appointment) {
 			var todaysAppointmentItem = new Assisster.Views.TodaysAppointmentItem({
 				model: appointment
 			});
