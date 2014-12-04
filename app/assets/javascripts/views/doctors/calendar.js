@@ -41,7 +41,7 @@ Assisster.Views.CalendarView = Backbone.View.extend({
     this.renderAppointmentForm(this.appointmentForm);
   },
 	
-	onRender: function () {
+	onRender: function (slotDuration) {
     $('#calendar').fullCalendar({
       header: {
         left: 'month,agendaWeek,agendaDay',
@@ -52,6 +52,7 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 			scrollTime: '08:00:00',
 			height: 500,
       editable: true,
+			slotDuration: slotDuration,
       defaultView: 'agendaWeek',
       dayClick: this.createAppointment.bind(this),
 			eventClick: this.updateAppointment.bind(this),

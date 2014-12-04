@@ -3,7 +3,8 @@ Assisster.Views.CalendarContainer = Backbone.CompositeView.extend({
   className: "row",
 	
 	events: {
-		"click button.create-appointment": "showForm"
+		"click button.create-appointment": "showForm",
+		"click button.create-office_hours": "showOfficeHourForm"
 	},
   
   initialize: function (options) {
@@ -29,6 +30,7 @@ Assisster.Views.CalendarContainer = Backbone.CompositeView.extend({
   },
 	
   showForm: function(event) {
+		event.preventDefault();
 		var appointment = new Assisster.Models.Appointment();
 		var coordinates = [event.clientX, event.clientY];
 		
@@ -43,4 +45,8 @@ Assisster.Views.CalendarContainer = Backbone.CompositeView.extend({
 		
     $('body').append(this.appointmentForm.render().$el);
   },
+	
+	showOfficeHourForm: function (event) {
+		event.preventDefault();
+	}
 })
