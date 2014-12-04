@@ -24,6 +24,14 @@
 	border-bottom: solid 1px #ddd;
 }
 
+.calendar-header span {
+	float: right;
+}
+
+.calendar-header button {
+	margin-right: 20px;
+}
+
 .office-hour-legend {
 	height: 16px;
 	width: 32px;

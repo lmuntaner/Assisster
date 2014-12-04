@@ -1,6 +1,10 @@
 Assisster.Views.CalendarContainer = Backbone.CompositeView.extend({
   template: JST["doctors/calendar_container"],
   className: "row",
+	
+	events: {
+		"click button.create-appointment": "showForm"
+	},
   
   initialize: function (options) {
     this.calendarView = new Assisster.Views.CalendarView({
@@ -17,5 +21,21 @@ Assisster.Views.CalendarContainer = Backbone.CompositeView.extend({
     this.onRender();
     
     return this;
+  },
+	
+  showForm: function(event) {
+		var appointment = new Assisster.Models.Appointment();
+		var coordinates = [event.clientX, event.clientY];
+		
+		if (this.appointmentForm) {
+			this.appointmentForm.remove();
+		}
+		
+    this.appointmentForm = new Assisster.Views.AppointmentForm({
+			model: appointment,
+			coordinates: coordinates,
+    });
+		
+    $('body').append(this.appointmentForm.render().$el);
   },
 })
