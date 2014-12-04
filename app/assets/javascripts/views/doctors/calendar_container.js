@@ -13,6 +13,11 @@ Assisster.Views.CalendarContainer = Backbone.CompositeView.extend({
     this.addSubview("div.dashboard-body", this.calendarView);
     this.listenTo(this.model, "sync", this.render);
   },
+	
+	onRender: function () {
+		Backbone.CompositeView.prototype.onRender.call(this);
+		this.$('button.create-appointment').tooltip();
+	},
   
   render: function () {
     var renderedContent = this.template();
