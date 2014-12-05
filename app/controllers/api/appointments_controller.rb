@@ -54,6 +54,7 @@ class Api::AppointmentsController < ApplicationController
     }).order(startTime: :asc)
     office_hours = doctor.appointments.where({
       startTime: date.midnight..(date.midnight + 1.day),
+      appointment_status: ["Approved"],
       office_hour: true
     }).order(startTime: :asc)
 
