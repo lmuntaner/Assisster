@@ -1,5 +1,5 @@
 class Api::AppointmentsController < ApplicationController
-  before_action :ensure_signed_in, only: [:update, :show]
+  before_action :ensure_signed_in, only: [:update, :show, :getFreeTime]
   
   def show
     @appointment = Appointment.find(params[:id])
@@ -44,12 +44,55 @@ class Api::AppointmentsController < ApplicationController
     render :date_appointments
   end
   
+  def getFreeTime
+    doctor = current_doctor
+    date = Date.parse(params[:date])
+    appointments = doctor.appointments.where({
+      startTime: date.midnight..(date.midnight + 1.day),
+      appointment_status: ["Approved", "Pending"],
+      office_hour: false
+    }).order(startTime: :asc)
+    office_hours = doctor.appointments.where({
+      startTime: date.midnight..(date.midnight + 1.day),
+      office_hour: true
+    }).order(startTime: :asc)
+
+    free_time_slots = createFreeSlots(office_hours, appointments)
+    @time_slots = appointments.concat(free_time_slots).sort { |x, y| x[:startTime] <=> y[:startTime] }
+    
+    render :free_time
+  end
+  
   private
   
   def appointment_params
     params.require(:appointment).permit(:title, :startTime, :endTime, :appointment_status,
                                         :email, :fname, :lname, :doctor_id, :phone_number,
                                         :office_hour)
+  end
+  
+  def createFreeSlots(office_hours, appointments)
+    free_time_slots = []
+    office_hours.each do |office_hour|
+      end_office_hour = office_hour.endTime
+      start_time = office_hour.startTime
+      appointments.each do |appointment|
+        end_time = appointment.startTime
+        if end_time <= end_office_hour && end_time > start_time
+          appointment_object = {
+            startTime: start_time,
+            endTime: end_time,
+            title: "Free Time",
+            fname: "Free Time",
+            lname: ""
+          }
+          free_time_slots.push(appointment_object)
+        end
+        start_time = appointment.endTime
+      end
+    end
+    
+    free_time_slots
   end
   
   def ensure_signed_in

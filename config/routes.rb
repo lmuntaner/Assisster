@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :calendar_appointments, only: [:index]
     resources :doctors, only: [:index]
     resources :appointments, only: [:create, :update, :show]
+    get "/free_time/:date", to: "appointments#getFreeTime"
     resources :confirm_appointments, only: [:update]
     resources :cancel_appointments, only: [:update]
     resources :receive_messages, only: [:index]
