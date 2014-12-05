@@ -79,30 +79,33 @@ class Api::AppointmentsController < ApplicationController
       appointments.each do |appointment|
         end_time = appointment.startTime
         if end_time <= end_office_hour && end_time > start_time
-          appointment_object = {
-            startTime: start_time,
-            endTime: end_time,
-            title: "Free Time",
-            fname: "Free Time",
-            lname: ""
-          }
+          appointment_object = create_free_time_object(start_time, end_time)
+          free_time_slots.push(appointment_object)
+        elsif end_time > end_office_hour
+          appointment_object = create_free_time_object(start_time, end_office_hour)
           free_time_slots.push(appointment_object)
         end
         start_time = appointment.endTime
       end
       if start_time < end_office_hour
-        appointment_object = {
-          startTime: start_time,
-          endTime: end_office_hour,
-          title: "Free Time",
-          fname: "Free Time",
-          lname: ""
-        }
+        appointment_object = create_free_time_object(start_time, end_office_hour)
         free_time_slots.push(appointment_object)
       end
     end
     
     free_time_slots
+  end
+  
+  def create_free_time_object(start_time, end_time)
+    appointment_object = {
+      startTime: start_time,
+      endTime: end_time,
+      title: "Free Time",
+      fname: "Free Time",
+      lname: ""
+    }
+    
+    return appointment_object
   end
   
   def ensure_signed_in
