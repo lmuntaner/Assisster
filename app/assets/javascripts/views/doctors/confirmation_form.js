@@ -14,11 +14,7 @@ Assisster.Views.ConfirmationForm = Backbone.View.extend({
 		} else {
 			this.$el.css('left', options.coordinates[0] - 300)
 		}
-		if (options.coordinates[1] < 400) {
-			this.$el.css('top', options.coordinates[1] - 150)			
-		} else {
-			this.$el.css('top', options.coordinates[1] - 300)	
-		}
+		this.$el.css('top', options.coordinates[1] - 150)			
 	},
 	
 	closeView: function () {
