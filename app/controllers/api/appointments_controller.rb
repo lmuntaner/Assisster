@@ -49,7 +49,7 @@ class Api::AppointmentsController < ApplicationController
     date = Date.parse(params[:date])
     appointments = doctor.appointments.where({
       startTime: date.midnight..(date.midnight + 1.day),
-      appointment_status: ["Approved", "Pending"],
+      appointment_status: ["Approved"],
       office_hour: false
     }).order(startTime: :asc)
     office_hours = doctor.appointments.where({

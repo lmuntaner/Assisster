@@ -7,17 +7,13 @@ Assisster.Views.PendingAppointmentsIndex = Backbone.CompositeView.extend({
 	},
 	
   initialize: function () {
-		this.pendingCollection = new Assisster.Collections.Appointments();
-		this.getPendingAppointments();
 		this.listenTo(this.collection, "sync add", this.getPendingAppointments);
   },
 	
 	getPendingAppointments: function () {
 		this.resetSubviews();
 		var view = this;
-		var pendingAppointments = this.collection.pendingAppointments();
-		this.pendingCollection.set(pendingAppointments);
-		this.pendingCollection.each(function (appointment) {
+		this.collection.pendingAppointments().forEach(function (appointment) {
 			var pendingAppointmentItem = new Assisster.Views.PendingAppointmentItem({
 				model: appointment
 			});

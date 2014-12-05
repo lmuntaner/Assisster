@@ -13,7 +13,7 @@ class Api::ReceiveMessagesController < ApplicationController
     appointment_params[:endTime] = end_string
     
     appointment = Appointment.new(appointment_params)
-    
+
     if appointment.save
       trigger_appointment_event(appointment)
       render json: "Thanks success"
