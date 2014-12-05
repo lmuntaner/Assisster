@@ -7,6 +7,7 @@ Assisster.Views.PendingAppointmentsIndex = Backbone.CompositeView.extend({
 	},
 	
   initialize: function () {
+    this.getPendingAppointments();
 		this.listenTo(this.collection, "sync add", this.getPendingAppointments);
   },
 	
@@ -19,6 +20,7 @@ Assisster.Views.PendingAppointmentsIndex = Backbone.CompositeView.extend({
 			});
 			view.addSubview('table.pendings', pendingAppointmentItem);
 		});
+    this.render();
 	},
   
   render: function () {
