@@ -11,6 +11,7 @@ class Api::ReceiveMessagesController < ApplicationController
     end_string = convertToDate(appointment_params[:endTime])
     appointment_params[:startTime] = start_string
     appointment_params[:endTime] = end_string
+    appointment_params[:phone_number] = params[:msisdn]
     
     appointment = Appointment.new(appointment_params)
 
