@@ -90,6 +90,16 @@ class Api::AppointmentsController < ApplicationController
         end
         start_time = appointment.endTime
       end
+      if start_time < end_office_hour
+        appointment_object = {
+          startTime: start_time,
+          endTime: end_office_hour,
+          title: "Free Time",
+          fname: "Free Time",
+          lname: ""
+        }
+        free_time_slots.push(appointment_object)
+      end
     end
     
     free_time_slots
