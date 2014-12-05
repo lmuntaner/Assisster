@@ -11,16 +11,36 @@ Assisster.Views.TodaysAppointmentsIndex = Backbone.CompositeView.extend({
 		this.listenTo(this.collection, "sync add change:startTime", this.getTodaysAppointments);
   },
 	
-	getTodaysAppointments: function () {
+	addTodaySlots: function (objects) {
 		this.resetSubviews();
 		var view = this;
-		var todaysAppointments = this.collection.todaysAppointments();
-		todaysAppointments.forEach(function (appointment) {
+		objects.forEach(function (appointmentObject) {
+			var appointment = new Assisster.Models.Appointment(appointmentObject);
 			var todaysAppointmentItem = new Assisster.Views.TodaysAppointmentItem({
 				model: appointment
 			});
 			view.addSubview('ul.todays-appointments', todaysAppointmentItem);
 		});
+	},
+	
+	getTodaysAppointments: function () {
+		this.resetSubviews();
+		// var todaysAppointments = this.collection.todaysAppointments();
+		var url = "/api/free_time/" + moment().format("DD-MM-YYYY");
+		var view = this;
+		$.ajax({
+			type: "GET",
+			url: url,
+			success: function(response) {
+				view.addTodaySlots(response);
+			}
+		})
+		// todaysAppointments.forEach(function (appointment) {
+		// 	var todaysAppointmentItem = new Assisster.Views.TodaysAppointmentItem({
+		// 		model: appointment
+		// 	});
+		// 	view.addSubview('ul.todays-appointments', todaysAppointmentItem);
+		// });
 		this.render();
 	},
   
