@@ -68,37 +68,16 @@ Assisster.Collections.Appointments = Backbone.Collection.extend({
 	},
 	
 	todaysAppointments: function () {
-		var todaysAppointments = [];
-		var collection = this;
-		var onlyTodays = this.select(function(appointment) {
-			return appointment.today();
-		})
-		var onlyTodaysSorted = onlyTodays.sort(function (a, b) {
-			return b.startTime - a.startTime
+		var todaysAppointments = this.select(function(appointment) {
+			return appointment.today() && !appointment.get('office_hour');
 		});
-		onlyTodaysSorted.forEach(function (appointment, index) {
-			if (!appointment.get('office_hour')) {
-				todaysAppointments.push(appointment);
-			} else {
-				var newIndex = 1;
-				var startTime = appointment.get('startTime');
-				if (onlyTodaysSorted[newIndex]) {
-					var endTime = onlyTodaysSorted[newIndex];
-				} else {
-					var endTime = appointment.get('endTime');
-				}
-				var freeTime = new Assisster.Models.Appointment({
-					title: "Free Time",
-					fname: "Free Time",
-					startTime: startTime,
-					endTime: endTime,
-					appointment_status: "Approved"
-				});
-				todaysAppointments.push(freeTime);
-			}				
+		// var onlytodaysOfficeHours = this.select(function(appointment) {
+		// 	return appointment.get('office_hour');
+		// })
+		var todaySorted = todaysAppointments.sort(function (a, b) {
+			return b.startTime() - a.startTime();				
 		});
-		
-		return todaysAppointments;
+		return todaySorted;
 	},
 });
 

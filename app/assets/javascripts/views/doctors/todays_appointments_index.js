@@ -9,7 +9,6 @@ Assisster.Views.TodaysAppointmentsIndex = Backbone.CompositeView.extend({
   initialize: function () {
 		this.getTodaysAppointments();
 		this.listenTo(this.collection, "sync add change:startTime", this.getTodaysAppointments);
-		this.listenTo(this.collection, "sync", this.render);
   },
 	
 	getTodaysAppointments: function () {
