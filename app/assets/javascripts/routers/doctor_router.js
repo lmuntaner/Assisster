@@ -55,7 +55,8 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
 			} else {
 				appointment = new Assisster.Models.Appointment(data.appointment);
 				var num_length = router.collection.length;
-				router.collection.add(appointment, {at: 0});
+				router.collection.add(appointment, { at: 0 });
+        router.collection.trigger('pusher')
 			}
 		});
 	},

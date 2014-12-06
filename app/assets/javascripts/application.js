@@ -18,6 +18,7 @@
 //= require bootstrap-datepicker
 //= require underscore
 //= require backbone
+//= require backbone.TriggerHappy
 //= require moment
 //= require fullcalendar
 //= require bootstrap

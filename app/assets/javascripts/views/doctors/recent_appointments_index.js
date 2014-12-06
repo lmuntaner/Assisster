@@ -9,7 +9,7 @@ Assisster.Views.RecentAppointmentsIndex = Backbone.CompositeView.extend({
   initialize: function () {
 		this.recentCollection = new Assisster.Collections.Appointments();
 		this.getRecentAppointments();
-		this.listenTo(this.collection, "sync add", this.getRecentAppointments);			
+    this.listenTo(this.collection, "parseSync pusher", this.getRecentAppointments);
   },
 	
 	getRecentAppointments: function () {

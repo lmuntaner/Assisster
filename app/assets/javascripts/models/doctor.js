@@ -12,6 +12,7 @@ Assisster.Models.Doctor = Backbone.Model.extend({
   parse: function (payload) {
     if (payload.appointments) {
       this.appointments().set(payload.appointments, { parse: true });
+      this.appointments().trigger('parseSync');
       delete payload.appointments;
     }
     
