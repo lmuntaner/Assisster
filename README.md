@@ -1,5 +1,4 @@
 #Assisster
-===============
 
 A project to help doctors handle their calendar of appointments. Allowing the patients to make online appointments.
 
@@ -18,6 +17,7 @@ Check it out in [www.randomdoctor.com](http://www.randomdoctor.com)
 ![dashboard home](https://raw.githubusercontent.com/lmuntaner/assisster/master/app/assets/images/screenshot_dashboard_home.png)
 
 ### Doctor's Calendar
+
 I used the FullCalendar jQuery plugin
 ------------------
 ![calendar](https://raw.githubusercontent.com/lmuntaner/assisster/master/app/assets/images/screenshot_calendar.png)
