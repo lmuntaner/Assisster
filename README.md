@@ -10,14 +10,18 @@ I used pusher.com to create the realtime listeners. It's pretty cool because wit
 Check it out in [www.randomdoctor.com](http://www.randomdoctor.com)
 
 ### Home page
+------------------
 ![home page](https://raw.githubusercontent.com/lmuntaner/assisster/master/app/assets/images/screenshot_home.png)
 
 ### Dashboard Home
+------------------
 ![dashboard home](https://raw.githubusercontent.com/lmuntaner/assisster/master/app/assets/images/screenshot_dashboard_home.png)
 
 ### Doctor's Calendar
 I used the FullCalendar jQuery plugin
+------------------
 ![calendar](https://raw.githubusercontent.com/lmuntaner/assisster/master/app/assets/images/screenshot_calendar.png)
 
 ### Patients site to create appointments
+------------------
 ![patient appointment](https://raw.githubusercontent.com/lmuntaner/assisster/master/app/assets/images/screenshot_patient_appointment.png)
