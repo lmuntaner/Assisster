@@ -51,12 +51,15 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
 		this.channel.bind('appointment-event', function(data) {
 			var appointment = router.collection.get(data.appointment.id);
 			if (appointment) {
-				appointment.fetch();
+				appointment.fetch({
+					success: function () {
+						router.collection.trigger('parseSync');
+					}
+				});
 			} else {
 				appointment = new Assisster.Models.Appointment(data.appointment);
-				var num_length = router.collection.length;
 				router.collection.add(appointment, { at: 0 });
-        router.collection.trigger('pusher')
+        router.collection.trigger('pusher');
 			}
 		});
 	},

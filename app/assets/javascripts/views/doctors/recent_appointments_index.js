@@ -15,9 +15,7 @@ Assisster.Views.RecentAppointmentsIndex = Backbone.CompositeView.extend({
 	getRecentAppointments: function () {
 		this.resetSubviews();
 		var view = this;
-		var recentAppointments = this.collection.recentAppointments(5);
-		this.recentCollection.set(recentAppointments);
-		this.recentCollection.each(function (appointment) {
+		this.collection.recentAppointments(5).forEach(function (appointment) {
 			var recentAppointmentItem = new Assisster.Views.RecentAppointmentItem({
 				model: appointment
 			});
