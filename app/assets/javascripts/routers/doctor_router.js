@@ -7,7 +7,12 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
   
   initialize: function(options) {
     this.model = new Assisster.Models.Doctor();
-    this.model.fetch();
+		var router = this;
+    this.model.fetch({
+    	success: function () {
+    		router.collection.trigger("firstFetch");
+    	}
+    });
 		this.collection = this.model.appointments();
     this.$rootEl = options.$rootEl;
 		this.listenToPusher();
@@ -53,13 +58,13 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
 			if (appointment) {
 				appointment.fetch({
 					success: function () {
-						router.collection.trigger('parseSync');
+						router.collection.trigger('pusherSync');
 					}
 				});
 			} else {
 				appointment = new Assisster.Models.Appointment(data.appointment);
 				router.collection.add(appointment, { at: 0 });
-        router.collection.trigger('pusher');
+        router.collection.trigger('pusherAdd');
 			}
 		});
 	},

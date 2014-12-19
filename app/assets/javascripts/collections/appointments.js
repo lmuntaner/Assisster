@@ -93,17 +93,9 @@ Assisster.Collections.Appointments = Backbone.Collection.extend({
 		var todaysAppointments = this.select(function(appointment) {
 			return appointment.today() && !appointment.get('office_hour');
 		});
-		// var todaysOfficeHours = this.select(function(appointment) {
-		// 	return appointment.today() && appointment.get('office_hour');
-		// });
-		// var freeTimes = this.getFreeTimes(todaysOfficeHours, todaysAppointments);
 		var todaySorted = todaysAppointments.sort(function (a, b) {
 			return b.startTime() - a.startTime();
 		});
-		// var todayTotal = todaysAppointments.concat(freeTimes);
-		// var todaySorted = todayTotal.sort(function (a, b) {
-		// 	return b.startTime() - a.startTime();
-		// });
 		return todaySorted;
 	},
 });

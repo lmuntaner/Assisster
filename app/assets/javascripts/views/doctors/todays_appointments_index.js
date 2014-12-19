@@ -8,7 +8,8 @@ Assisster.Views.TodaysAppointmentsIndex = Backbone.CompositeView.extend({
 	
   initialize: function () {
 		this.getTodaysAppointments();
-		this.listenTo(this.collection, "sync add change:startTime", this.getTodaysAppointments);
+		// this.listenTo(this.collection, "sync add change:startTime", this.getTodaysAppointments);
+		this.listenTo(this.collection, "pusherSync pusherAdd firstFetch", this.getTodaysAppointments);
   },
 	
 	addTodaySlots: function (objects) {
@@ -25,7 +26,6 @@ Assisster.Views.TodaysAppointmentsIndex = Backbone.CompositeView.extend({
 	
 	getTodaysAppointments: function () {
 		this.resetSubviews();
-		// var todaysAppointments = this.collection.todaysAppointments();
 		var url = "/api/free_time/" + moment().format("DD-MM-YYYY");
 		var view = this;
 		$.ajax({
@@ -35,12 +35,6 @@ Assisster.Views.TodaysAppointmentsIndex = Backbone.CompositeView.extend({
 				view.addTodaySlots(response);
 			}
 		})
-		// todaysAppointments.forEach(function (appointment) {
-		// 	var todaysAppointmentItem = new Assisster.Views.TodaysAppointmentItem({
-		// 		model: appointment
-		// 	});
-		// 	view.addSubview('ul.todays-appointments', todaysAppointmentItem);
-		// });
 		this.render();
 	},
   
