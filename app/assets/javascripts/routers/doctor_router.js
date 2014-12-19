@@ -57,8 +57,8 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
 			var appointment = router.collection.get(data.appointment.id);
 			if (appointment) {
 				appointment.fetch({
-					success: function () {
-						router.collection.trigger('pusherSync');
+					success: function (appointment) {
+						router.collection.trigger('pusherSync', appointment);
 					}
 				});
 			} else {
