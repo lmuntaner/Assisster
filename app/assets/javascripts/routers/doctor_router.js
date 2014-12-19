@@ -33,7 +33,7 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
     });
     
     this._swapView(calendarContainerView);
-    calendarContainerView.onRender();
+    calendarContainerView.onRender(); // I need this for when I comeback to this view in backbone
 	},
 	
   dashboard: function() {
