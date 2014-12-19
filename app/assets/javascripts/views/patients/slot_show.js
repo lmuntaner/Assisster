@@ -23,7 +23,7 @@ Assisster.Views.SlotShow = Backbone.View.extend({
 	      }
 	    })				
 		} else {
-			var $errors = $('<span>').text('Error!').addClass('error');
+			var $errors = $('<span>').text(this.errors).addClass('error');
 			this.$('div.errors').prepend($errors);
 		}
 	},
@@ -41,7 +41,11 @@ Assisster.Views.SlotShow = Backbone.View.extend({
 		return this.validateEmail(params.email);
 	},
 	
-	validateEmail: function (title) {
-		return title != "";
+	validateEmail: function (email) {
+		if (email === '') {
+			this.errors = "Please enter your email!";
+			return false;
+		}
+		return true;
 	},
 })
