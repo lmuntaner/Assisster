@@ -89,6 +89,10 @@ a.available-time-item {
 	width: 200px;
 }
 
+a.available-time-item:hover {
+	cursor: pointer;
+};
+
 /* Confirm appointment */
 
 div.chosen-time {
