@@ -8,10 +8,8 @@ Assisster.Views.AppointmentsIndex = Backbone.CompositeView.extend({
 	
   initialize: function (options) {
 		this.setApppointmentsSubviews();
-		this.listenTo(this.collection, "sync", this.render);
-		this.listenTo(this.collection, "add", this.onRender);
-		this.listenTo(this.collection, "sync", this.setAppointmentsSubviews);
-		this.listenTo(this.collection, "add", this.addAppointmentSubview);
+		this.listenTo(this.collection, "pusherSync", this.setAppointmentsSubviews);
+		this.listenTo(this.collection, "puserhAdd add", this.addAppointmentSubview);
   },
 	
 	addAppointmentSubview: function (appointment) {
@@ -19,6 +17,7 @@ Assisster.Views.AppointmentsIndex = Backbone.CompositeView.extend({
 			model: appointment
 		});
 		this.addSubview('tbody.appointments', appointmentItem);
+		this.onRender();
 	},
 	
 	onRender: function () {
@@ -29,7 +28,7 @@ Assisster.Views.AppointmentsIndex = Backbone.CompositeView.extend({
 		
 		setTimeout(function () {
 			this.appointmentList = new List('appointments', this.listOptions);
-		}.bind(this), 500);			
+		}.bind(this), 500);	
 	},
 	
 	render: function () {
