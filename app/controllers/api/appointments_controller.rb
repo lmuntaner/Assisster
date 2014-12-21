@@ -39,13 +39,7 @@ class Api::AppointmentsController < ApplicationController
     appointments = get_date_appointments(doctor, date, ["Approved"], false)
     office_hours = get_date_appointments(doctor, date, ["Approved"], true)
     @available_slots = create_available_slots(service, appointments, office_hours)
-    
-    # @doctor.appointments.where({
-    #   startTime: date.midnight..(date.midnight + 1.day),
-    #   appointment_status: ["Approved", "Pending"]
-    # }).order(startTime: :asc)
-    
-    # render :date_appointments
+
     render :available_slots
   end
   
@@ -53,17 +47,7 @@ class Api::AppointmentsController < ApplicationController
     doctor = current_doctor
     date = Date.parse(params[:date])
     appointments = get_date_appointments(doctor, date, ["Approved"], false)
-    # doctor.appointments.where({
-    #   startTime: date.midnight..(date.midnight + 1.day),
-    #   appointment_status: ["Approved"],
-    #   office_hour: false
-    # }).order(startTime: :asc)
     office_hours = get_date_appointments(doctor, date, ["Approved"], true)
-    # doctor.appointments.where({
-    #   startTime: date.midnight..(date.midnight + 1.day),
-    #   appointment_status: ["Approved"],
-    #   office_hour: true
-    # }).order(startTime: :asc)
 
     free_time_slots = create_free_slots(appointments, office_hours)
     @time_slots = appointments.concat(free_time_slots).sort { |x, y| x[:startTime] <=> y[:startTime] }
@@ -103,22 +87,25 @@ class Api::AppointmentsController < ApplicationController
   def create_free_slots(appointments, office_hours)
     free_time_slots = []
     office_hours.each do |office_hour|
-      end_office_hour = office_hour.endTime
-      start_time = office_hour.startTime
-      appointments.each do |appointment|
-        end_time = appointment.startTime
-        if end_time <= end_office_hour && end_time > start_time
-          appointment_object = create_free_time_object(start_time, end_time)
-          free_time_slots.push(appointment_object)
-        elsif end_time > end_office_hour
-          appointment_object = create_free_time_object(start_time, end_office_hour)
-          free_time_slots.push(appointment_object)
+      start_free_slot = office_hour.startTime
+      while start_free_slot < office_hour.endTime
+        appointments.each do |appointment|
+          if appointment.startTime <= start_free_slot
+            next if appointment.endTime < start_free_slot
+            start_free_slot = appointment.endTime
+          else
+            if appointment.startTime <= office_hour.endTime
+              appointment_object = create_free_time_object(start_free_slot, appointment.startTime)
+              free_time_slots.push(appointment_object)
+            end
+            start_free_slot = appointment.endTime
+          end
         end
-        start_time = appointment.endTime
-      end
-      if start_time < end_office_hour
-        appointment_object = create_free_time_object(start_time, end_office_hour)
-        free_time_slots.push(appointment_object)
+        if start_free_slot < office_hour.endTime
+          appointment_object = create_free_time_object(start_free_slot, office_hour.endTime)
+          free_time_slots.push(appointment_object)
+          start_free_slot = office_hour.endTime
+        end
       end
     end
     

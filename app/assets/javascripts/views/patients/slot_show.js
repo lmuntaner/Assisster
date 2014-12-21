@@ -29,7 +29,6 @@ Assisster.Views.SlotShow = Backbone.View.extend({
 	},
 	
 	render: function () {
-		debugger;
 		var renderedContent = this.template({
 			appointment: this.model,
 			
