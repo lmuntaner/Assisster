@@ -1,5 +1,5 @@
 Assisster.Views.SlotShow = Backbone.View.extend({
-	template: JST["patients/slot_confirm"],
+	template: JST["patients/slot_show"],
 	
 	events: {
 		"click form>button": "createAppointment"
@@ -29,8 +29,10 @@ Assisster.Views.SlotShow = Backbone.View.extend({
 	},
 	
 	render: function () {
+		debugger;
 		var renderedContent = this.template({
-			appointment: this.model
+			appointment: this.model,
+			
 		});
 		this.$el.html(renderedContent);
 		

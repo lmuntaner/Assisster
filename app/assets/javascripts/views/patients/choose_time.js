@@ -5,21 +5,24 @@ Assisster.Views.ChooseTime = Backbone.CompositeView.extend({
 	initialize: function (options) {
 		this.date = options.date;
 		this.collection = new Assisster.Collections.Appointments();
+		// this.collection.getDateAppointments(this.date, this.model);
 		this.collection.getDateAppointments(this.date, this.model);
-		this.listenTo(this.collection, "add", this.render);
+		// this.listenTo(this.collection, "add", this.render);
+		this.listenTo(this.collection, "available_slots", this.render);
 		this.duration = moment.duration(this.model.get('duration_min'), 'minutes');
 	},
 	
 	onRender: function () {
 		this.resetSubviews();
 		var view = this;
-		var availableSlots = this.setAvailableSlots();
-		availableSlots.forEach(function (availableTime) {
+		// var availableSlots = this.setAvailableSlots();
+		// var availableSlots = this.collection.getDateAppointments(this.date, this.model);
+		this.collection.each(function (availableTime) {
 			var availableTimeItem = new Assisster.Views.AvailableTimeItem({
 				model: availableTime,
 			});
 			view.addSubview("div.list-group", availableTimeItem);
-		});
+		});			
 	},
 	
 	render: function () {

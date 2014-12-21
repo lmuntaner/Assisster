@@ -32,33 +32,40 @@ class Api::AppointmentsController < ApplicationController
     end
   end
   
-  def getDateAppointments
-    @service = Service.find(params[:service_id])
-    @doctor = @service.doctor
+  def get_date_available_slots
+    service = Service.find(params[:service_id])
+    doctor = service.doctor
     date = Date.parse(params[:date])
-    @appointments = @doctor.appointments.where({
-      startTime: date.midnight..(date.midnight + 1.day),
-      appointment_status: ["Approved", "Pending"]
-    }).order(startTime: :asc)
+    appointments = get_date_appointments(doctor, date, ["Approved"], false)
+    office_hours = get_date_appointments(doctor, date, ["Approved"], true)
+    @available_slots = create_available_slots(service, appointments, office_hours)
     
-    render :date_appointments
+    # @doctor.appointments.where({
+    #   startTime: date.midnight..(date.midnight + 1.day),
+    #   appointment_status: ["Approved", "Pending"]
+    # }).order(startTime: :asc)
+    
+    # render :date_appointments
+    render :available_slots
   end
   
   def getFreeTime
     doctor = current_doctor
     date = Date.parse(params[:date])
-    appointments = doctor.appointments.where({
-      startTime: date.midnight..(date.midnight + 1.day),
-      appointment_status: ["Approved"],
-      office_hour: false
-    }).order(startTime: :asc)
-    office_hours = doctor.appointments.where({
-      startTime: date.midnight..(date.midnight + 1.day),
-      appointment_status: ["Approved"],
-      office_hour: true
-    }).order(startTime: :asc)
+    appointments = get_date_appointments(doctor, date, ["Approved"], false)
+    # doctor.appointments.where({
+    #   startTime: date.midnight..(date.midnight + 1.day),
+    #   appointment_status: ["Approved"],
+    #   office_hour: false
+    # }).order(startTime: :asc)
+    office_hours = get_date_appointments(doctor, date, ["Approved"], true)
+    # doctor.appointments.where({
+    #   startTime: date.midnight..(date.midnight + 1.day),
+    #   appointment_status: ["Approved"],
+    #   office_hour: true
+    # }).order(startTime: :asc)
 
-    free_time_slots = createFreeSlots(office_hours, appointments)
+    free_time_slots = create_free_slots(appointments, office_hours)
     @time_slots = appointments.concat(free_time_slots).sort { |x, y| x[:startTime] <=> y[:startTime] }
     
     render :free_time
@@ -72,7 +79,28 @@ class Api::AppointmentsController < ApplicationController
                                         :office_hour)
   end
   
-  def createFreeSlots(office_hours, appointments)
+  def create_available_slots(service, appointments, office_hours)
+    free_times = create_free_slots(appointments, office_hours)
+    available_slots = []
+    free_times.each do |free_time|
+      start_time = free_time[:startTime]
+      end_time = start_time + (service.duration_min * 60)
+      while end_time <= free_time[:endTime]
+        available_slot = {
+          startTime: start_time,
+          endTime: end_time,
+          title: service.title
+        }
+        available_slots.push(available_slot)
+        start_time = end_time
+        end_time += (service.duration_min * 60)
+      end
+    end
+    
+    available_slots
+  end
+  
+  def create_free_slots(appointments, office_hours)
     free_time_slots = []
     office_hours.each do |office_hour|
       end_office_hour = office_hour.endTime
@@ -111,5 +139,13 @@ class Api::AppointmentsController < ApplicationController
   
   def ensure_signed_in
     redirect_to root_url unless signed_in?
+  end
+  
+  def get_date_appointments(doctor, date, statuses, office_hour)
+    doctor.appointments.where({
+          startTime: date.midnight..(date.midnight + 1.day),
+          appointment_status: statuses,
+          office_hour: office_hour
+        }).order(startTime: :asc)
   end
 end

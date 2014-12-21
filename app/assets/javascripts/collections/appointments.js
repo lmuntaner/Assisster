@@ -4,8 +4,15 @@ Assisster.Collections.Appointments = Backbone.Collection.extend({
 	addModels: function (objects) {
 		var collection = this;
 		objects.forEach(function (object) {
-			collection.create(object)
+			var startTime = moment.utc(object.startTime);
+			var endTime = moment.utc(object.endTime);
+			collection.add({
+				title: object.title,
+				startTime: startTime,
+				endTime: endTime
+			});
 		});
+		this.trigger("available_slots");
 	},
 	
   comparator: function(appointment) {
