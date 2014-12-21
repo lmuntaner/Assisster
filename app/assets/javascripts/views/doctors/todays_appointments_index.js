@@ -33,7 +33,7 @@ Assisster.Views.TodaysAppointmentsIndex = Backbone.CompositeView.extend({
 			success: function(response) {
 				view.addTodaySlots(response);
 			}
-		})
+		});
 		this.render();
 	},
   
