@@ -12,7 +12,7 @@ Assisster.Collections.Appointments = Backbone.Collection.extend({
 				endTime: endTime
 			});
 		});
-		this.trigger("available_slots");
+		this.trigger("availableSlots");
 	},
 	
   comparator: function(appointment) {
