@@ -90,6 +90,7 @@ class Api::AppointmentsController < ApplicationController
       start_free_slot = office_hour.startTime
       while start_free_slot < office_hour.endTime
         appointments.each do |appointment|
+          break if appointment.startTime > office_hour.endTime
           if appointment.startTime <= start_free_slot
             next if appointment.endTime < start_free_slot
             start_free_slot = appointment.endTime
