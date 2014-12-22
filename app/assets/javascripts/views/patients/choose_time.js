@@ -15,8 +15,6 @@ Assisster.Views.ChooseTime = Backbone.CompositeView.extend({
 	setAvailability: function () {
 		if (this.collection.length === 0) {
 			this.availableSlots = false;
-		} else {
-			this.availableSlots = true;
 		}
 	},
 	
