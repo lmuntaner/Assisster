@@ -71,7 +71,11 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
 	},
 	
 	notifyNewAppointment: function (appointment) {
-		alert('New Appointment');
+		var msg = "New Appointment from " + appointment.fullName() + "  ";
+	  $('div.top-right').notify({
+	     message: { text: msg },
+			 fadeOut: { enabled: false, delay: 9000 }
+	   }).show();
 	},
 
   _swapView: function(view) {

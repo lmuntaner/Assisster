@@ -24,6 +24,7 @@
 //= require bootstrap
 //= require pusher.min
 //= require list
+//= require bootstrap-notify
 //= require assisster
 //= require_tree ../templates
 //= require_tree ./models
