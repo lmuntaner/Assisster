@@ -16,6 +16,7 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
 		this.collection = this.model.appointments();
     this.$rootEl = options.$rootEl;
 		this.listenToPusher();
+		this.listenTo(this.collection, 'pusherAdd', this.notifyNewAppointment);
   },
 	
 	allAppointments: function () {
@@ -67,6 +68,10 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
         router.collection.trigger('pusherAdd', appointment);
 			}
 		});
+	},
+	
+	notifyNewAppointment: function (appointment) {
+		alert('New Appointment');
 	},
 
   _swapView: function(view) {
