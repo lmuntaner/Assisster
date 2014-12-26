@@ -36,7 +36,7 @@ class Api::AppointmentsController < ApplicationController
     service = Service.find(params[:service_id])
     doctor = service.doctor
     date = Date.parse(params[:date])
-    appointments = get_date_appointments(doctor, date, ["Approved"], false)
+    appointments = get_date_appointments(doctor, date, ["Approved", "Pending"], false)
     office_hours = get_date_appointments(doctor, date, ["Approved"], true)
     @available_slots = create_available_slots(service, appointments, office_hours)
 
