@@ -38,24 +38,20 @@
 	margin-bottom: 10px;
 }
 
-.calendar-header div {
-	width: 300px;
+div.left-calendar-header {
+	padding: 0;
 }
 
-div.left-calendar-header {
-	float: left;
+div.left-calendar-header button {
+	margin-right: 15px;
 }
 
 div.right-calendar-header {
-	float: right;
+	padding: 0;
 }
 
 button.create-office-hours {
 	float: right;
-}
-
-div.center-calendar-header {
-	margin: 0 auto;
 }
 
 /* Dashboard home View */
