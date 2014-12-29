@@ -76,6 +76,13 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 	removeFromCalendar: function (appointment) {
 		$('#calendar').fullCalendar('removeEvents', [appointment.id]);
 	},
+	
+	removePending: function () {
+		var view = this;
+		this.collection.pendingAppointments().forEach(function (appointment) {
+			view.removeFromCalendar(appointment);
+		});
+	},
 
   render: function () {
     this.$el.html(this.template());

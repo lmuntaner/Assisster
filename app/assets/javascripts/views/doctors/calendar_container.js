@@ -67,6 +67,10 @@ Assisster.Views.CalendarContainer = Backbone.CompositeView.extend({
 	},
 	
 	showPending: function (event) {
-		this.calendarView.showPending();
+		if (event.currentTarget.checked) {
+			this.calendarView.showPending();			
+		} else {
+			this.calendarView.removePending();
+		}
 	},
 })
