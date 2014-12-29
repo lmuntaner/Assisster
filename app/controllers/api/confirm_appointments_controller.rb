@@ -6,6 +6,8 @@ class Api::ConfirmAppointmentsController < ApplicationController
     
     if appointment.update(appointment_status: "Approved")
       trigger_appointment_event(appointment)
+      confirmation_email = AppointmentMailer.confirmation_email(appointment)
+      confirmation_email.deliver
       render json: appointment
     else
       render json: appointment.errors.full_messages, status: :unprocessable_entity

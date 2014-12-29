@@ -21,4 +21,12 @@ class Appointment < ActiveRecord::Base
   validates :title, :startTime, :doctor, :appointment_status, presence: true
   
   belongs_to :doctor
+  
+  def full_name
+    "#{fname} #{lname}"
+  end
+  
+  def date
+    "#{startTime.date}"
+  end
 end
