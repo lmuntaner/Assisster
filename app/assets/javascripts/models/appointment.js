@@ -19,6 +19,11 @@ Assisster.Models.Appointment = Backbone.Model.extend({
 		if (this.get('office_hour')) {
 			eventObject.rendering = "background";
 		}
+		if (eventObject.appointment_status == 'Pending') {
+			eventObject.backgroundColor = "#257e4a";
+			eventObject.borderColor = "#257e4a";
+		}
+		
     return eventObject;
   },
 	
