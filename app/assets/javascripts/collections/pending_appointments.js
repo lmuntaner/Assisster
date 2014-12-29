@@ -1,4 +1,4 @@
 Assisster.Collections.CalendarAppointments = Backbone.Collection.extend({
-	url: "api/pending_appointments",
+	url: "api/calendar_appointments",
 	model: Assisster.Models.Appointment
 })

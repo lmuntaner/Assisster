@@ -43,6 +43,10 @@ Assisster.Views.CalendarView = Backbone.View.extend({
     });
     this.renderAppointmentForm(this.appointmentForm);
   },
+  
+  hideTooltip: function (event) {
+    $(this).tooltip('hide');
+  },
 	
 	onRender: function (slotDuration) {
     $('#calendar').fullCalendar({
@@ -72,10 +76,6 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 	removeFromCalendar: function (appointment) {
 		$('#calendar').fullCalendar('removeEvents', [appointment.id]);
 	},
-  
-  hideTooltip: function (event) {
-    $(this).tooltip('hide');
-  },
 
   render: function () {
     this.$el.html(this.template());
@@ -92,6 +92,13 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 		element.find("div.fc-time span").html(firstText);
 		var lastText = event.fname + " " + event.lname;
 		element.find("div.fc-title").html(lastText);
+	},
+	
+	showPending: function() {
+		var view = this;
+		this.collection.pendingAppointments().forEach(function (appointment) {
+			$('#calendar').fullCalendar('addEventSource', [appointment.convertToEvent()]);
+		});
 	},
 	
 	updateAppointment: function(event, jsEvent, view) {
