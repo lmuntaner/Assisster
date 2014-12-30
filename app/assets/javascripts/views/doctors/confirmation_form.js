@@ -24,7 +24,13 @@ Assisster.Views.ConfirmationForm = Backbone.View.extend({
 	},
 	
 	render: function () {
-		var message = "Appointment Confirmed for: " + this.model.date() + " at " + this.model.time()
+		var message;
+		if (this.action == "onfirm") {
+			message = "Appointment Confirmed for: " + this.model.date() + " at " + this.model.time();			
+		} else {
+			message = "Sorry, but you appointment for: " + this.model.date() + " at " + this.model.time();
+			message += " has been cancelled";
+		}
 		var renderedContent = this.template({
 			appointment: this.model,
 			message: message

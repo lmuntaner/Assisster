@@ -44,10 +44,6 @@ Assisster.Views.PendingAppointmentItem = Backbone.View.extend({
 	
 	updateStatus: function (event) {
 		var action = $(event.currentTarget).text().toLowerCase();
-		if (action === "confirm") {
-			this.showConfirmationForm(action, event);
-		} else {
-			this.requestToServer(action, this.model.id);			
-		}
+		this.showConfirmationForm(action, event);
 	},
 })
