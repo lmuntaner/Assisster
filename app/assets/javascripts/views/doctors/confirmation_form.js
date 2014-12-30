@@ -14,17 +14,20 @@ Assisster.Views.ConfirmationForm = Backbone.View.extend({
 		} else {
 			this.$el.css('left', options.coordinates[0] - 300)
 		}
-		this.$el.css('top', options.coordinates[1] - 150)			
+		this.$el.css('top', options.coordinates[1] - 150)
+		this.action = options.action	
 	},
 	
 	closeView: function () {
-		this.callback("confirm", this.model.id);
+		this.callback(this.action, this.model.id);
 		this.remove();
 	},
 	
 	render: function () {
+		var message = "Appointment Confirmed for: " + this.model.date() + " at " + this.model.time()
 		var renderedContent = this.template({
-			appointment: this.model
+			appointment: this.model,
+			message: message
 		});
 		this.$el.html(renderedContent);
 		
