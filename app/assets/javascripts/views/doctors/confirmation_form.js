@@ -35,7 +35,7 @@ Assisster.Views.ConfirmationForm = Backbone.View.extend({
 		event.preventDefault();
 		var params = $(event.currentTarget).parent().serializeJSON();
 		var view = this;
-		var phone_number = "1" + params.phone_number;
+		var phone_number = params.phone_number;
 		// var data = {}
 		// data.api_key = "72a4964e";
 		// data.api_secret = "f6aa10e6";

@@ -59,8 +59,8 @@ class Api::AppointmentsController < ApplicationController
   
   def appointment_params
     params.require(:appointment).permit(:title, :startTime, :endTime, :appointment_status,
-                                        :email, :fname, :lname, :doctor_id, :phone_number,
-                                        :office_hour)
+                                        :email, :fname, :lname, :doctor_id, :office_hour, 
+                                        :country_code, :phone_number)
   end
   
   def create_available_slots(service, appointments, office_hours)

@@ -102,8 +102,8 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 				email: params.email,
 				fname: params.fname,
 				lname: params.lname,
+				country_code: params.countrycode,
 				phone_number: params.phone_number
-				// appointment_status: "Approved"
 	    };
 		  this.model.save(appointmentParams)				
 			this.$('#appointment-modal').modal('hide');

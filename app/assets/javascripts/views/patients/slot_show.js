@@ -10,12 +10,12 @@ Assisster.Views.SlotShow = Backbone.View.extend({
 		var params = $(event.currentTarget).parent().serializeJSON().appointment;
 		if (this.validateForm(params)) {
 	    var view = this;
-			var phoneNumber = params.countrycode + params.phoneNumber;
 			var appointmentParams = {
 				email: params.email,
 				fname: params.fname,
 				lname: params.lname,
-				phone_number: phoneNumber,
+				country_code: params.countrycode,
+				phone_number: params.phoneNumber,
 				doctor_id: window.Doctor.id
 	    };
 	    this.model.save(appointmentParams, {
