@@ -6,10 +6,6 @@ Assisster.Views.SlotShow = Backbone.View.extend({
 		"click form>button": "createAppointment"
 	},
 	
-	initialize: function() {
-		// this.$errorDiv = $("div").addClass("alert alert-danger").attr("role", "alert");
-	},
-	
 	createAppointment: function (event) {
 		event.preventDefault();
 		var params = $(event.currentTarget).parent().serializeJSON().appointment;
@@ -42,19 +38,19 @@ Assisster.Views.SlotShow = Backbone.View.extend({
 		if (this.validateEmail() && this.validateFname() && this.validateLname()) {
 			this.$('button').prop('disabled', false);
 		} else {
-			// this.$('.form-inputs').prepend(this.$errorDiv);
 			this.$('button').prop('disabled', true);
 		}
 	},
 	
 	validateEmail: function () {
 		var $email = this.$("input[type='email']");
-		if ($email.val() === '') {
-			$email.addClass("required");
-			return false;
-		} else {
+		var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		if (re.test($email.val())) {
 			$email.removeClass("required");
 			return true;
+		} else {
+			$email.addClass("required");
+			return false;
 		}
 	},
 	
