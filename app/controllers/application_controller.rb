@@ -1,8 +1,8 @@
 require 'pusher'
 
-Pusher.app_id = '98767'
-Pusher.key = 'b364d5eaf36fa6f4f92f'
-Pusher.secret = '438fbab515c29863104b'
+Pusher.app_id = ENV["PUSHER_APP_ID"]
+Pusher.key    = ENV["PUSHER_KEY"]
+Pusher.secret = ENV["PUSHER_SECRET"]
 
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.

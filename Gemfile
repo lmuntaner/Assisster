@@ -15,6 +15,7 @@ gem 'ejs'
 gem 'newrelic_rpm'
 gem 'faker'
 gem 'pusher'
+gem 'figaro'
 # gem 'sdoc', '~> 0.4.0',          group: :doc
 
 group :doc do
