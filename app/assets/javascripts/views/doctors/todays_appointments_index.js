@@ -47,8 +47,17 @@ Assisster.Views.TodaysAppointmentsIndex = Backbone.CompositeView.extend({
 	
 	showForm: function (event) {
 		var coordinates = [event.clientX, event.clientY];
-		var id = $(event.currentTarget).data('id');
+		var $target = $(event.currentTarget);
+		var id = $target.data('id');
+		var startTimeNew = moment.utc($target.data('start-time'));
 		var appointment = this.collection.get(id);
+		debugger;
+		
+		if (!appointment) {
+			appointment = new Assisster.Models.Appointment({
+				startTime: startTimeNew
+			});
+		}
 		
 		if (this.appointmentForm) {
 			this.appointmentForm.remove();
