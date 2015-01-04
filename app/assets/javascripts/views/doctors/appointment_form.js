@@ -62,6 +62,13 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 		})
 	},
 	
+	// I need to figure out how to handle the clicks or mouseup outside this view
+	checkClose: function (event) {
+		if (event.currentTarget !== this.$el[0]) {
+			this.closeView();
+		}
+	},
+	
 	closeView: function () {
 		this.remove();
 	},
@@ -95,6 +102,10 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 			var stringEndTime = params.endTimeDate + " " + params.endTimeHour;
 		  var endTime = moment.utc(stringEndTime, "M/D/YYYY h:mm a");
 	    var view = this;
+			var appointmentStatus = this.model.get('appointment_status');
+			if (appointmentStatus === "Cancelled") {
+				appointmentStatus = "Confirmed";
+			}
 			var appointmentParams = {
 	      title: params.title,
 	      startTime: startTime,
@@ -103,7 +114,8 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 				fname: params.fname,
 				lname: params.lname,
 				country_code: params.countrycode,
-				phone_number: params.phone_number
+				phone_number: params.phone_number,
+				appointment_status: appointmentStatus
 	    };
 		  this.model.save(appointmentParams)				
 			this.$('#appointment-modal').modal('hide');
