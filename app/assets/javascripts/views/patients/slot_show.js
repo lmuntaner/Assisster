@@ -2,7 +2,7 @@ Assisster.Views.SlotShow = Backbone.View.extend({
 	template: JST["patients/slot_show"],
 	
 	events: {
-		"change input": "validateForm",
+		"keyup input": "validateForm",
 		"click form>button": "createAppointment"
 	},
 	
