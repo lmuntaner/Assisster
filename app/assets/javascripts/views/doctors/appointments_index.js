@@ -13,6 +13,7 @@ Assisster.Views.AppointmentsIndex = Backbone.CompositeView.extend({
   },
 	
 	addAppointmentSubview: function (appointment) {
+		if (appointment.get('office_hour')) return;
 		var appointmentItem = new Assisster.Views.AppointmentsItem({
 			model: appointment
 		});
@@ -43,7 +44,9 @@ Assisster.Views.AppointmentsIndex = Backbone.CompositeView.extend({
 	setApppointmentsSubviews: function () {
 		var view = this;
 		this.collection.each(function (appointment) {
-			view.addAppointmentSubview(appointment);
+			if (!appointment.get('office_hour')) {
+				view.addAppointmentSubview(appointment);				
+			}
 		});
 	},
 	

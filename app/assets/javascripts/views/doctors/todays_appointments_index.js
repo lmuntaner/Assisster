@@ -51,7 +51,6 @@ Assisster.Views.TodaysAppointmentsIndex = Backbone.CompositeView.extend({
 		var id = $target.data('id');
 		var startTimeNew = moment.utc($target.data('start-time'));
 		var appointment = this.collection.get(id);
-		debugger;
 		
 		if (!appointment) {
 			appointment = new Assisster.Models.Appointment({
