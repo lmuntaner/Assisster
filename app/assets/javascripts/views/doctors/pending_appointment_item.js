@@ -29,6 +29,7 @@ Assisster.Views.PendingAppointmentItem = Backbone.View.extend({
 		return this;
 	},
 	
+	// Sending sms in stand by
 	showConfirmationForm: function (action, event) {
 		var coordinates = [event.clientX, event.clientY];
 		
@@ -44,6 +45,7 @@ Assisster.Views.PendingAppointmentItem = Backbone.View.extend({
 	
 	updateStatus: function (event) {
 		var action = $(event.currentTarget).text().toLowerCase();
-		this.showConfirmationForm(action, event);
+		// this.showConfirmationForm(action, event);
+		this.requestToServer(action, this.model.id)
 	},
 })
