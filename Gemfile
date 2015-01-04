@@ -17,6 +17,7 @@ gem 'faker'
 gem 'pusher'
 gem 'figaro'
 gem 'email_validator'
+gem 'mandrill-api'
 # gem 'sdoc', '~> 0.4.0',          group: :doc
 
 group :doc do

@@ -5,6 +5,6 @@ class AppointmentMailer < ActionMailer::Base
     @name = appointment.full_name
     @doctor = Doctor.find(appointment.doctor_id)
     @appointment = appointment
-    mail(to: @appointment.email, subject: "Appointment Confirmation")
+    mail(to: @appointment.email, subject: "Appointment Confirmation", from: @doctor.email)
   end
 end
