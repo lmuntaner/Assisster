@@ -103,8 +103,8 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 		  var endTime = moment.utc(stringEndTime, "M/D/YYYY h:mm a");
 	    var view = this;
 			var appointmentStatus = this.model.get('appointment_status');
-			if (appointmentStatus === "Cancelled") {
-				appointmentStatus = "Confirmed";
+			if (appointmentStatus === "Cancelled" || this.model.isNew()) {
+				appointmentStatus = "Approved";
 			}
 			var appointmentParams = {
 	      title: params.title,
