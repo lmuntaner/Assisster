@@ -18,9 +18,8 @@
 #
 
 class Appointment < ActiveRecord::Base
-  validates :title, :startTime, :doctor, :appointment_status,
-            :fname, :lname, :email, presence: true
-  validates :email, :email => true
+  validates :title, :startTime, :doctor, :appointment_status, presence: true
+  validates :email, :email => true, allow_nil: true
   
   belongs_to :doctor
   

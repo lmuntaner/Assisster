@@ -77,7 +77,10 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
     this.model.save(appointmentParams, {
       success: function (model) {
 				view.remove();
-      }
+      },
+			error: function (error) {
+				debugger;
+			}
     });
 	}
 	
