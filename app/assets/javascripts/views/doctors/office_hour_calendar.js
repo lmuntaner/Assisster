@@ -64,7 +64,7 @@ Assisster.Views.OfficeHourCalendarView = Backbone.View.extend({
 			slotDuration: slotDuration,
       defaultView: 'agendaWeek',
       dayClick: this.createOfficeHour.bind(this),
-			eventClick: this.updateAppointment.bind(this),
+			eventClick: this.updateOfficeHour.bind(this),
       events:this.collection.getOfficeHours(true),
 			eventDragStart: this.removeTooltip,
 			eventDrop: this.updateAppointmentDraggOrResize.bind(this),
@@ -103,7 +103,7 @@ Assisster.Views.OfficeHourCalendarView = Backbone.View.extend({
 		element.find("div.fc-title").html(lastText);
 	},
 	
-	updateAppointment: function(event, jsEvent, view) {
+	updateOfficeHour: function(event, jsEvent, view) {
 		var officeHour = this.collection.get(event.id);
 		var coordinates = [jsEvent.pageX, jsEvent.pageY];
 		

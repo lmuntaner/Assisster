@@ -8,6 +8,8 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
 	},
 	
 	initialize: function (options) {
+		var startTime, endTime;
+		
 		if (options.coordinates[0] < 1000) {
 			this.$el.css('left', options.coordinates[0]);
 		} else {
@@ -19,9 +21,22 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
 			this.$el.css('top', options.coordinates[1] - 150);
 		}
 		
-		var startTime = moment();
-		var endTime = moment().add(4, "hours");
-		
+		if (options.date) {
+			this.date = options.date;
+			startTime = this.date.clone();	
+			endTime = this.date.clone().add(4, 'hours');
+		} else if (this.model.isNew()){
+			startTime = this.model.get('startTime');
+			if (!startTime) {
+				startTime = moment();
+			}
+			endTime = startTime.clone().add(4, "hours");
+		} else {
+			this.event = options.event;
+			startTime = moment.utc(this.model.escape('startTime'));
+			endTime = moment.utc(this.model.escape('endTime'));
+		}
+				
 		this.fromDateForm = new Assisster.Views.DateForm({
 			date: startTime,
 			position: "From"
@@ -77,10 +92,7 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
     this.model.save(appointmentParams, {
       success: function (model) {
 				view.remove();
-      },
-			error: function (error) {
-				debugger;
-			}
+      }
     });
 	}
 	
