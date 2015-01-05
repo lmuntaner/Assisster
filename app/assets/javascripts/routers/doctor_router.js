@@ -2,6 +2,7 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
   routes: {
 		"calendar": "calendar",
 		"appointments": "allAppointments",
+		"office_hours": "office_hours",
     "": "dashboard"
   },
   
@@ -76,6 +77,16 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
 	     message: { text: msg },
 			 fadeOut: { enabled: false, delay: 9000 }
 	   }).show();
+	},
+	
+	office_hours: function () {
+    var officeHourContainerView = new Assisster.Views.OfficeHourContainer({
+    	model: this.model,
+			collection: this.collection
+    });
+    
+    this._swapView(officeHourContainerView);
+    officeHourContainerView.onRender(); // I need this for when I comeback to this view in backbone
 	},
 
   _swapView: function(view) {

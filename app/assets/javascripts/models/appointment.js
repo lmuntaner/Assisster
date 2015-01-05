@@ -4,7 +4,7 @@ Assisster.Models.Appointment = Backbone.Model.extend({
 	initialize: function () {
 	},
 
-  convertToEvent: function() {
+  convertToEvent: function(officeHour) {
     var eventObject = {};
 		eventObject.id = this.id;
     eventObject.title = this.escape('title');
@@ -16,10 +16,10 @@ Assisster.Models.Appointment = Backbone.Model.extend({
 		eventObject.phone_number = this.escape('phone_number');
 		eventObject.appointment_status = this.escape('appointment_status');
 		
-		if (this.get('office_hour')) {
+		if (!officeHour && this.get('office_hour')) {
 			eventObject.rendering = "background";
 		}
-		if (eventObject.appointment_status == 'Pending') {
+		if (eventObject.appointment_status === 'Pending') {
 			eventObject.backgroundColor = "#257e4a";
 			eventObject.borderColor = "#257e4a";
 		}

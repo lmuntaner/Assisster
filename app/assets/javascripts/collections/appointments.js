@@ -41,17 +41,6 @@ Assisster.Collections.Appointments = Backbone.Collection.extend({
 		return arrayAppointments;
 	},
 	
-	getOfficeHours: function () {
-		var arrayOfficeHours = [];
-    this.each(function(appointment) {
-			if (appointment.get('office_hour')) {
-	      arrayOfficeHours.push(appointment.convertToEvent());				
-			}
-    });
-		
-		return arrayOfficeHours;
-	},
-	
 	getDateAppointments: function (date, service) {
 		var url = "api/services/" + service.id + "/" + date.format("D-M-YYYY");
 		var collection = this;
@@ -60,6 +49,17 @@ Assisster.Collections.Appointments = Backbone.Collection.extend({
 			url: url,
 			success: this.addModels.bind(this)
 		});
+	},
+	
+	getOfficeHours: function (officeHour) {
+		var arrayOfficeHours = [];
+    this.each(function(appointment) {
+			if (appointment.get('office_hour')) {
+	      arrayOfficeHours.push(appointment.convertToEvent(officeHour));				
+			}
+    });
+		
+		return arrayOfficeHours;
 	},
 	
 	pendingAppointments: function () {
