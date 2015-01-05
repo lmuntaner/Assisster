@@ -4,7 +4,8 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
 	
 	events: {
 		"click #close-office-hour-form": "closeView",
-		"click #submit-office-hour-form": "save"
+		"click #submit-office-hour-form": "save",
+		"click #cancel-office-hour-form": "cancel"
 	},
 	
 	initialize: function (options) {
@@ -48,6 +49,20 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
 		this.selectorDate = "div.form-inputs";
 		this.addSubview(this.selectorDate, this.fromDateForm);
 		this.addSubview(this.selectorDate, this.toDateForm);
+	},
+	
+	cancel: function (event) {
+		var appointment = this.model;
+		var view = this;
+		var url = "/api/cancel_appointments/" + this.model.id;
+		$.ajax({
+			type: "PATCH",
+			url: url,
+			success: function () {
+				$('#office_hour_calendar').fullCalendar('removeEvents', [appointment.id]);
+				view.remove();
+			}
+		})
 	},
 	
 	closeView: function () {

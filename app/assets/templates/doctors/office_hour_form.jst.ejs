@@ -16,6 +16,13 @@
 							class="btn btn-default">
 							Close
 			</button>
+			<% if (!appointment.isNew() && appointment.get('appointment_status') !== 'Cancelled') { %>
+				<button type="button"
+								id="cancel-office-hour-form"
+								class="btn btn-danger cancel">
+								Cancel Office Hours
+				</button>
+			<% } %>
 		</form>
 	</div>
 </div> <!-- /.modal-content -->

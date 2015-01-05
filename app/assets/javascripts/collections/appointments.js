@@ -54,7 +54,8 @@ Assisster.Collections.Appointments = Backbone.Collection.extend({
 	getOfficeHours: function (officeHour) {
 		var arrayOfficeHours = [];
     this.each(function(appointment) {
-			if (appointment.get('office_hour')) {
+			if (appointment.get('office_hour') &&
+					appointment.get('appointment_status') === "Approved") {
 	      arrayOfficeHours.push(appointment.convertToEvent(officeHour));				
 			}
     });
