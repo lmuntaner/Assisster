@@ -9,14 +9,14 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
 	
 	initialize: function (options) {
 		if (options.coordinates[0] < 1000) {
-			this.$el.css('left', options.coordinates[0])			
+			this.$el.css('left', options.coordinates[0]);
 		} else {
-			this.$el.css('left', options.coordinates[0] - 330)
+			this.$el.css('left', options.coordinates[0] - 330);
 		}
 		if (options.coordinates[1] < 400) {
-			this.$el.css('top', options.coordinates[1])			
+			this.$el.css('top', options.coordinates[1]);
 		} else {
-			this.$el.css('top', options.coordinates[1] - 150)	
+			this.$el.css('top', options.coordinates[1] - 150);
 		}
 		
 		var startTime = moment();

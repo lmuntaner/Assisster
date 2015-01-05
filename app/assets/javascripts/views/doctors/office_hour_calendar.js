@@ -104,21 +104,20 @@ Assisster.Views.OfficeHourCalendarView = Backbone.View.extend({
 	},
 	
 	updateAppointment: function(event, jsEvent, view) {
-		var appointment = this.collection.get(event.id);
+		var officeHour = this.collection.get(event.id);
 		var coordinates = [jsEvent.pageX, jsEvent.pageY];
 		
-		if (this.appointmentForm) {
-			this.appointmentForm.remove();
+		if (this.officeHourForm) {
+			this.officeHourForm.remove();
 		}
 		
-		this.appointmentForm = new Assisster.Views.AppointmentForm({
-			collection: this.collection,
-			model: appointment,
+    this.officeHourForm = new Assisster.Views.OfficeHourForm({
+      collection: this.collection,
+      event: event,
+			model: officeHour,
 			coordinates: coordinates,
-			event: event
-		});
-		
-		this.renderAppointmentForm(this.appointmentForm);
+    });
+    this.renderAppointmentForm(this.officeHourForm);
 	},
 	
 	updateAppointmentDraggOrResize: function (event) {
