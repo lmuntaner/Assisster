@@ -104,12 +104,14 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
 		var stringEndTime = params.endTimeDate + " " + params.endTimeHour;
 		this.saveOfficeHour(this.model, stringStartTime, stringEndTime);
 		var view = this;
-		params.nextDates.forEach(function (nextDate) {
-			var newOfficeHour = new Assisster.Models.Appointment();
-			stringStartTime = nextDate + " " + params.startTimeHour;
-			stringEndTime = nextDate + " " + params.endTimeHour;
-			view.saveOfficeHour(newOfficeHour, stringStartTime, stringEndTime)
-		});
+		if (params.nextDates) {
+			params.nextDates.forEach(function (nextDate) {
+				var newOfficeHour = new Assisster.Models.Appointment();
+				stringStartTime = nextDate + " " + params.startTimeHour;
+				stringEndTime = nextDate + " " + params.endTimeHour;
+				view.saveOfficeHour(newOfficeHour, stringStartTime, stringEndTime)
+			});			
+		}
 	},
 	
 	saveOfficeHour: function(appointment, strStartTime, strEndTime) {
