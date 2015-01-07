@@ -11,10 +11,18 @@ Assisster.Views.ChooseAppointment = Backbone.CompositeView.extend({
 		this.chooseDateView = new Assisster.Views.ChooseDate();
 		this.addSubview("div.choose-appointment-body", this.chooseDateView);
 		this.availableDates = [];
+		var month = moment().month() + 1
 		var url = "/api/available_dates/" + month;
+		var view = this;
 		$.ajax({
-			type: "PATCH",
-			url: url
+			type: "GET",
+			url: url,
+			success: function (dates) {
+				dates.forEach( function (date) {
+					view.availableDates.push(date.to_date);
+				});
+				view.render();
+			}
 		});
 	},
 	
@@ -23,11 +31,14 @@ Assisster.Views.ChooseAppointment = Backbone.CompositeView.extend({
 	},
 	
 	onRender: function () {
+		var view = this;
 		this.$('.date-pick').datepicker({
 			startDate: "0d",
 			beforeShowDay: function(date) {
 				var momentDate = moment(date)
-				return !momentDate.isSame("2015-01-16")
+				return view.availableDates.some(function (availableDate) {
+					return momentDate.isSame(availableDate);
+				})
 			}
 		});
 		this.chooseDateView.$el.addClass('active-step');
