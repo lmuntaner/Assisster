@@ -17,7 +17,13 @@ Assisster.Views.ChooseAppointment = Backbone.CompositeView.extend({
 	},
 	
 	onRender: function () {
-		this.$('.date-pick').datepicker();
+		this.$('.date-pick').datepicker({
+			startDate: "0d",
+			beforeShowDay: function(date) {
+				var momentDate = moment(date)
+				return !momentDate.isSame("2015-01-16")
+			}
+		});
 		this.chooseDateView.$el.addClass('active-step');
 	},
 	
