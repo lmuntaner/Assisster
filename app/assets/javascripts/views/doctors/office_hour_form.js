@@ -37,6 +37,13 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
 			startTime = moment.utc(this.model.escape('startTime'));
 			endTime = moment.utc(this.model.escape('endTime'));
 		}
+		
+		this.week = [];
+		var nextDate;
+		for (var i = 1; i <= 7; i++) {
+			nextDate = startTime.clone().add(i, 'days');
+			this.week.push(nextDate);
+		};
 				
 		this.fromDateForm = new Assisster.Views.DateForm({
 			date: startTime,
@@ -79,11 +86,12 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
   render: function () {
     var renderedContent = this.template({
     	date: this.date,
-			appointment: this.model
+			appointment: this.model,
+			week: this.week
     });
     this.$el.html(renderedContent);
-		this.attachSubview(this.selectorDate, this.fromDateForm);
-		this.attachSubview(this.selectorDate, this.toDateForm);
+		this.attachPrependSubview(this.selectorDate, this.toDateForm);
+		this.attachPrependSubview(this.selectorDate, this.fromDateForm);
 		this.onRender()
 		
     return this;
@@ -92,6 +100,7 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
 	save: function (event) {
 		event.preventDefault();
 		var params = $(event.currentTarget).parent().serializeJSON().appointment;
+		debugger;
 		var stringStartTime = params.startTimeDate + " " + params.startTimeHour;
     var startTime = moment.utc(stringStartTime, "M/D/YYYY h:mm a");
 		var stringEndTime = params.endTimeDate + " " + params.endTimeHour;
