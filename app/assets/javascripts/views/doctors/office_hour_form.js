@@ -100,27 +100,16 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
 	save: function (event) {
 		event.preventDefault();
 		var params = $(event.currentTarget).parent().serializeJSON().appointment;
-		debugger;
 		var stringStartTime = params.startTimeDate + " " + params.startTimeHour;
 		var stringEndTime = params.endTimeDate + " " + params.endTimeHour;
-		this.saveOfficeHour(this.model, stringStartTime, stringEndTime)
-		// var stringStartTime = params.startTimeDate + " " + params.startTimeHour;
-		//     var startTime = moment.utc(stringStartTime, "M/D/YYYY h:mm a");
-		// var stringEndTime = params.endTimeDate + " " + params.endTimeHour;
-		// 	  var endTime = moment.utc(stringEndTime, "M/D/YYYY h:mm a");
-		//     var view = this;
-		// var appointmentParams = {
-		//       title: "office hour",
-		//       startTime: startTime,
-		//       endTime: endTime,
-		// 	appointment_status: "Approved",
-		// 	office_hour: true
-		//     };
-		//     this.model.save(appointmentParams, {
-		//       success: function (model) {
-		// 		view.remove();
-		//       }
-		//     });
+		this.saveOfficeHour(this.model, stringStartTime, stringEndTime);
+		var view = this;
+		params.nextDates.forEach(function (nextDate) {
+			var newOfficeHour = new Assisster.Models.Appointment();
+			stringStartTime = nextDate + " " + params.startTimeHour;
+			stringEndTime = nextDate + " " + params.endTimeHour;
+			view.saveOfficeHour(newOfficeHour, stringStartTime, stringEndTime)
+		});
 	},
 	
 	saveOfficeHour: function(appointment, strStartTime, strEndTime) {
