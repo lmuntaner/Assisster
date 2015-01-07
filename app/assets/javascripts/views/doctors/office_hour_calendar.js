@@ -90,10 +90,7 @@ Assisster.Views.OfficeHourCalendarView = Backbone.View.extend({
 	},
 
 	renderEvent: function(event, element) {
-		var firstText = event.start.format("h:mm") + ": " + event.title;
-		element.find("div.fc-time span").html(firstText);
-		var lastText = event.fname + " " + event.lname;
-		element.find("div.fc-title").html(lastText);
+		element.find("div.fc-title").html(event.title);
 	},
 	
 	updateOfficeHour: function(event, jsEvent, view) {

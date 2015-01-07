@@ -72,11 +72,13 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
 	},
 	
 	notifyNewAppointment: function (appointment) {
-		var msg = "New Appointment from " + appointment.fullName() + "  ";
-	  $('div.top-right').notify({
-	     message: { text: msg },
-			 fadeOut: { enabled: false, delay: 9000 }
-	   }).show();
+		if (appointment.get('appointment_status') === "Pending") {
+			var msg = "New Appointment from " + appointment.fullName() + "     ";
+		  $('div.top-right').notify({
+		     message: { text: msg },
+				 fadeOut: { enabled: false, delay: 5000 }
+		   }).show();			
+		}
 	},
 	
 	office_hours: function () {
