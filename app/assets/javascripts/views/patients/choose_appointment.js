@@ -10,6 +10,12 @@ Assisster.Views.ChooseAppointment = Backbone.CompositeView.extend({
 		this.listenTo(this.model, "sync", this.render);
 		this.chooseDateView = new Assisster.Views.ChooseDate();
 		this.addSubview("div.choose-appointment-body", this.chooseDateView);
+		this.availableDates = [];
+		var url = "/api/available_dates/" + month;
+		$.ajax({
+			type: "PATCH",
+			url: url
+		});
 	},
 	
 	preventDefault: function (event) {

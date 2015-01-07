@@ -1,9 +1,10 @@
 class Api::AvailableDatesController < ApplicationController
   
   def index
-    today = Date.today
+    month = params[:month].to_i
+    first_day = Date.new(Date.today.year, month, 1)
     @office_hours = Appointment.where({
-      startTime: today.beginning_of_month..today.end_of_month,
+      startTime: first_day..first_day.end_of_month,
       office_hour: true,
       appointment_status: "Approved"
     })
