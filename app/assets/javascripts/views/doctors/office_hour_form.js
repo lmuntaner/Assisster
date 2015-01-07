@@ -19,7 +19,7 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
 		if (options.coordinates[1] < 400) {
 			this.$el.css('top', options.coordinates[1]);
 		} else {
-			this.$el.css('top', options.coordinates[1] - 250);
+			this.$el.css('top', options.coordinates[1] - 350);
 		}
 		
 		if (options.date) {
@@ -102,9 +102,30 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
 		var params = $(event.currentTarget).parent().serializeJSON().appointment;
 		debugger;
 		var stringStartTime = params.startTimeDate + " " + params.startTimeHour;
-    var startTime = moment.utc(stringStartTime, "M/D/YYYY h:mm a");
 		var stringEndTime = params.endTimeDate + " " + params.endTimeHour;
-	  var endTime = moment.utc(stringEndTime, "M/D/YYYY h:mm a");
+		this.saveOfficeHour(this.model, stringStartTime, stringEndTime)
+		// var stringStartTime = params.startTimeDate + " " + params.startTimeHour;
+		//     var startTime = moment.utc(stringStartTime, "M/D/YYYY h:mm a");
+		// var stringEndTime = params.endTimeDate + " " + params.endTimeHour;
+		// 	  var endTime = moment.utc(stringEndTime, "M/D/YYYY h:mm a");
+		//     var view = this;
+		// var appointmentParams = {
+		//       title: "office hour",
+		//       startTime: startTime,
+		//       endTime: endTime,
+		// 	appointment_status: "Approved",
+		// 	office_hour: true
+		//     };
+		//     this.model.save(appointmentParams, {
+		//       success: function (model) {
+		// 		view.remove();
+		//       }
+		//     });
+	},
+	
+	saveOfficeHour: function(appointment, strStartTime, strEndTime) {
+    startTime = moment.utc(strStartTime, "M/D/YYYY h:mm a");
+	  endTime = moment.utc(strEndTime, "M/D/YYYY h:mm a");
     var view = this;
 		var appointmentParams = {
       title: "office hour",
@@ -113,11 +134,11 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
 			appointment_status: "Approved",
 			office_hour: true
     };
-    this.model.save(appointmentParams, {
+    appointment.save(appointmentParams, {
       success: function (model) {
 				view.remove();
       }
     });
-	}
+	},
 	
 })
