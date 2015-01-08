@@ -10,6 +10,7 @@ Assisster.Views.DateForm = Backbone.View.extend({
 	initialize: function (options) {
 		this.date = options.date;
 		this.position = options.position;
+		this.formView = options.formView;
 	},
 	
 	checkDate: function (event) {
@@ -37,8 +38,8 @@ Assisster.Views.DateForm = Backbone.View.extend({
 	
 	checkStartDate: function () {
 		if (this.date.isBefore(this.startDateView.date)) {
-			this.endDateView.date = this.date.clone().subtract(30, "minutes");
-			this.endDateView.render();
+			this.startDateView.date = this.date.clone().subtract(30, "minutes");
+			this.startDateView.render();
 		}
 	},
 	
@@ -47,6 +48,7 @@ Assisster.Views.DateForm = Backbone.View.extend({
 			date: this.date
 		});
 		this.$el.html(renderedContent);
+		this.formView.onRender();
 		
 		return this;
 	},

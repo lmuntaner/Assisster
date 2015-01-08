@@ -47,12 +47,16 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
 				
 		this.fromDateForm = new Assisster.Views.DateForm({
 			date: startTime,
-			position: "From"
+			position: "From",
+			formView: this
 		});
 		this.toDateForm = new Assisster.Views.DateForm({
 			date: endTime,
-			position: "To"
+			position: "To",
+			formView: this
 		});
+		this.fromDateForm.setEndDate(this.toDateForm);
+		this.toDateForm.setStartDate(this.fromDateForm);
 		this.selectorDate = "div.form-inputs";
 		this.addSubview(this.selectorDate, this.fromDateForm);
 		this.addSubview(this.selectorDate, this.toDateForm);
