@@ -84,7 +84,9 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
 		this.$('.setDatepicker').datepicker({
 			autoclose: true
 		});
-		this.$('.setTimepicker').timepicker();
+		this.$('.setTimepicker').timepicker({
+			'timeFormat': 'H:i'
+		});
 	},
   
   render: function () {
@@ -119,8 +121,8 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
 	},
 	
 	saveOfficeHour: function(appointment, strStartTime, strEndTime) {
-    startTime = moment.utc(strStartTime, "M/D/YYYY h:mm a");
-	  endTime = moment.utc(strEndTime, "M/D/YYYY h:mm a");
+    startTime = moment.utc(strStartTime, "M/D/YYYY HH:mm");
+	  endTime = moment.utc(strEndTime, "M/D/YYYY HH:mm");
     var view = this;
 		var appointmentParams = {
       title: "office hour",

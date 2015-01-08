@@ -70,7 +70,7 @@ Assisster.Views.DateForm = Backbone.View.extend({
 	updateTime: function (event) {
 		var timeArray = event.currentTarget.value.split(":");
 		var newHour = timeArray[0];
-		var newMinutes = timeArray[1].slice(0,2);
+		var newMinutes = timeArray[1];
 		this.date.set('hour', newHour);
 		this.date.set('minutes', newMinutes);
 		if (this.startDateView) {
