@@ -84,7 +84,9 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 		this.$('.setDatepicker').datepicker({
 			autoclose: true
 		});
-		this.$('.setTimepicker').timepicker();
+		this.$('.setTimepicker').timepicker({
+			'timeFormat': 'H:i'
+		});
 	},
   
   render: function () {

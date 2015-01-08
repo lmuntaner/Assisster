@@ -31,14 +31,20 @@ Assisster.Views.DateForm = Backbone.View.extend({
 	
 	checkEndDate: function () {
 		if (this.date.isAfter(this.endDateView.date)) {
-			this.endDateView.date = this.date.clone().add(30, "minutes");
+			this.endDateView.date = this.date.clone();
+			this.endDateView.render();
+		} else if (!this.date.isSame(this.endDateView.date, "day")) {
+			this.endDateView.date = this.date.clone();
 			this.endDateView.render();
 		}
 	},
 	
 	checkStartDate: function () {
 		if (this.date.isBefore(this.startDateView.date)) {
-			this.startDateView.date = this.date.clone().subtract(30, "minutes");
+			this.startDateView.date = this.date.clone();
+			this.startDateView.render();
+		} else if (!this.date.isSame(this.startDateView.date, "day")) {
+			this.startDateView.date = this.date.clone();
 			this.startDateView.render();
 		}
 	},
