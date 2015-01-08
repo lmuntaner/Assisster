@@ -44,7 +44,7 @@ Assisster.Models.Appointment = Backbone.Model.extend({
 	},
 	
 	time: function () {
-		return this.startTime().format("h:mm a") + " - " + this.endTime().format("h:mm a");
+		return this.startTime().format("HH:mm") + " - " + this.endTime().format("HH:mm");
 	},
 	
 	today: function () {

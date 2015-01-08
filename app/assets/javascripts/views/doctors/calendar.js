@@ -59,7 +59,7 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 			scrollTime: '08:00:00',
 			height: 500,
       editable: true,
-			slotDuration: slotDuration,
+			axisFormat: 'H:mm',
       defaultView: 'agendaWeek',
       dayClick: this.createAppointment.bind(this),
 			eventClick: this.updateAppointment.bind(this),
@@ -95,7 +95,7 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 	},
 
 	renderEvent: function(event, element) {
-		var firstText = event.start.format("h:mm") + ": " + event.title;
+		var firstText = event.start.format("H:mm") + ": " + event.title;
 		element.find("div.fc-time span").html(firstText);
 		var lastText = event.fname + " " + event.lname;
 		element.find("div.fc-title").html(lastText);
