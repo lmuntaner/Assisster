@@ -128,7 +128,7 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
       title: "office hour",
       startTime: startTime,
       endTime: endTime,
-			appointment_status: "Approved",
+			appointment_status: "Confirmed",
 			office_hour: true
     };
     appointment.save(appointmentParams, {

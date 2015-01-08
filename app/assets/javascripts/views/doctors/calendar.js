@@ -11,7 +11,7 @@ Assisster.Views.CalendarView = Backbone.View.extend({
   },
   
   addToCalendar: function (appointment) {
-		if (appointment.get("appointment_status") === 'Approved') {
+		if (appointment.get("appointment_status") === 'Confirmed') {
 	    $('#calendar').fullCalendar('addEventSource', [appointment.convertToEvent()]);			
 		}
   },
@@ -138,7 +138,7 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 	updateEvent: function (appointment) {
 		var calendarEvent = $('#calendar').fullCalendar( 'clientEvents', appointment.id )[0];
 		if (calendarEvent) {
-			if (appointment.get('appointment_status') === "Approved" ||
+			if (appointment.get('appointment_status') === "Confirmed" ||
 					appointment.get('appointment_status') === "Pending") {
 				calendarEvent.start = moment.utc(appointment.get('startTime'));
 				calendarEvent.end = moment.utc(appointment.get('endTime'));

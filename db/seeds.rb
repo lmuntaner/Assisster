@@ -10,7 +10,7 @@ first_doctor.services.create(title: "Gut problems", duration_min: 30,
                             description: "We will focus our efforts on solving you gut problems")
 
 day = DateTime.now.change(hour: 8)
-statuses = ['Approved', 'Pending', 'Approved', 'Approved']
+statuses = ['Confirmed', 'Pending', 'Confirmed', 'Confirmed']
 writers = [ %w(John Fante), %w(Charles Bukowski), %w(Truman Capote), %w(Sebastian Horsley),
             %w(Vladimir Nabokov), %w(Bram Stoker), %w(Quentin Crisp), %w(Umberto Eco),
             %w(Kennedy Toole), %w(Shalom Auslander), %w(Irvine Wlesh), %w(Dan Fante),
@@ -36,7 +36,7 @@ writers = [ %w(John Fante), %w(Charles Bukowski), %w(Truman Capote), %w(Sebastia
                                endTime: appointment.in(3600))
   end
   first_doctor.appointments.create(title: "office hour",
-                                   appointment_status: "Approved",
+                                   appointment_status: "Confirmed",
                                    startTime: new_day,
                                    endTime: new_day.in(3600 * 8),
                                    office_hour: true)

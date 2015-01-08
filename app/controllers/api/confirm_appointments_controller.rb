@@ -6,7 +6,7 @@ class Api::ConfirmAppointmentsController < ApplicationController
   def update
     appointment = Appointment.find(params[:id])
     
-    if appointment.update(appointment_status: "Approved")
+    if appointment.update(appointment_status: "Confirmed")
       trigger_appointment_event(appointment)
       send_email(appointment, current_doctor)
       render json: appointment

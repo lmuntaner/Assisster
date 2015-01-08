@@ -23,7 +23,7 @@ Assisster.Collections.Appointments = Backbone.Collection.extend({
 		var arrayAppointments = [];
     this.each(function(appointment) {
 			if (!appointment.get('office_hour') &&
-					appointment.get('appointment_status') === "Approved") {
+					appointment.get('appointment_status') === "Confirmed") {
 	      			arrayAppointments.push(appointment.convertToEvent());
 			}
     });
@@ -55,7 +55,7 @@ Assisster.Collections.Appointments = Backbone.Collection.extend({
 		var arrayOfficeHours = [];
     this.each(function(appointment) {
 			if (appointment.get('office_hour') &&
-					appointment.get('appointment_status') === "Approved") {
+					appointment.get('appointment_status') === "Confirmed") {
 	      arrayOfficeHours.push(appointment.convertToEvent(officeHour));				
 			}
     });

@@ -11,7 +11,7 @@ Assisster.Views.OfficeHourCalendarView = Backbone.View.extend({
   },
   
   addToCalendar: function (appointment) {
-		if (appointment.get("office_hour") && appointment.get("appointment_status") === "Approved") {
+		if (appointment.get("office_hour") && appointment.get("appointment_status") === "Confirmed") {
 	    $('#office_hour_calendar').fullCalendar('addEventSource', [appointment.convertToEvent(true)]);			
 		}
   },
@@ -122,7 +122,7 @@ Assisster.Views.OfficeHourCalendarView = Backbone.View.extend({
 	updateEvent: function (appointment) {
 		var calendarEvent = $('#office_hour_calendar').fullCalendar( 'clientEvents', appointment.id )[0];
 		if (calendarEvent) {
-			if (appointment.get('appointment_status') === "Approved") {
+			if (appointment.get('appointment_status') === "Confirmed") {
 				calendarEvent.start = moment.utc(appointment.get('startTime'));
 				calendarEvent.end = moment.utc(appointment.get('endTime'));
 				calendarEvent.title = appointment.get('title');

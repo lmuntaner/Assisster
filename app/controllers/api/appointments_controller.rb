@@ -36,8 +36,8 @@ class Api::AppointmentsController < ApplicationController
     service = Service.find(params[:service_id])
     doctor = service.doctor
     date = Date.parse(params[:date])
-    appointments = get_date_appointments(doctor, date, ["Approved", "Pending"], false)
-    office_hours = get_date_appointments(doctor, date, ["Approved"], true)
+    appointments = get_date_appointments(doctor, date, ["Confirmed", "Pending"], false)
+    office_hours = get_date_appointments(doctor, date, ["Confirmed"], true)
     @available_slots = create_available_slots(service, appointments, office_hours)
 
     render :available_slots
@@ -46,8 +46,8 @@ class Api::AppointmentsController < ApplicationController
   def getFreeTime
     doctor = current_doctor
     date = Date.parse(params[:date])
-    appointments = get_date_appointments(doctor, date, ["Approved"], false)
-    office_hours = get_date_appointments(doctor, date, ["Approved"], true)
+    appointments = get_date_appointments(doctor, date, ["Confirmed"], false)
+    office_hours = get_date_appointments(doctor, date, ["Confirmed"], true)
 
     free_time_slots = create_free_slots(appointments, office_hours)
     @time_slots = appointments.concat(free_time_slots).sort { |x, y| x[:startTime] <=> y[:startTime] }
