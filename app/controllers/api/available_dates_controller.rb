@@ -6,7 +6,7 @@ class Api::AvailableDatesController < ApplicationController
     @office_hours = Appointment.where({
       startTime: first_day..first_day.end_of_month,
       office_hour: true,
-      appointment_status: "Approved"
+      appointment_status: "Confirmed"
     })
     @dates = @office_hours.map do |office_hour|
       office_hour.startTime
