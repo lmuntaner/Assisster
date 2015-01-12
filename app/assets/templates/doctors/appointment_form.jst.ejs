@@ -62,7 +62,23 @@
 							<input type="text" name="appointment[title]" class="form-control input-sm" placeholder="title" value="<%= appointment.escape('title') %>">
 						</div>
 					</div>
-				</div>					
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						<div class="form-group">
+							<label>
+								<input type="checkbox"
+											 name="appointment[confirmed]"
+											 <% if (appointment.get('appointment_status') === "Confirmed") { %>
+												 checked
+											 <% } %>
+											 >
+								Appointment Confirmed
+							</label>
+						</div>
+					</div>
+				</div>
 			</div>
 
 			<button type="button"
