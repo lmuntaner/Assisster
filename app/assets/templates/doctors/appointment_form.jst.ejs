@@ -71,7 +71,8 @@
 								<input type="checkbox"
 											 name="appointment[confirmed]"
 											 <% if (appointment.get('appointment_status') === "Confirmed" ||
-											 				appointment.get('appointment_status') === "Cancelled") { %>
+											 				appointment.get('appointment_status') === "Cancelled" ||
+															appointment.isNew()) { %>
 												 checked
 											 <% } %>
 											 >
