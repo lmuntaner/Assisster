@@ -115,6 +115,12 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 			if (appointmentStatus === "Cancelled" || this.model.isNew()) {
 				appointmentStatus = "Confirmed";
 			}
+			if (!params.confirmed) {
+				appointmentStatus = "Pending";
+			}
+			if (params.confirmed && appointmentStatus === "Pending") {
+				appointmentStatus = "Confirmed";
+			} 
 			var appointmentParams = {
 	      title: params.title,
 	      startTime: startTime,
