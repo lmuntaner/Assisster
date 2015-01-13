@@ -45,7 +45,7 @@ Assisster.Views.PendingAppointmentItem = Backbone.View.extend({
 	
 	showPendingForm: function (action, event) {
 		var coordinates = [event.clientX, event.clientY];
-		debugger;
+
     var pendingForm = new Assisster.Views.PendingForm({
 			model: this.model,
 			coordinates: coordinates,

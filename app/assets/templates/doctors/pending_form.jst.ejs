@@ -1,6 +1,6 @@
 <div class="modal-content appointment-content">
 	<div class="panel-heading">
-		<h3 class="panel-title"><%= action %>?</h3>
+		<h3 class="panel-title"><%= action.charAt(0).toUpperCase() + action.slice(1) + "?" %></h3>
 	</div>
 	<div class="panel-body">
 		<form role="form">
@@ -27,29 +27,54 @@
 							<input type="text" name="appointment[phone_number]" class="form-control input-sm" placeholder="Phone Number" value="<%= appointment.escape('phone_number') %>">
 						</div>
 					</div>
-				</div>			
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						<div class="form-group">
+							<button type="button"
+											id="send-message"
+											class="btn btn-primary btn-sm">
+											Send Sms
+							</button>
+							<button type="button"
+											id="send-email"
+											class="btn btn-primary btn-sm right">
+											Send Email
+							</button>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						<div class="form-group">
+							<button type="button"
+											id="send-both"
+											class="btn btn-primary btn-sm">
+											Send Both
+							</button>
+							<button type="button"
+											id="send-not"
+											class="btn btn-success btn-sm right">
+											Don't Send
+							</button>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						<div class="form-group">
+							<button type="button"
+											id="close"
+											class="btn btn-default btn-block">
+											Close
+							</button>
+						</div>
+					</div>
+				</div>
 			</div>
-
-			<button type="button"
-							id="send-message"
-							class="btn btn-primary">
-							Send Sms
-			</button>
-			<button type="button"
-							id="send-email"
-							class="btn btn-primary">
-							Send Email
-			</button>
-			<button type="button"
-							id="send-both"
-							class="btn btn-primary">
-							Send Both
-			</button>
-			<button type="button"
-							id="close"
-							class="btn btn-default">
-							Close
-			</button>
 		</form>
 	</div>
 </div> <!-- /.modal-content -->

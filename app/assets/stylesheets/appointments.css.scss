@@ -59,12 +59,12 @@
 }
 
 .pending-form-container {
-	width: 400px;
+	width: 220px;
 	z-index: 2;
 	position: fixed;
 }
 
-.pending-form-container #close {
+.pending-form-container .right {
 	float: right;
 }
 
