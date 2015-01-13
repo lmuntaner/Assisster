@@ -6,7 +6,8 @@ Assisster.Views.PendingForm = Backbone.View.extend({
 		"click #close": "closeView",
 		"click #send-message": "sendMessage",
 		"click #send-email": "sendEmail",
-		"click #send-both": "sendBoth"
+		"click #send-both": "sendBoth",
+		"click #send-not": "sendNot"
 	},
 	
 	initialize: function (options) {
@@ -45,6 +46,11 @@ Assisster.Views.PendingForm = Backbone.View.extend({
 	},
 	
 	sendMessage: function (event) {
+		this.callback(this.action, this.model.id);
+		this.closeView();
+	},
+	
+	sendNot: function (event) {
 		this.callback(this.action, this.model.id);
 		this.closeView();
 	},
