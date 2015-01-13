@@ -1,0 +1,55 @@
+<div class="modal-content appointment-content">
+	<div class="panel-heading">
+		<h3 class="panel-title"><%= action %>?</h3>
+	</div>
+	<div class="panel-body">
+		<form role="form">
+			<div class="form-inputs">
+				<div class="row">
+					<div class="col-xs-9 col-sm-9 col-md-9">
+						<div class="form-group">
+							 <select class="form-control input-sm" name="appointment[countrycode]">
+								 <% window.phoneCodes.forEach( function (phoneCode) { %>
+									 <% if ( phoneCode[0] === appointment.get('country_code') ) { %>
+										 <%= "<option value='" + phoneCode[0]+ "' selected>" + phoneCode[1] + "</option>" %>
+									 <% } else { %>
+										 <%= "<option value=" + phoneCode[0]+ ">" + phoneCode[1] + "</option>" %>
+									 <% } %>
+								 <% }) %>
+							</select>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						<div class="form-group">
+							<input type="text" name="appointment[phone_number]" class="form-control input-sm" placeholder="Phone Number" value="<%= appointment.escape('phone_number') %>">
+						</div>
+					</div>
+				</div>			
+			</div>
+
+			<button type="button"
+							id="send-message"
+							class="btn btn-primary">
+							Send Sms
+			</button>
+			<button type="button"
+							id="send-email"
+							class="btn btn-primary">
+							Send Email
+			</button>
+			<button type="button"
+							id="send-both"
+							class="btn btn-primary">
+							Send Both
+			</button>
+			<button type="button"
+							id="close"
+							class="btn btn-default">
+							Close
+			</button>
+		</form>
+	</div>
+</div> <!-- /.modal-content -->

@@ -58,6 +58,16 @@
 	position: fixed;
 }
 
+.pending-form-container {
+	width: 400px;
+	z-index: 2;
+	position: fixed;
+}
+
+.pending-form-container #close {
+	float: right;
+}
+
 /* Doctor office hours form */
 
 label.next-date {

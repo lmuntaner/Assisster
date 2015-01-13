@@ -43,9 +43,25 @@ Assisster.Views.PendingAppointmentItem = Backbone.View.extend({
 		$('body').append(confirmationForm.render().$el);
 	},
 	
+	showPendingForm: function (action, event) {
+		var coordinates = [event.clientX, event.clientY];
+		debugger;
+    var pendingForm = new Assisster.Views.PendingForm({
+			model: this.model,
+			coordinates: coordinates,
+			callback: this.requestToServer,
+			action: action
+    });
+		
+		$('body').append(pendingForm.render().$el);
+	},
+	
 	updateStatus: function (event) {
+		event.preventDefault();
+		
 		var action = $(event.currentTarget).text().toLowerCase();
 		// this.showConfirmationForm(action, event);
-		this.requestToServer(action, this.model.id)
+		this.showPendingForm(action, event);
+		// this.requestToServer(action, this.model.id)
 	},
 })
