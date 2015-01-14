@@ -3,6 +3,7 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
 		"calendar": "calendar",
 		"appointments": "allAppointments",
 		"office_hours": "office_hours",
+		"notifications": "notifications",
     "": "dashboard"
   },
   
@@ -69,6 +70,15 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
         router.collection.trigger('pusherAdd', appointment);
 			}
 		});
+	},
+	
+	notifications: function () {
+    var notificationsView = new Assisster.Views.NotificationsView({
+    	model: this.model,
+			collection: this.collection
+    });
+    
+    this._swapView(notificationsView);
 	},
 	
 	notifyNewAppointment: function (appointment) {
