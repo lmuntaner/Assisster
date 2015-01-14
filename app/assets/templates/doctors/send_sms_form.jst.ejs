@@ -7,7 +7,7 @@
 				<div class="form-group">
 					<select class="form-control input-sm" name="sms[countrycode]">
 						 <% window.phoneCodes.forEach( function (phoneCode) { %>
-							 <% if ( phoneCode[0] === doctor.country_code ) { %>
+							 <% if ( phoneCode[0] === doctor.get('country_code') ) { %>
 								 <%= "<option value='" + phoneCode[0]+ "' selected>" + phoneCode[1] + "</option>" %>
 							 <% } else { %>
 								 <%= "<option value=" + phoneCode[0]+ ">" + phoneCode[1] + "</option>" %>

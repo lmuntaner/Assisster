@@ -1,5 +1,5 @@
 
-first_doctor = Doctor.create!(email: "william@wheat.com", password:"wheatbelly")
+first_doctor = Doctor.create!(email: "william@wheat.com", password:"wheatbelly", country_code:"34", name:"William Davis")
 first_doctor.services.create(title: "Full recovery", duration_min: 60,
                              description: "This is the best service ever")
 first_doctor.services.create(title: "Quit wheat", duration_min: 45,
