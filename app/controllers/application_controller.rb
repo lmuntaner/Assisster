@@ -42,4 +42,27 @@ class ApplicationController < ActionController::Base
                      'appointment-event',
                      {:appointment => appointment.as_json})
     end
+    
+    def send_email(email, name, doctor, message)
+      html_msg = "<p>#{message}<p>"
+      begin
+        mandrill = Mandrill::API.new ENV["MANDRILL_API_KEY"]
+        message = {
+          "html"=>html_msg,
+          "text"=>message,
+          "subject"=>"Appointment Confirmation with: ",
+          "from_email"=>doctor.email,
+          "from_name"=>doctor.name,
+          "to"=>
+            [{"email"=>email,
+                "name"=>name,
+                "type"=>"to"}],
+          "headers"=>{"Reply-To"=>doctor.email}
+       }
+       async = true
+       result = mandrill.messages.send message, async
+     rescue Mandrill::Error => e
+       puts "A mandrill error occurred: #{e.class} - #{e.message}"
+     end
+    end
 end
