@@ -24,7 +24,6 @@ Assisster.Views.SendSmsView = Backbone.View.extend({
 			phone_number: phoneNumber,
 			message: params.message,
 		};
-		debugger;
 		$.ajax({
 		  url: url,
 		  type: "POST",
