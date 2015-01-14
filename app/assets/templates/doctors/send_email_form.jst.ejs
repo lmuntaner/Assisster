@@ -1,0 +1,37 @@
+<h3>Send Email Form</h3>
+
+<form role="form">
+	<div class="form-inputs">
+		<div class="row">
+			<div class="col-xs-6">
+				<div class="form-group">
+					<input type="text" name="email[to]" class="form-control input-sm" placeholder="Email">
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
+					<input type="text" name="email[title]" class="form-control input-sm" placeholder="Title">
+				</div>
+			</div>
+		</div>
+				
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="form-group">
+					<textarea name="email[body]"
+										class="form-control textarea-sm"
+										placeholder="Enter email body"></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+	<button type="button"
+					id="send-email"
+					class="btn btn-default">
+					Send
+	</button>
+
+</form>
