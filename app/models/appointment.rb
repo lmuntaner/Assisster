@@ -15,6 +15,7 @@
 #  office_hour        :boolean          default(FALSE)
 #  appointment_status :string(255)      default("Pending")
 #  phone_number       :string(255)
+#  country_code       :string(255)
 #
 
 class Appointment < ActiveRecord::Base

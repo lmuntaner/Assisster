@@ -1,0 +1,45 @@
+<h3 class="send-form-title">Send Sms Form</h3>
+
+<form role="form">
+	<div class="form-inputs">
+		<div class="row">
+			<div class="col-xs-4 col-sm-4 col-md-4">
+				<div class="form-group">
+					<select class="form-control input-sm" name="sms[countrycode]">
+						 <% window.phoneCodes.forEach( function (phoneCode) { %>
+							 <% if ( phoneCode[0] === doctor.country_code ) { %>
+								 <%= "<option value='" + phoneCode[0]+ "' selected>" + phoneCode[1] + "</option>" %>
+							 <% } else { %>
+								 <%= "<option value=" + phoneCode[0]+ ">" + phoneCode[1] + "</option>" %>
+							 <% } %>
+						 <% }) %>
+					</select>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-xs-4 col-sm-4 col-md-4">
+				<div class="form-group">
+					<input type="text" name="sms[phoneNumber]" class="form-control input-sm" placeholder="Enter phone number">
+				</div>
+			</div>
+		</div>
+				
+		<div class="row">
+			<div class="col-xs-9 col-sm-9 col-md-9">
+				<div class="form-group">
+					<textarea name="sms[message]"
+										class="form-control textarea-sm"
+										placeholder="Enter message"></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+	<button type="button"
+					id="send-email"
+					class="btn btn-default">
+					Send
+	</button>
+
+</form>

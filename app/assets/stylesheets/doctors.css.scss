@@ -90,6 +90,10 @@ div.right-calendar-header {
 
 /* Notifications */
 
+div.notifications-body {
+	margin-bottom: 30px;
+}
+
 div.notifications-container {
 	margin-top: 20px;
 	border: solid 1px #ddd;
@@ -99,6 +103,10 @@ div.notifications-container {
 
 div.send-email-form {
 	border-right: solid 1px #ddd;
+}
+
+.send-form-title {
+	margin-bottom: 15px;
 }
 
 

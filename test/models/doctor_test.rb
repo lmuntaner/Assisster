@@ -8,6 +8,8 @@
 #  dr_session_token :string(255)      not null
 #  created_at       :datetime
 #  updated_at       :datetime
+#  name             :string(255)
+#  country_code     :string(255)
 #
 
 require 'test_helper'
