@@ -68,8 +68,10 @@ class ApplicationController < ActionController::Base
     end
     
     def send_message(phone_number, message)
-      sms_message = message.gsub(" ", "_")
-      url = "https://rest.nexmo.com/sms/json?api_key=72a4964e&api_secret=f6aa10e6&from=12097299391&to="
+      sms_message = URI::encode(message)
+      api_key = ENV["NEXMO_API_KEY"]
+      api_secret = ENV["NEXMO_API_SECRET"]
+      url = "https://rest.nexmo.com/sms/json?api_key=#{api_key}&api_secret=#{api_secret}&from=12097299391&to="
       url += phone_number + "&text=" + sms_message;
       response = RestClient.get(url) do |response, request, result|
       end

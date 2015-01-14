@@ -42,32 +42,23 @@ Assisster.Views.ConfirmationForm = Backbone.View.extend({
 	
 	sendMessage: function (event) {
 		event.preventDefault();
-		var params = $(event.currentTarget).parent().serializeJSON();
-		var view = this;
-		var phone_number = params.appointment.countrycode + params.appointment.phone_number;
-		// var data = {}
-		// data.api_key = "72a4964e";
-		// data.api_secret = "f6aa10e6";
-		// data.from = "Dr William Davis";
-		// data.to = phone_number;
-		var text = params.message; //.replace(" ", "_");
-		// data.text = text
-		
-		var url = "https://rest.nexmo.com/sms/json?api_key=72a4964e&api_secret=f6aa10e6&from=12097299391&to=" + phone_number + "&text=" + text;
-		// var url = "https://rest.nexmo.com/sms/json";
-		$.ajax({
-			type: "GET",
-			// data: data,
-			url: url,
-			// contentType: "application/json",
-			success: function () {
-				view.callback("confirm", view.model.id);
-				view.remove();
-			},
-			error: function () {
-				view.callback("confirm", view.model.id);
-				view.remove();
-			}
-		});
+		// var params = $(event.currentTarget).parent().serializeJSON();
+		// var view = this;
+		// var phone_number = params.appointment.countrycode + params.appointment.phone_number;
+		// var text = params.message;
+		// $.ajax({
+		// 	type: "GET",
+		// 	// data: data,
+		// 	url: url,
+		// 	// contentType: "application/json",
+		// 	success: function () {
+		// 		view.callback("confirm", view.model.id);
+		// 		view.remove();
+		// 	},
+		// 	error: function () {
+		// 		view.callback("confirm", view.model.id);
+		// 		view.remove();
+		// 	}
+		// });
 	},
 })
