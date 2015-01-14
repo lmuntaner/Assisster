@@ -66,4 +66,8 @@ class ApplicationController < ActionController::Base
        puts "A mandrill error occurred: #{e.class} - #{e.message}"
      end
     end
+    
+    def send_message
+      
+    end
 end

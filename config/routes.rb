@@ -19,5 +19,6 @@ Rails.application.routes.draw do
     resources :receive_messages, only: [:index]
     get "/available_dates", to: "available_dates#index"
     resources :send_emails, only: [:create]
+    resources :send_messages, only: [:create]
   end
 end

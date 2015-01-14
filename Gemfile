@@ -18,6 +18,7 @@ gem 'pusher'
 gem 'figaro'
 gem 'email_validator'
 gem 'mandrill-api'
+gem 'rest-client'
 # gem 'sdoc', '~> 0.4.0',          group: :doc
 
 group :doc do
