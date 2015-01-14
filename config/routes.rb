@@ -18,5 +18,6 @@ Rails.application.routes.draw do
     resources :cancel_appointments, only: [:update]
     resources :receive_messages, only: [:index]
     get "/available_dates", to: "available_dates#index"
+    resources :send_emails, only: [:create]
   end
 end

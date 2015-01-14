@@ -1,4 +1,5 @@
 require 'pusher'
+require 'mandrill'
 
 Pusher.app_id = ENV["PUSHER_APP_ID"]
 Pusher.key    = ENV["PUSHER_KEY"]
@@ -43,14 +44,14 @@ class ApplicationController < ActionController::Base
                      {:appointment => appointment.as_json})
     end
     
-    def send_email(email, name, doctor, message)
-      html_msg = "<p>#{message}<p>"
+    def send_email(email, name, doctor, subject, body)
+      html_msg = "<p>#{body}<p>"
       begin
         mandrill = Mandrill::API.new ENV["MANDRILL_API_KEY"]
         message = {
           "html"=>html_msg,
-          "text"=>message,
-          "subject"=>"Appointment Confirmation with: ",
+          "text"=>body,
+          "subject"=>subject,
           "from_email"=>doctor.email,
           "from_name"=>doctor.name,
           "to"=>
