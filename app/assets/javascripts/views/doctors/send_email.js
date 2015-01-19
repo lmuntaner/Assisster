@@ -13,6 +13,11 @@ Assisster.Views.SendEmailView = Backbone.View.extend({
     return this;
   },
 	
+	resetForm: function () {
+		this.$("input").val("");
+		this.$("textarea").val("")
+	},
+	
 	sendEmail: function (event) {
 		event.preventDefault();
 		var params = $(event.currentTarget).parent().serializeJSON().email;
@@ -22,6 +27,7 @@ Assisster.Views.SendEmailView = Backbone.View.extend({
 			subject: params.subject,
 			body: params.body
 		};
+		var view = this;
 		$.ajax({
 		  url: url,
 		  type: "POST",
@@ -29,7 +35,7 @@ Assisster.Views.SendEmailView = Backbone.View.extend({
 		    email: email_data
 		  },
 			success: function (widgetData) {
-		    console.log("email sent successfully");
+		    view.resetForm();
 		  }
 		});
 	}
