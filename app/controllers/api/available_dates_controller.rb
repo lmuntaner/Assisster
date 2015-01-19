@@ -2,7 +2,7 @@ class Api::AvailableDatesController < ApplicationController
   
   def index
     @office_hours = Appointment.where({
-      startTime: Date.today..Date.today.advance(years: 2),
+      startTime: Date.tomorrow..Date.today.advance(years: 2),
       office_hour: true,
       appointment_status: "Confirmed"
     })
