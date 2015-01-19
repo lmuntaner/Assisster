@@ -72,7 +72,7 @@ class ApplicationController < ActionController::Base
      rescue Mandrill::Error => e
        puts "A mandrill error occurred: #{e.class} - #{e.message}"
      end
-     trigger_notification_event("email", email)
+     trigger_notification_event("Email", email)
     end
     
     def send_message(phone_number, message)
@@ -82,6 +82,10 @@ class ApplicationController < ActionController::Base
       url = "https://rest.nexmo.com/sms/json?api_key=#{api_key}&api_secret=#{api_secret}&from=12097299391&to="
       url += phone_number + "&text=" + sms_message;
       response = RestClient.get(url) do |response, request, result|
+        response_hash = JSON.parse(response)
+        if response_hash['messages'][0]['status'] == "0"
+          trigger_notification_event("Message", phone_number)
+        end
       end
     end
 end
