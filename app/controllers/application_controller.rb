@@ -44,6 +44,13 @@ class ApplicationController < ActionController::Base
                      {:appointment => appointment.as_json})
     end
     
+    def trigger_notification_event(notification_type, receiver)
+      notification = {notification_type: notification_type, receiver: receiver}
+      Pusher.trigger('appointment-channel',
+                     'notification-event',
+                     {notification: notification.as_json})
+    end
+    
     def send_email(email, name, doctor, subject, body)
       html_msg = "<p>#{body}<p>"
       begin
@@ -65,6 +72,7 @@ class ApplicationController < ActionController::Base
      rescue Mandrill::Error => e
        puts "A mandrill error occurred: #{e.class} - #{e.message}"
      end
+     trigger_notification_event("email", email)
     end
     
     def send_message(phone_number, message)

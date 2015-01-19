@@ -70,6 +70,10 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
         router.collection.trigger('pusherAdd', appointment);
 			}
 		});
+		
+		this.channel.bind('notification-event', function(data) {
+			router.notifySentNotification(data.notification);
+		});
 	},
 	
 	notifications: function () {
@@ -89,6 +93,14 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
 				 fadeOut: { enabled: false, delay: 5000 }
 		   }).show();			
 		}
+	},
+	
+	notifySentNotification: function (notification) {
+		var msg = notification.notification_type + " sent successfully to: " + notification.receiver + "     ";
+	  $('div.top-right').notify({
+	     message: { text: msg },
+			 fadeOut: { enabled: false, delay: 5000 }
+	   }).show();		
 	},
 	
 	office_hours: function () {
