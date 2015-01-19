@@ -96,9 +96,15 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
 	},
 	
 	notifySentNotification: function (notification) {
-		var msg = notification.notification_type + " sent successfully to: " + notification.receiver + "     ";
+		var msg;
+		if (notification.type == "success") {
+			msg = notification.notification_type + " sent successfully to: " + notification.receiver + "     ";			
+		} else {
+			msg = notification.notification_type + " NOT sent to: " + notification.receiver + "     "
+		}
 	  $('div.top-right').notify({
 	     message: { text: msg },
+			 type: notification.type,
 			 fadeOut: { enabled: false, delay: 5000 }
 	   }).show();		
 	},

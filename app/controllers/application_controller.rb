@@ -44,8 +44,8 @@ class ApplicationController < ActionController::Base
                      {:appointment => appointment.as_json})
     end
     
-    def trigger_notification_event(notification_type, receiver)
-      notification = {notification_type: notification_type, receiver: receiver}
+    def trigger_notification_event(notification_type, receiver, type)
+      notification = {notification_type: notification_type, receiver: receiver, type: type}
       Pusher.trigger('appointment-channel',
                      'notification-event',
                      {notification: notification.as_json})
@@ -70,9 +70,10 @@ class ApplicationController < ActionController::Base
        async = true
        result = mandrill.messages.send message, async
      rescue Mandrill::Error => e
+       trigger_notification_event("Email", email, "danger")
        puts "A mandrill error occurred: #{e.class} - #{e.message}"
      end
-     trigger_notification_event("Email", email)
+     trigger_notification_event("Email", email, "success")
     end
     
     def send_message(phone_number, message)
@@ -84,7 +85,9 @@ class ApplicationController < ActionController::Base
       response = RestClient.get(url) do |response, request, result|
         response_hash = JSON.parse(response)
         if response_hash['messages'][0]['status'] == "0"
-          trigger_notification_event("Message", phone_number)
+          trigger_notification_event("Message", phone_number, "success")
+        else
+          trigger_notification_event("Message", phone_number, "danger")
         end
       end
     end
