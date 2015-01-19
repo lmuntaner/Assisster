@@ -15,6 +15,11 @@ Assisster.Views.SendSmsView = Backbone.View.extend({
     return this;
   },
 	
+	resetForm: function () {
+		this.$("input").val("");
+		this.$("textarea").val("")
+	},
+	
 	sendSms: function (event) {
 		event.preventDefault();
 		var params = $(event.currentTarget).parent().serializeJSON().sms;
@@ -24,14 +29,15 @@ Assisster.Views.SendSmsView = Backbone.View.extend({
 			phone_number: phoneNumber,
 			message: params.message,
 		};
+		var view = this;
 		$.ajax({
 		  url: url,
 		  type: "POST",
 		  data: {
 		    sms: sms_data
 		  },
-			success: function (widgetData) {
-		    console.log("sms sent successfully");
+			success: function () {
+		    view.resetForm();
 		  }
 		});
 	}
