@@ -31,4 +31,8 @@ class Appointment < ActiveRecord::Base
   def date
     "#{startTime.date}"
   end
+  
+  def full_phone
+    "#{country_code}#{phone_number}"
+  end
 end

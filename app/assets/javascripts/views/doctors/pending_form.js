@@ -4,8 +4,8 @@ Assisster.Views.PendingForm = Backbone.View.extend({
 	
 	events: {
 		"click #close": "closeView",
-		"click #send-message": "sendMessage",
-		"click #send-email": "sendEmail",
+		"click #send-message": "message",
+		"click #send-email": "email",
 		"click #send-both": "sendBoth",
 		"click #send-not": "sendNot"
 	},
@@ -25,6 +25,21 @@ Assisster.Views.PendingForm = Backbone.View.extend({
 		this.remove();
 	},
 	
+	callbackAndClose: function () {
+		this.callback(this.action, this.model.id);
+		this.closeView();
+	},
+	
+	email: function (event) {
+		this.sendEmail();
+		this.callbackAndClose();
+	},
+	
+	message: function (event) {
+		this.sendMessage();
+		this.callbackAndClose();
+	},
+	
 	render: function () {
 		var renderedContent = this.template({
 			appointment: this.model,
@@ -36,22 +51,28 @@ Assisster.Views.PendingForm = Backbone.View.extend({
 	},
 	
 	sendBoth: function (event) {
-		this.callback(this.action, this.model.id);
-		this.closeView();
+		this.sendEmail();
+		this.sendMessage();
+		this.callbackAndClose();
 	},
 	
-	sendEmail: function (event) {
-		this.callback(this.action, this.model.id);
-		this.closeView();
+	sendEmail: function () {
+		var url = "api/send_" + this.action + "_emails/" + this.model.id;
+		$.ajax({
+		  url: url,
+		  type: "GET"
+		});
 	},
 	
-	sendMessage: function (event) {
-		this.callback(this.action, this.model.id);
-		this.closeView();
+	sendMessage: function () {
+		var url = "api/send_" + this.action + "_messages/" + this.model.id;
+		$.ajax({
+		  url: url,
+		  type: "GET"
+		});
 	},
 	
 	sendNot: function (event) {
-		this.callback(this.action, this.model.id);
-		this.closeView();
+		this.callbackAndClose();
 	},
 })
