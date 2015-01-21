@@ -147,6 +147,13 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 				calendarEvent.phone_number = appointment.get('phone_number');
 				calendarEvent.fname = appointment.get('fname');
 				calendarEvent.lname = appointment.get('lname');
+				if (appointment.get('appointment_status') === "Pending") {
+					calendarEvent.backgroundColor = "#257e4a";
+					calendarEvent.borderColor = "#257e4a";
+				} else {
+					calendarEvent.backgroundColor = "#3a87ad";
+					calendarEvent.borderColor = "#3a87ad";
+				}
 				$('#calendar').fullCalendar( 'updateEvent', calendarEvent );			
 			} else {
 				$('#calendar').fullCalendar( 'removeEvents', appointment.id );
