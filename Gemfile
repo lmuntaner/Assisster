@@ -19,6 +19,7 @@ gem 'figaro'
 gem 'email_validator'
 gem 'mandrill-api'
 gem 'rest-client'
+gem 'whenever', :require => false
 # gem 'sdoc', '~> 0.4.0',          group: :doc
 
 group :doc do
