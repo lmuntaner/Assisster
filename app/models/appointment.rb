@@ -26,7 +26,7 @@ class Appointment < ActiveRecord::Base
   
   belongs_to :doctor
   
-  def self.send_email_remainders
+  def self.send_email_reminders
     appointments = Appointment.where({
       startTime: Date.today.midnight..Date.tomorrow.midnight,
       office_hour: false,
