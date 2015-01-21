@@ -18,7 +18,7 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
-
-every :day, :at => '12:20am' do
-  runner "Appointment.send_email_reminders"
-end
+#
+# every :day, :at => '12:20am' do
+#   runner "Appointment.send_email_reminders"
+# end
