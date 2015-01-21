@@ -26,27 +26,17 @@ class Appointment < ActiveRecord::Base
   
   belongs_to :doctor
   
-  def self.send_emails
-    html_msg = "<p>hello<p>"
-    begin
-      mandrill = Mandrill::API.new ENV["MANDRILL_API_KEY"]
-      message = {
-        "html"=>html_msg,
-        "text"=>"hello",
-        "subject"=>"whenever",
-        "from_email"=>"llorenc.muntaner@gmai.com",
-        "from_name"=>"whenever",
-        "to"=>
-          [{"email"=>"llorenc.muntaner@gmail.com",
-              "name"=>"llorenc",
-              "type"=>"to"}],
-        "headers"=>{"Reply-To"=>"llorenc.muntaner@gmail.com"}
-     }
-     async = true
-     result = mandrill.messages.send message, async
-   rescue Mandrill::Error => e
-     puts "A mandrill error occurred: #{e.class} - #{e.message}"
-   end
+  def self.send_email_remainders
+    appointments = Appointment.where({
+      startTime: Date.today.midnight..Date.tomorrow.midnight,
+      office_hour: false,
+      appointment_status: "Confirmed"
+    })
+    appointments.each do |appointment|
+      subject = "Appointment Reminder"
+      body = "This is an appointment reminder"
+      send_email(appointment.email, appointment.full_name, appointment.doctor, subject, body)
+    end
   end
   
   def full_name
@@ -59,5 +49,30 @@ class Appointment < ActiveRecord::Base
   
   def full_phone
     "#{country_code}#{phone_number}"
+  end
+  
+  private
+  
+  def send_email(email, name, doctor, subject, body)
+    html_msg = "<p>#{body}<p>"
+    begin
+      mandrill = Mandrill::API.new ENV["MANDRILL_API_KEY"]
+      message = {
+        "html"=>html_msg,
+        "text"=>body,
+        "subject"=>subject,
+        "from_email"=>doctor.email,
+        "from_name"=>doctor.name,
+        "to"=>
+          [{"email"=>email,
+              "name"=>name,
+              "type"=>"to"}],
+        "headers"=>{"Reply-To"=>doctor.email}
+     }
+     async = true
+     result = mandrill.messages.send message, async
+   rescue Mandrill::Error => e
+     puts "A mandrill error occurred: #{e.class} - #{e.message}"
+   end
   end
 end
