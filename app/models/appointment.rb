@@ -64,7 +64,7 @@ class Appointment < ActiveRecord::Base
         "from_name"=>doctor.name,
         "to"=>
           [{"email"=>self.email,
-              "name"=>self.name,
+              "name"=>self.full_name,
               "type"=>"to"}],
         "headers"=>{"Reply-To"=>doctor.email}
      }
