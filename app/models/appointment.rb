@@ -35,7 +35,7 @@ class Appointment < ActiveRecord::Base
     appointments.each do |appointment|
       subject = "Appointment Reminder"
       body = "This is an appointment reminder"
-      send_email(appointment.email, appointment.full_name, appointment.doctor, subject, body)
+      appointment.send_email(subject, body)
     end
   end
   
@@ -50,11 +50,10 @@ class Appointment < ActiveRecord::Base
   def full_phone
     "#{country_code}#{phone_number}"
   end
-  
-  private
-  
-  def send_email(email, name, doctor, subject, body)
+    
+  def send_email(subject, body)
     html_msg = "<p>#{body}<p>"
+    doctor = self.doctor
     begin
       mandrill = Mandrill::API.new ENV["MANDRILL_API_KEY"]
       message = {
@@ -64,8 +63,8 @@ class Appointment < ActiveRecord::Base
         "from_email"=>doctor.email,
         "from_name"=>doctor.name,
         "to"=>
-          [{"email"=>email,
-              "name"=>name,
+          [{"email"=>self.email,
+              "name"=>self.name,
               "type"=>"to"}],
         "headers"=>{"Reply-To"=>doctor.email}
      }
