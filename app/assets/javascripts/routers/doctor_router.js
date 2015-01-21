@@ -90,7 +90,7 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
 			var msg = "New Appointment from " + appointment.fullName() + "     ";
 		  $('div.top-right').notify({
 		     message: { text: msg },
-				 fadeOut: { enabled: false, delay: 5000 }
+				 fadeOut: { enabled: true, delay: 3000 }
 		   }).show();			
 		}
 	},
@@ -105,7 +105,7 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
 	  $('div.top-right').notify({
 	     message: { text: msg },
 			 type: notification.type,
-			 fadeOut: { enabled: false, delay: 5000 }
+			 fadeOut: { enabled: true, delay: 3000 }
 	   }).show();		
 	},
 	
