@@ -8,6 +8,14 @@ Assisster.Models.Doctor = Backbone.Model.extend({
     
     return this._appointments;
   },
+	
+	services: function () {
+		if (!this._services) {
+			this._services = new Assisster.Collections.Services([], {doctor: this });
+		}
+		
+		return this._services;
+	},
   
   parse: function (payload) {
     if (payload.appointments) {
@@ -15,6 +23,12 @@ Assisster.Models.Doctor = Backbone.Model.extend({
       this.appointments().trigger('parseSync');
       delete payload.appointments;
     }
+		
+		if (payload.services) {
+			this.services().set(payload.services, {parse: true});
+			this.services().trigger('parseSync');
+			delete payload.services
+		}
     
     return payload;
   }

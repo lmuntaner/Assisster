@@ -4,3 +4,6 @@ json.appointments @doctor.appointments do |appointment|
 														 :email, :fname, :lname, :created_at, :updated_at,
 														 :appointment_status, :country_code, :phone_number)
 end
+json.services @doctor.services do |service|
+	json.extract!(service, :id, :title, :description, :duration_min, :created_at, :updated_at)
+end
