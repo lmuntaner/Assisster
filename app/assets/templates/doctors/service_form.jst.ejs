@@ -1,0 +1,43 @@
+<h3 class="send-form-title">Create Service Form</h3>
+
+<form role="form">
+	<div class="form-inputs">
+		<div class="row">
+			<div class="col-xs-6">
+				<div class="form-group">
+					<label>
+						Title
+						<input type="text" name="service[title]" class="form-control input-sm" placeholder="Title">
+					</label>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-xs-4">
+				<div class="form-group">
+					<label>
+						Duration (min)
+						<input type="number" name="service[duration_min]" class="form-control input-sm" placeholder="">
+					</label>
+				</div>
+			</div>
+		</div>
+				
+		<div class="row">
+			<div class="col-xs-9 col-sm-9 col-md-9">
+				<div class="form-group">
+					<textarea name="service[description]"
+										class="form-control textarea-sm"
+										placeholder="Enter service description"></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+	<button type="button"
+					id="send-email"
+					class="btn btn-default">
+					Create Service
+	</button>
+
+</form>

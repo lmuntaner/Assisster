@@ -4,6 +4,7 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
 		"appointments": "allAppointments",
 		"office_hours": "office_hours",
 		"notifications": "notifications",
+		"services": "services",
     "": "dashboard"
   },
   
@@ -117,6 +118,14 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
     
     this._swapView(officeHourContainerView);
     officeHourContainerView.onRender(); // I need this for when I comeback to this view in backbone
+	},
+	
+	services: function () {
+    var servicesView = new Assisster.Views.ServicesView({
+    	model: this.model
+    });
+    
+    this._swapView(servicesView);
 	},
 
   _swapView: function(view) {
