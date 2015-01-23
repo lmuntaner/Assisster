@@ -29,7 +29,8 @@ Assisster.Views.PendingAppointmentItem = Backbone.View.extend({
 		return this;
 	},
 	
-	// Sending sms in stand by
+	// Not using this form. Using the one below.
+	// I should delete this and the confirmation form View and Template
 	showConfirmationForm: function (action, event) {
 		var coordinates = [event.clientX, event.clientY];
 		
