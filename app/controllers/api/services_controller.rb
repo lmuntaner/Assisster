@@ -15,7 +15,7 @@ class Api::ServicesController < ApplicationController
     service = current_doctor.services.new(service_params)
     
     if service.save
-      render json: serivce
+      render json: service
     else
       render json: service.errors.full_messages, status: :unprocessable_entity
     end

@@ -5,7 +5,11 @@ Assisster.Views.ServicesView = Backbone.CompositeView.extend({
   initialize: function () {
 		this.collection = this.model.services();
 		
-		this.serviceForm = new Assisster.Views.ServiceForm();
+		var newService = new Assisster.Models.Service();
+		this.serviceForm = new Assisster.Views.ServiceForm({
+			model: newService,
+			collection: this.collection
+		});
 		this.addSubview("div.services-container", this.serviceForm);
 		
 		this.servicesIndex = new Assisster.Views.ServicesIndex({
