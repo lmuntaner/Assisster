@@ -25,7 +25,7 @@ class Api::ServicesController < ApplicationController
     service = Service.find(params[:id])
     
     if service.update(service_params)
-      render json: serivce
+      render json: service
     else
       render json: service.errors.full_messages, status: :unprocessable_entity
     end

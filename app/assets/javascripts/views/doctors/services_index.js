@@ -8,7 +8,7 @@ Assisster.Views.ServicesIndex = Backbone.CompositeView.extend({
 	
 	initialize: function(options) {
 		this.attachServices();
-		this.listenTo(this.collection, "parseSync add remove sync", this.attachServices);
+		this.listenTo(this.collection, "parseSync add remove sync change", this.attachServices);
 	},
 	
 	attachServices: function () {

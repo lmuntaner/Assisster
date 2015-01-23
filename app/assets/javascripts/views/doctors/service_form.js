@@ -31,5 +31,16 @@ Assisster.Views.ServiceForm = Backbone.View.extend({
 		this.$el.html(renderedContent);
 		
 		return this;
-	}
+	},
+	
+	updateService: function (event) {
+		var view = this;
+		var serviceParams = $(event.currentTarget).parent().serializeJSON().service;
+		this.model.save(serviceParams, {
+			success: function(service) {
+				view.collection.add(service, {merge: true});
+				view.closeForm();
+			}
+		});
+	},
 })

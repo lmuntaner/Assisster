@@ -7,7 +7,6 @@ Assisster.Views.NewServiceForm = Backbone.View.extend({
 	},
 	
 	createService: function (event) {
-		var view = this;
 		var serviceParams = $(event.currentTarget).parent().serializeJSON().service;
 		this.collection.create(serviceParams, {wait: true});
 		this.resetForm();
