@@ -1,6 +1,6 @@
 Assisster.Views.NewServiceForm = Backbone.View.extend({
   template: JST["doctors/new_service_form"],
-  className: "col-xs-4 service-form",
+  className: "col-xs-4 new-service-form",
 	
 	events: {
 		"click #create-service": "createService"

@@ -31,6 +31,7 @@ Assisster.Views.PendingAppointmentsIndex = Backbone.CompositeView.extend({
     return this;
   },
 	
+	// We are not using this one, but the one below now
 	showConfirmationForm: function (event) {
 		var coordinates = [event.clientX, event.clientY];
 		var id = $(event.currentTarget).parent().parent().data('id');

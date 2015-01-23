@@ -122,8 +122,14 @@ div.services-container {
 	height: 500px;
 }
 
-div.service-form {
+div.new-service-form {
 	border-right: solid 1px #ddd;
+}
+
+div.service-form {
+	width: 300px;
+	z-index: 5;
+	position: fixed;
 }
 
 
