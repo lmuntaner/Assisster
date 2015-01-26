@@ -56,12 +56,10 @@ Assisster.Views.CalendarView = Backbone.View.extend({
         right: 'today prev,next'
       },
 			allDaySlot: false,
-			scrollTime: '08:00:00',
-			height: 500,
-      editable: true,
 			axisFormat: 'H:mm',
       defaultView: 'agendaWeek',
       dayClick: this.createAppointment.bind(this),
+      editable: true,
 			eventClick: this.updateAppointment.bind(this),
       events:this.collection.getConfirmedAppointments().concat(this.collection.getOfficeHours()),
 			eventDragStart: this.removeTooltip,
@@ -70,6 +68,9 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 			eventMouseover: this.addTooltip,
 			eventRender: this.renderEvent,
 			eventResize: this.updateAppointmentDraggOrResize.bind(this),
+			firstDay: 1,
+			height: 500,
+			scrollTime: '08:00:00',
     });
   },
 	
