@@ -11,6 +11,11 @@ Assisster.Views.NotificationsView = Backbone.CompositeView.extend({
 		});
 		this.addSubview("div.notifications-container", this.sendSmsView);
 		
+		this.searchView = new Assisster.Views.SearchView({
+			collection: this.collection
+		});
+		this.addSubview("div.notifications-container", this.searchView);
+		
     this.listenTo(this.model, "sync", this.render);
   },
   
@@ -19,6 +24,7 @@ Assisster.Views.NotificationsView = Backbone.CompositeView.extend({
     this.$el.html(renderedContent);
 		this.attachSubview("div.notifications-container", this.sendEmailView);
 		this.attachSubview("div.notifications-container", this.sendSmsView);
+		this.attachSubview("div.notifications-container", this.searchView);
 		
     
     return this;
