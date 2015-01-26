@@ -121,9 +121,9 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 		var params = $(event.currentTarget).parent().serializeJSON().appointment;
 		if (this.validateForm(params)) {
 			var stringStartTime = params.startTimeDate + " " + params.startTimeHour;
-	    var startTime = moment.utc(stringStartTime, "M/D/YYYY HH:mm");
+	    var startTime = moment.utc(stringStartTime, "D/M/YYYY HH:mm");
 			var stringEndTime = params.endTimeDate + " " + params.endTimeHour;
-		  var endTime = moment.utc(stringEndTime, "M/D/YYYY HH:mm");
+		  var endTime = moment.utc(stringEndTime, "D/M/YYYY HH:mm");
 	    var view = this;
 			var appointmentStatus = this.model.get('appointment_status');
 			if (appointmentStatus === "Cancelled" || this.model.isNew()) {
