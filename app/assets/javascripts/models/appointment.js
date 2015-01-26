@@ -40,7 +40,7 @@ Assisster.Models.Appointment = Backbone.Model.extend({
 	},
 	
 	phoneNumber: function () {
-		return this.escape('phone_number')
+		return this.escape('phone_number').slice(0, 3) + "-" + this.escape('phone_number').slice(3);
 	},
 	
 	startTime: function () {

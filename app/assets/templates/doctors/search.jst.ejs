@@ -41,8 +41,7 @@
 				<td><%= appointment.escape('email') %></td>
 				<td><%= appointment.fullName() %></td>
 				<td><%= appointment.phoneNumber() %>
-				<td><%= appointment.date() %></td>
-				<td><%= appointment.time() %></td>
+				<td><%= appointment.date() + " at " + appointment.time() %></td>
 			</tr>
 		<% }) %>
 	</table>	
