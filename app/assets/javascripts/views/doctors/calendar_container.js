@@ -6,7 +6,6 @@ Assisster.Views.CalendarContainer = Backbone.CompositeView.extend({
 		"click button.create-appointment": "showForm",
 		"click button.create-office-hours": "showOfficeHourForm",
 		"click #show-pending": "showPending"
-		// "change #show-pending": "showPending"
 	},
   
   initialize: function (options) {

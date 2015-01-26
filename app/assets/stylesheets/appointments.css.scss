@@ -46,8 +46,12 @@
 	padding-bottom: 15px;
 }
 
-.appointment-form-container button.cancel {
+.appointment-form-container button.right-button {
 	float: right;
+}
+
+#confirm-appointment-form {
+	margin-right: 3px;
 }
 
 /* Doctor Confirmation Form */
