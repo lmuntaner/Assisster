@@ -16,7 +16,7 @@ Assisster.Views.SearchView = Backbone.View.extend({
 	},
 	
 	emailSearch: function (event) {
-		this.email = $(event.currentTarget).val();
+		this.email = $(event.currentTarget).val().toLowerCase();
 		
 		this.search();
 		
@@ -28,7 +28,7 @@ Assisster.Views.SearchView = Backbone.View.extend({
 	},
 	
 	fnameSearch: function (event) {
-		this.fname = $(event.currentTarget).val();
+		this.fname = $(event.currentTarget).val().toLowerCase();
 		
 		this.search();
 		
@@ -40,7 +40,7 @@ Assisster.Views.SearchView = Backbone.View.extend({
 	},
 	
 	lnameSearch: function (event) {
-		this.lname = $(event.currentTarget).val();
+		this.lname = $(event.currentTarget).val().toLowerCase();
 		
 		this.search();
 		
@@ -64,10 +64,19 @@ Assisster.Views.SearchView = Backbone.View.extend({
 	},
 	
 	search: function () {
+		var view = this;
 		this.results = this.collection.filter( function (appointment) {
-			return appointment.escape('email').search(this.email) !== -1 && 
-						 appointment.escape('fname').search(this.fname) !== -1 &&
-						 appointment.escape('lname').search(this.lname) !== -1;
+			var match = true;
+			if (view.email !== "" && appointment.escape('email').toLowerCase().search(view.email) === -1) {
+				return false;
+			}
+			if (view.fname !== "" && appointment.escape('fname').toLowerCase().search(view.fname) === -1) {
+				return false;
+			}
+			if (view.lname !== "" && appointment.escape('lname').toLowerCase().search(view.lname) === -1) {
+				return false;
+			}
+			return match;
 		});
 	},
 	
