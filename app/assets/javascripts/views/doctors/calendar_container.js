@@ -5,7 +5,8 @@ Assisster.Views.CalendarContainer = Backbone.CompositeView.extend({
 	events: {
 		"click button.create-appointment": "showForm",
 		"click button.create-office-hours": "showOfficeHourForm",
-		"change #show-pending": "showPending"
+		"click #show-pending": "showPending"
+		// "change #show-pending": "showPending"
 	},
   
   initialize: function (options) {
@@ -14,6 +15,7 @@ Assisster.Views.CalendarContainer = Backbone.CompositeView.extend({
     });
     this.addSubview("div.dashboard-body", this.calendarView);
     this.listenTo(this.model, "sync", this.render);
+		this.showingPending = false;
   },
 	
 	onRender: function () {
@@ -67,9 +69,15 @@ Assisster.Views.CalendarContainer = Backbone.CompositeView.extend({
 	},
 	
 	showPending: function (event) {
-		if (event.currentTarget.checked) {
+		this.showingPending = !this.showingPending;
+		this.$("#show-pending").blur();
+		if (this.showingPending) {
+			this.$("#show-pending").removeClass("btn-success").addClass("btn-info");
+			this.$("#show-pending").text("Hide Pending");
 			this.calendarView.showPending();			
 		} else {
+			this.$("#show-pending").removeClass("btn-info").addClass("btn-success");
+			this.$("#show-pending").text("Show Pending");
 			this.calendarView.removePending();
 		}
 	},
