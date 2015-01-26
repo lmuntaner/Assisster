@@ -3,19 +3,47 @@
   <div class="btn-group" role="group">
 		<div class="input-group">
 		  <span class="input-group-addon" id="basic-addon1">Email</span>
-		  <input type="text" class="form-control" placeholder="Email" aria-describedby="basic-addon1">
+		  <input type="text"
+						 class="form-control"
+						 placeholder="Email"
+						 aria-describedby="basic-addon1"
+						 value="<%= email %>"
+						 id="email-search">
 		</div>
   </div>
   <div class="btn-group" role="group">
 		<div class="input-group">
 		  <span class="input-group-addon" id="basic-addon2">First Name</span>
-		  <input type="text" class="form-control" placeholder="First Name" aria-describedby="basic-addon2">
+		  <input type="text"
+						 class="form-control"
+						 placeholder="First Name"
+						 aria-describedby="basic-addon2"
+						 value="<%= fname %>"
+						 id="fname-search">
 		</div>
   </div>
   <div class="btn-group" role="group">
 		<div class="input-group">
 		  <span class="input-group-addon" id="basic-addon3">Last Name</span>
-		  <input type="text" class="form-control" placeholder="Last Name" aria-describedby="basic-addon3">
+		  <input type="text"
+						 class="form-control"
+						 placeholder="Last Name"
+						 aria-describedby="basic-addon3"
+						 value="<%= lname %>"
+						 id="lname-search">
 		</div>
   </div>
 </div>
+<% if (results) { %>
+	<table class="table">
+		<% results.forEach( function (appointment) { %>
+			<tr>
+				<td><%= appointment.escape('email') %></td>
+				<td><%= appointment.fullName() %></td>
+				<td><%= appointment.phoneNumber() %>
+				<td><%= appointment.date() %></td>
+				<td><%= appointment.time() %></td>
+			</tr>
+		<% }) %>
+	</table>	
+<% } %>

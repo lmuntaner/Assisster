@@ -39,6 +39,10 @@ Assisster.Models.Appointment = Backbone.Model.extend({
 		return this.escape('fname') + " " + this.escape("lname");
 	},
 	
+	phoneNumber: function () {
+		return this.escape('phone_number')
+	},
+	
 	startTime: function () {
 		return moment.utc(this.get('startTime'));
 	},
