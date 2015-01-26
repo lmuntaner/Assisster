@@ -28,7 +28,7 @@ class Appointment < ActiveRecord::Base
   
   def self.send_email_reminders
     appointments = Appointment.where({
-      startTime: Date.today.midnight..Date.tomorrow.midnight,
+      startTime: Date.tomorrow.midnight..Date.tomorrow.tomorrow.midnight,
       office_hour: false,
       appointment_status: "Confirmed"
     })
