@@ -5,7 +5,8 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
   events: {
 		"click #submit-appointment-form": "save",
 		"click #close-appointment-form": "closeView",
-		"click #cancel-appointment-form": "cancel"
+		"click #cancel-appointment-form": "cancel",
+		"click #confirm-appointment-form": "confirmAppointment"
   },
 	
 	initialize: function(options) {
@@ -80,6 +81,19 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 		this.remove();
 	},
 	
+	confirmAppointment: function (event) {
+		var appointment = this.model;
+		var view = this;
+		var url = "/api/confirm_appointments/" + this.model.id;
+		$.ajax({
+			type: "PATCH",
+			url: url,
+			success: function () {
+				view.remove();
+			}
+		})
+	},
+	
 	onRender: function () {
 		this.$('.setDatepicker').datepicker({
 			autoclose: true
@@ -113,12 +127,6 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 	    var view = this;
 			var appointmentStatus = this.model.get('appointment_status');
 			if (appointmentStatus === "Cancelled" || this.model.isNew()) {
-				appointmentStatus = "Confirmed";
-			}
-			if (!params.confirmed) {
-				appointmentStatus = "Pending";
-			}
-			if (params.confirmed && appointmentStatus === "Pending") {
 				appointmentStatus = "Confirmed";
 			}
 			if (!params.email) {
