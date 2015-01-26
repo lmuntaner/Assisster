@@ -99,7 +99,6 @@ div.notifications-container {
 	border: solid 1px #ddd;
 	border-radius: 5px;
 	height: 500px;
-	overflow: auto;
 }
 
 div.send-email-form {
@@ -113,6 +112,11 @@ div.send-email-form {
 div.search-container {
 	margin-top: 15px;
 	border-top: solid 1px #ddd;
+}
+
+div.results-container {
+	max-height: 120px;
+	overflow: auto;
 }
 
 /* Services */

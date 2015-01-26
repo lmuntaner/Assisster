@@ -34,7 +34,8 @@
 		</div>
   </div>
 </div>
-<% if (results) { %>
+
+<div class="results-container">
 	<table class="table">
 		<% results.forEach( function (appointment) { %>
 			<tr>
@@ -44,5 +45,5 @@
 				<td><%= appointment.date() + " at " + appointment.time() %></td>
 			</tr>
 		<% }) %>
-	</table>	
-<% } %>
+	</table>
+</div>
