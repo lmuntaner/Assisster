@@ -6,7 +6,7 @@ Assisster.Views.TodaysAppointmentItem = Backbone.View.extend({
 	initialize: function() {
 		this.listenTo(this.model, "sync", this.render);
 		this.$el.attr('data-id', this.model.id);
-		if (this.model.get('title') === 'Free Time') {
+		if (this.model.get('title') === 'Libre') {
 			this.$el.addClass("list-group-item-info");
 			this.$el.attr("data-start-time", this.model.get('startTime'));
 		}

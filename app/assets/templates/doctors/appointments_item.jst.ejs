@@ -4,4 +4,4 @@
 <td class="table-title"><%= appointment.escape('title') %></td>
 <td class="table-date"><%= appointment.date() %></td>
 <td class="table-time"><%= appointment.time() %></td>
-<td class="table-status"><%= appointment.escape('appointment_status') %></td>
+<td class="table-status"><%= StatusSpanish[appointment.get('appointment_status')] %></td>

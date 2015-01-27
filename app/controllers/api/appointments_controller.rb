@@ -117,8 +117,8 @@ class Api::AppointmentsController < ApplicationController
     appointment_object = {
       startTime: start_time,
       endTime: end_time,
-      title: "Free Time",
-      fname: "Free Time",
+      title: "Libre",
+      fname: "Libre",
       lname: ""
     }
     
