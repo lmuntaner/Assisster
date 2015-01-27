@@ -1,13 +1,13 @@
 
 first_doctor = Doctor.create!(email: "william@wheat.com", password:"wheatbelly", country_code:"34", name:"William Davis")
-first_doctor.services.create(title: "Full recovery", duration_min: 60,
-                             description: "This is the best service ever")
-first_doctor.services.create(title: "Quit wheat", duration_min: 45,
-                            description: "Helping to quit the wheat vice")
-first_doctor.services.create(title: "Holistic consultation", duration_min: 90,
-                             description: "This appointment addresses the patient in an holistic way")
-first_doctor.services.create(title: "Gut problems", duration_min: 30,
-                            description: "We will focus our efforts on solving you gut problems")
+first_doctor.services.create(title: "Recuperación total", duration_min: 60,
+                             description: "El mejor servicio")
+first_doctor.services.create(title: "Dejar el trigo", duration_min: 45,
+                            description: "Ayudar a dejar el vicio del trigo")
+first_doctor.services.create(title: "Consulta holistica", duration_min: 90,
+                             description: "Una consulta con una vision holistica del cuerpo")
+first_doctor.services.create(title: "Problemas digestivos", duration_min: 30,
+                            description: "Centramos los esfuerzos en mejorar la salud intestinal del paciente")
 
 day = DateTime.now.change(hour: 8)
 statuses = ['Confirmed', 'Pending', 'Confirmed', 'Confirmed']
