@@ -70,6 +70,7 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 			eventResize: this.updateAppointmentDraggOrResize.bind(this),
 			firstDay: 1,
 			height: 500,
+			lang: "es",
 			scrollTime: '08:00:00',
     });
   },

@@ -21,6 +21,7 @@
 //= require backbone.TriggerHappy
 //= require moment
 //= require fullcalendar
+//= require lang/es.js
 //= require bootstrap
 //= require pusher.min
 //= require list

@@ -72,11 +72,11 @@ Assisster.Views.CalendarContainer = Backbone.CompositeView.extend({
 		this.$("#show-pending").blur();
 		if (this.showingPending) {
 			this.$("#show-pending").removeClass("btn-success").addClass("btn-info");
-			this.$("#show-pending").text("Hide Pending");
+			this.$("#show-pending").text("Esconder Pendientes");
 			this.calendarView.showPending();			
 		} else {
 			this.$("#show-pending").removeClass("btn-info").addClass("btn-success");
-			this.$("#show-pending").text("Show Pending");
+			this.$("#show-pending").text("Mostrar Pendientes");
 			this.calendarView.removePending();
 		}
 	},

@@ -1,16 +1,16 @@
 <div class="modal-content appointment-content">
 	<div class="panel-heading">
-		<h3 class="panel-title">Create Office Hour</h3>
+		<h3 class="panel-title">Nueva Hora Oficina</h3>
 	</div>
 	<div class="panel-body">
 		<form role="form">
 			<div class="form-inputs">
-				<h6>Add more days</h6>
+				<h6>Añadir más días</h6>
 				<% week.forEach(function (nextDate) { %>
 					<label class="next-date">
 						<%= nextDate.format("DD MMM") %>
 						<input type="checkbox"
-									 value="<%= nextDate.format('M/D/YYYY') %>"
+									 value="<%= nextDate.format('D/M/YYYY') %>"
 									 name="appointment[nextDates][]">
 					</label>
 				<% }) %>
@@ -18,18 +18,18 @@
 			<button type="button"
 							id="submit-office-hour-form"
 							class="btn btn-primary">
-							Save
+							Guardar
 			</button>
 			<button type="button"
 							id="close-office-hour-form"
 							class="btn btn-default">
-							Close
+							Cerrar
 			</button>
 			<% if (!appointment.isNew() && appointment.get('appointment_status') !== 'Cancelled') { %>
 				<button type="button"
 								id="cancel-office-hour-form"
 								class="btn btn-danger cancel">
-								Cancel Office Hours
+								Cancelar
 				</button>
 			<% } %>
 		</form>

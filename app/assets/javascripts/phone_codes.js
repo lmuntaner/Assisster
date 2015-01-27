@@ -1,5 +1,5 @@
 window.phoneCodes = [
-	["", "Select Country"],
+	["", "Seleccionar país"],
 	["44", "UK (+44)"],
 	["1", "USA (+1)"],
 	["213", "Algeria (+213)"],

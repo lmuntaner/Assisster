@@ -121,8 +121,8 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
 	},
 	
 	saveOfficeHour: function(appointment, strStartTime, strEndTime) {
-    startTime = moment.utc(strStartTime, "M/D/YYYY HH:mm");
-	  endTime = moment.utc(strEndTime, "M/D/YYYY HH:mm");
+    startTime = moment.utc(strStartTime, "D/M/YYYY HH:mm");
+	  endTime = moment.utc(strEndTime, "D/M/YYYY HH:mm");
     var view = this;
 		var appointmentParams = {
       title: "office hour",
