@@ -1,9 +1,9 @@
 <h4>Confirmar cita para:</h4>
 <h5>
-	<%= appointment.get('startTime').format('dddd, MMMM Do') %>
+	<%= appointment.get('startTime').format('dddd, D MMMM') %>
 </h5>
 <h5>
-	Desde: <%= appointment.get('startTime').format('h:mm') %> hasta: <%= appointment.get('endTime').format('h:mm') %>
+	Desde: <%= appointment.get('startTime').format('h:mm') %>, hasta: <%= appointment.get('endTime').format('h:mm') %>
 </h5>
 <div class="errors">
 </div>
