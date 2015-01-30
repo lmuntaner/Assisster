@@ -76,18 +76,6 @@ div.right-calendar-header {
 	width: 130px;
 }
 
-//.recent-appointment-status {
-//	width: 136px;
-//}
-//
-//.pending-appointment-confirm {
-//	width: 66px;
-//}
-//
-//.pending-appointment-cancel {
-//	width: 60px;
-//}
-
 .today-appointments-index {
 	float: right;
 }
@@ -111,6 +99,11 @@ div.send-email-form {
 
 .send-form-title {
 	margin-bottom: 15px;
+}
+
+ul.validation-errors {
+	font-size: 12px;
+	color: red;
 }
 
 div.search-container {
