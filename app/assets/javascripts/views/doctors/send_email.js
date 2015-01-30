@@ -43,35 +43,32 @@ Assisster.Views.SendEmailView = Backbone.View.extend({
 	},
 	
 	validateBody: function (body) {
-		var $errorBody = $("<li>").addClass("errorBody").text("Introduce un Mensaje");
 		if (body.length > 0) {
-			this.remove("li.errorBody");
+			this.$("div.email-body").removeClass("has-error");
 			return true;
 		} else {
-			this.$("ul.validation-errors").append($errorBody);
+			this.$("div.email-body").addClass("has-error");
 			return false;
 		}
 	},
 	
 	validateEmail: function (email) {
-		var $errorEmail = $("<li>").addClass("errorEmail").text("Email Incorrecto");
 		var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 		if (re.test(email)) {
-			this.remove("li.errorEmail");
+			this.$("div.email-to").removeClass("has-error");
 			return true;
 		} else {
-			this.$("ul.validation-errors").append($errorEmail);
+			this.$("div.email-to").addClass("has-error");
 			return false;
 		}
 	},
 	
 	validateSubject: function (body) {
-		var $errorSubject = $("<li>").addClass("errorSubject").text("Introduce un Asunto");
 		if (body.length > 0) {
-			this.remove("li.errorSubject");
+			this.$("div.email-subject").removeClass("has-error");
 			return true;
 		} else {
-			this.$("ul.validation-errors").append($errorSubject);
+			this.$("div.email-subject").addClass("has-error");
 			return false;
 		}
 	},
