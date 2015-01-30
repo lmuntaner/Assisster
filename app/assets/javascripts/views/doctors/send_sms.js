@@ -44,16 +44,6 @@ Assisster.Views.SendSmsView = Backbone.View.extend({
 		}
 	},
 	
-	validateCountry: function (countrycode) {
-		if (countrycode.length > 0) {
-			this.$("div.sms-countrycode").removeClass("has-error");
-			return true;
-		} else {
-			this.$("div.sms-countrycode").addClass("has-error");
-			return false;
-		}
-	},
-	
 	validateMessage: function (message) {
 		if (message.length > 0) {
 			this.$("div.sms-message").removeClass("has-error");
@@ -64,8 +54,8 @@ Assisster.Views.SendSmsView = Backbone.View.extend({
 		}
 	},
 	
-	validatePhoneNumber: function (phoneNumber) {
-		if (/^\d+$/.test(phoneNumber)) {
+	validatePhoneNumber: function (countrycode, phoneNumber) {
+		if (/^\d+$/.test(phoneNumber) && (countrycode + phoneNumber).length === 11) {
 			this.$("div.sms-phoneNumber").removeClass("has-error");
 			return true;
 		} else {
@@ -76,8 +66,7 @@ Assisster.Views.SendSmsView = Backbone.View.extend({
 	
 	validateParams: function (params) {
 		var validated = true;
-		if (!this.validateCountry(params.countrycode)) validated = false;
-		if (!this.validatePhoneNumber(params.phoneNumber)) validated = false;
+		if (!this.validatePhoneNumber(params.countrycode, params.phoneNumber)) validated = false;
 		if (!this.validateMessage(params.message)) validated = false;
 		
 		return validated;
