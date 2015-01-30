@@ -65,7 +65,7 @@ Assisster.Views.SendSmsView = Backbone.View.extend({
 	},
 	
 	validatePhoneNumber: function (phoneNumber) {
-		if (phoneNumber.length > 0) {
+		if (/^\d+$/.test(phoneNumber)) {
 			this.$("div.sms-phoneNumber").removeClass("has-error");
 			return true;
 		} else {
