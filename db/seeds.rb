@@ -1,7 +1,11 @@
 
 first_doctor = Doctor.create!(email: "william@wheat.com", password:"wheatbelly",
                               country_code:"34", name:"William Davis",
-                              subdomain_name:"williamdavis")
+                              subdomain_name:"williamdavis", sub_title: "Author of Wheat Belly",
+                              latitude: 37.7821343, longitude: -122.4006397,
+                              street_address: "795 Folsom Ave, Suite 600", city_address: "San Francisco, CA 94107",
+                              phone_number: "1234567890",
+                              description: "This is just a test description")
 first_doctor.services.create(title: "Recuperación total", duration_min: 60,
                              description: "El mejor servicio")
 first_doctor.services.create(title: "Dejar el trigo", duration_min: 45,
@@ -13,7 +17,11 @@ first_doctor.services.create(title: "Problemas digestivos", duration_min: 30,
                             
 second_doctor = Doctor.create!(email: "anna@rosell.com", password:"annarosell",
                               country_code:"34", name:"Anna Rosell",
-                              subdomain_name:"annarosell")
+                              subdomain_name:"annarosell", sub_title: "Osteopata",
+                              latitude: 39.57671, longitude: 2.65074,
+                              street_address: "C/ Cecili Metel, 14 1r Pis", city_address: "07003 Palma de Mallorca - Illes Balears",
+                              phone_number: "629482664",
+                              description: "Another test description")
 second_doctor.services.create(title: "Primera visita", duration_min: 60,
                              description: "El mejor servicio de Mallorca")
 second_doctor.services.create(title: "Trigo caca", duration_min: 45,
