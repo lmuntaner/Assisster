@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     resources :confirm_appointments, only: [:update]
     resources :cancel_appointments, only: [:update]
     resources :receive_messages, only: [:index]
-    get "/available_dates", to: "available_dates#index"
+    resources :available_dates, only: [:show]
     resources :send_emails, only: [:create]
     resources :send_messages, only: [:create]
     resources :send_confirm_emails, only: [:show]
