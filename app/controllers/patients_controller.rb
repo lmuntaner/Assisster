@@ -4,10 +4,11 @@ class PatientsController < ApplicationController
     # Rails.logger.debug("This is the subdomain: #{request.subdomain}")
     subdomain_request = request.subdomain
     if (subdomain_request == "www" || subdomain_request == "assisster")
-      subdomain_request = "williamdavis"
+      render :home
+    else
+      @doctor = Doctor.where({ subdomain_name: subdomain_request }).first
+      render :index
     end
-    @doctor = Doctor.where({ subdomain_name: subdomain_request }).first
-    render :index
   end
   
   def appointment

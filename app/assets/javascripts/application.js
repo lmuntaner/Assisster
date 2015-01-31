@@ -15,6 +15,7 @@
 //= require jquery-ui
 //= require jquery.serializejson
 //= require jquery.timepicker
+//= require jquery.backstretch.min
 //= require bootstrap-datepicker
 //= require underscore
 //= require backbone

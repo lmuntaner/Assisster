@@ -1,0 +1,87 @@
+div.home-container  {
+/*  background-color: #f2f2f2;*/
+    font-family: 'EB Garamond', serif;
+    font-weight: 300;
+    font-size: 16px;
+    color: #555;
+
+    -webkit-font-smoothing: antialiased;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Titles */
+.home-container h1, .home-container h2, .home-container h3, .home-container h4, .home-container h5, .home-container h6 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 300;
+    color: #333;
+}
+
+
+/* Paragraph & Typographic */
+.home-container p {
+    line-height: 28px;
+    margin-bottom: 25px;
+    font-size: 20px;
+}
+
+.centered {
+    text-align: center;
+}
+
+/* Links */
+.home-container a {
+    color: #f39c12;
+    word-wrap: break-word;
+
+    -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -moz-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -ms-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -o-transition: color 0.1s ease-in, background 0.1s ease-in;
+    transition: color 0.1s ease-in, background 0.1s ease-in;
+}
+
+.home-container .logo {
+	height: 40px;
+}
+
+.home-container a:hover,
+.home-container a:focus {
+    color: #7b7b7b;
+    text-decoration: none;
+    outline: 0;
+}
+
+.home-container a:before,
+.home-container a:after {
+    -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -moz-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -ms-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -o-transition: color 0.1s ease-in, background 0.1s ease-in;
+    transition: color 0.1s ease-in, background 0.1s ease-in;
+}
+
+.home-container hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+.logo {
+	text-align: center;
+	margin-top: 25px;
+}
+
+.home-container h1 {
+	font-size: 70px;
+}
+
+.w {
+	margin-top: 60px;
+}
+.w i {
+	font-size: 128px;
+	padding: 12px;
+}

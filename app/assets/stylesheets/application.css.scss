@@ -25,6 +25,7 @@
 @import "datepicker3";
 @import "7-three-bounce";
 @import "bootstrap-notify";
+@import "main";
 
 /* General styling */
 
@@ -38,6 +39,10 @@ body {
   height: 100%;
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+}
+
+#page-top {
+	margin-bottom: 0px;
 }
 
 .footer {
