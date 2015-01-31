@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       redirect_to dashboard_url
     else
       flash.now[:errors] = ["Invalid email or password"]
-      fail
+      redirect_to root_url
     end
   end
 
