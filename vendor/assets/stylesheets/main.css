@@ -66,13 +66,27 @@ div.home-description p {
     outline: 0;
 }
 
+a.home-link:hover,
+a.home-link:focus {
+/*    color: #7b7b7b;*/
+		color: #f39c12;
+    text-decoration: none;
+    outline: 0;
+}
+
 .home-container a:before,
-.home-container a:after {
+.home-container a:after,
+a.home-link:before,
+a.home-link:after {
     -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
     -moz-transition: color 0.1s ease-in, background 0.1s ease-in;
     -ms-transition: color 0.1s ease-in, background 0.1s ease-in;
     -o-transition: color 0.1s ease-in, background 0.1s ease-in;
     transition: color 0.1s ease-in, background 0.1s ease-in;
+}
+
+a.home-link {
+	color: #eee;
 }
 
 .home-container hr {
