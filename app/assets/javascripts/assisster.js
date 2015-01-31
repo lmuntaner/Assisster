@@ -4,6 +4,10 @@ window.Assisster = {
   Views: {},
   Routers: {},
   initialize: function (options) {
+		window.Doctor = {
+			id: options.doctor_id,
+			country_code: "34"
+		};
 		if (options.page === "doctor") {
 	    new Assisster.Routers.DoctorRouter({
 	      $rootEl: options.$rootEl

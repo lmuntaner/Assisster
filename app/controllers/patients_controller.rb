@@ -7,6 +7,7 @@ class PatientsController < ApplicationController
   end
   
   def appointment
+    @doctor = Doctor.where({ subdomain_name: request.subdomain }).first
     render :new_appointment
   end
 end

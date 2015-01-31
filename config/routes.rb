@@ -7,11 +7,13 @@ Rails.application.routes.draw do
   
   
   namespace :api, defaults: {format: :json} do
-    resources :services, only: [:index, :show, :update, :create, :destroy] do
+    resources :services, only: [:show, :update, :create, :destroy] do
       get "/:date", to: "appointments#get_date_available_slots"
     end
     resources :calendar_appointments, only: [:index]
-    resources :doctors, only: [:index]
+    resources :doctors, only: [:index] do
+      resources :services, only: [:index]
+    end
     resources :appointments, only: [:create, :update, :show]
     get "/free_time/:date", to: "appointments#getFreeTime"
     resources :confirm_appointments, only: [:update]

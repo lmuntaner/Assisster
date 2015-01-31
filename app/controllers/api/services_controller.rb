@@ -2,7 +2,7 @@ class Api::ServicesController < ApplicationController
   before_action :ensure_signed_in, only: [:create, :update, :destroy]
   
   def index
-    @services = Service.all
+    @services = Service.where({ doctor_id: params[:doctor_id] })
     render :index
   end
   

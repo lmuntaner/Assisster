@@ -2,7 +2,7 @@ Assisster.Views.ChooseService = Backbone.View.extend({
 	template: JST["patients/choose_service"],
 	
 	initialize: function () {
-		this.listenTo(this.collection, "sync", this.render);
+		this.listenTo(this.collection, "syncServices", this.render);
 	},
 	
 	render: function () {

@@ -8,10 +8,11 @@
 <script>
   $(Assisster.initialize({
     $rootEl: $('#patient-appointment'),
-		page: "patient"
+	page: "patient",
+	doctor_id: <%= @doctor.id %>
   }));
-	window.Doctor = {
-		id: 1,
-		country_code: "34"
-	};
+	// window.Doctor = {
+// 		id: 1,
+// 		country_code: "34"
+// 	};
 </script>

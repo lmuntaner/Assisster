@@ -8,7 +8,7 @@ Assisster.Routers.PatientRouter = Backbone.Router.extend({
   initialize: function(options) {
     this.$rootEl = options.$rootEl;
 		this.collection = new Assisster.Collections.Services();
-		this.collection.fetch();
+		this.collection.setDoctorServices(window.Doctor.id);
   },
 	
 	choose_appointment: function (id) {
