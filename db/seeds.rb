@@ -1,11 +1,22 @@
 
 first_doctor = Doctor.create!(email: "william@wheat.com", password:"wheatbelly",
                               country_code:"34", name:"William Davis",
-                              subdomain_name:"williamdavis", sub_title: "Author of Wheat Belly",
+                              subdomain_name:"williamdavis", sub_title: "Autor de <em>'Sin Trigo Gracias'</em>",
                               latitude: 37.7821343, longitude: -122.4006397,
                               street_address: "795 Folsom Ave, Suite 600", city_address: "San Francisco, CA 94107",
                               phone_number: "1234567890",
-                              description: "This is just a test description")
+                              description: "<p>Over 80% of the people I meet today are pre-diabetic or diabetic.
+                                            In an effort to reduce blood sugar, I asked patients to remove all
+                                            wheat products from their diet based on the simple fact that, with
+                                            few exceptions, foods made of wheat flour raise blood sugar higher
+                                            than nearly all other foods. Yes, that’s true for even whole grains.
+                                            More than table sugar, more than a Snickers bar. Organic, multigrain,
+                                            sprouted–it makes no difference.</p>
+                                            <p>I witnessed incredible experiences like the 26-year old man incapacitated
+                                            by full-body joint pains who started to jog again, pain-free. And the 38-year
+                                            old schoolteacher who, just weeks before her surgeon scheduled colon
+                                            removal and ileostomy bag, experienced a cure from ulcerative colitis and
+                                            intestinal hemorrhage and stopped all medications.</p>")
 first_doctor.services.create(title: "Recuperación total", duration_min: 60,
                              description: "El mejor servicio")
 first_doctor.services.create(title: "Dejar el trigo", duration_min: 45,
@@ -13,7 +24,7 @@ first_doctor.services.create(title: "Dejar el trigo", duration_min: 45,
 first_doctor.services.create(title: "Consulta holistica", duration_min: 90,
                              description: "Una consulta con una vision holistica del cuerpo")
 first_doctor.services.create(title: "Problemas digestivos", duration_min: 30,
-                            description: "Centramos los esfuerzos en mejorar la salud intestinal del paciente")
+                            description: "<p>Centramos los esfuerzos en mejorar la salud intestinal del paciente</p>")
                             
 second_doctor = Doctor.create!(email: "anna@rosell.com", password:"annarosell",
                               country_code:"34", name:"Anna Rosell",
