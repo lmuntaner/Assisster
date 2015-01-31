@@ -10,6 +10,7 @@
 #  updated_at       :datetime
 #  name             :string(255)
 #  country_code     :string(255)
+#  subdomain_name   :string(255)      not null
 #
 
 class Doctor < ActiveRecord::Base

@@ -1,5 +1,7 @@
 
-first_doctor = Doctor.create!(email: "william@wheat.com", password:"wheatbelly", country_code:"34", name:"William Davis")
+first_doctor = Doctor.create!(email: "william@wheat.com", password:"wheatbelly",
+                              country_code:"34", name:"William Davis",
+                              subdomain_name:"williamdavis")
 first_doctor.services.create(title: "Recuperación total", duration_min: 60,
                              description: "El mejor servicio")
 first_doctor.services.create(title: "Dejar el trigo", duration_min: 45,
@@ -7,6 +9,18 @@ first_doctor.services.create(title: "Dejar el trigo", duration_min: 45,
 first_doctor.services.create(title: "Consulta holistica", duration_min: 90,
                              description: "Una consulta con una vision holistica del cuerpo")
 first_doctor.services.create(title: "Problemas digestivos", duration_min: 30,
+                            description: "Centramos los esfuerzos en mejorar la salud intestinal del paciente")
+                            
+second_doctor = Doctor.create!(email: "anna@rosell.com", password:"annarosell",
+                              country_code:"34", name:"Anna Rosell",
+                              subdomain_name:"annarosell")
+second_doctor.services.create(title: "Primera visita", duration_min: 60,
+                             description: "El mejor servicio de Mallorca")
+second_doctor.services.create(title: "Trigo caca", duration_min: 45,
+                            description: "Ayudar a dejar el vicio del trigo para siempre jamas")
+second_doctor.services.create(title: "Super holistica", duration_min: 90,
+                             description: "Una super consulta con una vision holistica del cuerpo")
+second_doctor.services.create(title: "Tipica", duration_min: 30,
                             description: "Centramos los esfuerzos en mejorar la salud intestinal del paciente")
 
 day = DateTime.now.change(hour: 8)
@@ -34,8 +48,21 @@ writers = [ %w(John Fante), %w(Charles Bukowski), %w(Truman Capote), %w(Sebastia
                                appointment_status: statuses.sample,
                                startTime: appointment,
                                endTime: appointment.in(3600))
+   patient2 = writers.sample
+   second_doctor.appointments.create(title: second_doctor.services.sample.title,
+                              email: Faker::Internet.email,
+                              fname: patient2.first,
+                              lname: patient2.last,
+                              appointment_status: statuses.sample,
+                              startTime: appointment,
+                              endTime: appointment.in(3600))
   end
   first_doctor.appointments.create(title: "office hour",
+                                   appointment_status: "Confirmed",
+                                   startTime: new_day,
+                                   endTime: new_day.in(3600 * 8),
+                                   office_hour: true)
+  second_doctor.appointments.create(title: "office hour",
                                    appointment_status: "Confirmed",
                                    startTime: new_day,
                                    endTime: new_day.in(3600 * 8),
