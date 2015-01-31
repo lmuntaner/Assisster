@@ -3,7 +3,7 @@ class PatientsController < ApplicationController
   def index
     # Rails.logger.debug("This is the subdomain: #{request.subdomain}")
     subdomain_request = request.subdomain
-    if (subdomain_request == "www")
+    if (subdomain_request == "www" || subdomain_request == "assisster")
       subdomain_request = "williamdavis"
     end
     @doctor = Doctor.where({ subdomain_name: subdomain_request }).first
