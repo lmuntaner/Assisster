@@ -1,6 +1,6 @@
 
 first_doctor = Doctor.create!(email: "william@wheat.com", password:"wheatbelly",
-                              country_code:"34", name:"William Davis",
+                              country_code:"34", name:"William Davis", domain_name: "randomdoctor.com",
                               subdomain_name:"williamdavis", sub_title: "Autor de <em>'Sin Trigo Gracias'</em>",
                               latitude: 37.7821343, longitude: -122.4006397,
                               street_address: "795 Folsom Ave, Suite 600", city_address: "San Francisco, CA 94107",
