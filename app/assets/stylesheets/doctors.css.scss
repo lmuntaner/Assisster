@@ -70,6 +70,13 @@ div.right-calendar-header {
 
 .tabledata-appointment-list {
 	width: 150px;
+	max-width: 150px;
+}
+
+.tabledata-title {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .tabledata-appointment-list-date {
