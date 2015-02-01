@@ -9,7 +9,7 @@
 		</div>
 		<div class="row centered home-icon">
 			<div class="col-lg-8 col-lg-offset-2 w tooltip-demo">
-				<a data-toggle="tooltip" title="Dr William Davis" data-placement="bottom" href="http://www.randomdoctor.com"><i class="fa fa-user-md fa-5"></i></a>
+				<a href="http://www.randomdoctor.com"><i class="fa fa-user-md doctor-link"></i></a>
 			</div>
 		</div>
     </div><!-- /.container -->
@@ -23,7 +23,17 @@
     		</div>
     	</div>
     </div>
+		<div class="speech-container">
+			<p class="speech-bubble">
+				Haz Click y visita nuestro ejemplo!
+			</p>
+		</div>
 		
     <script>
         $.backstretch("/assets/bg5.jpg", {speed: 500});
+				$("i.doctor-link").hover(function () {
+					$("div.speech-container").css("opacity", "1");
+				}, function () {
+					$("div.speech-container").css("opacity", "0");
+				});
     </script>
