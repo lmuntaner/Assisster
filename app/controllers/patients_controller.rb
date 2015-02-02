@@ -8,7 +8,7 @@ class PatientsController < ApplicationController
       render :index
     else
       subdomain_request = request.subdomain
-      if (subdomain_request == "www" || subdomain_request == "assisster")
+      if (subdomain_request == "www" || subdomain_request == "assisster" || subdomain_request == "assisster-dev")
         render :home
       else
         @doctor = Doctor.where({ subdomain_name: subdomain_request }).first
