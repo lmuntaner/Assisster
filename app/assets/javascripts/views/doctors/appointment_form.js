@@ -150,13 +150,8 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 			this.$('#appointment-modal').modal('hide');
 			this.remove();
 		} else {
-			var $errors = $('<span>').text('Error!').addClass('error');
-			this.$('#appointment-modal .panel-body').prepend($errors);
+			this.$("div.appointment-title").addClass("has-error");
 		}
-	},
-	
-	test: function (event) {
-		debugger;
 	},
 	
 	validateForm: function (params) {
