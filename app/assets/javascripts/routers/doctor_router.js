@@ -58,17 +58,19 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
 		}
 		var router = this;
 		this.channel.bind('appointment-event', function(data) {
-			var appointment = router.collection.get(data.appointment.id);
-			if (appointment) {
-				appointment.fetch({
-					success: function (appointment) {
-						router.collection.trigger('pusherSync', appointment);
-					}
-				});
-			} else {
-				appointment = new Assisster.Models.Appointment(data.appointment);
-				router.collection.add(appointment, { at: 0 });
-        router.collection.trigger('pusherAdd', appointment);
+			if (data.appointment.doctor_id === this.model.id) {
+				var appointment = router.collection.get(data.appointment.id);
+				if (appointment) {
+					appointment.fetch({
+						success: function (appointment) {
+							router.collection.trigger('pusherSync', appointment);
+						}
+					});
+				} else {
+					appointment = new Assisster.Models.Appointment(data.appointment);
+					router.collection.add(appointment, { at: 0 });
+	        router.collection.trigger('pusherAdd', appointment);
+				}
 			}
 		});
 		
@@ -92,13 +94,13 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
 		  $('div.top-right').notify({
 		     message: { text: msg },
 				 fadeOut: { enabled: true, delay: 3000 }
-		   }).show();			
+		   }).show();
 		}
 	},
 	
 	notifySentNotification: function (notification) {
 		var msg;
-		if (notification.type == "success") {
+		if (notification.type === "success") {
 			msg = notification.notification_type + " sent successfully to: " + notification.receiver + "     ";			
 		} else {
 			msg = notification.notification_type + " NOT sent to: " + notification.receiver + "     "
