@@ -3,6 +3,7 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
   className: "appointment-form-container",
   
   events: {
+		"click .my-modal": "closeView",
 		"click #submit-appointment-form": "save",
 		"click #close-appointment-form": "closeView",
 		"click #cancel-appointment-form": "cancel",
@@ -150,6 +151,10 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 			var $errors = $('<span>').text('Error!').addClass('error');
 			this.$('#appointment-modal .panel-body').prepend($errors);
 		}
+	},
+	
+	test: function (event) {
+		debugger;
 	},
 	
 	validateForm: function (params) {
