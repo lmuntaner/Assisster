@@ -4,7 +4,7 @@ class Api::SendMessagesController < ApplicationController
   def create
     phone_number = sms_params["phone_number"]
     message = sms_params["message"]
-    send_message(phone_number, message)
+    send_message(phone_number, current_doctor, message)
     render json: sms_params
   end
   

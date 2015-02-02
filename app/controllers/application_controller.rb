@@ -44,8 +44,8 @@ class ApplicationController < ActionController::Base
                      {:appointment => appointment.as_json})
     end
     
-    def trigger_notification_event(notification_type, receiver, type)
-      notification = {notification_type: notification_type, receiver: receiver, type: type}
+    def trigger_notification_event(notification_type, receiver, type, doctor_id)
+      notification = {notification_type: notification_type, receiver: receiver, type: type, doctor_id: doctor_id}
       Pusher.trigger('appointment-channel',
                      'notification-event',
                      {notification: notification.as_json})
@@ -70,13 +70,13 @@ class ApplicationController < ActionController::Base
        async = true
        result = mandrill.messages.send message, async
      rescue Mandrill::Error => e
-       trigger_notification_event("Email", email, "danger")
+       trigger_notification_event("Email", email, "danger", doctor.id)
        puts "A mandrill error occurred: #{e.class} - #{e.message}"
      end
-     trigger_notification_event("Email", email, "success")
+     trigger_notification_event("Email", email, "success", doctor.id)
     end
     
-    def send_message(phone_number, message)
+    def send_message(phone_number, doctor, message)
       sms_message = URI::encode(message)
       api_key = ENV["NEXMO_API_KEY"]
       api_secret = ENV["NEXMO_API_SECRET"]
@@ -85,9 +85,9 @@ class ApplicationController < ActionController::Base
       response = RestClient.get(url) do |response, request, result|
         response_hash = JSON.parse(response)
         if response_hash['messages'][0]['status'] == "0"
-          trigger_notification_event("Message", phone_number, "success")
+          trigger_notification_event("Message", phone_number, "success", doctor.id)
         else
-          trigger_notification_event("Message", phone_number, "danger")
+          trigger_notification_event("Message", phone_number, "danger", doctor.id)
         end
       end
     end

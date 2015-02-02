@@ -58,7 +58,7 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
 		}
 		var router = this;
 		this.channel.bind('appointment-event', function(data) {
-			if (data.appointment.doctor_id === this.model.id) {
+			if (data.appointment.doctor_id === router.model.id) {
 				var appointment = router.collection.get(data.appointment.id);
 				if (appointment) {
 					appointment.fetch({
@@ -75,7 +75,9 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
 		});
 		
 		this.channel.bind('notification-event', function(data) {
-			router.notifySentNotification(data.notification);
+			if (data.notification.doctor_id === router.model.id) {
+				router.notifySentNotification(data.notification);
+			}
 		});
 	},
 	
