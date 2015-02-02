@@ -3,6 +3,7 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
 	className: "appointment-form-container",
 	
 	events: {
+		"click div.my-modal": "closeView",
 		"click #close-office-hour-form": "closeView",
 		"click #submit-office-hour-form": "save",
 		"click #cancel-office-hour-form": "cancel"

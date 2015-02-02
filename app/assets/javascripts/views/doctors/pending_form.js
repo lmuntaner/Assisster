@@ -3,6 +3,7 @@ Assisster.Views.PendingForm = Backbone.View.extend({
 	className: "pending-form-container",
 	
 	events: {
+		"click div.my-modal": "closeView",
 		"click #close": "closeView",
 		"click #send-message": "message",
 		"click #send-email": "email",
