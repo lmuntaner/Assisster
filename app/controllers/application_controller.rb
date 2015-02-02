@@ -38,8 +38,8 @@ class ApplicationController < ActionController::Base
       redirect_to root_url unless signed_in?
     end
     
-    def trigger_appointment_event(appointment, doctor)
-      channel = "doctor-channel-#{doctor.id}"
+    def trigger_appointment_event(appointment)
+      channel = "doctor-channel-#{appointment.doctor_id}"
       Pusher.trigger(channel,
                      'appointment-event',
                      {:appointment => appointment.as_json})
