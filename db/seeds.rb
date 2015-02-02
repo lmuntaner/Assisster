@@ -90,7 +90,7 @@ end
 
 limones = Doctor.create!(email: "sebas.limones@gmail.com", password:"barracar",
                               country_code:"34", name:"Sebastia Limones",
-                              subdomain_name:"limones", sub_title: "Autor de <em>'Sin Trigo Gracias'</em>",
+                              subdomain_name:"limones", sub_title: "Feis bonda",
                               latitude: 39.5420151, longitude: 3.336233,
                               street_address: "Carrer Concepcio, 1", city_address: "Porto Cristo 07680",
                               phone_number: "1234567890",
