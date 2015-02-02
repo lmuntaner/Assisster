@@ -38,15 +38,17 @@ class ApplicationController < ActionController::Base
       redirect_to root_url unless signed_in?
     end
     
-    def trigger_appointment_event(appointment)
-      Pusher.trigger('appointment-channel',
+    def trigger_appointment_event(appointment, doctor)
+      channel = "doctor-channel-#{doctor.id}"
+      Pusher.trigger(channel,
                      'appointment-event',
                      {:appointment => appointment.as_json})
     end
     
-    def trigger_notification_event(notification_type, receiver, type, doctor_id)
-      notification = {notification_type: notification_type, receiver: receiver, type: type, doctor_id: doctor_id}
-      Pusher.trigger('appointment-channel',
+    def trigger_notification_event(notification_type, receiver, type, doctor)
+      notification = {notification_type: notification_type, receiver: receiver, type: type, doctor_id: doctor.id}
+      channel = "doctor-channel-#{doctor.id}"
+      Pusher.trigger(channel,
                      'notification-event',
                      {notification: notification.as_json})
     end
@@ -70,10 +72,10 @@ class ApplicationController < ActionController::Base
        async = true
        result = mandrill.messages.send message, async
      rescue Mandrill::Error => e
-       trigger_notification_event("Email", email, "danger", doctor.id)
+       trigger_notification_event("Email", email, "danger", doctor)
        puts "A mandrill error occurred: #{e.class} - #{e.message}"
      end
-     trigger_notification_event("Email", email, "success", doctor.id)
+     trigger_notification_event("Email", email, "success", doctor)
     end
     
     def send_message(phone_number, doctor, message)
@@ -85,9 +87,9 @@ class ApplicationController < ActionController::Base
       response = RestClient.get(url) do |response, request, result|
         response_hash = JSON.parse(response)
         if response_hash['messages'][0]['status'] == "0"
-          trigger_notification_event("Message", phone_number, "success", doctor.id)
+          trigger_notification_event("Message", phone_number, "success", doctor)
         else
-          trigger_notification_event("Message", phone_number, "danger", doctor.id)
+          trigger_notification_event("Message", phone_number, "danger", doctor)
         end
       end
     end

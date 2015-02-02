@@ -6,9 +6,4 @@ class Api::DoctorsController < ApplicationController
     
     render :index
   end
-  
-  private
-  def ensure_signed_in
-    redirect_to root_url unless signed_in?
-  end
 end

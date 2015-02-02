@@ -14,11 +14,12 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
     this.model.fetch({
     	success: function () {
     		router.collection.trigger("firstFetch");
+				router.listenToPusher();
     	}
     });
 		this.collection = this.model.appointments();
     this.$rootEl = options.$rootEl;
-		this.listenToPusher();
+		// this.listenToPusher();
 		this.listenTo(this.collection, 'pusherAdd', this.notifyNewAppointment);
   },
 	
@@ -54,7 +55,8 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
 			this.pusher = new Pusher('b364d5eaf36fa6f4f92f');			
 		}
 		if (!this.channel) {
-			this.channel = this.pusher.subscribe('appointment-channel');			
+			var doctorChannel = "doctor-channel-" + this.model.id;
+			this.channel = this.pusher.subscribe(doctorChannel);
 		}
 		var router = this;
 		this.channel.bind('appointment-event', function(data) {

@@ -14,7 +14,7 @@ class Api::AppointmentsController < ApplicationController
     end
     
     if appointment.save
-      trigger_appointment_event(appointment)
+      trigger_appointment_event(appointment, current_doctor)
       render json: appointment
     else
       render json: appointment.errors.full_messages, status: :unprocessable_entity
@@ -25,7 +25,7 @@ class Api::AppointmentsController < ApplicationController
     appointment = Appointment.find(params[:id])
     
     if appointment.update(appointment_params)
-      trigger_appointment_event(appointment)
+      trigger_appointment_event(appointment, current_doctor)
       render json: appointment
     else
       render json: appointment.errors.full_messages, status: :unprocessable_entity
