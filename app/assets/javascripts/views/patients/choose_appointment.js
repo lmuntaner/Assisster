@@ -34,6 +34,7 @@ Assisster.Views.ChooseAppointment = Backbone.CompositeView.extend({
 		this.$('.date-pick').datepicker({
 			startDate: "0d",
 			language: "es",
+			weekStart: 1,
 			beforeShowDay: function(date) {
 				var momentDate = moment(date)
 				return view.availableDates.some(function (availableDate) {
