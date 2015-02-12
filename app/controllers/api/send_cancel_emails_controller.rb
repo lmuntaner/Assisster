@@ -6,10 +6,9 @@ class Api::SendCancelEmailsController < ApplicationController
     body = "<p>Hola #{appointment.full_name},</p>"
     body += "<p>Su cita con #{appointment.doctor.name} para el
             #{appointment.date} a las #{appointment.time} no ha podido ser confirmada.</p>"
-    body += "Si lo desea puede pedir otra cita visitando #{appointment.doctor.url}"
+    body += "<p>Si lo desea puede pedir otra cita visitando #{appointment.doctor.url}</p>"
     body += "<p>Enviado por Assisster</p>"
     subject = "Cancelacion cita #{appointment.doctor.name}"
-    subject = "Appointment Information"
     email = appointment.email
     send_email(email, appointment.full_name, current_doctor, subject, body)
     render json: appointment
