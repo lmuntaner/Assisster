@@ -26,6 +26,11 @@ class Appointment < ActiveRecord::Base
   
   belongs_to :doctor
   
+  MONTHS = ["", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio",
+            "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+  
+  DAYS = ["domingo", "lunes", "martes", "miercoles", "jueves", "viernes", "sabado"]
+  
   def self.send_email_reminders
     appointments = Appointment.where({
       startTime: Date.tomorrow.midnight..Date.tomorrow.tomorrow.midnight,
@@ -46,7 +51,9 @@ class Appointment < ActiveRecord::Base
   end
   
   def date
-    self.startTime.strftime("%d/%m")
+    # self.startTime.strftime("%d/%m")
+    date_obj = self.startTime.to_date
+    "#{DAYS[date_obj.wday]}, #{date_obj.day} de #{MONTHS[date_obj.month]}"
   end
   
   def time
