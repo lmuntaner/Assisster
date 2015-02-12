@@ -54,7 +54,7 @@ class ApplicationController < ActionController::Base
     end
     
     def send_email(email, name, doctor, subject, body)
-      html_msg = "<p>#{body}<p>"
+      html_msg = body
       begin
         mandrill = Mandrill::API.new ENV["MANDRILL_API_KEY"]
         message = {

@@ -11,6 +11,14 @@
 #  name             :string(255)
 #  country_code     :string(255)
 #  subdomain_name   :string(255)      not null
+#  description      :text
+#  sub_title        :string(255)
+#  latitude         :float
+#  longitude        :float
+#  street_address   :string(255)
+#  city_address     :string(255)
+#  phone_number     :string(255)
+#  domain_name      :string(255)
 #
 
 require 'test_helper'

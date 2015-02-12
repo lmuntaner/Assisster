@@ -11,6 +11,14 @@
 #  name             :string(255)
 #  country_code     :string(255)
 #  subdomain_name   :string(255)      not null
+#  description      :text
+#  sub_title        :string(255)
+#  latitude         :float
+#  longitude        :float
+#  street_address   :string(255)
+#  city_address     :string(255)
+#  phone_number     :string(255)
+#  domain_name      :string(255)
 #
 
 class Doctor < ActiveRecord::Base
@@ -44,6 +52,14 @@ class Doctor < ActiveRecord::Base
     self.dr_session_token = create_token
     self.save!
     self.dr_session_token
+  end
+  
+  def url
+    if self.domain_name
+      return "www.#{self.domain_name}"
+    else
+      return "#{self.subdomain_name}.assisster.com"
+    end
   end
 
   private

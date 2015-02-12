@@ -33,8 +33,10 @@ class Appointment < ActiveRecord::Base
       appointment_status: "Confirmed"
     })
     appointments.each do |appointment|
-      subject = "Appointment Reminder"
-      body = "This is an appointment reminder"
+      subject = "Recordatorio cita #{doctor.name}"
+      body = "<p>Hola #{appointment.full_name},</p>"
+      body += "<p>Recuerde que mañana tiene cita a las #{appointment.time} con #{appointment.doctor.name}.</p>"
+      body += "<p>Enviado por Assisster</p>"
       appointment.send_email(subject, body)
     end
   end
@@ -44,7 +46,11 @@ class Appointment < ActiveRecord::Base
   end
   
   def date
-    "#{startTime.date}"
+    self.startTime.strftime("%d/%m")
+  end
+  
+  def time
+    self.startTime.strftime("%H:%M")
   end
   
   def full_phone
@@ -52,7 +58,7 @@ class Appointment < ActiveRecord::Base
   end
     
   def send_email(subject, body)
-    html_msg = "<p>#{body}<p>"
+    html_msg = body
     doctor = self.doctor
     begin
       mandrill = Mandrill::API.new ENV["MANDRILL_API_KEY"]

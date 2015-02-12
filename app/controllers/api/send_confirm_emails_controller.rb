@@ -3,8 +3,11 @@ class Api::SendConfirmEmailsController < ApplicationController
   
   def show
     appointment = Appointment.find(params[:id])
-    body = "Your appointment with #{current_doctor.name} is confirmed"
-    subject = "Appointment Confirmation"
+    body = "<p>Hola #{appointment.full_name},</p>"
+    body += "<p>Su cita con #{appointment.doctor.name} para el
+            #{appointment.date} a las #{appointment.time} ha sido confirmada.</p>"
+    body += "<p>Enviado por Assisster</p>"
+    subject = "Confirmacion cita #{appointment.doctor.name}"
     email = appointment.email
     send_email(email, appointment.full_name, current_doctor, subject, body)
     render json: appointment
