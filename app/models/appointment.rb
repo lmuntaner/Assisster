@@ -38,7 +38,7 @@ class Appointment < ActiveRecord::Base
       appointment_status: "Confirmed"
     })
     appointments.each do |appointment|
-      subject = "Recordatorio cita #{doctor.name}"
+      subject = "Recordatorio cita #{appointment.doctor.name}"
       body = "<p>Hola #{appointment.full_name},</p>"
       body += "<p>Recuerde que mañana tiene cita a las #{appointment.time} con #{appointment.doctor.name}.</p>"
       body += "<p>Enviado por Assisster</p>"
