@@ -6,7 +6,7 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 		"click .my-modal": "closeView",
 		"click #submit-appointment-form": "save",
 		"click #close-appointment-form": "closeView",
-		"click #cancel-appointment-form": "cancel",
+		"click #cancel-appointment-form": "cancelAppointment",
 		"click #confirm-appointment-form": "confirmAppointment"
   },
 	
@@ -57,18 +57,29 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 		this.addSubview(this.selectorDate, this.toDateForm);
 	},
 	
-	cancel: function (event) {
-		var appointment = this.model;
+	cancelAppointment: function (event) {
+		// var appointment = this.model;
+		// var view = this;
+		// var url = "/api/cancel_appointments/" + this.model.id;
+		// $.ajax({
+		// 	type: "PATCH",
+		// 	url: url,
+		// 	success: function (response) {
+		// 		$('#calendar').fullCalendar('removeEvents', [appointment.id]);
+		// 		appointment.set("appointment_status", "Cancelled");
+		// 		view.collection.bringToFront(view.model);
+		// 		view.collection.trigger("statusSync", view.model);
+		// 		view.remove();
+		// 	}
+		// });
+		this.model.set("appointment_status", "Cancelled");
+		$('#calendar').fullCalendar('removeEvents', [this.model.id]);
 		var view = this;
-		var url = "/api/cancel_appointments/" + this.model.id;
-		$.ajax({
-			type: "PATCH",
-			url: url,
-			success: function () {
-				$('#calendar').fullCalendar('removeEvents', [appointment.id]);
+		this.model.save({}, {
+			success: function (response) {
 				view.remove();
 			}
-		})
+		});
 	},
 	
 	// I need to figure out how to handle the clicks or mouseup outside this view
@@ -83,16 +94,26 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 	},
 	
 	confirmAppointment: function (event) {
-		var appointment = this.model;
+		// var appointment = this.model;
+		// var view = this;
+		// var url = "/api/confirm_appointments/" + this.model.id;
+		// $.ajax({
+		// 	type: "PATCH",
+		// 	url: url,
+		// 	success: function () {
+		// 		appointment.set("appointment_status", "Confirmed");
+		// 		view.collection.bringToFront(view.model);
+		// 		view.collection.trigger("statusSync", view.model);
+		// 		view.remove();
+		// 	}
+		// });
+		this.model.set("appointment_status", "Confirmed");
 		var view = this;
-		var url = "/api/confirm_appointments/" + this.model.id;
-		$.ajax({
-			type: "PATCH",
-			url: url,
-			success: function () {
+		this.model.save({}, {
+			success: function (response) {
 				view.remove();
 			}
-		})
+		});
 	},
 	
 	onRender: function () {
@@ -146,7 +167,7 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 				phone_number: params.phone_number,
 				appointment_status: appointmentStatus
 	    };
-		  this.model.save(appointmentParams)				
+		  this.model.save(appointmentParams);			
 			this.$('#appointment-modal').modal('hide');
 			this.remove();
 		} else {

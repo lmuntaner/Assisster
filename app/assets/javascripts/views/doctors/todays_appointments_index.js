@@ -8,7 +8,7 @@ Assisster.Views.TodaysAppointmentsIndex = Backbone.CompositeView.extend({
 	
   initialize: function () {
 		this.getTodaysAppointments();
-		this.listenTo(this.collection, "pusherSync pusherAdd firstFetch", this.getTodaysAppointments);
+		this.listenTo(this.collection, "statusSync pusherAdd firstFetch sync", this.getTodaysAppointments);
   },
 	
 	addTodaySlots: function (objects) {

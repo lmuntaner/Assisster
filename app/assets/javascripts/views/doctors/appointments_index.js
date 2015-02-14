@@ -8,7 +8,7 @@ Assisster.Views.AppointmentsIndex = Backbone.CompositeView.extend({
 	
   initialize: function (options) {
 		this.setApppointmentsSubviews();
-		this.listenTo(this.collection, "pusherSync", this.setAppointmentsSubviews);
+		this.listenTo(this.collection, "statusSync sync", this.setAppointmentsSubviews);
 		this.listenTo(this.collection, "puserhAdd add", this.addAppointmentSubview);
   },
 	
