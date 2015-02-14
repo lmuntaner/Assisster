@@ -8,8 +8,8 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 		"click #close-appointment-form": "closeView",
 		"click #cancel-appointment-form": "showForm",
 		"click #confirm-appointment-form": "showForm",
-		"click #send-message": "sendMessage",
-		"click #send-email": "sendEmail",
+		"click #send-message": "message",
+		"click #send-email": "email",
 		"click #send-both": "sendBoth",
 		"click #send-not": "sendNot"
   },
@@ -61,7 +61,7 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 		this.addSubview(this.selectorDate, this.toDateForm);
 	},
 	
-	cancelAppointment: function (event) {
+	cancelAppointment: function () {
 		// var appointment = this.model;
 		// var view = this;
 		// var url = "/api/cancel_appointments/" + this.model.id;
@@ -79,22 +79,14 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 		
 		this.model.set("appointment_status", "Cancelled");
 		$('#calendar').fullCalendar('removeEvents', [this.model.id]);
-		var view = this;
-		this.model.save();
-	},
-	
-	// I need to figure out how to handle the clicks or mouseup outside this view
-	checkClose: function (event) {
-		if (event.currentTarget !== this.$el[0]) {
-			this.closeView();
-		}
+		this.save();
 	},
 	
 	closeView: function () {
 		this.remove();
 	},
 	
-	confirmAppointment: function (event) {
+	confirmAppointment: function () {
 		// var appointment = this.model;
 		// var view = this;
 		// var url = "/api/confirm_appointments/" + this.model.id;
@@ -110,8 +102,17 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 		// });
 		
 		this.model.set("appointment_status", "Confirmed");
-		var view = this;
-		this.model.save();
+		this.save();
+	},
+	
+	email: function () {
+		this.sendEmail();
+		this.updateStatus();
+	},
+	
+	message: function () {
+		this.sendMessage();
+		this.updateStatus();
 	},
 	
 	onRender: function () {
@@ -138,19 +139,19 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
     return this;
   },
 
-	save: function (event) {
-		event.preventDefault();
-		var params = $(event.currentTarget).parent().serializeJSON().appointment;
+	save: function () {
+		var params = $("form.appointment-form").serializeJSON().appointment;
 		if (this.validateForm(params)) {
 			var stringStartTime = params.startTimeDate + " " + params.startTimeHour;
 	    var startTime = moment.utc(stringStartTime, "D/M/YYYY HH:mm");
 			var stringEndTime = params.endTimeDate + " " + params.endTimeHour;
 		  var endTime = moment.utc(stringEndTime, "D/M/YYYY HH:mm");
-	    var view = this;
 			var appointmentStatus = this.model.get('appointment_status');
-			if (appointmentStatus === "Cancelled" || this.model.isNew()) {
-				appointmentStatus = "Confirmed";
-			}
+			if (!this.action) {
+				if (appointmentStatus === "Cancelled" || this.model.isNew()) {
+					appointmentStatus = "Confirmed";
+				}
+			} 
 			if (!params.email) {
 				params.email = null;
 			}
@@ -166,14 +167,13 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 				appointment_status: appointmentStatus
 	    };
 		  this.model.save(appointmentParams);			
-			// this.$('#appointment-modal').modal('hide');
 			this.closeView();
 		} else {
 			this.$("div.appointment-title").addClass("has-error");
 		}
 	},
 	
-	sendBoth: function (event) {
+	sendBoth: function () {
 		this.sendEmail();
 		this.sendMessage();
 		this.updateStatus();
@@ -182,22 +182,18 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 	
 	sendEmail: function () {
 		var url = "api/send_" + this.action + "_emails/" + this.model.id;
-		this.updateStatus();
 		$.ajax({
 		  url: url,
 		  type: "GET"
 		});
-		this.closeView();
 	},
 	
 	sendMessage: function () {
 		var url = "api/send_" + this.action + "_messages/" + this.model.id;
-		this.updateStatus();
 		$.ajax({
 		  url: url,
 		  type: "GET"
 		});
-		this.closeView();
 	},
 	
 	sendNot: function () {
@@ -207,6 +203,7 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 	
 	showForm: function (event) {
 		this.$("div.reminders-container").css("top", 0);
+		debugger;
 		if ($(event.currentTarget).text().toLowerCase() === "confirmar") {
 			this.action = "confirm";
 		} else {
