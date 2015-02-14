@@ -3,7 +3,9 @@ class Api::SendCancelMessagesController < ApplicationController
   
   def show
     appointment = Appointment.find(params[:id])
-    message = "<p>Your appointment with #{current_doctor.name} has NOT been confirmed</p>"
+    message = "Lo sentimos, su cita con #{appointment.doctor.name} para #{appointment.date} a las
+              #{appointment.time} no ha podido ser confirmada. Si lo desea puede pedir otra cita
+              visitando #{appointment.doctor.url}. Muchas gracias."
     phone_number = appointment.full_phone
     send_message(phone_number, current_doctor, message)
     render json: appointment

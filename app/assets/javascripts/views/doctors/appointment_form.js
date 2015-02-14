@@ -72,14 +72,17 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 		// 		view.remove();
 		// 	}
 		// });
-		this.model.set("appointment_status", "Cancelled");
-		$('#calendar').fullCalendar('removeEvents', [this.model.id]);
-		var view = this;
-		this.model.save({}, {
-			success: function (response) {
-				view.remove();
-			}
-		});
+		
+		// this.model.set("appointment_status", "Cancelled");
+		// $('#calendar').fullCalendar('removeEvents', [this.model.id]);
+		// var view = this;
+		// this.model.save({}, {
+		// 	success: function (response) {
+		// 		view.remove();
+		// 	}
+		// });
+		
+		this.$("div.reminders-container").css("display", "block");
 	},
 	
 	// I need to figure out how to handle the clicks or mouseup outside this view
@@ -107,13 +110,17 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 		// 		view.remove();
 		// 	}
 		// });
-		this.model.set("appointment_status", "Confirmed");
-		var view = this;
-		this.model.save({}, {
-			success: function (response) {
-				view.remove();
-			}
-		});
+		
+		// this.model.set("appointment_status", "Confirmed");
+		// var view = this;
+		// this.model.save({}, {
+		// 	success: function (response) {
+		// 		view.remove();
+		// 	}
+		// });
+		
+		this.$("div.reminder-container").css("display", "block");
+		
 	},
 	
 	onRender: function () {

@@ -3,7 +3,8 @@ class Api::SendConfirmMessagesController < ApplicationController
   
   def show
     appointment = Appointment.find(params[:id])
-    message = "Your appointment with #{current_doctor.name} is confirmed"
+    message = "Su cita con #{appointment.doctor.name} para el #{appointment.date} a las
+              #{appointment.time} ha sido confirmada. Muchas gracias."
     phone_number = appointment.full_phone
     send_message(phone_number, current_doctor, message)
     render json: appointment
