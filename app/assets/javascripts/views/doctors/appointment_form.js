@@ -106,12 +106,12 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 	},
 	
 	email: function () {
-		this.sendEmail();
+		this.email = true;
 		this.updateStatus();
 	},
 	
 	message: function () {
-		this.sendMessage();
+		this.message = true;
 		this.updateStatus();
 	},
 	
@@ -166,18 +166,27 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 				phone_number: params.phone_number,
 				appointment_status: appointmentStatus
 	    };
-		  this.model.save(appointmentParams);			
-			this.closeView();
+			var view = this;
+		  this.model.save(appointmentParams, {
+		  	success: function (response) {
+		  		if (view.email) {
+		  			view.sendEmail()
+		  		}
+					if (view.message) {
+						view.sendMessage();
+					}
+					view.closeView
+		  	}
+		  });			
 		} else {
 			this.$("div.appointment-title").addClass("has-error");
 		}
 	},
 	
 	sendBoth: function () {
-		this.sendEmail();
-		this.sendMessage();
+		this.email = true;
+		this.message = true;
 		this.updateStatus();
-		this.closeView();
 	},
 	
 	sendEmail: function () {
@@ -198,12 +207,10 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 	
 	sendNot: function () {
 		this.updateStatus();
-		this.closeView();
 	},
 	
 	showForm: function (event) {
 		this.$("div.reminders-container").css("top", 0);
-		debugger;
 		if ($(event.currentTarget).text().toLowerCase() === "confirmar") {
 			this.action = "confirm";
 		} else {
