@@ -6,8 +6,12 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 		"click .my-modal": "closeView",
 		"click #submit-appointment-form": "save",
 		"click #close-appointment-form": "closeView",
-		"click #cancel-appointment-form": "cancelAppointment",
-		"click #confirm-appointment-form": "confirmAppointment"
+		"click #cancel-appointment-form": "showForm",
+		"click #confirm-appointment-form": "showForm",
+		"click #send-message": "sendMessage",
+		"click #send-email": "sendEmail",
+		"click #send-both": "sendBoth",
+		"click #send-not": "sendNot"
   },
 	
 	initialize: function(options) {
@@ -73,16 +77,10 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 		// 	}
 		// });
 		
-		// this.model.set("appointment_status", "Cancelled");
-		// $('#calendar').fullCalendar('removeEvents', [this.model.id]);
-		// var view = this;
-		// this.model.save({}, {
-		// 	success: function (response) {
-		// 		view.remove();
-		// 	}
-		// });
-		
-		this.$("div.reminders-container").css("display", "block");
+		this.model.set("appointment_status", "Cancelled");
+		$('#calendar').fullCalendar('removeEvents', [this.model.id]);
+		var view = this;
+		this.model.save();
 	},
 	
 	// I need to figure out how to handle the clicks or mouseup outside this view
@@ -111,16 +109,9 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 		// 	}
 		// });
 		
-		// this.model.set("appointment_status", "Confirmed");
-		// var view = this;
-		// this.model.save({}, {
-		// 	success: function (response) {
-		// 		view.remove();
-		// 	}
-		// });
-		
-		this.$("div.reminder-container").css("display", "block");
-		
+		this.model.set("appointment_status", "Confirmed");
+		var view = this;
+		this.model.save();
 	},
 	
 	onRender: function () {
@@ -175,10 +166,59 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 				appointment_status: appointmentStatus
 	    };
 		  this.model.save(appointmentParams);			
-			this.$('#appointment-modal').modal('hide');
-			this.remove();
+			// this.$('#appointment-modal').modal('hide');
+			this.closeView();
 		} else {
 			this.$("div.appointment-title").addClass("has-error");
+		}
+	},
+	
+	sendBoth: function (event) {
+		this.sendEmail();
+		this.sendMessage();
+		this.updateStatus();
+		this.closeView();
+	},
+	
+	sendEmail: function () {
+		var url = "api/send_" + this.action + "_emails/" + this.model.id;
+		this.updateStatus();
+		$.ajax({
+		  url: url,
+		  type: "GET"
+		});
+		this.closeView();
+	},
+	
+	sendMessage: function () {
+		var url = "api/send_" + this.action + "_messages/" + this.model.id;
+		this.updateStatus();
+		$.ajax({
+		  url: url,
+		  type: "GET"
+		});
+		this.closeView();
+	},
+	
+	sendNot: function () {
+		this.updateStatus();
+		this.closeView();
+	},
+	
+	showForm: function (event) {
+		this.$("div.reminders-container").css("display", "block");
+		if ($(event.currentTarget).text().toLowerCase() === "confirmar") {
+			this.action = "confirm";
+		} else {
+			this.action = "cancel";
+		}
+	},
+	
+	updateStatus: function () {
+		if (this.action === "confirm") {
+			this.confirmAppointment();
+		} else {
+			this.cancelAppointment();
 		}
 	},
 	
