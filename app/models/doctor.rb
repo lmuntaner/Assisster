@@ -2,23 +2,24 @@
 #
 # Table name: doctors
 #
-#  id               :integer          not null, primary key
-#  email            :string(255)      not null
-#  password_digest  :string(255)      not null
-#  dr_session_token :string(255)      not null
-#  created_at       :datetime
-#  updated_at       :datetime
-#  name             :string(255)
-#  country_code     :string(255)
-#  subdomain_name   :string(255)      not null
-#  description      :text
-#  sub_title        :string(255)
-#  latitude         :float
-#  longitude        :float
-#  street_address   :string(255)
-#  city_address     :string(255)
-#  phone_number     :string(255)
-#  domain_name      :string(255)
+#  id                     :integer          not null, primary key
+#  email                  :string(255)      not null
+#  password_digest        :string(255)      not null
+#  dr_session_token       :string(255)      not null
+#  created_at             :datetime
+#  updated_at             :datetime
+#  name                   :string(255)
+#  country_code           :string(255)
+#  subdomain_name         :string(255)      not null
+#  description            :text
+#  sub_title              :string(255)
+#  latitude               :float
+#  longitude              :float
+#  street_address         :string(255)
+#  city_address           :string(255)
+#  phone_number           :string(255)
+#  domain_name            :string(255)
+#  send_appointment_email :boolean          default(TRUE)
 #
 
 require 'mandrill'
@@ -56,7 +57,8 @@ class Doctor < ActiveRecord::Base
     self.dr_session_token
   end
 
-  def send_appointment_email(appointment)
+  def send_email(appointment)
+    return unless self.send_appointment_email
     subject = "Nueva peticion de cita"
     body = "<p>Hola #{self.name},</p>"
     body += "<p>Acabas de recibir una nueva peticion de cita de #{appointment.full_name}"
