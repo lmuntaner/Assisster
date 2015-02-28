@@ -15,6 +15,9 @@ class Api::AppointmentsController < ApplicationController
     
     if appointment.save
       # trigger_appointment_event(appointment)
+      if (appointment.appointment_status = "Pending")
+        appointment.doctor.send_appointment_email(appointment)
+      end
       render json: appointment
     else
       render json: appointment.errors.full_messages, status: :unprocessable_entity

@@ -41,6 +41,7 @@ class Appointment < ActiveRecord::Base
       subject = "Recordatorio cita #{appointment.doctor.name}"
       body = "<p>Hola #{appointment.full_name},</p>"
       body += "<p>Recuerde que mañana tiene cita a las #{appointment.time} con #{appointment.doctor.name}.</p>"
+      body += "<p>Gracias,</p>"
       body += "<p>Enviado por Assisster</p>"
       appointment.send_email(subject, body)
     end

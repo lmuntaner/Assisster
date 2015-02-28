@@ -6,6 +6,7 @@ class Api::SendConfirmEmailsController < ApplicationController
     body = "<p>Hola #{appointment.full_name},</p>"
     body += "<p>Su cita con #{appointment.doctor.name} para el
             #{appointment.date} a las #{appointment.time} ha sido confirmada.</p>"
+    body += "<p>Gracias,</p>"
     body += "<p>Enviado por Assisster</p>"
     subject = "Confirmacion cita #{appointment.doctor.name}"
     email = appointment.email

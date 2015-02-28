@@ -9,7 +9,7 @@ Assisster.Views.SlotShow = Backbone.View.extend({
 	createAppointment: function (event) {
 		event.preventDefault();
 		var params = $(event.currentTarget).parent().serializeJSON().appointment;
-    var view = this;
+    	var view = this;
 		var appointmentParams = {
 			email: params.email,
 			fname: params.fname,
@@ -20,15 +20,6 @@ Assisster.Views.SlotShow = Backbone.View.extend({
     	};
 	    this.model.save(appointmentParams, {
 			success: function (model) {
-				var url = "/api/send_doctor_appointment_email";
-				var appointmentData = {
-					appointment: model
-				};
-				$.ajax({
-					url: url,
-					data: appointmentData,
-					type: "POST"
-				});
 				Backbone.history.navigate("success", { trigger: true });
 			}
 	    });

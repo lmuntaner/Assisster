@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     end
     resources :appointments, only: [:create, :update, :show]
     get "/free_time/:date", to: "appointments#getFreeTime"
-    resources :send_doctor_appointments_emails, only: [:create]
+    resources :send_doctor_appointment_emails, only: [:create]
     resources :confirm_appointments, only: [:update]
     resources :cancel_appointments, only: [:update]
     resources :receive_messages, only: [:index]

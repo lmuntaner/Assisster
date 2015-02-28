@@ -21,6 +21,8 @@
 #  domain_name      :string(255)
 #
 
+require 'mandrill'
+
 class Doctor < ActiveRecord::Base
   validates :email, :password_digest, :dr_session_token, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
@@ -39,19 +41,49 @@ class Doctor < ActiveRecord::Base
     doctor
   end
 
+  def is_password?(password)
+    BCrypt::Password.new(self.password_digest).is_password?(password)
+  end
+
   def password=(password)
     @password = password
     self.password_digest = BCrypt::Password.create(password)
-  end
-
-  def is_password?(password)
-    BCrypt::Password.new(self.password_digest).is_password?(password)
   end
 
   def reset_token!
     self.dr_session_token = create_token
     self.save!
     self.dr_session_token
+  end
+
+  def send_appointment_email(appointment)
+    subject = "Nueva peticion de cita"
+    body = "<p>Hola #{self.name},</p>"
+    body += "<p>Acabas de recibir una nueva peticion de cita de #{appointment.full_name}"
+    body += "para el #{appointment.date} a las #{appointment.time}.</p>"
+    body += "<p>Para confirmar tu cita visita tu calendario.</p>"
+    body += "<p>Gracias,</p>"
+    body += "<p>Enviado por Assisster</p>"
+    html_msg = body
+    begin
+      mandrill = Mandrill::API.new ENV["MANDRILL_API_KEY"]
+      message = {
+        "html"=>html_msg,
+        "text"=>body,
+        "subject"=>subject,
+        "from_email"=>appointment.email,
+        "from_name"=>appointment.full_name,
+        "to"=>
+          [{"email"=>self.email,
+              "name"=>self.name,
+              "type"=>"to"}],
+        "headers"=>{"Reply-To"=>appointment.email}
+     }
+     async = true
+     result = mandrill.messages.send message, async
+   rescue Mandrill::Error => e
+     puts "A mandrill error occurred: #{e.class} - #{e.message}"
+   end
   end
   
   def url
