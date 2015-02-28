@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150201074425) do
+ActiveRecord::Schema.define(version: 20150228172458) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "appointments", force: true do |t|
-    t.string   "title",                                  null: false
+    t.string   "title"
     t.integer  "doctor_id",                              null: false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -35,14 +35,14 @@ ActiveRecord::Schema.define(version: 20150201074425) do
   add_index "appointments", ["doctor_id"], name: "index_appointments_on_doctor_id", using: :btree
 
   create_table "doctors", force: true do |t|
-    t.string   "email",            null: false
-    t.string   "password_digest",  null: false
-    t.string   "dr_session_token", null: false
+    t.string   "email",                                 null: false
+    t.string   "password_digest",                       null: false
+    t.string   "dr_session_token",                      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
     t.string   "country_code"
-    t.string   "subdomain_name",   null: false
+    t.string   "subdomain_name",                        null: false
     t.text     "description"
     t.string   "sub_title"
     t.float    "latitude"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20150201074425) do
     t.string   "city_address"
     t.string   "phone_number"
     t.string   "domain_name"
+    t.boolean  "send_appointment_email", default: true
   end
 
   add_index "doctors", ["email"], name: "index_doctors_on_email", unique: true, using: :btree

@@ -1,0 +1,2 @@
+class SendDoctorAppointmentEmailsController < ApplicationController
+end
