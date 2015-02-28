@@ -22,16 +22,6 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 		var screenHeight = $(document).height();
 		var formWidth = 330;
 		var formHeigth = 600;
-		// if (options.coordinates[0] < 1000) {
-		// 	this.$el.css('left', options.coordinates[0])			
-		// } else {
-		// 	this.$el.css('left', options.coordinates[0] - 300)
-		// }
-		// if (options.coordinates[1] < 400) {
-		// 	this.$el.css('top', options.coordinates[1] - 250)			
-		// } else {
-		// 	this.$el.css('top', options.coordinates[1] - 450)	
-		// }
 
 		this.$el.css('left', (screenWidth / 2) - (formWidth / 2));
 		if (screenHeight < 700) {
