@@ -14,7 +14,7 @@ class Api::AppointmentsController < ApplicationController
     end
     
     if appointment.save
-      trigger_appointment_event(appointment)
+      # trigger_appointment_event(appointment)
       render json: appointment
     else
       render json: appointment.errors.full_messages, status: :unprocessable_entity

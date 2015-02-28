@@ -8,14 +8,16 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 		"click #close-appointment-form": "closeView",
 		"click #cancel-appointment-form": "showForm",
 		"click #confirm-appointment-form": "showForm",
-		"click #send-message": "message",
-		"click #send-email": "email",
+		"click #send-message": "messageStep",
+		"click #send-email": "emailStep",
 		"click #send-both": "sendBoth",
 		"click #send-not": "sendNot"
   },
 	
 	initialize: function(options) {
 		var startTime, endTime;
+		this.email = false;
+		this.message = false;
 		
 		if (options.coordinates[0] < 1000) {
 			this.$el.css('left', options.coordinates[0])			
@@ -62,21 +64,6 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 	},
 	
 	cancelAppointment: function () {
-		// var appointment = this.model;
-		// var view = this;
-		// var url = "/api/cancel_appointments/" + this.model.id;
-		// $.ajax({
-		// 	type: "PATCH",
-		// 	url: url,
-		// 	success: function (response) {
-		// 		$('#calendar').fullCalendar('removeEvents', [appointment.id]);
-		// 		appointment.set("appointment_status", "Cancelled");
-		// 		view.collection.bringToFront(view.model);
-		// 		view.collection.trigger("statusSync", view.model);
-		// 		view.remove();
-		// 	}
-		// });
-		
 		this.model.set("appointment_status", "Cancelled");
 		$('#calendar').fullCalendar('removeEvents', [this.model.id]);
 		this.save();
@@ -86,31 +73,17 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 		this.remove();
 	},
 	
-	confirmAppointment: function () {
-		// var appointment = this.model;
-		// var view = this;
-		// var url = "/api/confirm_appointments/" + this.model.id;
-		// $.ajax({
-		// 	type: "PATCH",
-		// 	url: url,
-		// 	success: function () {
-		// 		appointment.set("appointment_status", "Confirmed");
-		// 		view.collection.bringToFront(view.model);
-		// 		view.collection.trigger("statusSync", view.model);
-		// 		view.remove();
-		// 	}
-		// });
-		
+	confirmAppointment: function () {		
 		this.model.set("appointment_status", "Confirmed");
 		this.save();
 	},
 	
-	email: function () {
+	emailStep: function () {
 		this.email = true;
 		this.updateStatus();
 	},
 	
-	message: function () {
+	messageStep: function () {
 		this.message = true;
 		this.updateStatus();
 	},
@@ -126,26 +99,26 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 		});
 	},
   
-  render: function () {
-    var renderedContent = this.template({
-    	date: this.date,
-			appointment: this.model
-    });
-    this.$el.html(renderedContent);
-		this.attachSubview(this.selectorDate, this.fromDateForm);
-		this.attachSubview(this.selectorDate, this.toDateForm);
-		this.onRender()
-		
-    return this;
-  },
+	render: function () {
+		var renderedContent = this.template({
+			date: this.date,
+				appointment: this.model
+		});
+		this.$el.html(renderedContent);
+			this.attachSubview(this.selectorDate, this.fromDateForm);
+			this.attachSubview(this.selectorDate, this.toDateForm);
+			this.onRender()
+			
+		return this;
+	},
 
 	save: function () {
 		var params = $("form.appointment-form").serializeJSON().appointment;
 		if (this.validateForm(params)) {
 			var stringStartTime = params.startTimeDate + " " + params.startTimeHour;
-	    var startTime = moment.utc(stringStartTime, "D/M/YYYY HH:mm");
+	    	var startTime = moment.utc(stringStartTime, "D/M/YYYY HH:mm");
 			var stringEndTime = params.endTimeDate + " " + params.endTimeHour;
-		  var endTime = moment.utc(stringEndTime, "D/M/YYYY HH:mm");
+		  	var endTime = moment.utc(stringEndTime, "D/M/YYYY HH:mm");
 			var appointmentStatus = this.model.get('appointment_status');
 			if (!this.action) {
 				if (appointmentStatus === "Cancelled" || this.model.isNew()) {
@@ -156,28 +129,32 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 				params.email = null;
 			}
 			var appointmentParams = {
-	      title: params.title,
-	      startTime: startTime,
-	      endTime: endTime,
+	      		title: params.title,
+	      		startTime: startTime,
+	      		endTime: endTime,
 				email: params.email,
 				fname: params.fname,
 				lname: params.lname,
 				country_code: params.countrycode,
 				phone_number: params.phone_number,
 				appointment_status: appointmentStatus
-	    };
+	    	};
 			var view = this;
-		  this.model.save(appointmentParams, {
-		  	success: function (response) {
-		  		if (view.email) {
-		  			view.sendEmail()
-		  		}
+		  	this.model.save(appointmentParams, {
+			  	success: function (response) {
+			  		if (view.email) {
+			  			view.sendEmail()
+			  		}
 					if (view.message) {
 						view.sendMessage();
 					}
-					view.closeView
-		  	}
-		  });			
+					view.closeView();
+			  	},
+			  	error: function (response) {
+			  		console.log("Error!");
+			  		view.closeView()
+			  	}
+		  	});			
 		} else {
 			this.$("div.appointment-title").addClass("has-error");
 		}
