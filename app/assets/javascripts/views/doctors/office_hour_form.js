@@ -106,9 +106,9 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
 			week: this.week
     });
     this.$el.html(renderedContent);
-		this.attachPrependSubview(this.selectorDate, this.toDateForm);
-		this.attachPrependSubview(this.selectorDate, this.fromDateForm);
-		this.onRender()
+	this.attachPrependSubview(this.selectorDate, this.toDateForm);
+	this.attachPrependSubview(this.selectorDate, this.fromDateForm);
+	this.onRender()
 		
     return this;
   },
@@ -131,21 +131,22 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
 	},
 	
 	saveOfficeHour: function(appointment, strStartTime, strEndTime) {
-    startTime = moment.utc(strStartTime, "D/M/YYYY HH:mm");
-	  endTime = moment.utc(strEndTime, "D/M/YYYY HH:mm");
-    var view = this;
+	    startTime = moment.utc(strStartTime, "D/M/YYYY HH:mm");
+		endTime = moment.utc(strEndTime, "D/M/YYYY HH:mm");
+	    var view = this;
 		var appointmentParams = {
-      title: "office hour",
-      startTime: startTime,
-      endTime: endTime,
+	    	title: "office hour",
+	      	startTime: startTime,
+	      	endTime: endTime,
 			appointment_status: "Confirmed",
 			office_hour: true
-    };
-    appointment.save(appointmentParams, {
-      success: function (model) {
+    	};
+	    appointment.save(appointmentParams, {
+			success: function (model) {
+				view.collection.add(model);
 				view.remove();
-      }
-    });
+			}
+	    });
 	},
 	
 })

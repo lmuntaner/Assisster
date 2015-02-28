@@ -17,12 +17,21 @@ Assisster.Views.SlotShow = Backbone.View.extend({
 			country_code: params.countrycode,
 			phone_number: params.phoneNumber,
 			doctor_id: window.Doctor.id
-    };
-    this.model.save(appointmentParams, {
-      success: function (model) {
-        Backbone.history.navigate("success", { trigger: true });
-      }
-    });
+    	};
+	    this.model.save(appointmentParams, {
+			success: function (model) {
+				var url = "/api/send_doctor_appointment_email";
+				var appointmentData = {
+					appointment: model
+				};
+				$.ajax({
+					url: url,
+					data: appointmentData,
+					type: "POST"
+				});
+				Backbone.history.navigate("success", { trigger: true });
+			}
+	    });
 	},
 	
 	render: function () {

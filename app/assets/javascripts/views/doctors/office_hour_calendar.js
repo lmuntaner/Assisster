@@ -1,20 +1,20 @@
 Assisster.Views.OfficeHourCalendarView = Backbone.View.extend({
-  template: _.template('<div id="office_hour_calendar" class="row"></div>'),
+  	template: _.template('<div id="office_hour_calendar" class="row"></div>'),
   
-  initialize: function (options) {
+  	initialize: function (options) {
 		this.listenTo(this.collection, "remove", this.removeFromCalendar);
 		this.listenTo(this.collection, "pusherSync sync", this.updateEvent);
 		
 		setTimeout(function () {
-			this.listenTo(this.collection, "pusherAdd", this.addToCalendar);
+			this.listenTo(this.collection, "pusherAdd add", this.addToCalendar);
 		}.bind(this), 1000)
-  },
+  	},
   
-  addToCalendar: function (appointment) {
+  	addToCalendar: function (appointment) {
 		if (appointment.get("office_hour") && appointment.get("appointment_status") === "Confirmed") {
 	    $('#office_hour_calendar').fullCalendar('addEventSource', [appointment.convertToEvent(true)]);			
 		}
-  },
+  	},
 	
 	addTooltip: function (event) {
 		var tooltip = event.title;
@@ -27,7 +27,7 @@ Assisster.Views.OfficeHourCalendarView = Backbone.View.extend({
 		$(this).tooltip('show');
 	},
   
-  createOfficeHour: function(date, jsEvent) {
+  	createOfficeHour: function(date, jsEvent) {
 		var officeHour = new Assisster.Models.Appointment({
 			office_hour: true
 		});
@@ -37,18 +37,18 @@ Assisster.Views.OfficeHourCalendarView = Backbone.View.extend({
 			this.officeHourForm.remove();
 		}
 		
-    this.officeHourForm = new Assisster.Views.OfficeHourForm({
-      collection: this.collection,
-      date: date,
-			model: officeHour,
-			coordinates: coordinates,
-    });
-    this.renderAppointmentForm(this.officeHourForm);
-  },
+	    this.officeHourForm = new Assisster.Views.OfficeHourForm({
+	      collection: this.collection,
+	      date: date,
+				model: officeHour,
+				coordinates: coordinates,
+	    });
+	    this.renderAppointmentForm(this.officeHourForm);
+  	},
   
-  hideTooltip: function (event) {
-    $(this).tooltip('hide');
-  },
+	  hideTooltip: function (event) {
+	    	$(this).tooltip('hide');
+	  },
 	
 	onRender: function (slotDuration) {
     $('#office_hour_calendar').fullCalendar({
