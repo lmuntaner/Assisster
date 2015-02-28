@@ -21,7 +21,7 @@
 require 'mandrill'
 
 class Appointment < ActiveRecord::Base
-  validates :title, :startTime, :doctor, :appointment_status, presence: true
+  validates :startTime, :doctor, :appointment_status, presence: true
   validates :email, :email => true, allow_nil: true
   
   belongs_to :doctor

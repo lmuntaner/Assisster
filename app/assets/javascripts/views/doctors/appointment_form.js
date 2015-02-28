@@ -141,7 +141,8 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 	    	};
 			var view = this;
 		  	this.model.save(appointmentParams, {
-			  	success: function (response) {
+			  	success: function (model) {
+			  		view.collection.add(model, {merge: true});
 			  		if (view.email) {
 			  			view.sendEmail()
 			  		}
@@ -204,7 +205,7 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 	},
 	
 	validateForm: function (params) {
-		return this.validateTitle(params.title);
+		return true;
 	},
 	
 	validateTitle: function (title) {

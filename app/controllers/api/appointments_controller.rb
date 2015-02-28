@@ -15,7 +15,7 @@ class Api::AppointmentsController < ApplicationController
     
     if appointment.save
       # trigger_appointment_event(appointment)
-      if (appointment.appointment_status = "Pending")
+      if (appointment.appointment_status == "Pending")
         appointment.doctor.send_email(appointment)
       end
       render json: appointment

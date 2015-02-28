@@ -6,7 +6,7 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 		this.listenTo(this.collection, "statusSync sync", this.updateEvent);
 		
 		setTimeout(function () {
-			this.listenTo(this.collection, "pusherAdd", this.addToCalendar);
+			this.listenTo(this.collection, "pusherAdd add", this.addToCalendar);
 		}.bind(this), 1000)
   },
   
@@ -93,7 +93,7 @@ Assisster.Views.CalendarView = Backbone.View.extend({
   },
 		
 	renderAppointmentForm: function (appointmentForm) {
-    this.$el.append(appointmentForm.render().$el);
+    	this.$el.append(appointmentForm.render().$el);
 	},
 
 	renderEvent: function(event, element) {
