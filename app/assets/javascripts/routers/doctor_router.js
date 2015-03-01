@@ -71,7 +71,9 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
 				} else {
 					appointment = new Assisster.Models.Appointment(data.appointment);
 					router.collection.add(appointment, { at: 0 });
-	        router.collection.trigger('pusherAdd', appointment);
+					if (appointment.get('appointment_sttus') === "Pending") {
+		        		router.collection.trigger('pusherAdd', appointment);
+					}
 				}
 			}
 		});
