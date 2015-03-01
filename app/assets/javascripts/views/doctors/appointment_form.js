@@ -188,7 +188,7 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 	},
 	
 	showForm: function (event) {
-		this.$("div.reminders-container").css("top", 0);
+		this.$("div.reminders-container").css("top", -2);
 		if ($(event.currentTarget).text().toLowerCase() === "confirmar") {
 			this.action = "confirm";
 		} else {
