@@ -41,6 +41,6 @@ class Api::ServicesController < ApplicationController
   private
   
   def service_params
-    params.require(:service).permit(:title, :duration_min, :description)
+    params.require(:service).permit(:title, :duration_min, :description, :price)
   end
 end

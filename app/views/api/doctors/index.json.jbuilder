@@ -5,5 +5,5 @@ json.appointments @doctor.appointments do |appointment|
 														 :appointment_status, :country_code, :phone_number)
 end
 json.services @doctor.services do |service|
-	json.extract!(service, :id, :title, :description, :duration_min, :created_at, :updated_at)
+	json.extract!(service, :id, :title, :description, :duration_min, :price, :created_at, :updated_at)
 end

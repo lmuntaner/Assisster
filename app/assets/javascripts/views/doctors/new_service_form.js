@@ -37,11 +37,31 @@ Assisster.Views.NewServiceForm = Backbone.View.extend({
 	},
 
 	validateDuration: function (duration) {
-		if (/^\d+$/.test(duration) && duration > 0 && duration < 1440) {
+		if (/^\d+$/.test(duration) && duration >= 0 && duration < 1440) {
 			this.$("div.service-duration").removeClass("has-error");
 			return true;
 		} else {
 			this.$("div.service-duration").addClass("has-error");
+			return false;
+		}
+	},
+
+	validateParams: function (params) {
+		var validated = true;
+		if (!this.validateDescription(params.description)) validated = false;
+		if (!this.validateDuration(params.duration_min)) validated = false;
+		if (!this.validateTitle(params.title)) validated = false;
+		if (!this.validatePrice(params.price)) validated = false;
+	
+		return validated;
+	},
+
+	validatePrice: function (price) {
+		if (/^\d+$/.test(price) && price >= 0) {
+			this.$("div.service-price").removeClass("has-error");
+			return true;
+		} else {
+			this.$("div.service-price").addClass("has-error");
 			return false;
 		}
 	},
@@ -54,14 +74,5 @@ Assisster.Views.NewServiceForm = Backbone.View.extend({
 			this.$("div.service-title").addClass("has-error");
 			return false;
 		}
-	},
-
-	validateParams: function (params) {
-		var validated = true;
-		if (!this.validateDescription(params.description)) validated = false;
-		if (!this.validateDuration(params.duration_min)) validated = false;
-		if (!this.validateTitle(params.title)) validated = false;
-	
-		return validated;
 	},
 })
