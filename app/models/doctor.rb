@@ -61,7 +61,7 @@ class Doctor < ActiveRecord::Base
     return unless self.send_appointment_email
     subject = "Nueva cita"
     body = "<p>Hola #{self.name},</p>"
-    body += "<p>Acabas de recibir una nueva cita de #{appointment.full_name}"
+    body += "<p>Acabas de recibir una nueva cita de #{appointment.full_name} "
     body += "para el #{appointment.date} a las #{appointment.time}.</p>"
     body += "<p>Gracias.</p>"
     body += "<p>Enviado por Assisster.</p>"
