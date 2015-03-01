@@ -9,6 +9,7 @@
 #  duration_min :integer          not null
 #  created_at   :datetime
 #  updated_at   :datetime
+#  price        :integer
 #
 
 class Service < ActiveRecord::Base

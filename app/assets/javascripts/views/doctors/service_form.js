@@ -3,24 +3,33 @@ Assisster.Views.ServiceForm = Backbone.View.extend({
 	className: "service-form",
 	
 	events: {
-		"click #close-service-form": "closeForm",
+		"click div.my-modal": "closeView",
+		"click #close-service-form": "closeView",
 		"click #submit-service-form": "updateService"
 	},
 	
 	initialize: function (options) {
-		if (options.coordinates[0] < 1000) {
-			this.$el.css('left', options.coordinates[0]);
-		} else {
-			this.$el.css('left', options.coordinates[0] - 330);
-		}
-		if (options.coordinates[1] < 400) {
-			this.$el.css('top', options.coordinates[1]);
-		} else {
-			this.$el.css('top', options.coordinates[1] - 250);
-		}
+		// if (options.coordinates[0] < 1000) {
+		// 	this.$el.css('left', options.coordinates[0]);
+		// } else {
+		// 	this.$el.css('left', options.coordinates[0] - 330);
+		// }
+		// if (options.coordinates[1] < 400) {
+		// 	this.$el.css('top', options.coordinates[1]);
+		// } else {
+		// 	this.$el.css('top', options.coordinates[1] - 250);
+		// }
+
+		var screenWidth = $(document).width();
+		var screenHeight = $(document).height();
+		var formWidth = 300;
+		var formHeigth = 264;
+
+		this.$el.css('left', (screenWidth / 2) - (formWidth / 2));
+		this.$el.css('top', 200);
 	},
 	
-	closeForm: function () {
+	closeView: function () {
 		this.remove();
 	},
 	
@@ -40,7 +49,7 @@ Assisster.Views.ServiceForm = Backbone.View.extend({
 			this.model.save(serviceParams, {
 				success: function(service) {
 					view.collection.add(service, {merge: true});
-					view.closeForm();
+					view.closeView();
 				}
 			});			
 		}

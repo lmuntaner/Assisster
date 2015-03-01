@@ -16,11 +16,15 @@
 }
 
 .dashboard-body {
-  margin: 0 0 30px;
+  	margin: 0 0 30px;
 }
 
 .clickable {
 	cursor: pointer;
+}
+
+.do-not-display {
+	display: none;
 }
 
 /* My modal CSS */
