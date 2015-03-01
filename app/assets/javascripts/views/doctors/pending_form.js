@@ -13,12 +13,21 @@ Assisster.Views.PendingForm = Backbone.View.extend({
 	
 	initialize: function (options) {
 		this.callback = options.callback;
-		if (options.coordinates[0] < 1000) {
-			this.$el.css('left', options.coordinates[0]);
-		} else {
-			this.$el.css('left', options.coordinates[0] - 300);
-		}
-		this.$el.css('top', options.coordinates[1] - 150);
+		// if (options.coordinates[0] < 1000) {
+		// 	this.$el.css('left', options.coordinates[0]);
+		// } else {
+		// 	this.$el.css('left', options.coordinates[0] - 300);
+		// }
+		// this.$el.css('top', options.coordinates[1] - 150);
+
+		var screenWidth = $(document).width();
+		var screenHeight = $(document).height();
+		var formWidth = 220;
+		var formHeigth = 210;
+
+		this.$el.css('left', (screenWidth / 2) - (formWidth / 2));
+		this.$el.css('top', 150);
+
 		this.action = options.action;
 	},
 	
