@@ -59,13 +59,12 @@ class Doctor < ActiveRecord::Base
 
   def send_email(appointment)
     return unless self.send_appointment_email
-    subject = "Nueva peticion de cita"
+    subject = "Nueva cita"
     body = "<p>Hola #{self.name},</p>"
-    body += "<p>Acabas de recibir una nueva peticion de cita de #{appointment.full_name}"
+    body += "<p>Acabas de recibir una nueva cita de #{appointment.full_name}"
     body += "para el #{appointment.date} a las #{appointment.time}.</p>"
-    body += "<p>Para confirmar tu cita visita tu calendario.</p>"
-    body += "<p>Gracias,</p>"
-    body += "<p>Enviado por Assisster</p>"
+    body += "<p>Gracias.</p>"
+    body += "<p>Enviado por Assisster.</p>"
     html_msg = body
     begin
       mandrill = Mandrill::API.new ENV["MANDRILL_API_KEY"]
@@ -73,13 +72,13 @@ class Doctor < ActiveRecord::Base
         "html"=>html_msg,
         "text"=>body,
         "subject"=>subject,
-        "from_email"=>appointment.email,
-        "from_name"=>appointment.full_name,
+        "from_email"=>"llorenc.muntaner@gmail.com",
+        "from_name"=>"Assisster",
         "to"=>
           [{"email"=>self.email,
               "name"=>self.name,
               "type"=>"to"}],
-        "headers"=>{"Reply-To"=>appointment.email}
+        "headers"=>{"Reply-To"=>"llorenc.muntaner@gmail.com"}
      }
      async = true
      result = mandrill.messages.send message, async
