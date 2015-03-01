@@ -74,8 +74,9 @@ class ApplicationController < ActionController::Base
      rescue Mandrill::Error => e
        trigger_notification_event("Email", email, "danger", doctor)
        puts "A mandrill error occurred: #{e.class} - #{e.message}"
+     else
+       trigger_notification_event("Email", email, "success", doctor)      
      end
-     trigger_notification_event("Email", email, "success", doctor)
     end
     
     def send_message(phone_number, doctor, message)
