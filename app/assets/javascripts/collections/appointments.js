@@ -19,17 +19,6 @@ Assisster.Collections.Appointments = Backbone.Collection.extend({
     return appointment.get('updated_at');
   },
 	
-	getConfirmedAppointments: function () {
-		var arrayAppointments = [];
-    this.each(function(appointment) {
-			if (!appointment.get('office_hour') &&
-					appointment.get('appointment_status') === "Confirmed") {
-	      			arrayAppointments.push(appointment.convertToEvent());
-			}
-    });
-		return arrayAppointments;
-	},
-	
 	getAppointments: function () {
 		var arrayAppointments = [];
     this.each(function(appointment) {
@@ -38,6 +27,17 @@ Assisster.Collections.Appointments = Backbone.Collection.extend({
 			}
     });
 		
+		return arrayAppointments;
+	},
+	
+	getConfirmedAppointments: function () {
+		var arrayAppointments = [];
+    this.each(function(appointment) {
+			if (!appointment.get('office_hour') &&
+					appointment.get('appointment_status') === "Confirmed") {
+	      			arrayAppointments.push(appointment.convertToEvent());
+			}
+    });
 		return arrayAppointments;
 	},
 	
