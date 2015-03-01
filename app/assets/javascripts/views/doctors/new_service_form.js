@@ -57,7 +57,7 @@ Assisster.Views.NewServiceForm = Backbone.View.extend({
 	},
 
 	validatePrice: function (price) {
-		if (/^\d+$/.test(price) && price >= 0) {
+		if (/^\d+$/.test(price) && price >= 0 || price === "") {
 			this.$("div.service-price").removeClass("has-error");
 			return true;
 		} else {
