@@ -24,6 +24,8 @@ Rails.application.routes.draw do
     resources :send_emails, only: [:create]
     resources :send_messages, only: [:create]
     resources :send_confirm_emails, only: [:show]
+    resources :send_create_emails, only: [:show]
+    resources :send_update_emails, only: [:show]
     resources :send_confirm_messages, only: [:show]
     resources :send_cancel_emails, only: [:show]
     resources :send_cancel_messages, only: [:show]
