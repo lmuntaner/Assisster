@@ -4,22 +4,12 @@ Assisster.Views.PendingAppointmentItem = Backbone.View.extend({
 	className: "clickable",
 	
 	events: {
-		"click button.confirm": "showForm",
-		"click button.cancel": "showForm"
+		"click button.confirm": "checkAction",
+		"click button.cancel": "checkAction"
 	},
 	
 	initialize: function() {
 		this.$el.attr('data-id', this.model.id);
-	},
-	
-	requestToServer: function (action, id) {
-		if (action === "cancel") {
-			$('#calendar').fullCalendar('removeEvents', [this.model.id]);
-			this.model.set("appointment_status", "Cancelled");
-		} else {
-			this.model.set("appointment_status", "Confirmed");
-		}
-		this.model.save();
 	},
 
 	render: function() {
@@ -35,21 +25,19 @@ Assisster.Views.PendingAppointmentItem = Backbone.View.extend({
     	var pendingForm = new Assisster.Views.PendingForm({
 			model: this.model,
 			collection: this.collection,
-			// callback: this.requestToServer,
 			action: action
     	});
 		
 		$('body').append(pendingForm.render().$el);
 	},
 	
-	showForm: function (event) {
+	checkAction: function (event) {
 		event.preventDefault();
 		var action;
-		if ($(event.currentTarget).text().toLowerCase() === "confirmar") {
-			action = "confirm";
+		if ($(event.currentTarget).hasClass("confirm")) {
+			this.showPendingForm("confirm")
 		} else {
-			action = "cancel";
+			this.showPendingForm("cancel")
 		}
-		this.showPendingForm(action);
 	},
 })
