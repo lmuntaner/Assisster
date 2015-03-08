@@ -61,6 +61,12 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 		this.selectorDate = "div.form-inputs";
 		this.addSubview(this.selectorDate, this.fromDateForm);
 		this.addSubview(this.selectorDate, this.toDateForm);
+
+		this.selectorSendingForm = "div.sending-form-inputs"
+		this.sendingForm = new Assisster.Views.SendingForm({
+			model: this.model
+		});
+		this.addSubview(this.selectorSendingForm, this.sendingForm);
 	},
 	
 	cancelAppointment: function () {
@@ -102,12 +108,13 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 	render: function () {
 		var renderedContent = this.template({
 			date: this.date,
-				appointment: this.model
+			appointment: this.model
 		});
 		this.$el.html(renderedContent);
-			this.attachSubview(this.selectorDate, this.fromDateForm);
-			this.attachSubview(this.selectorDate, this.toDateForm);
-			this.onRender()
+		this.attachSubview(this.selectorDate, this.fromDateForm);
+		this.attachSubview(this.selectorDate, this.toDateForm);
+		this.attachSubview(this.selectorSendingForm, this.sendingForm);
+		this.onRender()
 			
 		return this;
 	},
@@ -188,7 +195,7 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 	},
 	
 	showForm: function (event) {
-		this.$("div.reminders-container").css("top", -2);
+		this.$("div.sending-form-container").css("top", -2);
 		if ($(event.currentTarget).text().toLowerCase() === "confirmar") {
 			this.action = "confirm";
 		} else {
