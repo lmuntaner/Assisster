@@ -7,9 +7,9 @@ Assisster.Models.Appointment = Backbone.Model.extend({
   convertToEvent: function(officeHour) {
     var eventObject = {};
 		eventObject.id = this.id;
-    eventObject.title = this.escape('title');
-    eventObject.start = this.escape('startTime');
-    eventObject.end = this.escape('endTime');
+    	eventObject.title = this.escape('title') || "-";
+    	eventObject.start = this.escape('startTime');
+    	eventObject.end = this.escape('endTime');
 		eventObject.email = this.escape('email');
 		eventObject.fname = this.escape('fname');
 		eventObject.lname = this.escape('lname');

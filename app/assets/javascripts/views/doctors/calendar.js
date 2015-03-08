@@ -50,28 +50,28 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 	
 	onRender: function (slotDuration) {
 	    $('#calendar').fullCalendar({
-	      header: {
-	        left: 'month,agendaWeek,agendaDay',
-	        center: 'title',
-	        right: 'today prev,next'
-	      },
-				allDaySlot: false,
-				axisFormat: 'H:mm',
-	      defaultView: 'agendaWeek',
-	      dayClick: this.createAppointment.bind(this),
-	      editable: true,
-	      eventClick: this.updateAppointment.bind(this),
-	      events:this.collection.getConfirmedAppointments().concat(this.collection.getOfficeHours()),
-	      eventDragStart: this.removeTooltip,
-	      eventDrop: this.updateAppointmentDraggOrResize.bind(this),
-	      eventMouseout: this.hideTooltip,
-	      eventMouseover: this.addTooltip,
-	      eventRender: this.renderEvent,
-	      eventResize: this.updateAppointmentDraggOrResize.bind(this),
-	      firstDay: 1,
-	      height: 500,
-	      lang: "es",
-	      scrollTime: '08:00:00',
+			header: {
+				left: 'month,agendaWeek,agendaDay',
+				center: 'title',
+				right: 'today prev,next'
+			},
+			allDaySlot: false,
+			axisFormat: 'H:mm',
+			defaultView: 'agendaWeek',
+			dayClick: this.createAppointment.bind(this),
+			editable: true,
+			eventClick: this.updateAppointment.bind(this),
+			events:this.collection.getConfirmedAppointments().concat(this.collection.getOfficeHours()),
+			eventDragStart: this.removeTooltip,
+			eventDrop: this.updateAppointmentDraggOrResize.bind(this),
+			eventMouseout: this.hideTooltip,
+			eventMouseover: this.addTooltip,
+			eventRender: this.renderEvent,
+			eventResize: this.updateAppointmentDraggOrResize.bind(this),
+			firstDay: 1,
+			height: 500,
+			lang: "es",
+			scrollTime: '08:00:00',
 	    });
 	},
 	
@@ -86,11 +86,11 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 		});
 	},
 
-  render: function () {
-    this.$el.html(this.template());
-		
-    return this;
-  },
+	render: function () {
+		this.$el.html(this.template());
+			
+		return this;
+	},
 		
 	renderAppointmentForm: function (appointmentForm) {
     	this.$el.append(appointmentForm.render().$el);
@@ -157,12 +157,12 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 		var calendarEvent = $('#calendar').fullCalendar( 'clientEvents', appointment.id )[0];
 		if (calendarEvent) {
 			if (appointment.get('appointment_status') === "Confirmed" ||
-					appointment.get('appointment_status') === "Pending") {
+				appointment.get('appointment_status') === "Pending") {
 				calendarEvent.start = moment.utc(appointment.get('startTime'));
 				calendarEvent.end = moment.utc(appointment.get('endTime'));
-				calendarEvent.title = appointment.get('title');
-				calendarEvent.email = appointment.get('email');
-				calendarEvent.phone_number = appointment.get('phone_number');
+				calendarEvent.title = appointment.escape('title') || "-";
+				calendarEvent.email = appointment.escape('email');
+				calendarEvent.phone_number = appointment.escape('phone_number');
 				calendarEvent.fname = appointment.get('fname');
 				calendarEvent.lname = appointment.get('lname');
 				if (appointment.get('appointment_status') === "Pending") {
