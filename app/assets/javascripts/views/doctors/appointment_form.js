@@ -1,18 +1,19 @@
 Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
-  template: JST["doctors/appointment_form"],
-  className: "appointment-form-container",
+  	template: JST["doctors/appointment_form"],
+  	className: "appointment-form-container",
   
-  events: {
+  	events: {
 		"click .my-modal": "closeView",
-		"click #submit-appointment-form": "save",
+		"click #submit-appointment-form": "updateStep",
+		"click #cancel-appointment-form": "cancelStep",
 		"click #close-appointment-form": "closeView",
-		"click #cancel-appointment-form": "showForm",
-		"click #confirm-appointment-form": "showForm",
+		"click #create-appointment-form": "createStep",
+		"click #confirm-appointment-form": "confirmStep",
 		"click #send-message": "messageStep",
 		"click #send-email": "emailStep",
 		"click #send-both": "sendBoth",
 		"click #send-not": "sendNot"
-  },
+  	},
 	
 	initialize: function(options) {
 		var startTime, endTime;
@@ -69,29 +70,44 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 		this.addSubview(this.selectorSendingForm, this.sendingForm);
 	},
 	
-	cancelAppointment: function () {
-		this.model.set("appointment_status", "Cancelled");
-		$('#calendar').fullCalendar('removeEvents', [this.model.id]);
-		this.save();
+	// cancelAppointment: function () {
+	// 	this.model.set("appointment_status", "Cancelled");
+	// 	$('#calendar').fullCalendar('removeEvents', [this.model.id]);
+	// 	this.save();
+	// },
+
+	cancelStep: function () {
+		this.action = "cancel";
+		this.showForm();
 	},
 	
 	closeView: function () {
 		this.remove();
 	},
 	
-	confirmAppointment: function () {		
-		this.model.set("appointment_status", "Confirmed");
-		this.save();
+	// confirmAppointment: function () {		
+	// 	this.model.set("appointment_status", "Confirmed");
+	// 	this.save();
+	// },
+
+	confirmStep: function () {
+		this.action = "confirm";
+		this.showForm();
+	},
+
+	createStep: function () {
+		this.action = "create";
+		this.showForm();
 	},
 	
 	emailStep: function () {
 		this.email = true;
-		this.updateStatus();
+		this.save();
 	},
 	
 	messageStep: function () {
 		this.message = true;
-		this.updateStatus();
+		this.save();
 	},
 	
 	onRender: function () {
@@ -127,11 +143,13 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 			var stringEndTime = params.endTimeDate + " " + params.endTimeHour;
 		  	var endTime = moment.utc(stringEndTime, "D/M/YYYY HH:mm");
 			var appointmentStatus = this.model.get('appointment_status');
-			if (!this.action) {
-				if (appointmentStatus === "Cancelled" || this.model.isNew()) {
-					appointmentStatus = "Confirmed";
-				}
-			} 
+			if (this.action === "create" || this.action === "confirm") {
+				appointmentStatus = "Confirmed";
+			}
+			if (this.action === "cancel") {
+				$('#calendar').fullCalendar('removeEvents', [this.model.id]);
+				appointmentStatus = "Cancelled";
+			}
 			if (!params.email) {
 				params.email = null;
 			}
@@ -171,11 +189,11 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 	sendBoth: function () {
 		this.email = true;
 		this.message = true;
-		this.updateStatus();
+		this.save();
 	},
 	
 	sendEmail: function () {
-		this.sendingForm.sendEmail(this.action)
+		this.sendingForm.sendEmail(this.action);
 	},
 	
 	sendMessage: function () {
@@ -187,24 +205,24 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 	},
 	
 	sendNot: function () {
-		this.updateStatus();
+		this.save();
 	},
 	
 	showForm: function (event) {
 		this.$("div.sending-form-container").css("top", -2);
-		if ($(event.currentTarget).text().toLowerCase() === "confirmar") {
-			this.action = "confirm";
-		} else {
-			this.action = "cancel";
-		}
 	},
 	
-	updateStatus: function () {
-		if (this.action === "confirm") {
-			this.confirmAppointment();
-		} else {
-			this.cancelAppointment();
-		}
+	// updateStatus: function () {
+	// 	if (this.action === "confirm") {
+	// 		this.confirmAppointment();
+	// 	} else {
+	// 		this.cancelAppointment();
+	// 	}
+	// },
+
+	updateStep: function () {
+		this.action = "update";
+		this.showForm();
 	},
 	
 	validateForm: function (params) {

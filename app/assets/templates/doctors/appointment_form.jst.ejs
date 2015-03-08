@@ -68,15 +68,25 @@
 
 			</div>
 
-			<button type="button"
-							id="submit-appointment-form"
-							class="btn btn-sm btn-primary">
-							<% if (appointment.get('appointment_status') === 'Cancelled' ) { %>
-								Confirmar
-							<% } else { %>
-								Guardar
-							<% } %>	
-			</button>
+			<% if (appointment.get('appointment_status') === 'Cancelled') { %>
+				<button type="button"
+						id="confirm-appointment-form"
+						class="btn btn-sm btn-primary">
+							Confirmar
+				</button>
+			<% } else if (appointment.isNew()) { %>
+				<button type="button"
+						id="create-appointment-form"
+						class="btn btn-sm btn-primary">
+							Crear Cita
+				</button>
+			<% } else { %>
+				<button type="button"
+						id="submit-appointment-form"
+						class="btn btn-sm btn-primary">
+							Guardar
+				</button>
+			<% } %>	
 			<button type="button"
 							id="close-appointment-form"
 							class="btn btn-sm btn-default">
