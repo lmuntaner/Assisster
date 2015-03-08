@@ -5,14 +5,18 @@ Assisster.Views.SendingForm = Backbone.View.extend({
 		"role": "form"
 	},
 
-	initialize: function(options) {
-
-	},
-
 	render: function() {
 		var renderedContent = this.template();
 		this.$el.html(renderedContent);
 
 		return this;
-	}
+	},
+
+	sendEmail: function (action) {
+		var url = "api/send_" + action + "_emails/" + this.model.id;
+		$.ajax({
+		  url: url,
+		  type: "GET"
+		});
+	},
 })
