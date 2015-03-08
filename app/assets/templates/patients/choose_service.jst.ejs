@@ -10,13 +10,17 @@
 						 <%= service.escape('title') %>
 					</a>
 				</div>
-				<div class="service-description col-xs-9">
-					<% if (service.get('price')) { %>
-						<span class="additional-info price">Precio: <%= service.escape('price') %> euros</span>
-					<% } %>
-					<span class="additional-info">Duración: <%= service.escape('duration_min') %> min</span>
-					<h5>Descripción:</h5>
-					<p><%= service.escape('description') %></p>
+				<div class="service-description col-xs-9 row">
+					<div class="col-xs-9">
+						<h5>Descripción:</h5>
+						<p><%= service.escape('description') %></p>
+					</div>
+					<div class="col-xs-3">
+						<p class="additional-info duration">Duración: <%= service.escape('duration_min') %> min</p>
+						<% if (service.get('price')) { %>
+							<p class="additional-info">Precio: <%= service.escape('price') %> euros</p>
+						<% } %>
+					</div>
 				</div>
 			</div>
 		</li>

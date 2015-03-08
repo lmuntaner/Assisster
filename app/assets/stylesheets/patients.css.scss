@@ -64,18 +64,17 @@ div.service-content a {
 
 div.service-description {
 	margin-left: 30px;
-  border-bottom: 1px solid #e0e2e3;
+  	border-bottom: 1px solid #e0e2e3;
 }
 
-span.additional-info {
+p.additional-info {
 	float: right;
-	margin-top: 10px;
 	font-size: 12px;
 	font-style: italic;
 }
 
-span.price {
-	margin-left: 10px;
+p.duration {
+	margin-top: 10px;
 }
 
 /* Choose a date */
