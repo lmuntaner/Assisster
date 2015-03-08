@@ -4,8 +4,8 @@ Assisster.Views.PendingAppointmentItem = Backbone.View.extend({
 	className: "clickable",
 	
 	events: {
-		"click button.confirm": "updateStatus",
-		"click button.cancel": "updateStatus"
+		"click button.confirm": "showForm",
+		"click button.cancel": "showForm"
 	},
 	
 	initialize: function() {
@@ -32,18 +32,17 @@ Assisster.Views.PendingAppointmentItem = Backbone.View.extend({
 	},
 	
 	showPendingForm: function (action) {
-
     	var pendingForm = new Assisster.Views.PendingForm({
 			model: this.model,
 			collection: this.collection,
-			callback: this.requestToServer,
+			// callback: this.requestToServer,
 			action: action
     	});
 		
 		$('body').append(pendingForm.render().$el);
 	},
 	
-	updateStatus: function (event) {
+	showForm: function (event) {
 		event.preventDefault();
 		var action;
 		if ($(event.currentTarget).text().toLowerCase() === "confirmar") {

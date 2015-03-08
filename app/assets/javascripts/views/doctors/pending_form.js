@@ -4,15 +4,16 @@ Assisster.Views.PendingForm = Backbone.CompositeView.extend({
 	
 	events: {
 		"click div.my-modal": "closeView",
-		"click #close": "closeView",
-		"click #send-message": "message",
-		"click #send-email": "email",
+		"click #send-message": "messageStep",
+		"click #send-email": "emailStep",
 		"click #send-both": "sendBoth",
 		"click #send-not": "sendNot"
 	},
 	
 	initialize: function (options) {
 		this.callback = options.callback;
+		this.email = false;
+		this.message = false;
 
 		var screenWidth = $(document).width();
 		var screenHeight = $(document).height();
@@ -35,19 +36,14 @@ Assisster.Views.PendingForm = Backbone.CompositeView.extend({
 		this.remove();
 	},
 	
-	callbackAndClose: function () {
-		this.callback(this.action, this.model.id);
-		this.closeView();
+	emailStep: function (event) {
+		this.email = true;
+		this.updateStatus();
 	},
 	
-	email: function (event) {
-		this.sendEmail();
-		this.callbackAndClose();
-	},
-	
-	message: function (event) {
-		this.sendMessage();
-		this.callbackAndClose();
+	messageStep: function (event) {
+		this.message = true;
+		this.updateStatus();
 	},
 	
 	render: function () {
@@ -60,11 +56,32 @@ Assisster.Views.PendingForm = Backbone.CompositeView.extend({
 		
 		return this;
 	},
+
+	updateStatus: function () {
+		var view = this;
+		if (this.action === "cancel") {
+			$('#calendar').fullCalendar('removeEvents', [this.model.id]);
+			this.model.set("appointment_status", "Cancelled");
+		} else {
+			this.model.set("appointment_status", "Confirmed");
+		}
+		this.model.save({}, {
+			success: function (response) {
+				if (view.email) {
+					view.sendEmail();
+				}
+				if (view.message) {
+					view.sendMessage();
+				}
+				view.closeView();
+			}
+		});
+	},
 	
 	sendBoth: function (event) {
-		this.sendEmail();
-		this.sendMessage();
-		this.callbackAndClose();
+		this.email = true;
+		this.message = true;
+		this.updateStatus();
 	},
 	
 	sendEmail: function () {
@@ -85,6 +102,6 @@ Assisster.Views.PendingForm = Backbone.CompositeView.extend({
 	},
 	
 	sendNot: function (event) {
-		this.callbackAndClose();
+		this.updateStatus();
 	},
 })
