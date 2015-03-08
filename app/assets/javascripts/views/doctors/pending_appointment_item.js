@@ -13,22 +13,6 @@ Assisster.Views.PendingAppointmentItem = Backbone.View.extend({
 	},
 	
 	requestToServer: function (action, id) {
-		// var url = "/api/" + action + "_appointments/" + id;
-		// var view = this;
-		// $.ajax({
-		// 	type: "PATCH",
-		// 	url: url,
-		// 	success: function (response) {
-		// 		if (view.action === "cancel") {
-		// 			$('#calendar').fullCalendar('removeEvents', [view.model.id]);
-		// 			view.model.set("appointment_status", "Cancelled");
-		// 		} else {
-		// 			view.model.set("appointment_status", "Confirmed");
-		// 		}
-		// 		view.collection.bringToFront(view.model);
-		// 		view.collection.trigger("statusSync", view.model);
-		// 	}
-		// });
 		if (action === "cancel") {
 			$('#calendar').fullCalendar('removeEvents', [this.model.id]);
 			this.model.set("appointment_status", "Cancelled");
@@ -47,31 +31,16 @@ Assisster.Views.PendingAppointmentItem = Backbone.View.extend({
 		return this;
 	},
 	
-	// Not using this form. Using the one below.
-	// I should delete this and the confirmation form View and Template
-	showConfirmationForm: function (action, event) {
-		var coordinates = [event.clientX, event.clientY];
-		
-    var confirmationForm = new Assisster.Views.ConfirmationForm({
-			model: this.model,
-			coordinates: coordinates,
-			callback: this.requestToServer,
-			action: action
-    });
-		
-		$('body').append(confirmationForm.render().$el);
-	},
-	
 	showPendingForm: function (action, event) {
 		var coordinates = [event.clientX, event.clientY];
 
-    var pendingForm = new Assisster.Views.PendingForm({
+    	var pendingForm = new Assisster.Views.PendingForm({
 			model: this.model,
 			collection: this.collection,
 			coordinates: coordinates,
 			callback: this.requestToServer,
 			action: action
-    });
+    	});
 		
 		$('body').append(pendingForm.render().$el);
 	},

@@ -1,4 +1,4 @@
-Assisster.Views.PendingForm = Backbone.View.extend({
+Assisster.Views.PendingForm = Backbone.CompositeView.extend({
 	template: JST["doctors/pending_form"],
 	className: "pending-form-container",
 	
@@ -13,12 +13,6 @@ Assisster.Views.PendingForm = Backbone.View.extend({
 	
 	initialize: function (options) {
 		this.callback = options.callback;
-		// if (options.coordinates[0] < 1000) {
-		// 	this.$el.css('left', options.coordinates[0]);
-		// } else {
-		// 	this.$el.css('left', options.coordinates[0] - 300);
-		// }
-		// this.$el.css('top', options.coordinates[1] - 150);
 
 		var screenWidth = $(document).width();
 		var screenHeight = $(document).height();
@@ -29,6 +23,12 @@ Assisster.Views.PendingForm = Backbone.View.extend({
 		this.$el.css('top', 150);
 
 		this.action = options.action;
+
+		this.selectorSendingForm = "div.sending-form-inputs"
+		this.sendingForm = new Assisster.Views.SendingForm({
+			model: this.model
+		});
+		this.addSubview(this.selectorSendingForm, this.sendingForm);
 	},
 	
 	closeView: function () {
@@ -56,6 +56,7 @@ Assisster.Views.PendingForm = Backbone.View.extend({
 			action: this.action
 		});
 		this.$el.html(renderedContent);
+		this.attachSubview(this.selectorSendingForm, this.sendingForm);
 		
 		return this;
 	},
