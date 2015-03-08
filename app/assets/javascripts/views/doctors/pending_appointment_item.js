@@ -31,13 +31,11 @@ Assisster.Views.PendingAppointmentItem = Backbone.View.extend({
 		return this;
 	},
 	
-	showPendingForm: function (action, event) {
-		var coordinates = [event.clientX, event.clientY];
+	showPendingForm: function (action) {
 
     	var pendingForm = new Assisster.Views.PendingForm({
 			model: this.model,
 			collection: this.collection,
-			coordinates: coordinates,
 			callback: this.requestToServer,
 			action: action
     	});
@@ -53,8 +51,6 @@ Assisster.Views.PendingAppointmentItem = Backbone.View.extend({
 		} else {
 			action = "cancel";
 		}
-		// this.showConfirmationForm(action, event);
-		this.showPendingForm(action, event);
-		// this.requestToServer(action, this.model.id)
+		this.showPendingForm(action);
 	},
 })
