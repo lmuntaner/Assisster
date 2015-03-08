@@ -57,14 +57,8 @@ Assisster.Views.PendingForm = Backbone.CompositeView.extend({
 		return this;
 	},
 
-	updateStatus: function () {
+	save: function () {
 		var view = this;
-		if (this.action === "cancel") {
-			$('#calendar').fullCalendar('removeEvents', [this.model.id]);
-			this.model.set("appointment_status", "Cancelled");
-		} else {
-			this.model.set("appointment_status", "Confirmed");
-		}
 		this.model.save({}, {
 			success: function (response) {
 				if (view.email) {
@@ -77,7 +71,7 @@ Assisster.Views.PendingForm = Backbone.CompositeView.extend({
 			}
 		});
 	},
-	
+
 	sendBoth: function (event) {
 		this.email = true;
 		this.message = true;
@@ -86,11 +80,6 @@ Assisster.Views.PendingForm = Backbone.CompositeView.extend({
 	
 	sendEmail: function () {
 		this.sendingForm.sendEmail(this.action);
-		// var url = "api/send_" + this.action + "_emails/" + this.model.id;
-		// $.ajax({
-		//   url: url,
-		//   type: "GET"
-		// });
 	},
 	
 	sendMessage: function () {
@@ -104,4 +93,25 @@ Assisster.Views.PendingForm = Backbone.CompositeView.extend({
 	sendNot: function (event) {
 		this.updateStatus();
 	},
+
+	updateStatus: function () {
+		var view = this;
+		if (this.action === "cancel") {
+			$('#calendar').fullCalendar('removeEvents', [this.model.id]);
+			this.model.set("appointment_status", "Cancelled");
+			this.save();
+		} else if (this.action === "confirm") {
+			this.model.set("appointment_status", "Confirmed");
+			this.save();
+		} else {
+			if (this.email) {
+				this.sendEmail();
+			}
+			if (this.message) {
+				this.sendMessage();
+			}
+			this.closeView();
+		}
+	},
+	
 })

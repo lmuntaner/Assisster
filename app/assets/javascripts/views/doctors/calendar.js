@@ -49,31 +49,31 @@ Assisster.Views.CalendarView = Backbone.View.extend({
   },
 	
 	onRender: function (slotDuration) {
-    $('#calendar').fullCalendar({
-      header: {
-        left: 'month,agendaWeek,agendaDay',
-        center: 'title',
-        right: 'today prev,next'
-      },
-			allDaySlot: false,
-			axisFormat: 'H:mm',
-      defaultView: 'agendaWeek',
-      dayClick: this.createAppointment.bind(this),
-      editable: true,
-			eventClick: this.updateAppointment.bind(this),
-      events:this.collection.getConfirmedAppointments().concat(this.collection.getOfficeHours()),
-			eventDragStart: this.removeTooltip,
-			eventDrop: this.updateAppointmentDraggOrResize.bind(this),
-      eventMouseout: this.hideTooltip,
-			eventMouseover: this.addTooltip,
-			eventRender: this.renderEvent,
-			eventResize: this.updateAppointmentDraggOrResize.bind(this),
-			firstDay: 1,
-			height: 500,
-			lang: "es",
-			scrollTime: '08:00:00',
-    });
-  },
+	    $('#calendar').fullCalendar({
+	      header: {
+	        left: 'month,agendaWeek,agendaDay',
+	        center: 'title',
+	        right: 'today prev,next'
+	      },
+				allDaySlot: false,
+				axisFormat: 'H:mm',
+	      defaultView: 'agendaWeek',
+	      dayClick: this.createAppointment.bind(this),
+	      editable: true,
+	      eventClick: this.updateAppointment.bind(this),
+	      events:this.collection.getConfirmedAppointments().concat(this.collection.getOfficeHours()),
+	      eventDragStart: this.removeTooltip,
+	      eventDrop: this.updateAppointmentDraggOrResize.bind(this),
+	      eventMouseout: this.hideTooltip,
+	      eventMouseover: this.addTooltip,
+	      eventRender: this.renderEvent,
+	      eventResize: this.updateAppointmentDraggOrResize.bind(this),
+	      firstDay: 1,
+	      height: 500,
+	      lang: "es",
+	      scrollTime: '08:00:00',
+	    });
+	},
 	
 	removeFromCalendar: function (appointment) {
 		$('#calendar').fullCalendar('removeEvents', [appointment.id]);
@@ -109,6 +109,17 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 			$('#calendar').fullCalendar('addEventSource', [appointment.convertToEvent()]);
 		});
 	},
+
+	showPendingForm: function (appointment) {
+    	var pendingForm = new Assisster.Views.PendingForm({
+			model: appointment,
+			collection: this.collection,
+			action: "update"
+    	});
+		
+		$('body').append(pendingForm.render().$el);
+	},
+
 	
 	updateAppointment: function(event, jsEvent, view) {
 		var appointment = this.collection.get(event.id);
@@ -130,10 +141,15 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 	
 	updateAppointmentDraggOrResize: function (event) {
 		var appointment = this.collection.get(event.id);
+		var view = this;
 		
 		appointment.save({
 			startTime: event.start,
 			endTime: event.end
+		}, {
+			success: function(appointment) {
+				view.showPendingForm(appointment);
+			}
 		});
 	},
 	
