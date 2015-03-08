@@ -15,17 +15,6 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
 		var screenHeight = $(document).height();
 		var formWidth = 330;
 		var formHeigth = 350;
-		
-		// if (options.coordinates[0] < 1000) {
-		// 	this.$el.css('left', options.coordinates[0]);
-		// } else {
-		// 	this.$el.css('left', options.coordinates[0] - 330);
-		// }
-		// if (options.coordinates[1] < 400) {
-		// 	this.$el.css('top', options.coordinates[1]);
-		// } else {
-		// 	this.$el.css('top', options.coordinates[1] - 350);
-		// }
 
 		this.$el.css('left', (screenWidth / 2) - (formWidth / 2));
 		this.$el.css('top', 200);
@@ -144,9 +133,9 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
 	    appointment.save(appointmentParams, {
 			success: function (model) {
 				view.collection.add(model);
-				view.remove();
 			}
 	    });
+		this.remove();
 	},
 	
 })
