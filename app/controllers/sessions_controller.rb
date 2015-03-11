@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     )
 
     if @doctor
-      sign_in(@doctor)
+      doctor_sign_in(@doctor)
       redirect_to dashboard_url
     else
       flash.now[:errors] = ["Invalid email or password"]
@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    sign_out
+    doctor_sign_out
     redirect_to root_url
   end
 end

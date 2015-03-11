@@ -1,5 +1,5 @@
 class Api::SendMessagesController < ApplicationController
-  before_action :ensure_signed_in
+  before_action :ensure_doctor_signed_in
   
   def create
     phone_number = sms_params["phone_number"]

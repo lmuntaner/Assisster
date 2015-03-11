@@ -1,5 +1,5 @@
 class Api::SendCancelEmailsController < ApplicationController
-  before_action :ensure_signed_in
+  before_action :ensure_doctor_signed_in
   
   def show
     appointment = Appointment.find(params[:id])

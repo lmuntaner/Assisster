@@ -1,5 +1,5 @@
 class Api::AppointmentsController < ApplicationController
-  before_action :ensure_signed_in, only: [:update, :show, :getFreeTime]
+  before_action :ensure_doctor_signed_in, only: [:update, :show, :getFreeTime]
   
   def show
     @appointment = Appointment.find(params[:id])
