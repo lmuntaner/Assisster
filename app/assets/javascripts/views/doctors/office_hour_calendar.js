@@ -6,7 +6,7 @@ Assisster.Views.OfficeHourCalendarView = Backbone.View.extend({
 		this.listenTo(this.collection, "pusherSync sync", this.updateEvent);
 		
 		setTimeout(function () {
-			this.listenTo(this.collection, "pusherAdd add", this.addToCalendar);
+			this.listenTo(this.collection, "add", this.addToCalendar);
 		}.bind(this), 1000)
   	},
   
