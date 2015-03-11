@@ -1,54 +1,53 @@
 Assisster.Routers.DoctorRouter = Backbone.Router.extend({
-  routes: {
+	routes: {
 		"calendar": "calendar",
 		"appointments": "allAppointments",
 		"office_hours": "office_hours",
 		"notifications": "notifications",
 		"services": "services",
-    "": "dashboard"
-  },
+		"": "dashboard"
+	},
   
-  initialize: function(options) {
-    this.model = new Assisster.Models.Doctor();
+	initialize: function(options) {
+		this.model = new Assisster.Models.Doctor();
 		var router = this;
-    this.model.fetch({
-    	success: function () {
-    		router.collection.trigger("firstFetch");
+		this.model.fetch({
+			success: function () {
+				router.collection.trigger("firstFetch");
 				router.listenToPusher();
-    	}
-    });
+			}
+		});
 		this.collection = this.model.appointments();
-    this.$rootEl = options.$rootEl;
-		// this.listenToPusher();
+		this.$rootEl = options.$rootEl;
 		this.listenTo(this.collection, 'pusherAdd', this.notifyNewAppointment);
-  },
+	},
 	
 	allAppointments: function () {
-    var appointmentsView = new Assisster.Views.AppointmentsView({
+	    var appointmentsView = new Assisster.Views.AppointmentsView({
 			collection: this.collection
-    });
-    
-    this._swapView(appointmentsView);
+	    });
+	    
+	    this._swapView(appointmentsView);
 	},
 	
 	calendar: function () {
-    var calendarContainerView = new Assisster.Views.CalendarContainer({
-    	model: this.model,
+	    var calendarContainerView = new Assisster.Views.CalendarContainer({
+	    	model: this.model,
 			collection: this.collection
-    });
+	    });
     
-    this._swapView(calendarContainerView);
-    calendarContainerView.onRender(); // I need this for when I comeback to this view in backbone
+	    this._swapView(calendarContainerView);
+	    calendarContainerView.onRender(); // I need this for when I comeback to this view in backbone
 	},
 	
-  dashboard: function() {
-    var dashboardView = new Assisster.Views.DashboardView({
-    	model: this.model,
+	dashboard: function() {
+		var dashboardView = new Assisster.Views.DashboardView({
+			model: this.model,
 			collection: this.collection
-    });
-    
-    this._swapView(dashboardView);
-  },
+		});
+
+		this._swapView(dashboardView);
+	},
 	
 	listenToPusher: function () {
 		if (!this.pusher) {
@@ -71,7 +70,7 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
 				} else {
 					appointment = new Assisster.Models.Appointment(data.appointment);
 					router.collection.add(appointment, { at: 0 });
-					if (appointment.get('appointment_sttus') === "Pending") {
+					if (appointment.get('appointment_status') === "Pending") {
 		        		router.collection.trigger('pusherAdd', appointment);
 					}
 				}
@@ -86,21 +85,21 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
 	},
 	
 	notifications: function () {
-    var notificationsView = new Assisster.Views.NotificationsView({
-    	model: this.model,
-			collection: this.collection
-    });
+	    var notificationsView = new Assisster.Views.NotificationsView({
+	    	model: this.model,
+				collection: this.collection
+	    });
     
-    this._swapView(notificationsView);
+	    this._swapView(notificationsView);
 	},
 	
 	notifyNewAppointment: function (appointment) {
 		if (appointment.get('appointment_status') === "Pending") {
 			var msg = "New Appointment from " + appointment.fullName() + "     ";
-		  $('div.top-right').notify({
-		     message: { text: msg },
-				 fadeOut: { enabled: true, delay: 3000 }
-		   }).show();
+		  	$('div.top-right').notify({
+		     	message: { text: msg },
+				fadeOut: { enabled: true, delay: 3000 }
+		   	}).show();
 		}
 	},
 	
@@ -111,34 +110,34 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
 		} else {
 			msg = notification.notification_type + " NOT sent to: " + notification.receiver + "     "
 		}
-	  $('div.top-right').notify({
-	     message: { text: msg },
-			 type: notification.type,
-			 fadeOut: { enabled: true, delay: 3000 }
-	   }).show();		
+	  	$('div.top-right').notify({
+	     	message: { text: msg },
+			type: notification.type,
+			fadeOut: { enabled: true, delay: 10000 }
+	   	}).show();		
 	},
 	
 	office_hours: function () {
-    var officeHourContainerView = new Assisster.Views.OfficeHourContainer({
-    	model: this.model,
+	    var officeHourContainerView = new Assisster.Views.OfficeHourContainer({
+	    	model: this.model,
 			collection: this.collection
-    });
+	    });
     
-    this._swapView(officeHourContainerView);
-    officeHourContainerView.onRender(); // I need this for when I comeback to this view in backbone
+    	this._swapView(officeHourContainerView);
+    	officeHourContainerView.onRender(); // I need this for when I comeback to this view in backbone
 	},
 	
 	services: function () {
-    var servicesView = new Assisster.Views.ServicesView({
-    	model: this.model
-    });
-    
-    this._swapView(servicesView);
+	    var servicesView = new Assisster.Views.ServicesView({
+	    	model: this.model
+	    });
+	    
+	    this._swapView(servicesView);
 	},
 
-  _swapView: function(view) {
-    this._currentView && this._currentView.remove();
-    this.$rootEl.html(view.render().$el);
-    this._currentView = view;
-  }
+	_swapView: function(view) {
+	    this._currentView && this._currentView.remove();
+	    this.$rootEl.html(view.render().$el);
+	    this._currentView = view;
+  	}
 });
