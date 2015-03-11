@@ -3,7 +3,7 @@ Assisster.Views.CalendarView = Backbone.View.extend({
   
   initialize: function (options) {
 		this.listenTo(this.collection, "remove", this.removeFromCalendar);
-		this.listenTo(this.collection, "statusSync sync", this.updateEvent);
+		this.listenTo(this.collection, "sync", this.updateEvent);
 		
 		setTimeout(function () {
 			this.listenTo(this.collection, "pusherAdd add", this.addToCalendar);
@@ -12,7 +12,7 @@ Assisster.Views.CalendarView = Backbone.View.extend({
   
   addToCalendar: function (appointment) {
 		if (appointment.get("appointment_status") === 'Confirmed') {
-	    $('#calendar').fullCalendar('addEventSource', [appointment.convertToEvent()]);			
+	    	$('#calendar').fullCalendar('addEventSource', [appointment.convertToEvent()]);			
 		}
   },
 	

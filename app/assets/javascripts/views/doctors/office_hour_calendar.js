@@ -3,7 +3,7 @@ Assisster.Views.OfficeHourCalendarView = Backbone.View.extend({
   
   	initialize: function (options) {
 		this.listenTo(this.collection, "remove", this.removeFromCalendar);
-		this.listenTo(this.collection, "pusherSync sync", this.updateEvent);
+		this.listenTo(this.collection, "sync", this.updateEvent);
 		
 		setTimeout(function () {
 			this.listenTo(this.collection, "add", this.addToCalendar);
@@ -100,14 +100,14 @@ Assisster.Views.OfficeHourCalendarView = Backbone.View.extend({
 		if (this.officeHourForm) {
 			this.officeHourForm.remove();
 		}
-		
-    this.officeHourForm = new Assisster.Views.OfficeHourForm({
-      collection: this.collection,
-      event: event,
-			model: officeHour,
-			coordinates: coordinates,
-    });
-    this.renderAppointmentForm(this.officeHourForm);
+			
+	    this.officeHourForm = new Assisster.Views.OfficeHourForm({
+	      collection: this.collection,
+	      event: event,
+				model: officeHour,
+				coordinates: coordinates,
+	    });
+	    this.renderAppointmentForm(this.officeHourForm);
 	},
 	
 	updateAppointmentDraggOrResize: function (event) {
