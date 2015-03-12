@@ -8,9 +8,7 @@ Assisster.Views.RecentAppointmentItem = Backbone.View.extend({
 	},
 	
 	render: function() {
-    // if(this.model.id == 52){
-      console.log('rendering item');
-		// }
+      	console.log('rendering recent item');
 		var renderedContent = this.template({
 			appointment: this.model
 		});

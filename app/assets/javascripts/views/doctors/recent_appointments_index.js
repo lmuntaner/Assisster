@@ -6,11 +6,11 @@ Assisster.Views.RecentAppointmentsIndex = Backbone.CompositeView.extend({
 		"click tr": "showForm"
 	},
 	
-  initialize: function () {
+ 	initialize: function () {
 		this.recentCollection = new Assisster.Collections.Appointments();
 		this.getRecentAppointments();
-    this.listenTo(this.collection, "statusSync pusherAdd firstFetch sync", this.getRecentAppointments);
-  },
+    	this.listenTo(this.collection, "statusSync appAdd firstFetch sync", this.getRecentAppointments);
+  	},
 	
 	getRecentAppointments: function () {
 		this.resetSubviews();
@@ -24,13 +24,13 @@ Assisster.Views.RecentAppointmentsIndex = Backbone.CompositeView.extend({
 		this.render();
 	},
   
-  render: function () {
-    var renderedContent = this.template();
-    this.$el.html(renderedContent);
+	render: function () {
+		var renderedContent = this.template();
+		this.$el.html(renderedContent);
 		this.attachPrependSubviews();
-    
-    return this;
-  },
+
+		return this;
+	},
 	
 	showForm: function (event) {
 		var coordinates = [event.clientX, event.clientY];
@@ -41,11 +41,11 @@ Assisster.Views.RecentAppointmentsIndex = Backbone.CompositeView.extend({
 			this.appointmentForm.remove();
 		}
 		
-    this.appointmentForm = new Assisster.Views.AppointmentForm({
-      collection: this.collection,
+	    this.appointmentForm = new Assisster.Views.AppointmentForm({
+	      	collection: this.collection,
 			model: appointment,
 			coordinates: coordinates,
-    });
+	    });
 		
 		this.$el.append(this.appointmentForm.render().$el);
 	},

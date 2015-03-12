@@ -69,12 +69,6 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 		});
 		this.addSubview(this.selectorSendingForm, this.sendingForm);
 	},
-	
-	// cancelAppointment: function () {
-	// 	this.model.set("appointment_status", "Cancelled");
-	// 	$('#calendar').fullCalendar('removeEvents', [this.model.id]);
-	// 	this.save();
-	// },
 
 	cancelStep: function () {
 		this.action = "cancel";
@@ -84,11 +78,6 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 	closeView: function () {
 		this.remove();
 	},
-	
-	// confirmAppointment: function () {		
-	// 	this.model.set("appointment_status", "Confirmed");
-	// 	this.save();
-	// },
 
 	confirmStep: function () {
 		this.action = "confirm";
@@ -168,6 +157,7 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 		  	this.model.save(appointmentParams, {
 			  	success: function (model) {
 			  		view.collection.add(model, {merge: true});
+			  		view.collection.trigger("appAdd", model);
 			  		if (view.email) {
 			  			view.sendEmail()
 			  		}

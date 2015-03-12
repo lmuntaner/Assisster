@@ -70,7 +70,7 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
 				router.collection.add(appointment, { at: 0 });
 				if (appointment.get('appointment_status') === "Pending" &&
 					!appointment.get('office_hour')) {
-	        		router.collection.trigger('pusherAdd', appointment);
+	        		router.collection.trigger('appAdd', appointment);
 				}
 			}
 		});

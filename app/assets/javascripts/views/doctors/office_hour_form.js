@@ -88,19 +88,19 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
 		});
 	},
   
-  render: function () {
-    var renderedContent = this.template({
-    	date: this.date,
+	render: function () {
+		var renderedContent = this.template({
+			date: this.date,
 			appointment: this.model,
 			week: this.week
-    });
-    this.$el.html(renderedContent);
-	this.attachPrependSubview(this.selectorDate, this.toDateForm);
-	this.attachPrependSubview(this.selectorDate, this.fromDateForm);
-	this.onRender()
-		
-    return this;
-  },
+		});
+		this.$el.html(renderedContent);
+		this.attachPrependSubview(this.selectorDate, this.toDateForm);
+		this.attachPrependSubview(this.selectorDate, this.fromDateForm);
+		this.onRender()
+			
+		return this;
+	},
 	
 	save: function (event) {
 		event.preventDefault();
@@ -133,6 +133,7 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
 	    appointment.save(appointmentParams, {
 			success: function (model) {
 				view.collection.add(model);
+				view.collection.trigger("appAdd", model);
 			}
 	    });
 		this.remove();

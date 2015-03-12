@@ -5,12 +5,13 @@ Assisster.Views.OfficeHourCalendarView = Backbone.View.extend({
 		this.listenTo(this.collection, "remove", this.removeFromCalendar);
 		this.listenTo(this.collection, "sync", this.updateEvent);
 		
-		setTimeout(function () {
-			this.listenTo(this.collection, "add", this.addToCalendar);
-		}.bind(this), 1000)
+		// setTimeout(function () {
+			this.listenTo(this.collection, "appAdd", this.addToCalendar);
+		// }.bind(this), 1000)
   	},
   
   	addToCalendar: function (appointment) {
+  		console.log('adding to office hour calendar');
 		if (appointment.get("office_hour") && appointment.get("appointment_status") === "Confirmed") {
 	    $('#office_hour_calendar').fullCalendar('addEventSource', [appointment.convertToEvent(true)]);			
 		}

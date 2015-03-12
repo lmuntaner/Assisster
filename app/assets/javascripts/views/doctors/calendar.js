@@ -6,12 +6,13 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 		this.listenTo(this.collection, "sync", this.updateEvent);
 		this.showPendingAttr = false;
 		
-		setTimeout(function () {
-			this.listenTo(this.collection, "add", this.addToCalendar);
-		}.bind(this), 1000)
+		// setTimeout(function () {
+			this.listenTo(this.collection, "appAdd", this.addToCalendar);
+		// }.bind(this), 1000)
 	},
   
 	addToCalendar: function (appointment) {
+		console.log('adding to appointments calendar');
 		if (this.showPendingAttr) {
 			$('#calendar').fullCalendar('addEventSource', [appointment.convertToEvent()]);	
 		} else {
