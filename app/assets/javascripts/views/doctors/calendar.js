@@ -4,11 +4,8 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 	initialize: function (options) {
 		this.listenTo(this.collection, "remove", this.removeFromCalendar);
 		this.listenTo(this.collection, "sync", this.updateEvent);
+		this.listenTo(this.collection, "appAdd pusherAdd", this.addToCalendar);
 		this.showPendingAttr = false;
-		
-		// setTimeout(function () {
-			this.listenTo(this.collection, "appAdd", this.addToCalendar);
-		// }.bind(this), 1000)
 	},
   
 	addToCalendar: function (appointment) {

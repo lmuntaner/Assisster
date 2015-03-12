@@ -156,8 +156,10 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 			var view = this;
 		  	this.model.save(appointmentParams, {
 			  	success: function (model) {
+			  		if (!view.collection.get(model.id)) {		  			
+				  		view.collection.trigger("appAdd", model);
+			  		}
 			  		view.collection.add(model, {merge: true});
-			  		view.collection.trigger("appAdd", model);
 			  		if (view.email) {
 			  			view.sendEmail()
 			  		}
@@ -201,14 +203,6 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 	showForm: function (event) {
 		this.$("div.sending-form-container").css("top", -2);
 	},
-	
-	// updateStatus: function () {
-	// 	if (this.action === "confirm") {
-	// 		this.confirmAppointment();
-	// 	} else {
-	// 		this.cancelAppointment();
-	// 	}
-	// },
 
 	updateStep: function () {
 		this.action = "update";

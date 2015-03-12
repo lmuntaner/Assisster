@@ -8,7 +8,7 @@ Assisster.Views.PendingAppointmentsIndex = Backbone.CompositeView.extend({
 	
 	initialize: function () {
 		this.getPendingAppointments();
-		this.listenTo(this.collection, "statusSync appAdd firstFetch sync", this.getPendingAppointments);
+		this.listenTo(this.collection, "statusSync appAdd pusherAdd firstFetch sync", this.getPendingAppointments);
 	},
 	
 	getPendingAppointments: function () {
