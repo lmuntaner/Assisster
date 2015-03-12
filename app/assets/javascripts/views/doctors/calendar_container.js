@@ -14,7 +14,7 @@ Assisster.Views.CalendarContainer = Backbone.CompositeView.extend({
     });
     this.addSubview("div.dashboard-body", this.calendarView);
     this.listenTo(this.model, "sync", this.render);
-		this.showingPending = false;
+	this.showingPendingAttr = false;
   },
 	
 	onRender: function () {
@@ -68,9 +68,9 @@ Assisster.Views.CalendarContainer = Backbone.CompositeView.extend({
 	},
 	
 	showPending: function (event) {
-		this.showingPending = !this.showingPending;
+		this.showingPendingAttr = !this.showingPendingAttr;
 		this.$("#show-pending").blur();
-		if (this.showingPending) {
+		if (this.showingPendingAttr) {
 			this.$("#show-pending").removeClass("btn-success").addClass("btn-info");
 			this.$("#show-pending").text("Esconder Pendientes");
 			this.calendarView.showPending();			
@@ -79,5 +79,6 @@ Assisster.Views.CalendarContainer = Backbone.CompositeView.extend({
 			this.$("#show-pending").text("Mostrar Pendientes");
 			this.calendarView.removePending();
 		}
+		this.calendarView.setPendingAttr(this.showingPendingAttr);
 	},
 })

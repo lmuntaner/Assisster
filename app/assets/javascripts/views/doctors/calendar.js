@@ -1,20 +1,25 @@
 Assisster.Views.CalendarView = Backbone.View.extend({
-  template: _.template('<div id="calendar" class="row"></div>'),
+	template: _.template('<div id="calendar" class="row"></div>'),
   
-  initialize: function (options) {
+	initialize: function (options) {
 		this.listenTo(this.collection, "remove", this.removeFromCalendar);
 		this.listenTo(this.collection, "sync", this.updateEvent);
+		this.showPendingAttr = false;
 		
 		setTimeout(function () {
-			this.listenTo(this.collection, "pusherAdd add", this.addToCalendar);
+			this.listenTo(this.collection, "add", this.addToCalendar);
 		}.bind(this), 1000)
-  },
+	},
   
-  addToCalendar: function (appointment) {
-		if (appointment.get("appointment_status") === 'Confirmed') {
-	    	$('#calendar').fullCalendar('addEventSource', [appointment.convertToEvent()]);			
+	addToCalendar: function (appointment) {
+		if (this.showPendingAttr) {
+			$('#calendar').fullCalendar('addEventSource', [appointment.convertToEvent()]);	
+		} else {
+			if (appointment.get("appointment_status") === 'Confirmed') {
+		    	$('#calendar').fullCalendar('addEventSource', [appointment.convertToEvent()]);			
+			}			
 		}
-  },
+	},
 	
 	addTooltip: function (event) {
 		var tooltip = event.title;
@@ -27,7 +32,7 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 		$(this).tooltip('show');
 	},
   
-  createAppointment: function(date, jsEvent) {
+	createAppointment: function(date, jsEvent) {
 		var appointment = new Assisster.Models.Appointment();
 		var coordinates = [jsEvent.pageX, jsEvent.pageY];
 		
@@ -35,18 +40,18 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 			this.appointmentForm.remove();
 		}
 		
-    this.appointmentForm = new Assisster.Views.AppointmentForm({
-      collection: this.collection,
-      date: date,
+		this.appointmentForm = new Assisster.Views.AppointmentForm({
+		  	collection: this.collection,
+		  	date: date,
 			model: appointment,
 			coordinates: coordinates,
-    });
-    this.renderAppointmentForm(this.appointmentForm);
-  },
+		});
+		this.renderAppointmentForm(this.appointmentForm);
+	},
   
-  hideTooltip: function (event) {
-    $(this).tooltip('hide');
-  },
+	hideTooltip: function (event) {
+		$(this).tooltip('hide');
+	},
 	
 	onRender: function (slotDuration) {
 	    $('#calendar').fullCalendar({
@@ -101,6 +106,10 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 		element.find("div.fc-time span").html(firstText);
 		var lastText = event.fname + " " + event.lname;
 		element.find("div.fc-title").html(lastText);
+	},
+
+	setPendingAttr: function(val) {
+		this.showPendingAttr = val;
 	},
 	
 	showPending: function() {
