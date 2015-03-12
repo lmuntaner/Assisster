@@ -15,29 +15,30 @@ Assisster.Collections.Appointments = Backbone.Collection.extend({
 		this.trigger("availableSlots");
 	},
 	
-  comparator: function(appointment) {
-    return appointment.get('updated_at');
-  },
+	comparator: function(appointment) {
+		return appointment.get('updated_at');
+	},
 	
 	getAppointments: function () {
 		var arrayAppointments = [];
-    this.each(function(appointment) {
+	    this.each(function(appointment) {
 			if (!appointment.get('office_hour')) {
-	      arrayAppointments.push(appointment.convertToEvent());				
+			    arrayAppointments.push(appointment.convertToEvent());				
 			}
-    });
+	    });
 		
 		return arrayAppointments;
 	},
 	
 	getConfirmedAppointments: function () {
 		var arrayAppointments = [];
-    this.each(function(appointment) {
+	    this.each(function(appointment) {
 			if (!appointment.get('office_hour') &&
-					appointment.get('appointment_status') === "Confirmed") {
+				appointment.get('appointment_status') === "Confirmed") {
 	      			arrayAppointments.push(appointment.convertToEvent());
 			}
-    });
+	    });
+
 		return arrayAppointments;
 	},
 	
@@ -53,12 +54,12 @@ Assisster.Collections.Appointments = Backbone.Collection.extend({
 	
 	getOfficeHours: function (officeHour) {
 		var arrayOfficeHours = [];
-    this.each(function(appointment) {
+	    this.each(function(appointment) {
 			if (appointment.get('office_hour') &&
-					appointment.get('appointment_status') === "Confirmed") {
-	      arrayOfficeHours.push(appointment.convertToEvent(officeHour));				
+				appointment.get('appointment_status') === "Confirmed") {
+			      arrayOfficeHours.push(appointment.convertToEvent(officeHour));				
 			}
-    });
+	    });
 		
 		return arrayOfficeHours;
 	},
@@ -75,10 +76,3 @@ Assisster.Collections.Appointments = Backbone.Collection.extend({
 		return appointments.slice(num_appointments - n, num_appointments);
 	},
 });
-
-
-
-
-
-
-

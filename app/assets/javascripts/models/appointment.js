@@ -1,11 +1,8 @@
 Assisster.Models.Appointment = Backbone.Model.extend({
-  urlRoot: "/api/appointments/",
-	
-	initialize: function () {
-	},
+  	urlRoot: "/api/appointments/",
 
-  convertToEvent: function(officeHour) {
-    var eventObject = {};
+	convertToEvent: function(officeHour) {
+	    var eventObject = {};
 		eventObject.id = this.id;
     	eventObject.title = this.escape('title') || "-";
     	eventObject.start = this.escape('startTime');
@@ -24,8 +21,8 @@ Assisster.Models.Appointment = Backbone.Model.extend({
 			eventObject.borderColor = "#257e4a";
 		}
 		
-    return eventObject;
-  },
+	    return eventObject;
+	},
 	
 	date: function () {
 		return this.startTime().format("dddd, D MMM");
@@ -54,6 +51,6 @@ Assisster.Models.Appointment = Backbone.Model.extend({
 	today: function () {
 		var today = moment().format('YYYY-MM-DD');
 		return this.startTime().isSame(today, "days") &&
-					 (this.get('appointment_status') === "Confirmed");
+				(this.get('appointment_status') === "Confirmed");
 	},
 })

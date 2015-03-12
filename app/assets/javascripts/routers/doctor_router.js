@@ -59,21 +59,18 @@ Assisster.Routers.DoctorRouter = Backbone.Router.extend({
 		}
 		var router = this;
 		this.channel.bind('appointment-event', function(data) {
-			if (data.appointment.doctor_id === router.model.id) {
-				var appointment = router.collection.get(data.appointment.id);
-				if (appointment) {
-					appointment.fetch({
-						success: function (appointment) {
-							router.collection.trigger('pusherSync', appointment);
-						}
-					});
-				} else {
-					appointment = new Assisster.Models.Appointment(data.appointment);
-					router.collection.add(appointment, { at: 0 });
-					if (appointment.get('appointment_status') === "Pending" &&
-						!appointment.get('office_hour')) {
-		        		router.collection.trigger('pusherAdd', appointment);
-					}
+			// I was using the pusher to update all the changes in events. Now I use Backbone.
+			// It doesn't make much sense now the pusherSync
+			// However, I am planning to add multiple log in, so I will need this.
+			var appointment = router.collection.get(data.appointment.id);
+			if (appointment) {
+				appointment.fetch();
+			} else {
+				appointment = new Assisster.Models.Appointment(data.appointment);
+				router.collection.add(appointment, { at: 0 });
+				if (appointment.get('appointment_status') === "Pending" &&
+					!appointment.get('office_hour')) {
+	        		router.collection.trigger('pusherAdd', appointment);
 				}
 			}
 		});
