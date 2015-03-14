@@ -191,8 +191,8 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 	sendMessage: function () {
 		var url = "api/send_" + this.action + "_messages/" + this.model.id;
 		$.ajax({
-		  url: url,
-		  type: "GET"
+		  	url: url,
+		  	type: "GET"
 		});
 	},
 	

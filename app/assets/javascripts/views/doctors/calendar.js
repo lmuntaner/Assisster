@@ -9,7 +9,6 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 	},
   
 	addToCalendar: function (appointment) {
-		console.log('adding to appointments calendar');
 		if (this.showPendingAttr) {
 			$('#calendar').fullCalendar('addEventSource', [appointment.convertToEvent()]);	
 		} else {

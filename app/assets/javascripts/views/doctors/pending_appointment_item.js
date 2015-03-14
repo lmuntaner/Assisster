@@ -13,7 +13,6 @@ Assisster.Views.PendingAppointmentItem = Backbone.View.extend({
 	},
 
 	render: function() {
-		console.log('rendering pending item');
 		var renderedContent = this.template({
 			appointment: this.model
 		});

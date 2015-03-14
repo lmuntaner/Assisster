@@ -8,7 +8,6 @@ Assisster.Views.RecentAppointmentItem = Backbone.View.extend({
 	},
 	
 	render: function() {
-      	console.log('rendering recent item');
 		var renderedContent = this.template({
 			appointment: this.model
 		});
