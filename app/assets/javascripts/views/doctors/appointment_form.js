@@ -136,7 +136,6 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 				appointmentStatus = "Confirmed";
 			}
 			if (this.action === "cancel") {
-				// $('#calendar').fullCalendar('removeEvents', [this.model.id]);
 				appointmentStatus = "Cancelled";
 			}
 			if (!params.email) {
@@ -156,7 +155,7 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 			var view = this;
 		  	this.model.save(appointmentParams, {
 			  	success: function (model) {
-			  		if (!view.collection.get(model.id)) {		  			
+			  		if (view.action === "create") {  			
 				  		view.collection.trigger("appAdd", model);
 			  		}
 			  		view.collection.add(model, {merge: true});
