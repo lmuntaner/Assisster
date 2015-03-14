@@ -136,7 +136,7 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 				appointmentStatus = "Confirmed";
 			}
 			if (this.action === "cancel") {
-				$('#calendar').fullCalendar('removeEvents', [this.model.id]);
+				// $('#calendar').fullCalendar('removeEvents', [this.model.id]);
 				appointmentStatus = "Cancelled";
 			}
 			if (!params.email) {

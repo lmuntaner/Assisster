@@ -180,7 +180,8 @@ Assisster.Views.CalendarView = Backbone.View.extend({
 				}
 				$('#calendar').fullCalendar( 'updateEvent', calendarEvent );			
 			} else {
-				$('#calendar').fullCalendar( 'removeEvents', appointment.id );
+				this.removeFromCalendar(appointment);
+				// $('#calendar').fullCalendar( 'removeEvents', appointment.id );
 			}
 		} else {
 			this.addToCalendar(appointment);
