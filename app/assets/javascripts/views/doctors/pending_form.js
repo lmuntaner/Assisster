@@ -60,10 +60,7 @@ Assisster.Views.PendingForm = Backbone.CompositeView.extend({
 	save: function () {
 		var view = this;
 		this.model.save({}, {
-			success: function (response) {
-				if (!view.collection.get(model.id)) {		  			
-			  		view.collection.trigger("appAdd", model);
-		  		}
+			success: function (model) {
 		  		view.collection.add(model, {merge: true});
 				if (view.email) {
 					view.sendEmail();

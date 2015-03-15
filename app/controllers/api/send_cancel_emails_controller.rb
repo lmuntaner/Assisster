@@ -4,8 +4,8 @@ class Api::SendCancelEmailsController < ApplicationController
   def show
     appointment = Appointment.find(params[:id])
     body = "<p>Hola #{appointment.full_name},</p>"
-    body += "<p>Su cita con #{appointment.doctor.name} para el
-            #{appointment.date} a las #{appointment.time} no ha podido ser confirmada.</p>"
+    body += "<p>Lo sentimos, su cita con #{appointment.doctor.name} para el
+            #{appointment.date} a las #{appointment.time} ha sido cancelada.</p>"
     body += "<p>Si lo desea puede pedir otra cita visitando #{appointment.doctor.url}</p>"
     body += "<p>Gracias,</p>"
     body += "<p>Enviado por Assisster</p>"
