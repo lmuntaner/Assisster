@@ -70,6 +70,8 @@ class Api::AppointmentsController < ApplicationController
     free_times = create_free_slots(appointments, office_hours)
     available_slots = []
     free_times.each do |free_time|
+      # I don't understand why next line is not working to send only
+      # the slots that are later than current time...
       # next if free_time[:startTime].to_datetime < DateTime.now
       start_time = free_time[:startTime]
       end_time = start_time + (service.duration_min * 60)
