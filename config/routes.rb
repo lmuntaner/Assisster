@@ -12,7 +12,6 @@ Rails.application.routes.draw do
     resources :services, only: [:show, :update, :create, :destroy] do
       get "/:date", to: "appointments#get_date_available_slots"
     end
-    resources :calendar_appointments, only: [:index]
     resources :doctors, only: [:index] do
       resources :services, only: [:index]
     end
