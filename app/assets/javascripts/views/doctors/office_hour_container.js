@@ -1,18 +1,18 @@
 Assisster.Views.OfficeHourContainer = Backbone.CompositeView.extend({
-  template: JST["doctors/office_hour_container"],
-  className: "row",
+	template: JST["doctors/office_hour_container"],
+	className: "row",
 	
 	events: {
 		"click button.create-office-hours": "showOfficeHourForm"
 	},
   
-  initialize: function (options) {
-    this.officeHourCalendarView = new Assisster.Views.OfficeHourCalendarView({
-      collection: this.collection
-    });
-    this.addSubview("div.dashboard-body", this.officeHourCalendarView);
-    this.listenTo(this.model, "sync", this.render);
-  },
+	initialize: function (options) {
+		this.officeHourCalendarView = new Assisster.Views.OfficeHourCalendarView({
+		  collection: this.collection
+		});
+		this.addSubview("div.dashboard-body", this.officeHourCalendarView);
+		this.listenTo(this.model, "sync", this.render);
+	},
 	
 	onRender: function () {
 		Backbone.CompositeView.prototype.onRender.call(this);
@@ -21,14 +21,14 @@ Assisster.Views.OfficeHourContainer = Backbone.CompositeView.extend({
 		});
 	},
   
-  render: function () {
-    var renderedContent = this.template();
-    this.$el.html(renderedContent);
-    this.attachSubview("div.dashboard-body", this.officeHourCalendarView);
-    this.onRender();
-    
-    return this;
-  },
+	render: function () {
+		var renderedContent = this.template();
+		this.$el.html(renderedContent);
+		this.attachSubview("div.dashboard-body", this.officeHourCalendarView);
+		this.onRender();
+
+		return this;
+	},
 	
 	showOfficeHourForm: function (event) {
 		event.preventDefault();
@@ -39,11 +39,11 @@ Assisster.Views.OfficeHourContainer = Backbone.CompositeView.extend({
 			this.officeHourForm.remove();
 		}
 		
-    this.officeHourForm = new Assisster.Views.OfficeHourForm({
+	    this.officeHourForm = new Assisster.Views.OfficeHourForm({
 			coordinates: coordinates,
 			model: officeHour
-    });
+	    });
 
-    $('body').append(this.officeHourForm.render().$el);
+	    $('body').append(this.officeHourForm.render().$el);
 	},
 })

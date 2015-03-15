@@ -60,17 +60,9 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
 	},
 	
 	cancel: function (event) {
-		var appointment = this.model;
-		var view = this;
-		var url = "/api/cancel_appointments/" + this.model.id;
-		$.ajax({
-			type: "PATCH",
-			url: url,
-			success: function () {
-				$('#office_hour_calendar').fullCalendar('removeEvents', [appointment.id]);
-				view.remove();
-			}
-		})
+		this.model.set("appointment_status", "Cancelled");
+		this.model.save();
+		this.remove();
 	},
 	
 	closeView: function () {
@@ -132,7 +124,7 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
     	};
 	    appointment.save(appointmentParams, {
 			success: function (model) {
-				view.collection.add(model);
+				view.collection.add(model, {merge: true});
 				view.collection.trigger("appAdd", model);
 			}
 	    });
