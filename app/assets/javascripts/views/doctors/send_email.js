@@ -5,13 +5,13 @@ Assisster.Views.SendEmailView = Backbone.View.extend({
 	events: {
 		"click #send-email": "sendEmail"
 	},
-  
-  render: function () {
-    var renderedContent = this.template();
-    this.$el.html(renderedContent);
-    
-    return this;
-  },
+
+	render: function () {
+		var renderedContent = this.template();
+		this.$el.html(renderedContent);
+
+		return this;
+	},
 	
 	resetForm: function () {
 		this.$("input").val("");

@@ -22,6 +22,7 @@
 //= require backbone.TriggerHappy
 //= require moment
 //= require fullcalendar
+//= require jquery-te-1.4.0.min
 //= require lang/es.js
 //= require bootstrap
 //= require pusher.min
