@@ -1,6 +1,6 @@
 Assisster.Views.CalendarContainer = Backbone.CompositeView.extend({
-  template: JST["doctors/calendar_container"],
-  className: "row",
+	template: JST["doctors/calendar_container"],
+	className: "row",
 	
 	events: {
 		"click button.create-appointment": "showForm",
@@ -8,14 +8,14 @@ Assisster.Views.CalendarContainer = Backbone.CompositeView.extend({
 		"click #show-pending": "showPending"
 	},
   
-  initialize: function (options) {
-    this.calendarView = new Assisster.Views.CalendarView({
-      collection: this.collection
-    });
-    this.addSubview("div.dashboard-body", this.calendarView);
-    this.listenTo(this.model, "sync", this.render);
-	this.showingPendingAttr = false;
-  },
+	initialize: function (options) {
+		this.calendarView = new Assisster.Views.CalendarView({
+		  collection: this.collection
+		});
+		this.addSubview("div.dashboard-body", this.calendarView);
+		this.listenTo(this.model, "sync", this.render);
+		this.showingPendingAttr = false;
+	},
 	
 	onRender: function () {
 		Backbone.CompositeView.prototype.onRender.call(this);
