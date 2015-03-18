@@ -23,6 +23,9 @@ gem 'whenever', :require => false
 gem 'devise'
 gem 'activeadmin', github: 'activeadmin'
 # gem 'sdoc', '~> 0.4.0',          group: :doc
+group :production do
+	gem 'rails_12factor'
+end
 
 group :doc do
   gem 'sdoc', '~> 0.4.0', require: false
