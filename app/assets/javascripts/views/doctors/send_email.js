@@ -6,9 +6,14 @@ Assisster.Views.SendEmailView = Backbone.View.extend({
 		"click #send-email": "sendEmail"
 	},
 
+	onRender: function () {
+		// this.$("textarea").jqte();
+	},
+
 	render: function () {
 		var renderedContent = this.template();
 		this.$el.html(renderedContent);
+		this.onRender();
 
 		return this;
 	},

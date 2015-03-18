@@ -2,7 +2,7 @@ Assisster.Views.NotificationsView = Backbone.CompositeView.extend({
   template: JST["doctors/notifications"],
   className: "row",
   
-  initialize: function () {
+	initialize: function () {
 		this.sendEmailView = new Assisster.Views.SendEmailView();
 		this.addSubview("div.notifications-container", this.sendEmailView);
 		
@@ -16,17 +16,17 @@ Assisster.Views.NotificationsView = Backbone.CompositeView.extend({
 		});
 		this.addSubview("div.notifications-container", this.searchView);
 		
-    this.listenTo(this.model, "sync", this.render);
-  },
+		this.listenTo(this.model, "sync", this.render);
+	},
   
-  render: function () {
-    var renderedContent = this.template();
-    this.$el.html(renderedContent);
+	render: function () {
+		var renderedContent = this.template();
+		this.$el.html(renderedContent);
 		this.attachSubview("div.notifications-container", this.sendEmailView);
 		this.attachSubview("div.notifications-container", this.sendSmsView);
 		this.attachSubview("div.notifications-container", this.searchView);
-		
-    
-    return this;
-  },
+			
+
+		return this;
+	},
 })
