@@ -101,6 +101,7 @@ Assisster.Views.AppointmentForm = Backbone.CompositeView.extend({
 	
 	onRender: function () {
 		this.$('.setDatepicker').datepicker({
+			weekStart: 1,
 			language: "es",
 			format: 'dd/mm/yyyy',
 			autoclose: true
