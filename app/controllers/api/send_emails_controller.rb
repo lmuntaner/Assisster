@@ -4,7 +4,7 @@ class Api::SendEmailsController < ApplicationController
   def create
     email = email_params["to"]
     subject = email_params["subject"]
-    body = "<p>#{email_params['body']}</p>"
+    body = "<pre style=\" font-family: 'Helvetica Neue';\">#{email_params['body']}</pre>"
     send_email(email, email, current_doctor, subject, body)
     render json: email_params
   end
