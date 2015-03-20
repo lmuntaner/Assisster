@@ -23,10 +23,11 @@ Assisster.Views.SendEmailView = Backbone.View.extend({
 		var params = $(event.currentTarget).parent().serializeJSON().email;
 		if (this.validateParams(params)) {
 			var url = "/api/send_emails";
+			var email_body = "<pre>" + params.body + "</pre>";
 			var email_data = {
 				to: params.to,
 				subject: params.subject,
-				body: params.body
+				body: email_body
 			};
 			var view = this;
 			$.ajax({
