@@ -13,7 +13,6 @@ class Api::ServicesController < ApplicationController
   
   def create
     service = current_doctor.services.new(service_params)
-    # service.description = "<pre style=\" font-family: 'Helvetica Neue';\">#{service.description}</pre>"
     
     if service.save
       render json: service

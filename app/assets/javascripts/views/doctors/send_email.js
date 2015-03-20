@@ -35,11 +35,9 @@ Assisster.Views.SendEmailView = Backbone.View.extend({
 			  type: "POST",
 			  data: {
 			    email: email_data
-			  },
-				success: function (widgetData) {
-			    view.resetForm();
 			  }
 			});			
+		    view.resetForm();
 		}
 	},
 	
