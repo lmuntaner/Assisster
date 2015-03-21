@@ -6,6 +6,13 @@ Assisster.Views.SendEmailView = Backbone.View.extend({
 		"click #send-email": "sendEmail"
 	},
 
+	// onRender: function () {
+	// 	// debugger;
+	// 	tinyMCE.init({
+	//     	selector: 'textarea.tinymce'
+	//   	});
+	// },
+
 	render: function () {
 		var renderedContent = this.template();
 		this.$el.html(renderedContent);
