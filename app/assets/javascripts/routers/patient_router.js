@@ -21,12 +21,12 @@ Assisster.Routers.PatientRouter = Backbone.Router.extend({
 	},	
 	
 	index: function () {
-    var newAppointmentView = new Assisster.Views.NewAppointmentView({
-    	collection: this.collection
-    });
-    
-    this._swapView(newAppointmentView);
-  },
+	    var newAppointmentView = new Assisster.Views.NewAppointmentView({
+	    	collection: this.collection
+	    });
+	    
+	    this._swapView(newAppointmentView);
+	 },
 	
 	success_appointment: function () {
 		var successAppointmentView = new Assisster.Views.SuccessAppointment();
@@ -34,9 +34,9 @@ Assisster.Routers.PatientRouter = Backbone.Router.extend({
 		this._swapView(successAppointmentView)
 	},
 
-  _swapView: function(view) {
-    this._currentView && this._currentView.remove();
-    this.$rootEl.html(view.render().$el);
-    this._currentView = view;
-  },
+	_swapView: function(view) {
+		this._currentView && this._currentView.remove();
+		this.$rootEl.html(view.render().$el);
+		this._currentView = view;
+	},
 })
