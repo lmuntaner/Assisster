@@ -4,7 +4,7 @@ class PatientsController < ApplicationController
     # Rails.logger.debug("This is the subdomain: #{request.subdomain}")
     # Rails.logger.debug("This is the domain: #{request.domain}")
     @doctor = Doctor.where({ domain_name: request.domain }).first
-    if !@doctor.nil?
+    if @doctor
       render :index
     else
       subdomain_request = request.subdomain
