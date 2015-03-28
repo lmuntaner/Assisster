@@ -22,9 +22,17 @@ Assisster.Collections.Services = Backbone.Collection.extend({
 			service = new Assisster.Models.Service({ id: id });
 			service.fetch({
 				success: function(model) {
-					collection.add(model);
+					if (model.get("doctor_id") !== window.Doctor.id) {
+						Backbone.history.navigate("", {trigger: true});
+					} else {					
+						collection.add(model);
+					}
 				}
 			})
+		} else {
+			if (service.get("doctor_id") !== window.Doctor.id) {
+				Backbone.history.navigate("", {trigger: true});
+			}
 		}
 		
 		return service;
