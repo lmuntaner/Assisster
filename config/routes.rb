@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resource :session, only: [:create, :destroy]
   get "/dashboard", to: "doctors#show"
   get "/appointment", to: "patients#appointment"
+  get "/profile", to: "doctors#edit"
+  get "/web_settings", to: "doctors#edit"
   
   
   namespace :api, defaults: {format: :json} do

@@ -1,0 +1,2 @@
+module DoctorWebSettingsHelper
+end

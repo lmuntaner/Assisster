@@ -1,0 +1,2 @@
+class DoctorWebSettingsController < ApplicationController
+end
