@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get "/dashboard", to: "doctors#show"
   get "/appointment", to: "patients#appointment"
   get "/profile", to: "doctors#edit"
-  get "/web_settings", to: "doctors#edit"
+  get "/web_settings", to: "doctor_webs#edit"
   
   
   namespace :api, defaults: {format: :json} do
