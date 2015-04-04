@@ -2,7 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
+@import "css_home_template/reset.css";
+@import "css_home_template/style.css";
+@import "css_home_template/responsive-leyouts.css";
+@import "js_home_template/sticky-menu/core.css";
+@import "js_home_template/revolutionslider/css/fullwidth.css";
+@import "js_home_template/revolutionslider/rs-plugin/css/settings.css";
+@import "js_home_template/jcarousel/skin2.css";
+@import "js_home_template/iosslider/common.css";
+@import "js_home_template/testimonials/fadeeffect.css";
+@import "js_home_template/portfolio/source.jquery.fancybox.css";
+@import "js_home_template/portfolio/isotope.css";
 
 /* Patients Home */
 
