@@ -28,6 +28,8 @@
 //= require list
 //= require bootstrap-notify
 //= require assisster
+//= require status_spanish
+//= require phone_codes
 //= require_tree ../templates
 //= require_tree ./models
 //= require_tree ./collections
