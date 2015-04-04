@@ -11,10 +11,10 @@ Assisster.Views.RecentAppointmentItem = Backbone.View.extend({
 		var renderedContent = this.template({
 			appointment: this.model
 		});
-		var appointmentStauts = this.model.get('appointment_status');
-		if (appointmentStauts === "Cancelled") {
+		var appointmentStatus = this.model.get('appointment_status');
+		if (appointmentStatus === "Cancelled") {
 			this.$el.addClass('danger');
-		} else if (appointmentStauts === "Pending") {
+		} else if (appointmentStatus === "Pending") {
 			this.$el.addClass('warning');
 		} else {
 			this.$el.addClass('success');
