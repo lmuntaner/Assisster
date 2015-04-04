@@ -1,0 +1,352 @@
+/* Responsive CSS Styles Table of Contents */
+
+@media only screen and (min-width: 1000px) and (max-width: 1169px){
+
+.container {
+	width: 1000px;
+	margin: auto auto auto auto;
+}
+
+a.button_slider {
+	padding: 13px 18px;
+}
+
+.our_team .one_fourth img {
+	width: 100%;
+}
+
+.four_col_fusection .one_fourth {
+	margin-right: 0.7%;
+}
+
+.features_sec02 .one_third i {
+	margin-left: 80px;
+}
+
+.portfolio_page .imgWrap {
+    position: relative;
+    width: 325px;
+}
+.portfolio_page h3 {
+	width: 325px;
+}
+.portfolio_page .imgDescription i {
+	left: 140px;
+}
+
+ul.post_meta_links {
+	margin: -10px 0px 0px 10.3%;
+	width: 80%;
+}
+
+.our_team ul.people_soci {
+	margin: 0px 0px 0px 50px;
+}
+
+
+}
+
+
+@media only screen and (min-width: 768px) and (max-width: 999px){
+.container {
+	width: 747px;
+	margin: auto auto auto auto;
+}
+
+a.button_slider {
+	padding: 9px 10px;
+	font-size: 14px;
+}
+
+.features_sec02 .one_third i {
+	margin-left: 40px;
+}
+
+.our_team .one_fourth img {
+	width: 100%;
+}
+
+.our_team ul.people_soci {
+	margin: 0px 0px 0px 30px;
+}
+
+.parallax_sec1 {
+	padding: 50px 0px 0px 0px;
+}
+
+.four_col_fusection .one_fourth {
+	margin-right: 0.7%;
+}
+
+.portfolio_page .imgWrap {
+    position: relative;
+    width: 239px;
+	height: 200px;
+}
+.portfolio_page .imgWrap img {
+	float: left;
+	width: 100%;
+	height: 200px;
+}
+.portfolio_page h3 {
+	width: 239px;
+}
+.portfolio_page .imgDescription i {
+	top: 80px;
+	left: 100px;
+}
+
+.site_sec1 .right img {
+	width: 100%;
+}
+
+.footer_social_links li a {
+	width: 107px;
+}
+
+
+
+}
+
+
+
+
+@media only screen and (min-width: 480px) and (max-width: 767px){
+	
+#trueHeader #logo{
+	background:url(../images/logo.png) no-repeat center bottom;
+}
+
+.container {
+	width: 448px;
+	margin: auto;
+}
+
+a.button_slider {
+	padding: 5px 5px;
+	font-size: 10px;
+	border-radius: 2px;
+}
+
+#header .one_fourth {
+	margin-bottom: 10px;
+}
+#top-nav{
+	float: left;
+}
+#top-nav ul {
+	float: left;
+}
+#top-nav #fixed-nav li a {
+	height: 50px;
+	line-height: 50px;
+	padding: 0 10px;
+}
+
+.site_sec1 .left {
+	float: left;
+	width: 100%;
+}
+.site_sec1 .right {
+	float: left;
+	width: 100%;
+	margin-top: 40px;
+	text-align: center;
+}
+
+.features_sec02 .one_third {
+	margin-right: 0%;
+	width: 100%;
+	margin-bottom: 70px;
+}
+.features_sec02 .one_third i {
+	margin-left: 170px;
+}
+
+.our_team .one_fourth {
+	width: 100%;
+	margin-bottom: 70px;
+	margin-right: 0%;
+}
+.our_team ul.people_soci {
+	margin: 0px 0px 0px 160px;
+}
+
+.parallax_sec1 {
+	height: 320px;
+	padding: 80px 0px 0px 0px;
+}
+.parallax_sec1 h1 {
+	font-size: 40px;
+	line-height: 40px;
+}
+
+.four_col_fusection .one_fourth {
+	width: 99%;
+	border-right: none;
+	margin-bottom: 40px;
+}
+
+.one_full {
+	width: 100%;
+}
+.one_half {
+	width: 100%;
+	margin-bottom: 30px;
+}
+.one_third {
+	width: 100%;
+	margin-bottom: 30px;
+}
+.one_fourth {
+	width: 100%;
+	margin-bottom: 30px;
+}
+.one_fifth {
+	width: 100%;
+	margin-bottom: 30px;
+}
+.two_third {
+	width: 100%;
+	margin-bottom: 30px;
+}
+.three_fourth {
+	width: 100%;
+	margin-bottom: 30px;
+}
+.last {
+	margin-right: 0 !important;
+	clear: right;
+	margin-bottom: 0 !important;
+}
+
+
+
+}
+
+
+
+
+
+@media only screen and (max-width: 479px){
+
+#trueHeader #logo{
+	background:url(../images/logo.png) no-repeat center bottom;
+}
+
+.container {
+	width: 300px;
+	margin: auto auto auto auto;
+}
+
+a.button_slider {
+	padding: 3px 2px;
+	font-size: 7px;
+	border-radius: 2px;
+}
+
+#header .one_fourth {
+	margin-bottom: 10px;
+}
+#top-nav{
+	float: left;
+}
+#top-nav ul {
+	float: left;
+}
+#top-nav #fixed-nav li a {
+	height: 50px;
+	line-height: 50px;
+	padding: 0 5px;
+	font-size: 12px;
+}
+
+.site_sec1 .left {
+	float: left;
+	width: 100%;
+}
+.site_sec1 .right {
+	float: left;
+	width: 100%;
+	margin-top: 40px;
+	text-align: center;
+}
+
+.features_sec02 .one_third {
+	margin-right: 0%;
+	width: 100%;
+	margin-bottom: 50px;
+}
+.features_sec02 .one_third i {
+	margin-left: 90px;
+}
+
+.our_team .one_fourth {
+	width: 100%;
+	margin-bottom: 50px;
+	margin-right: 0%;
+}
+.our_team ul.people_soci {
+	margin: 0px 0px 0px 90px;
+}
+
+.parallax_sec1 {
+	height: 350px;
+	padding: 50px 0px 0px 0px;
+}
+.parallax_sec1 h1 {
+	font-size: 40px;
+	line-height: 40px;
+}
+
+.four_col_fusection .one_fourth {
+	width: 99%;
+	border-right: none;
+	margin-bottom: 40px;
+}
+
+
+
+
+
+.one_full {
+	width: 100%;
+}
+.one_half {
+	width: 100%;
+	margin-bottom: 30px;
+}
+.one_third {
+	width: 100%;
+	margin-bottom: 30px;
+}
+.one_fourth {
+	width: 100%;
+	margin-bottom: 30px;
+}
+.one_fifth {
+	width: 100%;
+	margin-bottom: 30px;
+}
+.two_third {
+	width: 100%;
+	margin-bottom: 30px;
+}
+.three_fourth {
+	width: 100%;
+	margin-bottom: 30px;
+}
+.last {
+	margin-right: 0 !important;
+	clear: right;
+	margin-bottom: 0 !important;
+}
+
+.top_contact_info {
+	min-height: 90px;
+}
+
+
+
+
+}
