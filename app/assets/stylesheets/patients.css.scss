@@ -80,8 +80,17 @@ div.service-description {
   	border-bottom: 1px solid #e0e2e3;
 }
 
+div.service-description h5 {
+	margin-top: 10px;
+}
+
+div.service-description h5, div.service-description p {
+	margin-bottom: 10px;
+}
+
 p.additional-info {
-	float: right;
+	/*float: right;*/
+	text-align: right;
 	font-size: 12px;
 	font-style: italic;
 }
