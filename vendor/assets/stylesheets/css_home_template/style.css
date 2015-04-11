@@ -10,7 +10,7 @@
 	height:31px;
 	margin-top:18px;
 	text-indent:-999em;
-	background:url(../images/logo.png) no-repeat left bottom;
+	background:url(../img_home_template/logo.png) no-repeat left bottom;
 }
 
 
@@ -28,6 +28,8 @@
 	margin: auto auto auto auto;
 }
 .container {
+	padding-left: 0;
+	padding-right: 0;
 	width: 1170px;
 	margin: auto auto auto auto;
 }
@@ -277,10 +279,10 @@ a.button_slider:hover {
 .parallax_sec1 {
 	float: left;
 	width: 100%;
-	height: 290px;
+	height: 400px;
 	padding: 110px 0px 0px 0px;
 	text-align: center;
-	background: #f2ad16 url(../images/para-bg1.jpg) no-repeat center top;
+	background: #f2ad16 url(../img_home_template/para-bg1.jpg) no-repeat center top;
 }
 .parallax_sec1 h1 {
 	font-size: 58px;
@@ -303,7 +305,7 @@ a.button_slider:hover {
 	border-radius: 4px;
 	text-transform: uppercase;
 	border: 1px solid #e3e3e3;
-	background: url(../images/opacity-line.png) repeat left top;
+	background: url(../img_home_template/opacity-line.png) repeat left top;
 }
 .parallax_sec1 a.but_transp:hover {
 	color: #fff;
@@ -317,7 +319,7 @@ a.button_slider:hover {
 	width: 100%;
 	height: 350px;
 	text-align: center;
-	background: #454545 url(../images/clients-bg.jpg) no-repeat center top;
+	background: #454545 url(../img_home_template/clients-bg.jpg) no-repeat center top;
 }
 .clients h1 {
 	font-size: 40px;
@@ -569,7 +571,7 @@ ul.footer_social_links {
 	line-height: 22px;
 }
 .four_col_fusection .one_fourth {
-	width: 19.8%;
+	width: 24.4%;
 	text-align: center;
 	border-right: 1px solid #f6f6f6;
 }
@@ -629,6 +631,6 @@ ul.footer_social_links {
     right:27px;
     display:none;
     text-indent:-9999px;
-    background: url(../images/scroll-top-arrow.png) no-repeat left top;
+    background: url(../img_home_template/scroll-top-arrow.png) no-repeat left top;
 	z-index: 999;
 }
