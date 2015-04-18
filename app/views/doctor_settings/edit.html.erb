@@ -1,15 +1,9 @@
 <%= render "helpers/doctor_header" %>
 
 <div class="container wrap" id="doctor-settings">
-	<div class="dashboard-title row">
-	  <h1>Ajustes</h1>
-	</div>
-	<div class="dashboard-menu row">
-		<ul class="nav nav-tabs">
-		  <li role="presentation" class="active"><a href="/profile">Perfil</a></li>
-		  <li role="presentation"><a href="/web_settings">Ajustes Web</a></li>
-		</ul>
-	</div>
+
+	<%= render "helpers/doctor_settings_title", page: "profile" %>
+
 	<div class="dashboard-body">
 		<div class="row settings-container">
 			<div class="col-xs-8">
