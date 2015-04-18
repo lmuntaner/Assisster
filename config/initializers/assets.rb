@@ -8,7 +8,7 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.precompile += %w( search.js )
 
 %w( patients doctors doctor_web_settings ).each do |controller|
-  Rails.application.config.assets.precompile += ["#{controller}.js.coffee", "#{controller}.css"]
+  Rails.application.config.assets.precompile += ["#{controller}.js", "#{controller}.css"]
 end
 
 Rails.application.config.assets.precompile += %w( js_home_template/portfolio/lib/jquery-1.9.0.min.js
