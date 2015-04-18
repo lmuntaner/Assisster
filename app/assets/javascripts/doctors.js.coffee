@@ -1,5 +1,3 @@
-//
-//
 //= require jquery.serializejson
 //= require jquery.timepicker
 //= require jquery.backstretch.min

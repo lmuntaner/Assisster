@@ -5,6 +5,8 @@
 
 <%= render "helpers/footer" %>
 
+<%= javascript_include_tag params[:controller] %>
+
 <script>
   $(Assisster.initialize({
     $rootEl: $('#doctor-dashboard'),
