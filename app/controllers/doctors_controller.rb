@@ -4,4 +4,8 @@ class DoctorsController < ApplicationController
   def show
     render :show
   end
+
+  def edit
+  	render :edit
+  end
 end
