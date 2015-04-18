@@ -8,4 +8,22 @@ class DoctorsController < ApplicationController
   def edit
   	render :edit
   end
+
+  def update
+  	if current_doctor.update(doctor_params)
+  		redirect_to doctor_profile_path
+  	else
+  		render :edit
+  	end
+  end
+
+  private
+
+  def doctor_params
+  	if params[:doctor][:password] == ""
+  		params.require(:doctor).permit(:email, :subdomain_name, :domain_name)
+  	else
+  		params.require(:doctor).permit(:email, :subdomain_name, :domain_name, :password)
+  	end
+  end
 end

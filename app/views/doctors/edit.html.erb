@@ -12,6 +12,84 @@
 	</div>
 	<div class="dashboard-body">
 		<div class="row settings-container">
+			<div class="col-xs-8">
+				<h3 class="send-form-title">Edita tu información</h3>
+
+				<form role="form" action="/doctors/<%= current_doctor.id %>" method="POST">
+
+					<input type="hidden"
+							name="authenticity_token"
+							value="<%= form_authenticity_token %>">
+
+					<input type="hidden" name="_method" value="PATCH">
+
+					<div class="form-inputs">
+						<div class="row">
+							<div class="col-xs-6">
+								<div class="form-group">
+									<input type="text"
+										   name="doctor[email]"
+										   class="form-control input-sm"
+										   value="<%= current_doctor.email %>">
+								</div>
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="col-xs-4">
+								<div class="form-group">
+									<input type="text"
+										   name="doctor[subdomain_name]"
+										   class="form-control input-sm"
+										   value="<%= current_doctor.subdomain_name %>">
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-6">
+								<div class="form-group">
+									<input type="text"
+										   name="doctor[domain_name]"
+										   class="form-control input-sm"
+										   value="<%= current_doctor.domain_name %>">
+								</div>
+							</div>
+						</div>
+
+						<h5>Cambia tu password</h5>
+						<div class="row">
+							<div class="col-xs-3">
+								<div class="form-group">
+									<input type="text"
+										   id="password"
+										   name="doctor[password]"
+										   class="form-control input-sm"
+										   placeholder="Nuevo password">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-3">
+								<div class="form-group">
+									<input type="text"
+										   id="repeat-password"
+										   class="form-control input-sm"
+										   placeholder="Repite nuevo password">
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<input type="submit"
+							id="edit-doctor"
+							class="btn btn-default"
+							value="Guardar">
+					</input>
+
+				</form>
+			</div>
 		</div>
 	</div>
 </div>
