@@ -13,10 +13,15 @@
 
 .dashboard-title h1 {
 	margin-left: 16px;
+	margin-top: 20px;
 }
 
 .dashboard-body {
   	margin: 0 0 30px;
+}
+
+.dashboard-menu a {
+	color: #337ab7;
 }
 
 .clickable {
@@ -37,6 +42,13 @@ div.my-modal {
 	height: 100%;
 	background-color: black;
 	opacity: 0.1;
+}
+
+/* Pending Appointments View */
+
+.doctor-dashboard h5, .doctor-dashboard h3 {
+	margin-top: 15px;
+	margin-bottom: 15px;
 }
 
 /* Calendar View */
@@ -159,6 +171,11 @@ div.service-form {
 	width: 300px;
 	z-index: 5;
 	position: fixed;
+}
+
+div.service-content h3, div.service-content h5, div.service-content h6 {
+	margin-bottom: 0;
+	margin-top: 0;
 }
 
 

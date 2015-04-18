@@ -1,0 +1,135 @@
+.faide_slider{
+  width: 100%;
+  margin: 0px auto 0 auto;
+  float: left;
+}
+
+.faide_slider #slider{
+  margin: 0 auto;
+  width: 80%;
+  text-align: center;
+  overflow: hidden;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 25px;
+  text-transform: uppercase;
+}
+
+.faide_slider #slider strong{
+	color: #fff;
+	font-size: 14px;
+}
+
+.faide_slider #slider b{
+	color: #fff;
+	font-size: 14px;
+	font-weight: normal;
+}
+
+.faide_slider #slider strong a{
+	color: #fff;
+}
+
+.faide_slider #slider strong a:hover{
+	color: #3d3d48;
+}
+
+.faide_slider #slider i{
+	color: #fff;
+}
+
+.faide_slider #slide1{
+  float: left;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.faide_slider #slide2{
+  float: left;
+  display: none;
+  margin: 0 auto;
+  width: 100%;
+}
+.faide_slider #slide3{
+  float: left;
+  display: none;  
+  margin: 0 auto;
+  width: 100%;
+}
+.faide_slider #slide4{
+  float: left;
+  display: none;
+  margin: 0 auto;
+  width: 100%;
+}
+
+
+.faide_slider ul.controlls{
+  padding: 0px;
+  margin: 0 0 0 570px;
+}
+
+.faide_slider .controlls li{
+  padding: 0px;
+  margin: 0px 7px 0px 0px;
+  float: left;
+  display: inline;
+}
+.faide_slider .controlls li a{
+  width: 10px;
+  height: 10px;
+  background-color: #eee;
+  display: block;
+  border-radius: 100%;
+}
+
+
+@media only screen and (min-width: 1170px){}
+@media only screen and (min-width: 1000px) and (max-width: 1169px){
+
+.faide_slider ul.controlls{
+  margin: 0 0 0 490px;
+}
+
+}
+
+
+@media only screen and (min-width: 768px) and (max-width: 999px){
+
+.faide_slider #slider{
+  font-size: 14px;
+  line-height: 22px;
+}
+.faide_slider ul.controlls{
+  margin: 0 0 0 370px;
+}
+
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+
+.faide_slider #slider{
+  font-size: 14px;
+  line-height: 22px;
+}
+.faide_slider ul.controlls{
+  margin: 0 0 0 225px;
+}
+	
+}
+
+@media only screen and (max-width: 479px){
+
+.faide_slider #slider{
+  font-size: 12px;
+  line-height: 18px;
+}
+.faide_slider ul.controlls{
+  margin: 0 0 0 145px;
+}
+	
+}
+
+
+

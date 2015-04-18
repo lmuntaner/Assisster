@@ -2,6 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+/* Forms */
+
+div.appointment-content h3, div.appointment-content h5, div.appointment-content h6 {
+	margin-bottom: 0;
+	margin-top: 0;
+}
+
 /* Doctor Appointment Form */
 
 .appointment-form-container {
