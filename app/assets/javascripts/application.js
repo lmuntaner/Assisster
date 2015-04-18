@@ -13,29 +13,4 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
-<<<<<<< HEAD
 //= require bootstrap
-=======
-//= require jquery.serializejson
-//= require jquery.timepicker
-//= require jquery.backstretch.min
-//= require bootstrap-datepicker
-//= require underscore
-//= require backbone
-//= require backbone.TriggerHappy
-//= require moment
-//= require fullcalendar
-//= require lang/es.js
-//= require bootstrap
-//= require pusher.min
-//= require list
-//= require bootstrap-notify
-//= require assisster
-//= require status_spanish
-//= require phone_codes
-//= require_tree ../templates
-//= require_tree ./models
-//= require_tree ./collections
-//= require_tree ./views
-//= require_tree ./routers
->>>>>>> development
