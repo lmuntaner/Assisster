@@ -21,12 +21,8 @@
             <span class="caret"></span>
           </a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="<%= dashboard_url %>">Dashboard</a></li>
-            <li><a href='<%= "#{dashboard_url}#calendar" %>'>Calendario</a></li>
-			<li><a href='<%= "#{dashboard_url}#office_hours" %>'>Horas Oficina</a></li>
-			<li><a href='<%= "#{dashboard_url}#notifications" %>'>Notificaciones</a></li>
-			<li><a href='<%= "#{dashboard_url}#services" %>'>Servicios</a></li>
-            <li><a href='<%= "#{dashboard_url}#appointments" %>'>Citas</a></li>
+            <li><a href="<%= dashboard_path %>">Dashboard</a></li>
+            <li><a href='<%= doctor_profile_path %>'>Ajustes</a></li>
             <li class="divider"></li>
             <li>
               <%= button_to "Cerrar sesión", session_url, method: :delete, class: "btn btn-link" %>
