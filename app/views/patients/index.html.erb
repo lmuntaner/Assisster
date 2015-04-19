@@ -8,7 +8,7 @@
   	<script type="text/javascript">
   		$(function () {
 		  	$('#sign-in-modal').modal('show');
-  		})
+  		});
 	</script>
 <% end %>
 
@@ -23,8 +23,7 @@
   </div>
   <div class="row">
     <div class="col-xs-6">
-<!--       <h3 class="home-title-section">Descripción</h3>
- -->      <div class="dl-horizontal">
+      <div class="dl-horizontal">
         <%= @doctor.description.html_safe %>
 			</div>
 			<div class="appointment-button-index">
@@ -56,13 +55,13 @@
 	function init_map(){
 		var myOptions = {
 			zoom:14,
-			center: new google.maps.LatLng(<%= @doctor.latitude %>,<%= @doctor.longitude %>),
+			center: new google.maps.LatLng(<%= @doctor.latitude %>, <%= @doctor.longitude %>),
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 		};
 		var map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
 		var marker = new google.maps.Marker({ 
 				map: map,
-				position: new google.maps.LatLng(<%= @doctor.latitude %>,<%= @doctor.longitude %>)
+				position: new google.maps.LatLng(<%= @doctor.latitude %>, <%= @doctor.longitude %>)
 		});
 		var infowindow = new google.maps.InfoWindow({ 
 				content:"<b><%= @doctor.name %></b>"
@@ -71,6 +70,6 @@
 			infowindow.open(map,marker);
 		});
 		infowindow.open(map,marker);
-	}
+	};
 	google.maps.event.addDomListener(window, 'load', init_map);
 </script>
