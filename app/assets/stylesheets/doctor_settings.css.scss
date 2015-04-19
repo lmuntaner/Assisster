@@ -3,6 +3,7 @@ div.settings-container {
 	border: solid 1px #ddd;
 	border-radius: 5px;
 	height: 500px;
+	overflow: auto;
 }
 
 span.password-validation-error {
@@ -13,5 +14,5 @@ span.password-validation-error {
 }
 
 textarea.doctor-web-description {
-	height: 200px;
+	height: 175px;
 }
