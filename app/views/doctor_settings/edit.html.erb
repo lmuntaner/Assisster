@@ -9,7 +9,7 @@
 			<div class="col-xs-8">
 				<h3 class="send-form-title">Edita tu información</h3>
 
-				<form role="form" action="/doctors/<%= current_doctor.id %>" method="POST">
+				<form role="form" id="edit-doctor-profile" action="/doctors/<%= current_doctor.id %>" method="POST">
 
 					<input type="hidden"
 							name="authenticity_token"
@@ -55,7 +55,7 @@
 						<div class="row">
 							<div class="col-xs-3">
 								<div class="form-group password">
-									<input type="text"
+									<input type="password"
 										   id="password"
 										   name="doctor[password]"
 										   class="form-control input-sm"
@@ -66,7 +66,7 @@
 						<div class="row">
 							<div class="col-xs-3">
 								<div class="form-group repeat-password">
-									<input type="text"
+									<input type="password"
 										   id="repeat-password"
 										   name="doctor[repeat_password]"
 										   class="form-control input-sm"

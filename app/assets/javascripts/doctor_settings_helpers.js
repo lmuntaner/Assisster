@@ -5,9 +5,10 @@ $(function () {
 		if (params.password != params.repeat_password) {
 			$("div.password").addClass("has-error");
 			$("div.repeat-password").addClass("has-error");
-			$("input[name='doctor[password]'").attr("value", "");
-			$("input[name='doctor[repeat_password]'").attr("value", "");
+			$("input[name='doctor[password]'").val("");
+			$("input[name='doctor[repeat_password]'").val("");
+		} else {
+			$("#edit-doctor-profile").submit();
 		}
-		debugger;
 	});
 });
