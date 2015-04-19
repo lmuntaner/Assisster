@@ -4,3 +4,6 @@
 
 //= require wysihtml
 //= require wysihtml-toolbar
+//= require parser_rules/advanced_unwrap
+
+//= require ./doctor_web_settings_helpers.js
