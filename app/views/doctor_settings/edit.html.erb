@@ -20,7 +20,8 @@
 					<div class="form-inputs">
 						<div class="row">
 							<div class="col-xs-6">
-								<div class="form-group">
+								<div class="form-group doctor-email">
+									<label>Email</label>
 									<input type="text"
 										   name="doctor[email]"
 										   class="form-control input-sm"
@@ -28,21 +29,11 @@
 								</div>
 							</div>
 						</div>
-						
-						<div class="row">
-							<div class="col-xs-4">
-								<div class="form-group">
-									<input type="text"
-										   name="doctor[subdomain_name]"
-										   class="form-control input-sm"
-										   value="<%= current_doctor.subdomain_name %>">
-								</div>
-							</div>
-						</div>
 
 						<div class="row">
 							<div class="col-xs-6">
 								<div class="form-group">
+									<label>Dominio</label>
 									<input type="text"
 										   name="doctor[domain_name]"
 										   class="form-control input-sm"
@@ -62,6 +53,7 @@
 										   placeholder="Nuevo password">
 								</div>
 							</div>
+							<span class="password-validation-error"></span>
 						</div>
 						<div class="row">
 							<div class="col-xs-3">

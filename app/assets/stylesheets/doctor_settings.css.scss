@@ -4,3 +4,10 @@ div.settings-container {
 	border-radius: 5px;
 	height: 500px;
 }
+
+span.password-validation-error {
+	font-size: 0.8em;
+	color: red;
+	display: block;
+	margin-top: 6px;
+}
