@@ -17,9 +17,9 @@ class DoctorSettingsController < ApplicationController
 
 	def doctor_params
 		if params[:doctor][:password] == ""
-			params.require(:doctor).permit(:email, :subdomain_name, :domain_name)
+			params.require(:doctor).permit(:email, :domain_name)
 		else
-			params.require(:doctor).permit(:email, :subdomain_name, :domain_name, :password)
+			params.require(:doctor).permit(:email, :domain_name, :password)
 		end
 	end
 end

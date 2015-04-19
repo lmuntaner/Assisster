@@ -6,6 +6,62 @@
 
 	<div class="dashboard-body">
 		<div class="row settings-container">
+			<div class="col-xs-8">
+				<h3 class="send-form-title">Personaliza tu web</h3>
+
+				<form role="form" id="edit-doctor-profile" action="/doctors-web/<%= current_doctor.id %>" method="POST">
+
+					<input type="hidden"
+							name="authenticity_token"
+							value="<%= form_authenticity_token %>">
+
+					<input type="hidden" name="_method" value="PATCH">
+
+					<div class="form-inputs">
+						<div class="row">
+							<div class="col-xs-6">
+								<div class="form-group doctor-email">
+									<label>Título</label>
+									<input type="text"
+										   name="doctor[name]"
+										   class="form-control input-sm"
+										   value="<%= current_doctor.name %>">
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-6">
+								<div class="form-group">
+									<label>Subtítulo</label>
+									<input type="text"
+										   name="doctor[sub_title]"
+										   class="form-control input-sm"
+										   value="<%= current_doctor.sub_title %>">
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-9">
+								<div class="form-group">
+									<label>Subtítulo</label>
+									<textarea name="doctor[description]"
+											  class="form-control input-sm doctor-web-description"><%= current_doctor.description %></textarea>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<input type="submit"
+							id="edit-web-doctor"
+							class="btn btn-default"
+							value="Actualizar">
+					</input>
+
+				</form>
+			</div>
 		</div>
 	</div>
 </div>

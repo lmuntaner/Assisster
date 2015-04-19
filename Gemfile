@@ -22,6 +22,7 @@ gem 'rest-client'
 gem 'whenever', :require => false
 gem 'devise'
 gem 'activeadmin', github: 'activeadmin'
+gem 'wysihtml-rails'
 
 group :production do
 	gem 'rails_12factor'
