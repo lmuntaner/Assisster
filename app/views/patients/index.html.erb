@@ -57,19 +57,20 @@
 		var myOptions = {
 			zoom:14,
 			center: new google.maps.LatLng(<%= @doctor.latitude %>,<%= @doctor.longitude %>),
-			mapTypeId: google.maps.MapTypeId.ROADMAP};
-			map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
-			marker = new google.maps.Marker({ 
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		var map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
+		var marker = new google.maps.Marker({ 
 				map: map,
 				position: new google.maps.LatLng(<%= @doctor.latitude %>,<%= @doctor.longitude %>)
-			});
-			infowindow = new google.maps.InfoWindow({ 
+		});
+		var infowindow = new google.maps.InfoWindow({ 
 				content:"<b><%= @doctor.name %></b>"
-			});
-			google.maps.event.addListener(marker, "click", function() {
-				infowindow.open(map,marker);
-			});
+		});
+		google.maps.event.addListener(marker, "click", function() {
 			infowindow.open(map,marker);
-		}
+		});
+		infowindow.open(map,marker);
+	}
 	google.maps.event.addDomListener(window, 'load', init_map);
 </script>
