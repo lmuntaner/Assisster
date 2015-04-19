@@ -6,8 +6,8 @@
 
 	<div class="dashboard-body">
 		<div class="row settings-container">
-			<div class="col-xs-6">
-				<form role="form" id="edit-doctor-profile" action="/doctors-web/<%= current_doctor.id %>" method="POST">
+			<form role="form" id="edit-doctor-profile" action="/doctors-web/<%= current_doctor.id %>" method="POST">
+				<div class="col-xs-6">
 					<h3 class="send-form-title">Personaliza tu web</h3>
 
 					<input type="hidden"
@@ -68,12 +68,29 @@
 							class="btn btn-default"
 							value="Actualizar">
 					</input>
-
-					</form>
-			</div>
-			<div class="col-xs-6 address-settings-container">
-				<h5>Dirección</h5>
-				<form role="form" id="address-form">
+				</div>
+				<div class="col-xs-6 address-settings-container">
+					<h5>Dirección</h5>
+					<div class="row">
+						<div class="col-xs-6">
+							<div class="form-group">
+								<input type="text"
+									   name="doctor[street_address]"
+									   class="form-control input-sm"
+									   value="<%= current_doctor.street_address %>">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-6">
+							<div class="form-group">
+								<input type="text"
+									   name="doctor[city_address]"
+									   class="form-control input-sm"
+									   value="<%= current_doctor.city_address %>">
+							</div>
+						</div>
+					</div>
 					<div class="row form-group">
 					  <div class="col-xs-12">
 					    <div class="input-group">
@@ -89,9 +106,9 @@
 					    </div>
 					  </div>
 					</div>
-				</form>
-				<div id="map-canvas-settings"></div>
-			</div>
+					<div id="map-canvas-settings"></div>
+				</div>
+			</form>
 		</div>
 	</div>
 </div>
@@ -99,6 +116,13 @@
 <%= render "helpers/footer" %>
 
 <script type="text/javascript">
+	$(window).keydown(function(event){
+		if(event.keyCode == 13) {
+		  event.preventDefault();
+		  return false;
+		}
+	});
+
 	var geocoder;
 	var map
 	$(function () {
@@ -117,7 +141,6 @@
 		  }
 		});
 		$("#search-address").on("click", search_address);
-		$("#address-form").on("submit", search_address);
 	});
 
 	function search_address(event) {
@@ -137,6 +160,7 @@
 	        alert("Geocode was not successful for the following reason: " + status);
 	      }
 	    });
+	    $("#search-address").blur();
 	};
 
 	function init_map(){
