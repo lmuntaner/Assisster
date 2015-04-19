@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       doctor_sign_in(@doctor)
       redirect_to dashboard_url
     else
-      flash.now[:errors] = ["Invalid email or password"]
+      flash[:errors] = ["Invalid email or password"]
       redirect_to root_url
     end
   end

@@ -22,6 +22,9 @@
 					</div>
 					<div class="row">
 						<div class="col-sm-12 col-md-10  col-md-offset-1 ">
+							<% if flash[:errors] %>
+								<span class="signin-validation"><%= flash[:errors].first %></span>
+							<% end %>
 							<div class="form-group">
 								<div class="input-group">
 									<span class="input-group-addon">

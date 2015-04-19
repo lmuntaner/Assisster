@@ -4,6 +4,14 @@
   <%= render "helpers/sign_in_header" %>
 <% end %>
 
+<% if flash[:errors] %>
+  	<script>
+  		$(function () {
+		  	$('#sign-in-modal').modal('show');
+  		})
+	</script>
+<% end %>
+
 <%= render "helpers/sign_in_modal" %>
 
 <div class="container wrap">
