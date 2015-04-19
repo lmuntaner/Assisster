@@ -2,8 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-//= require wysihtml
-//= require wysihtml-toolbar
-//= require parser_rules/advanced_unwrap
+//= require bootstrap-wysihtml5
+//= require bootstrap-wysihtml5/locales
 
 //= require ./doctor_web_settings_helpers.js
