@@ -6,8 +6,8 @@
 
 	<div class="dashboard-body">
 		<div class="row settings-container">
-			<form role="form" id="edit-doctor-profile" action="/doctors-web/<%= current_doctor.id %>" method="POST">
-				<div class="col-xs-6">
+			<div class="col-xs-6">
+				<form role="form" id="edit-doctor-profile" action="/doctors-web/<%= current_doctor.id %>" method="POST">
 					<h3 class="send-form-title">Personaliza tu web</h3>
 
 					<input type="hidden"
@@ -54,28 +54,44 @@
 
 					</div>
 
+					<input type="hidden"
+							name="doctor[longitude]"
+							id="doctor-latitude"
+							value="<%= current_doctor.longitude %>">
+					<input type="hidden"
+							name="doctor[latitude]"
+							id="doctor-longitude"
+							value="<%= current_doctor.latitude %>">
+
 					<input type="submit"
 							id="edit-web-doctor"
 							class="btn btn-default"
 							value="Actualizar">
 					</input>
 
-				</div>
-				<div class="col-xs-6 address-settings-container">
-					<h5>Dirección</h5>
+					</form>
+			</div>
+			<div class="col-xs-6 address-settings-container">
+				<h5>Dirección</h5>
+				<form role="form" id="address-form">
 					<div class="row form-group">
 					  <div class="col-xs-12">
 					    <div class="input-group">
-					      <input type="text" class="form-control input-sm" placeholder="Direccion">
+					    	<form>
+					      <input type="text"
+					      		 class="form-control input-sm"
+					      		 id="doctor-address"
+					      		 placeholder="Direccion">
 					      <span class="input-group-btn">
-					        <button class="btn btn-default btn-sm" type="button">Buscar</button>
+					        <button class="btn btn-default btn-sm" id="search-address" type="button">Buscar</button>
 					      </span>
-					    </div><!-- /input-group -->
-					  </div><!-- /.col-lg-6 -->
-					</div><!-- /.row -->
-					<div id="map-canvas-settings"></div>
-				</div>
-			</form>
+					  	</form>
+					    </div>
+					  </div>
+					</div>
+				</form>
+				<div id="map-canvas-settings"></div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -83,6 +99,8 @@
 <%= render "helpers/footer" %>
 
 <script type="text/javascript">
+	var geocoder;
+	var map
 	$(function () {
 		$("textarea.doctor-web-description").wysihtml5({
 		  toolbar: {
@@ -98,25 +116,48 @@
 		    "size": "sm" //default: none, other options are xs, sm, lg
 		  }
 		});
+		$("#search-address").on("click", search_address);
+		$("#address-form").on("submit", search_address);
 	});
 
+	function search_address(event) {
+		event.preventDefault();
+		var address = $("#doctor-address").val();
+	    geocoder.geocode( { 'address': address }, function(results, status) {
+	      if (status == google.maps.GeocoderStatus.OK) {
+	        map.setCenter(results[0].geometry.location);
+	        map.setZoom(15);
+	        var marker = new google.maps.Marker({
+	            map: map,
+	            position: results[0].geometry.location
+	        });
+	        $("#doctor-longitude").val(results[0].geometry.location.k);
+	        $("#doctor-latitude").val(results[0].geometry.location.D);
+	      } else {
+	        alert("Geocode was not successful for the following reason: " + status);
+	      }
+	    });
+	};
+
 	function init_map(){
+		geocoder = new google.maps.Geocoder();
 		var myOptions = {
 			zoom:14,
 			center: new google.maps.LatLng(<%= current_doctor.latitude %>,<%= current_doctor.longitude %>),
-			mapTypeId: google.maps.MapTypeId.ROADMAP};
-			map = new google.maps.Map(document.getElementById("map-canvas-settings"), myOptions);
-			marker = new google.maps.Marker({ 
-				map: map,
-				position: new google.maps.LatLng(<%= current_doctor.latitude %>,<%= current_doctor.longitude %>)
-			});
-			infowindow = new google.maps.InfoWindow({ 
-				content:"<b><%= current_doctor.name %></b>"
-			});
-			google.maps.event.addListener(marker, "click", function() {
-				infowindow.open(map,marker);
-			});
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		map = new google.maps.Map(document.getElementById("map-canvas-settings"), myOptions);
+		var marker = new google.maps.Marker({ 
+			map: map,
+			position: new google.maps.LatLng(<%= current_doctor.latitude %>,<%= current_doctor.longitude %>)
+		});
+		var infowindow = new google.maps.InfoWindow({ 
+			content:"<b><%= current_doctor.name %></b>"
+		});
+		google.maps.event.addListener(marker, "click", function() {
 			infowindow.open(map,marker);
-		}
+		});
+		infowindow.open(map,marker);
+	};
 	google.maps.event.addDomListener(window, 'load', init_map);
 </script>

@@ -16,7 +16,7 @@ class DoctorWebSettingsController < ApplicationController
 	private
 
 	def doctor_web_params
-		params.require(:doctor).permit(:name, :sub_title, :description)
+		params.require(:doctor).permit(:name, :sub_title, :description, :longitude, :latitude)
 	end
 
 end
