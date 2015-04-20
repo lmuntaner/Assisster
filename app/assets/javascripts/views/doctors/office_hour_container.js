@@ -41,7 +41,8 @@ Assisster.Views.OfficeHourContainer = Backbone.CompositeView.extend({
 		
 	    this.officeHourForm = new Assisster.Views.OfficeHourForm({
 			coordinates: coordinates,
-			model: officeHour
+			model: officeHour,
+			collection: this.collection
 	    });
 
 	    $('body').append(this.officeHourForm.render().$el);
