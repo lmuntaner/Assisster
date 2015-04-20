@@ -65,8 +65,8 @@ Assisster.Views.OfficeHourCalendarView = Backbone.View.extend({
 		events:this.collection.getOfficeHours(true),
 		eventDragStart: this.removeTooltip,
 		eventDrop: this.updateAppointmentDraggOrResize.bind(this),
-		// eventMouseout: this.hideTooltip,
-		// eventMouseover: this.addTooltip,
+		eventMouseout: this.hideTooltip,
+		eventMouseover: this.addTooltip,
 		eventRender: this.renderEvent,
 		eventResize: this.updateAppointmentDraggOrResize.bind(this),
     });
