@@ -49,26 +49,26 @@ Assisster.Views.OfficeHourCalendarView = Backbone.View.extend({
 	
 	onRender: function (slotDuration) {
     $('#office_hour_calendar').fullCalendar({
-      header: {
-        left: 'month,agendaWeek,agendaDay',
-        center: 'title',
-        right: 'today prev,next'
-      },
-			allDaySlot: false,
-			scrollTime: '08:00:00',
-			height: 500,
-      editable: true,
-			slotDuration: slotDuration,
-      defaultView: 'agendaWeek',
-      dayClick: this.createOfficeHour.bind(this),
-			eventClick: this.updateOfficeHour.bind(this),
-      events:this.collection.getOfficeHours(true),
-			eventDragStart: this.removeTooltip,
-			eventDrop: this.updateAppointmentDraggOrResize.bind(this),
-      eventMouseout: this.hideTooltip,
-			eventMouseover: this.addTooltip,
-			eventRender: this.renderEvent,
-			eventResize: this.updateAppointmentDraggOrResize.bind(this),
+		header: {
+			left: 'month,agendaWeek,agendaDay',
+			center: 'title',
+			right: 'today prev,next'
+		},
+		allDaySlot: false,
+		scrollTime: '08:00:00',
+		height: 500,
+		editable: true,
+		slotDuration: slotDuration,
+		defaultView: 'agendaWeek',
+		dayClick: this.createOfficeHour.bind(this),
+		eventClick: this.updateOfficeHour.bind(this),
+		events:this.collection.getOfficeHours(true),
+		eventDragStart: this.removeTooltip,
+		eventDrop: this.updateAppointmentDraggOrResize.bind(this),
+		// eventMouseout: this.hideTooltip,
+		// eventMouseover: this.addTooltip,
+		eventRender: this.renderEvent,
+		eventResize: this.updateAppointmentDraggOrResize.bind(this),
     });
   },
 	
