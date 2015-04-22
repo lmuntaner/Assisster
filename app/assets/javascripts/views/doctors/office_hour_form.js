@@ -35,13 +35,6 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
 			startTime = moment.utc(this.model.escape('startTime'));
 			endTime = moment.utc(this.model.escape('endTime'));
 		}
-		
-		// this.week = [];
-		// var nextDate;
-		// for (var i = 1; i <= 7; i++) {
-		// 	nextDate = startTime.clone().add(i, 'days');
-		// 	this.week.push(nextDate);
-		// };
 				
 		this.fromDateForm = new Assisster.Views.DateForm({
 			date: startTime,
@@ -108,8 +101,8 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
 			nextDates.forEach(function (nextDate) {
 				var strNextDate = moment(nextDate).format("D/M/YYYY");
 				var newOfficeHour = new Assisster.Models.Appointment();
-				stringStartTime = nextDate + " " + params.startTimeHour;
-				stringEndTime = nextDate + " " + params.endTimeHour;
+				stringStartTime = strNextDate + " " + params.startTimeHour;
+				stringEndTime = strNextDate + " " + params.endTimeHour;
 				view.saveOfficeHour(newOfficeHour, stringStartTime, stringEndTime)
 			});			
 		}
@@ -140,8 +133,10 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
 
 	showMoreDays: function () {
 		var view = this;
-		focusDate = moment.utc(this.model.get('startTime')).format("MM/DD/YYYY");
-		if (!focusDate) {
+		var focusDate = moment.utc(this.model.get('startTime')).format("MM/DD/YYYY");
+		if (options.date) {
+			focusDate = options.date.format("MM/DD/YYYY");
+		}else if (!focusDate) {
 			focusDate = moment().format("MM/DD/YYYY");
 		}
 		this.$('.more-dates-pick').datepicker({
