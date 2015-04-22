@@ -6,7 +6,8 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
 		"click div.my-modal": "closeView",
 		"click #close-office-hour-form": "closeView",
 		"click #submit-office-hour-form": "save",
-		"click #cancel-office-hour-form": "cancel"
+		"click #cancel-office-hour-form": "cancel",
+		"click #open-more-days": "showMoreDays"
 	},
 	
 	initialize: function (options) {
@@ -17,7 +18,7 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
 		var formHeigth = 350;
 
 		this.$el.css('left', (screenWidth / 2) - (formWidth / 2));
-		this.$el.css('top', 200);
+		this.$el.css('top', 150);
 		
 		if (options.date) {
 			this.date = options.date;
@@ -35,12 +36,12 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
 			endTime = moment.utc(this.model.escape('endTime'));
 		}
 		
-		this.week = [];
-		var nextDate;
-		for (var i = 1; i <= 7; i++) {
-			nextDate = startTime.clone().add(i, 'days');
-			this.week.push(nextDate);
-		};
+		// this.week = [];
+		// var nextDate;
+		// for (var i = 1; i <= 7; i++) {
+		// 	nextDate = startTime.clone().add(i, 'days');
+		// 	this.week.push(nextDate);
+		// };
 				
 		this.fromDateForm = new Assisster.Views.DateForm({
 			date: startTime,
@@ -102,14 +103,17 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
 		var stringEndTime = params.endTimeDate + " " + params.endTimeHour;
 		this.saveOfficeHour(this.model, stringStartTime, stringEndTime);
 		var view = this;
-		if (params.nextDates) {
-			params.nextDates.forEach(function (nextDate) {
+		var nextDates = this.$('.more-dates-pick').datepicker("getDates");
+		if (nextDates.length > 0) {
+			nextDates.forEach(function (nextDate) {
+				var strNextDate = moment(nextDate).format("D/M/YYYY");
 				var newOfficeHour = new Assisster.Models.Appointment();
 				stringStartTime = nextDate + " " + params.startTimeHour;
 				stringEndTime = nextDate + " " + params.endTimeHour;
 				view.saveOfficeHour(newOfficeHour, stringStartTime, stringEndTime)
 			});			
 		}
+		this.remove();
 	},
 	
 	saveOfficeHour: function(appointment, strStartTime, strEndTime) {
@@ -123,13 +127,30 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
 			appointment_status: "Confirmed",
 			office_hour: true
     	};
+    	var isNewOfficeHour = appointment.isNew();
 	    appointment.save(appointmentParams, {
 			success: function (model) {
 				view.collection.add(model, {merge: true});
-				view.collection.trigger("appAdd", model);
+				if (isNewOfficeHour) {
+					view.collection.trigger("appAdd", model);					
+				}
 			}
 	    });
-		this.remove();
 	},
+
+	showMoreDays: function () {
+		var view = this;
+		focusDate = moment.utc(this.model.get('startTime')).format("MM/DD/YYYY");
+		if (!focusDate) {
+			focusDate = moment().format("MM/DD/YYYY");
+		}
+		this.$('.more-dates-pick').datepicker({
+			todayHighlight: false,
+			startDate: focusDate,
+			multidate: true,
+			language: "es",
+			weekStart: 1
+		});
+	}
 	
 })

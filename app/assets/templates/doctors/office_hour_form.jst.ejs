@@ -13,15 +13,9 @@
 	<div class="panel-body">
 		<form role="form">
 			<div class="form-inputs">
-				<h6>Añadir más días</h6>
-				<% week.forEach(function (nextDate) { %>
-					<label class="next-date">
-						<%= nextDate.format("DD MMM") %>
-						<input type="checkbox"
-									 value="<%= nextDate.format('D/M/YYYY') %>"
-									 name="appointment[nextDates][]">
-					</label>
-				<% }) %>
+				<a href="javascript:void(0)" id="open-more-days">Añadir más días</a>
+				<div class="more-dates-pick">
+				</div>
 			</div>
 			<button type="button"
 							id="submit-office-hour-form"
