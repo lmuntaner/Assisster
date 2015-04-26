@@ -27,7 +27,7 @@ body {
 }
 
 body, input, textarea {
-	font: 14px 'Open Sans', sans-serif;
+	/*font: 14px 'Open Sans', sans-serif;*/
 	font-weight: normal;
 	font-style: normal;
 	line-height: 22px;
@@ -41,7 +41,7 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: 'Roboto', sans-serif;
+	/*font-family: 'Roboto', sans-serif;*/
 	font-weight: normal;
 	color: #3d3d48;
 }
@@ -107,7 +107,7 @@ h6 {
 
 /* Text elements */
 p {
-	font: 14px 'Open Sans', sans-serif;
+	/*font: 14px 'Open Sans', sans-serif;*/
 	font-weight: normal;
 	line-height: 22px;
 }
@@ -155,7 +155,7 @@ blockquote {
 pre {
 	background: #f4f4f4;
 	font-size: 13px;
-	font: 13px 'Open Sans', sans-serif;
+	/*font: 13px 'Open Sans', sans-serif;*/
 	line-height: 1.5;
 	margin-bottom: 40px;
 	overflow: auto;
@@ -163,7 +163,7 @@ pre {
 }
 code, kbd {
 	font-size: 13px;
-	font: 13px 'Open Sans', sans-serif;
+	/*font: 13px 'Open Sans', sans-serif;*/
 }
 abbr, acronym, dfn {
 	border-bottom: 1px dotted #666;
