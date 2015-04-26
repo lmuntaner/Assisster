@@ -15,7 +15,7 @@ Assisster.Views.DateForm = Backbone.View.extend({
 	
 	checkDate: function (event) {
 		var dateArray = event.currentTarget.value.split("/");
-		var newMonth = dateArray[1];
+		var newMonth = parseInt(dateArray[1]) - 1;
 		var newDay = dateArray[0];
 		var newYear = dateArray[2];
 		this.date.date(newDay);

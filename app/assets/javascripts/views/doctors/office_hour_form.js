@@ -133,11 +133,11 @@ Assisster.Views.OfficeHourForm = Backbone.CompositeView.extend({
 
 	showMoreDays: function () {
 		var view = this;
-		var focusDate = moment.utc(this.model.get('startTime')).format("MM/DD/YYYY");
-		if (options.date) {
-			focusDate = options.date.format("MM/DD/YYYY");
+		var focusDate = moment.utc(this.model.get('startTime')).add(1, "days").format("MM/DD/YYYY");
+		if (this.fromDateForm.date) {
+			focusDate = this.fromDateForm.date.add(1, "days").format("MM/DD/YYYY");
 		}else if (!focusDate) {
-			focusDate = moment().format("MM/DD/YYYY");
+			focusDate = moment().add(1, "days").format("MM/DD/YYYY");
 		}
 		this.$('.more-dates-pick').datepicker({
 			todayHighlight: false,
