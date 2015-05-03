@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get "/web_settings", to: "doctor_web_settings#edit", as: "doctor_web_profile"
   patch "/doctors/:id", to: "doctor_settings#update"
   patch "/doctors-web/:id", to: "doctor_web_settings#update"
+
+  resources :new_doctors, only: [:new, :create]
   
   
   namespace :api, defaults: {format: :json} do

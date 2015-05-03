@@ -1,0 +1,281 @@
+<%= render "helpers/doctor_header" %>
+
+<div class="container wrap">
+
+	<div class="dashboard-title row">
+	 	<h1>Formulario Alta</h1>
+	</div>
+
+	<div class="dashboard-menu row">
+		<ul class="nav nav-tabs">
+		  <li role="presentation" class="active"><a href="javascript:void(0)">Alta</a></li>
+		</ul>
+	</div>
+
+	<div class="dashboard-body">
+		<div class="row settings-container">
+			<div class="col-xs-8">
+
+				<form role="form" action="/doctors" method="POST">
+					<h3 class="send-form-title">Informacion personal</h3>
+					<hr>
+
+					<input type="hidden"
+							name="authenticity_token"
+							value="<%= form_authenticity_token %>">
+
+					<div class="form-inputs">
+						<div class="row">
+							<div class="col-xs-6">
+								<div class="form-group doctor-email">
+									<label>Email</label>
+									<input type="text"
+										   name="doctor[email]"
+										   class="form-control input-sm"
+										   value="">
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-6">
+								<div class="form-group doctor-email">
+									<label>Teléfono</label>
+									<input type="text"
+										   name="doctor[phone_number]"
+										   class="form-control input-sm"
+										   placeholder="Tu teléfono"
+										   value="">
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-6">
+								<div class="form-group">
+									<label>Dominio</label>
+									<input type="text"
+										   name="doctor[subdomain_name]"
+										   class="form-control input-sm"
+										   placeholder="Subdominio en Assisster"
+										   value="">
+								</div>
+							</div>
+						</div>
+
+
+						<div class="row">
+							<div class="col-xs-6">
+								<div class="form-group">
+									<label>Dominio</label>
+									<input type="text"
+										   name="doctor[domain_name]"
+										   class="form-control input-sm"
+										   placeholder="Tu dominio en la web"
+										   value="">
+								</div>
+							</div>
+						</div>
+
+						<h5>Elige tu password</h5>
+						<div class="row">
+							<div class="col-xs-3">
+								<div class="form-group password">
+									<input type="password"
+										   id="password"
+										   name="doctor[password]"
+										   class="form-control input-sm"
+										   placeholder="Nuevo password">
+								</div>
+							</div>
+							<span class="password-validation-error"></span>
+						</div>
+						<div class="row">
+							<div class="col-xs-3">
+								<div class="form-group repeat-password">
+									<input type="password"
+										   id="repeat-password"
+										   name="doctor[repeat_password]"
+										   class="form-control input-sm"
+										   placeholder="Repite nuevo password">
+								</div>
+							</div>
+						</div>
+
+						<h3 class="send-form-title">Web</h3>
+						<hr>
+
+						<div class="row">
+							<div class="col-xs-6">
+								<div class="form-group doctor-email">
+									<label>Título</label>
+									<input type="text"
+										   name="doctor[name]"
+										   class="form-control input-sm"
+										   placeholder="Título de la consulta"
+										   value="">
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-6">
+								<div class="form-group">
+									<label>Subtítulo</label>
+									<input type="text"
+										   name="doctor[sub_title]"
+										   class="form-control input-sm"
+										   placeholder="Subtítulo"
+										   value="">
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="form-group">
+									<label>Descripcion</label>
+									<textarea name="doctor[description]"
+											  id="doctor-web-description"
+											  class="form-control input-sm doctor-web-description">Descripción de tus servicios</textarea>
+								</div>
+							</div>
+						</div>
+
+						<input type="hidden"
+								name="doctor[longitude]"
+								id="doctor-latitude"
+								value="">
+						<input type="hidden"
+								name="doctor[latitude]"
+								id="doctor-longitude"
+								value="">
+
+						<h5>Dirección</h5>
+
+						<div class="row">
+							<div class="col-xs-6">
+								<div class="form-group">
+									<input type="text"
+										   name="doctor[street_address]"
+										   class="form-control input-sm"
+										   placeholder="Calle, número, piso"
+										   value="">
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-6">
+								<div class="form-group">
+									<input type="text"
+										   name="doctor[city_address]"
+										   class="form-control input-sm"
+										   placeholder="Ciudad, provincia, código postal"
+										   value="">
+								</div>
+							</div>
+						</div>
+
+						<div class="row form-group">
+						  <div class="col-xs-12">
+						    <div class="input-group">
+						    	<form>
+									<input type="text"
+											 class="form-control input-sm"
+											 id="doctor-address"
+											 placeholder="Busca en el mapa">
+						    		<span class="input-group-btn">
+						        	<button class="btn btn-default btn-sm" id="search-address" type="button">Buscar</button>
+						      		</span>
+						  		</form>
+						    </div>
+						  </div>
+						</div>
+
+						<div id="map-canvas-settings"></div>
+
+					<input type="submit"
+							id="edit-doctor"
+							class="btn btn-primary new-doctor-button"
+							value="Crear">
+					</input>
+
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<%= render "helpers/footer" %>
+
+<script type="text/javascript">
+	$(window).keydown( function(event) {
+		if(event.keyCode == 13) {
+		  event.preventDefault();
+		  return false;
+		}
+	});
+
+	var geocoder;
+	var map;
+	$(function () {
+		$("textarea.doctor-web-description").wysihtml5({
+		  toolbar: {
+		  	"fa": true,
+		    "font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
+		    "emphasis": true, //Italics, bold, etc. Default true
+		    "lists": true, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
+		    "html": false, //Button which allows you to edit the generated HTML. Default false
+		    "link": true, //Button to insert a link. Default true
+		    "image": false, //Button to insert an image. Default true,
+		    "color": false, //Button to change color of font  
+		    "blockquote": false, //Blockquote  
+		    "size": "sm" //default: none, other options are xs, sm, lg
+		  }
+		});
+		$("#search-address").on("click", search_address);
+	});
+
+	function search_address(event) {
+		event.preventDefault();
+		var address = $("#doctor-address").val();
+	    geocoder.geocode( { 'address': address }, function(results, status) {
+	      if (status == google.maps.GeocoderStatus.OK) {
+	        map.setCenter(results[0].geometry.location);
+	        map.setZoom(15);
+	        var marker = new google.maps.Marker({
+	            map: map,
+	            position: results[0].geometry.location
+	        });
+	        $("#doctor-longitude").val(results[0].geometry.location.k);
+	        $("#doctor-latitude").val(results[0].geometry.location.D);
+	      } else {
+	        alert("Geocode was not successful for the following reason: " + status);
+	      }
+	    });
+	    $("#search-address").blur();
+	};
+
+	function init_map(){
+		geocoder = new google.maps.Geocoder();
+		var myOptions = {
+			zoom:14,
+			center: new google.maps.LatLng(41.401505, 2.158197),
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		map = new google.maps.Map(document.getElementById("map-canvas-settings"), myOptions);
+		var marker = new google.maps.Marker({ 
+			map: map,
+			position: new google.maps.LatLng(41.401505, 2.158197)
+		});
+		var infowindow = new google.maps.InfoWindow({ 
+			content:"<b>Aquí?</b>"
+		});
+		google.maps.event.addListener(marker, "click", function() {
+			infowindow.open(map,marker);
+		});
+		infowindow.open(map,marker);
+	};
+	google.maps.event.addDomListener(window, 'load', init_map);
+</script>
