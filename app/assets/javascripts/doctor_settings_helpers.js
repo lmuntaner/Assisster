@@ -2,8 +2,18 @@ $(function () {
 	$("#edit-doctor").on("click", function (event) {
 		event.preventDefault();
 		var params = $(event.currentTarget).parent().serializeJSON().doctor
+		debugger;
 		if (validateForm(params)) {
 			$("#edit-doctor-profile").submit();
+		}
+	});
+
+	$("#new-doctor").on("click", function (event) {
+		event.preventDefault();
+		var params = $(event.currentTarget).parent().serializeJSON().doctor
+		debugger;
+		if (validateForm(params)) {
+			$("#new-doctor-form").submit();
 		}
 	});
 

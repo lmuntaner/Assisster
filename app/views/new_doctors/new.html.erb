@@ -14,9 +14,9 @@
 
 	<div class="dashboard-body">
 		<div class="row settings-container">
-			<div class="col-xs-8">
 
-				<form role="form" action="/doctors" method="POST">
+			<div class="col-xs-8">
+				<form role="form" id="new-doctor-form" action="/doctors" method="POST">
 					<h3 class="send-form-title">Informacion personal</h3>
 					<hr>
 
@@ -78,6 +78,7 @@
 						</div>
 
 						<h5>Elige tu password</h5>
+
 						<div class="row">
 							<div class="col-xs-3">
 								<div class="form-group password">
@@ -90,6 +91,7 @@
 							</div>
 							<span class="password-validation-error"></span>
 						</div>
+
 						<div class="row">
 							<div class="col-xs-3">
 								<div class="form-group repeat-password">
@@ -176,32 +178,35 @@
 								</div>
 							</div>
 						</div>
-
-						<div class="row form-group">
-						  <div class="col-xs-12">
-						    <div class="input-group">
-						    	<form>
-									<input type="text"
-											 class="form-control input-sm"
-											 id="doctor-address"
-											 placeholder="Busca en el mapa">
-						    		<span class="input-group-btn">
-						        	<button class="btn btn-default btn-sm" id="search-address" type="button">Buscar</button>
-						      		</span>
-						  		</form>
-						    </div>
-						  </div>
-						</div>
-
-						<div id="map-canvas-settings"></div>
-
-					<input type="submit"
-							id="edit-doctor"
-							class="btn btn-primary new-doctor-button"
-							value="Crear">
-					</input>
-
+					</div>
 				</form>
+
+				<div class="form-inputs">
+					<div class="row form-group">
+					  <div class="col-xs-12">
+					    <div class="input-group">
+					    	<form role="form">
+								<input type="text"
+										 class="form-control input-sm"
+										 id="doctor-address"
+										 placeholder="Busca en el mapa">
+					    		<span class="input-group-btn">
+					        	<button class="btn btn-default btn-sm" id="search-address" type="button">Buscar</button>
+					      		</span>
+					  		</form>
+					    </div>
+					  </div>
+					</div>
+				</div>
+
+				<div id="map-canvas-settings"></div>
+
+
+				<button id="new-doctor"
+						class="btn btn-primary new-doctor-button">
+						Crear
+				</button>
+
 			</div>
 		</div>
 	</div>
