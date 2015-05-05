@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   patch "/doctors-web/:id", to: "doctor_web_settings#update"
 
   resources :new_doctors, only: [:new, :create]
-  
+  get "/success", to: "new_doctors#success"
   
   namespace :api, defaults: {format: :json} do
     resources :services, only: [:show, :update, :create, :destroy] do

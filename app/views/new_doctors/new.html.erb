@@ -16,7 +16,7 @@
 		<div class="row settings-container">
 
 			<div class="col-xs-8">
-				<form role="form" id="new-doctor-form" action="/doctors" method="POST">
+				<form role="form" id="new-doctor-form" action="/new_doctors" method="POST">
 					<h3 class="send-form-title">Informacion personal</h3>
 					<hr>
 
@@ -53,11 +53,11 @@
 						<div class="row">
 							<div class="col-xs-6">
 								<div class="form-group">
-									<label>Dominio</label>
+									<label>Subdominio</label>
 									<input type="text"
 										   name="doctor[subdomain_name]"
 										   class="form-control input-sm"
-										   placeholder="Subdominio en Assisster"
+										   placeholder="subdominio.assisster.com"
 										   value="">
 								</div>
 							</div>
@@ -71,7 +71,7 @@
 									<input type="text"
 										   name="doctor[domain_name]"
 										   class="form-control input-sm"
-										   placeholder="Tu dominio en la web"
+										   placeholder="Tu dominio en internet, si quieres redirigirlo"
 										   value="">
 								</div>
 							</div>
