@@ -49,6 +49,11 @@
 }
 .one_third {
 	width: 30.650%;
+	p {
+	  font: 16px 'Open Sans', sans-serif !important;
+	  font-weight: normal;
+	  line-height: 20px;
+	}
 }
 .one_fourth {
 	width: 22%;
@@ -102,10 +107,14 @@
 	text-transform: uppercase;
 }
 #top-nav #fixed-nav li a:hover {
-	color: #cc2306;
+	color: #fff;
+	background-color: #94EDFD;
+	border-bottom: #84D4E2 2px solid;
 }
 #top-nav #fixed-nav li.current a {
-	color: #cc2306;
+	color: #FF5754;
+	background-color: #94EDFD;
+	border-bottom: #84D4E2 2px solid;
 }
 
 
@@ -155,7 +164,7 @@ a.button_slider:hover {
 }
 .site_sec1 .left h2 {
 	font-weight: 300;
-	color: #0cbabb;
+	color: #94EDFD;
 	margin-bottom: 10px;
 	margin-top: 13px;
 }
@@ -166,7 +175,7 @@ a.button_slider:hover {
 	float: left;
 	width: 100%;
 	text-align: center;
-	background-color: #0cbabb;
+	background-color: #94EDFD;
 	color: #fff;
 }
 .features_sec02 h1 {
@@ -195,7 +204,7 @@ a.button_slider:hover {
 	width: 130px;
 	height: 130px;
 	color: #fff;
-	background-color: #0ba5a6;
+	background-color: #84D4E2;
 	border-radius: 100%;
 	text-align: center;
 	vertical-align: middle;
@@ -219,7 +228,7 @@ a.button_slider:hover {
 }
 .our_team h1 {
 	font-size: 40px;
-	color: #feb717;
+	color: #E44D4B;
 	padding: 0px;
 	margin: 0px 0px 45px 0px;
 	font-weight: 300;
@@ -282,7 +291,7 @@ a.button_slider:hover {
 	height: 400px;
 	padding: 110px 0px 0px 0px;
 	text-align: center;
-	background: #f2ad16 url(../img_home_template/para-bg1.jpg) no-repeat center top;
+	background: #E44D4B url(../img_home_template/para-bg1.jpg) no-repeat center top;
 }
 .parallax_sec1 h1 {
 	font-size: 58px;
@@ -308,8 +317,9 @@ a.button_slider:hover {
 	background: url(../img_home_template/opacity-line.png) repeat left top;
 }
 .parallax_sec1 a.but_transp:hover {
-	color: #fff;
-	border: 1px solid #fff;
+	color: #E44D4B;
+	background-color: white;
+	text-decoration: none;
 }
 
 
@@ -426,7 +436,7 @@ ul.footer_social_links {
 	padding: 0px;
 	margin: 0px 0px 50px 0px;
 	font-weight: 300;
-	color: #0cbabb;
+	color: #94EDFD;
 }
 .portfolio_page h1 i {
 	font-size: 18px;
@@ -492,7 +502,7 @@ ul.footer_social_links {
 	float: left;
 	width: 100%;
 	padding: 70px 0px;
-	background-color: #feb717;
+	background-color: #E44D4B;
 }
 
 .contact_info {
@@ -528,7 +538,7 @@ ul.footer_social_links {
 	color: #727272;
 }
 .contact_info .address li a:hover {
-	color: #0cbabb;
+	color: #94EDFD;
 }
 
 .contact_info .map {
@@ -538,11 +548,11 @@ ul.footer_social_links {
 }
 
 .google-map {
-	width: 99%;
-	height: 180px;
+	width: 560px;
+	height: 300px;
 	border: 5px solid #fff;
-	-webkit-box-shadow:  0px 0px 5px 0px rgba(0, 0, 0, 0.1);
-	box-shadow:  0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+	-webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+	box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -577,7 +587,7 @@ ul.footer_social_links {
 	border-right: 1px solid #f6f6f6;
 }
 .four_col_fusection .one_fourth i {
-	color: #0cbabb;
+	color: #94EDFD;
 	margin-bottom: 30px;
 	display: block;
 }

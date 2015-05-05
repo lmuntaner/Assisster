@@ -184,7 +184,7 @@
 	float: left;
 	width: 283px;
 	height: 50px;
-	background-color: #0cbabb;
+	background-color: #FF5754;
 	margin: 0px 1px 0px 0px;
 	padding: 0px;
 }
@@ -209,8 +209,8 @@
 	border-right: 0px solid #fff;
 }
 .sliderContainer .slideSelectors .selected {
-	background: #feb717;
-	color: #fff;
+	background: #94EDFD;
+	color: #84D4E2;
 }
 
 
