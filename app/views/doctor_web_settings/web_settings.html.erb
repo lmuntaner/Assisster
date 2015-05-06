@@ -169,18 +169,21 @@
 
 	function init_map(){
 		geocoder = new google.maps.Geocoder();
+		var doctorLat = "<%= current_doctor.latitude %>" || 41.4012879;
+		var doctorLon = "<%= current_doctor.longitude %>" || 2.15818139999999;
+		var doctorName = "<%= current_doctor.name %>" || "Aqui?";
 		var myOptions = {
 			zoom:14,
-			center: new google.maps.LatLng(<%= current_doctor.latitude %>, <%= current_doctor.longitude %>),
+			center: new google.maps.LatLng(doctorLat, doctorLon),
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 		};
 		map = new google.maps.Map(document.getElementById("map-canvas-settings"), myOptions);
 		var marker = new google.maps.Marker({ 
 			map: map,
-			position: new google.maps.LatLng(<%= current_doctor.latitude %>, <%= current_doctor.longitude %>)
+			position: new google.maps.LatLng(doctorLat, doctorLon)
 		});
 		var infowindow = new google.maps.InfoWindow({ 
-			content:"<b><%= current_doctor.name %></b>"
+			content: "<b>" + doctorName + "</b>"
 		});
 		google.maps.event.addListener(marker, "click", function() {
 			infowindow.open(map,marker);
