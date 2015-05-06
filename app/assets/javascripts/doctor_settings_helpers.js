@@ -1,6 +1,7 @@
 $(function () {
 	$("#edit-doctor").on("click", function (event) {
 		event.preventDefault();
+		$("#edit-doctor").blur();
 		var params = $(event.currentTarget).parent().serializeJSON().doctor;
 		if (validateForm(params, "edit-doctor")) {
 			$("#edit-doctor-profile").submit();
@@ -9,14 +10,20 @@ $(function () {
 
 	$("#new-doctor").on("click", function (event) {
 		event.preventDefault();
+		$("#new-doctor").blur();
 		var params = $("#new-doctor-form").serializeJSON().doctor;
 		if (validateForm(params, "new-doctor")) {
 			$("#new-doctor-form").submit();
 		}
 	});
 
+	var scrollTop = function () {
+		$("div.settings-container").scrollTop(0);
+		window.scroll(0, 0);
+	}
+
 	var validateForm = function (params, formType) {
-		var validated = true
+		var validated = true;
 		if (!validateEmail(params.email)) validated = false;
 		if (!validatePasswordRepeat(params.password, params.repeat_password, false)) validated = false;
 		if (formType === "new-doctor") {
@@ -26,6 +33,9 @@ $(function () {
 			if (!validatePassword(params.password, false)) validated = false;
 		}
 
+		if (!validated) {
+			scrollTop();
+		}
 
 		return validated
 	};
