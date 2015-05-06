@@ -16,7 +16,7 @@ class DoctorInvitation < ActiveRecord::Base
 	after_initialize :ensure_invitation_token
 
 	def invitation_link
-		"http://www.asssisster.com/new_doctors/new?invitation=#{self.invitation_token}"
+		"http://www.asssisster.com/new_doctors/new?invitation_token=#{self.invitation_token}"
 	end
 
 	def send_invitation_email

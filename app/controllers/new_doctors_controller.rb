@@ -1,7 +1,12 @@
 class NewDoctorsController < ApplicationController
 
 	def new
-		render :new
+		@doctor_invitation = DoctorInvitation.find_by_invitation_token(params[:invitation_token])
+		if @doctor_invitation.nil?
+			redirect_to root_url
+		else
+			render :new
+		end
 	end
 
 	def create
