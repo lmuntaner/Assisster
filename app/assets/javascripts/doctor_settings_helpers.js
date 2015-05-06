@@ -20,7 +20,7 @@ $(function () {
 	var scrollTop = function () {
 		$("div.settings-container").scrollTop(0);
 		window.scroll(0, 0);
-	}
+	};
 
 	var validateForm = function (params, formType) {
 		var validated = true;

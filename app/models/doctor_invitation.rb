@@ -10,14 +10,14 @@
 #
 
 require 'mandrill'
-include Rails.application.routes.url_helpers
+# include Rails.application.routes.url_helpers
 
 class DoctorInvitation < ActiveRecord::Base
 	validates :email, presence: true
 	after_initialize :ensure_invitation_token
 
 	def invitation_link(host)
-		"#{new_new_doctor_url(host: host, invitation_token: self.invitation_token)}"
+		# "#{new_new_doctor_url(host: host, invitation_token: self.invitation_token)}"
 	end
 
 	def send_invitation_email(host)
