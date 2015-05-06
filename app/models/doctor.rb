@@ -77,13 +77,13 @@ class Doctor < ActiveRecord::Base
         "html"=>html_msg,
         "text"=>body,
         "subject"=>subject,
-        "from_email"=>"llorenc.muntaner@gmail.com",
+        "from_email"=>"llorenc@assisster.com",
         "from_name"=>"Assisster",
         "to"=>
           [{"email"=>self.email,
               "name"=>self.name,
               "type"=>"to"}],
-        "headers"=>{"Reply-To"=>"llorenc.muntaner@gmail.com"}
+        "headers"=>{"Reply-To"=>"llorenc@assisster.com"}
      }
      async = true
      result = mandrill.messages.send message, async

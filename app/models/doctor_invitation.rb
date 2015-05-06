@@ -13,14 +13,18 @@ require 'mandrill'
 
 class DoctorInvitation < ActiveRecord::Base
 	validates :email, presence: true
-	after_initialize :ensure_session_token
+	after_initialize :ensure_invitation_token
+
+	def invitation_link
+		"http://www.asssisster.com/new_doctors/new?invitation=#{self.invitation_token}"
+	end
 
 	def send_invitation_email
-    subject = "Invitación Assisster!"
+    subject = "Invitación Assisster prueba!"
     body = "<p>Hola!</p>"
     body += "<p>Estamos encantados de que quieras formar parte de Assisster, "
     body += "aquí tienes tu link de invitación para poder realizar la alta del servicio.</p>"
-    body += "<a href='http://www.asssisster.com/new_doctors/new?invitation=#{self.invitation_token}>"
+    body += "<a href='#{self.invitation_link}'>"
     body += "Formulario de alta</a>"
     body += "<p>Gracias.</p>"
     body += "<p>Enviado por Assisster.</p>"
@@ -31,13 +35,12 @@ class DoctorInvitation < ActiveRecord::Base
         "html"=>html_msg,
         "text"=>body,
         "subject"=>subject,
-        "from_email"=>"llorenc.muntaner@gmail.com",
+        "from_email"=>"llorenc@assisster.com",
         "from_name"=>"Assisster",
         "to"=>
           [{"email"=>self.email,
-              "name"=>self.name,
               "type"=>"to"}],
-        "headers"=>{"Reply-To"=>"llorenc.muntaner@gmail.com"}
+        "headers"=>{"Reply-To"=>"llorenc@assisster.com"}
      }
      async = true
      result = mandrill.messages.send message, async
@@ -48,7 +51,7 @@ class DoctorInvitation < ActiveRecord::Base
 
 	private
 
-	def ensure_session_token
+	def ensure_invitation_token
 		self.invitation_token ||= SecureRandom.urlsafe_base64(16)
 	end
 end
