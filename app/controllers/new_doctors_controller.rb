@@ -10,10 +10,14 @@ class NewDoctorsController < ApplicationController
 	end
 
 	def create
-		if Doctor.create(doctor_params)
+		doctor = Doctor.new(doctor_params)
+		doctor_invitation = DoctorInvitation.find_by_email(doctor.email)
+
+		if doctor.save
 			redirect_to success_url
 		else
-			render :new
+			flash[:errors] = doctor.errors.messages
+			redirect_to new_new_doctor_url(host: request.host, invitation_token: doctor_invitation.invitation_token)
 		end
 	end
 

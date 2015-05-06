@@ -28,6 +28,12 @@
 							name="authenticity_token"
 							value="<%= form_authenticity_token %>">
 
+					<% if flash[:errors] %>
+						<span class="password-validation-error">Este email ya está siendo usado</span>
+						<span class="password-validation-error">Póngase en contacto con llorenc@assisster.com para más información</span>
+						<br>
+					<% end %>
+
 					<div class="form-inputs">
 						<div class="row">
 							<div class="col-xs-6">
@@ -256,8 +262,12 @@
 	            map: map,
 	            position: results[0].geometry.location
 	        });
-	        $("#doctor-longitude").val(results[0].geometry.location.k);
-	        $("#doctor-latitude").val(results[0].geometry.location.D);
+	        if (results[0].geometry.location.j) {
+		        $("#doctor-longitude").val(results[0].geometry.location.j);
+	        }
+	        if (results[0].geometry.location.C) {
+		        $("#doctor-latitude").val(results[0].geometry.location.C);
+	        }
 	      } else {
 	        alert("Geocode was not successful for the following reason: " + status);
 	      }
