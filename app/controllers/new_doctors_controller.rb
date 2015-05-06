@@ -11,7 +11,7 @@ class NewDoctorsController < ApplicationController
 
 	def create
 		if Doctor.create(doctor_params)
-			redirect_to success_path
+			redirect_to success_url
 		else
 			render :new
 		end

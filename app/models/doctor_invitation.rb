@@ -10,21 +10,22 @@
 #
 
 require 'mandrill'
+include Rails.application.routes.url_helpers
 
 class DoctorInvitation < ActiveRecord::Base
 	validates :email, presence: true
 	after_initialize :ensure_invitation_token
 
-	def invitation_link
-		"http://www.asssisster.com/new_doctors/new?invitation_token=#{self.invitation_token}"
+	def invitation_link(host)
+		"#{new_new_doctor_url(host: host, invitation_token: self.invitation_token)}"
 	end
 
-	def send_invitation_email
+	def send_invitation_email(host)
     subject = "Invitación Assisster prueba!"
     body = "<p>Hola!</p>"
     body += "<p>Estamos encantados de que quieras formar parte de Assisster, "
     body += "aquí tienes tu link de invitación para poder realizar la alta del servicio.</p>"
-    body += "<a href='#{self.invitation_link}'>"
+    body += "<a href='#{self.invitation_link(host)}'>"
     body += "Formulario de alta</a>"
     body += "<p>Gracias.</p>"
     body += "<p>Enviado por Assisster.</p>"

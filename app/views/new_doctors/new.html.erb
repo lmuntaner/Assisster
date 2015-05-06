@@ -1,4 +1,8 @@
-<%= render "helpers/doctor_header" %>
+<% if doctor_signed_in? %>
+  <%= render "helpers/doctor_header" %>
+<% else %>
+  <%= render "helpers/sign_in_header" %>
+<% end %>
 
 <div class="container wrap">
 
@@ -39,7 +43,7 @@
 
 						<div class="row">
 							<div class="col-xs-6">
-								<div class="form-group doctor-email">
+								<div class="form-group">
 									<label>Teléfono</label>
 									<input type="text"
 										   name="doctor[phone_number]"
@@ -52,7 +56,7 @@
 
 						<div class="row">
 							<div class="col-xs-6">
-								<div class="form-group">
+								<div class="form-group subdomain">
 									<label>Subdominio</label>
 									<input type="text"
 										   name="doctor[subdomain_name]"
@@ -109,7 +113,7 @@
 
 						<div class="row">
 							<div class="col-xs-6">
-								<div class="form-group doctor-email">
+								<div class="form-group">
 									<label>Título</label>
 									<input type="text"
 										   name="doctor[name]"

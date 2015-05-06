@@ -1,26 +1,31 @@
 $(function () {
 	$("#edit-doctor").on("click", function (event) {
 		event.preventDefault();
-		var params = $(event.currentTarget).parent().serializeJSON().doctor
-		debugger;
-		if (validateForm(params)) {
+		var params = $(event.currentTarget).parent().serializeJSON().doctor;
+		if (validateForm(params, "edit-doctor")) {
 			$("#edit-doctor-profile").submit();
 		}
 	});
 
 	$("#new-doctor").on("click", function (event) {
 		event.preventDefault();
-		var params = $("#new-doctor-form").serializeJSON().doctor
-		if (validateForm(params)) {
+		var params = $("#new-doctor-form").serializeJSON().doctor;
+		if (validateForm(params, "new-doctor")) {
 			$("#new-doctor-form").submit();
 		}
 	});
 
-	var validateForm = function (params) {
+	var validateForm = function (params, formType) {
 		var validated = true
 		if (!validateEmail(params.email)) validated = false;
-		if (!validatePasswordRepeat(params.password, params.repeat_password)) validated = false;
-		if (!validatePassword(params.password)) validated = false;
+		if (!validatePasswordRepeat(params.password, params.repeat_password, false)) validated = false;
+		if (formType === "new-doctor") {
+			if (!validatePassword(params.password, true)) validated = false;
+			if (!validateSubdomain(params.subdomain_name)) validated = false;
+		} else {
+			if (!validatePassword(params.password, false)) validated = false;
+		}
+
 
 		return validated
 	};
@@ -36,9 +41,17 @@ $(function () {
 		}
 	};
 
-	var validatePassword = function (password) {
-		if (password.length < 6 && password.length > 0) {
+	var validatePassword = function (password, isNew) {
+		var validation;
+		if (isNew) {
+			notValidated = password.length < 6;
+		} else {
+			notValidated = password.length < 6 && password.length > 0;
+		}
+		if (notValidated) {
 			$("span.password-validation-error").text("Mínimo de 6 carácteres");
+			$("div.password").addClass("has-error");
+			$("div.repeat-password").addClass("has-error");
 			return false
 		} else {
 			$("span.password-validation-error").text("");
@@ -59,5 +72,16 @@ $(function () {
 			return true
 		}
 	};
+
+	var validateSubdomain = function (subdomain_name) {
+		if (subdomain_name.length <= 0 || subdomain_name.length > 20) {
+			$("div.subdomain").addClass("has-error");
+			$("input[name='doctor[subdomain_name]'").val("");
+			return false
+		} else {
+			$("div.subdomain").removeClass("has-error");
+			return true
+		}
+	}
 
 });
