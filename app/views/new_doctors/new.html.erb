@@ -32,9 +32,15 @@
 							name="authenticity_token"
 							value="<%= form_authenticity_token %>">
 
-					<% if flash[:errors] %>
+					<% if flash[:errors] && flash[:errors]["email"] %>
 						<span class="password-validation-error">Este email ya está siendo usado</span>
 						<span class="password-validation-error">Póngase en contacto con llorenc@assisster.com para más información</span>
+						<br>
+					<% end %>
+
+					<% if flash[:errors] && flash[:errors]["subdomain_name"] %>
+						<span class="password-validation-error">El subdominio elegido ya está siendo usado</span>
+						<span class="password-validation-error">Por favor elija otro subdominio</span>
 						<br>
 					<% end %>
 

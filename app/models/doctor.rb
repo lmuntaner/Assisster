@@ -27,7 +27,7 @@ require 'mandrill'
 class Doctor < ActiveRecord::Base
   validates :email, :password_digest, :dr_session_token, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
-  validates :email, :dr_session_token, uniqueness: true
+  validates :email, :dr_session_token, :subdomain_name, uniqueness: true
   
   has_many :appointments
   has_many :services
