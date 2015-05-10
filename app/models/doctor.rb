@@ -62,6 +62,38 @@ class Doctor < ActiveRecord::Base
     self.dr_session_token
   end
 
+  def send_admin_email
+    subject = "Un doctor nou! Yey!"
+    body = "<p>Un Doctor s'ha inscrit,</p>"
+    body += "<ul>"
+    body += "<li>Nom: #{self.name}</li>"
+    body += "<li>Email: #{self.email}</li>"
+    body += "<li>Subdomini: #{self.subdomain_name}</li>"
+    body += "<li>Telefon: #{self.phone_number}</li>"
+    body += "</ul>"
+    body += "<p>Enviado por Assisster.</p>"
+    html_msg = body
+    begin
+      mandrill = Mandrill::API.new ENV["MANDRILL_API_KEY"]
+      message = {
+        "html"=>html_msg,
+        "text"=>body,
+        "subject"=>subject,
+        "from_email"=>"llorenc@assisster.com",
+        "from_name"=>"Assisster",
+        "to"=>
+          [{"email"=>"llorenc@assisster.com",
+              "name"=>"llorenc",
+              "type"=>"to"}],
+        "headers"=>{"Reply-To"=>"llorenc@assisster.com"}
+     }
+     async = true
+     result = mandrill.messages.send message, async
+   rescue Mandrill::Error => e
+     puts "A mandrill error occurred: #{e.class} - #{e.message}"
+   end
+  end
+
   def send_email(appointment)
     return unless self.send_appointment_email
     subject = "Nueva cita"

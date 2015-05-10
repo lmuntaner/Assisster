@@ -13,6 +13,7 @@ class NewDoctorsController < ApplicationController
 		doctor = Doctor.new(doctor_params)
 		doctor_invitation = DoctorInvitation.find_by_invitation_token(params[:invitation_token])
 		if doctor.save
+			doctor.send_admin_email
 			doctor_invitation.doctor_has_been_created unless doctor_invitation.invitation_token == "limonesdbest"
 			redirect_to success_url
 		else
