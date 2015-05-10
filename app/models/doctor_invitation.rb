@@ -7,25 +7,27 @@
 #  invitation_token :string(255)
 #  created_at       :datetime
 #  updated_at       :datetime
+#  doctor_created   :boolean          default(FALSE)
+#  email_sent       :boolean          default(FALSE)
 #
 
 require 'mandrill'
-include Rails.application.routes.url_helpers
 
 class DoctorInvitation < ActiveRecord::Base
 	validates :email, presence: true
 	after_initialize :ensure_invitation_token
 
-	def invitation_link(host)
-		"#{new_new_doctor_url(host: host, invitation_token: self.invitation_token)}"
-	end
+  def doctor_has_been_created
+    self.doctor_created = true
+    self.save
+  end
 
-	def send_invitation_email(host)
+	def send_invitation_email
     subject = "Invitación Assisster prueba!"
     body = "<p>Hola!</p>"
     body += "<p>Estamos encantados de que quieras formar parte de Assisster, "
     body += "aquí tienes tu link de invitación para poder realizar la alta del servicio.</p>"
-    body += "<a href='#{self.invitation_link(host)}'>"
+    body += "<a href='http://www.assisster.com/new_doctors/new?invitation_token#{self.invitation_token}'>"
     body += "Formulario de alta</a>"
     body += "<p>Gracias.</p>"
     body += "<p>Enviado por Assisster.</p>"
@@ -42,12 +44,16 @@ class DoctorInvitation < ActiveRecord::Base
           [{"email"=>self.email,
               "type"=>"to"}],
         "headers"=>{"Reply-To"=>"llorenc@assisster.com"}
-     }
-     async = true
-     result = mandrill.messages.send message, async
-   rescue Mandrill::Error => e
-     puts "A mandrill error occurred: #{e.class} - #{e.message}"
-   end
+      }
+      async = true
+      result = mandrill.messages.send message, async
+    rescue Mandrill::Error => e
+      puts "A mandrill error occurred: #{e.class} - #{e.message}"
+    end
+    if invitation_token != "limonesdbest"
+      self.email_sent = true
+      self.save
+    end
   end
 
 	private

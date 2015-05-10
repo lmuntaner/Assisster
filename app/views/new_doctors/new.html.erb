@@ -20,7 +20,11 @@
 		<div class="row settings-container">
 
 			<div class="col-xs-8">
-				<form role="form" id="new-doctor-form" action="/new_doctors" method="POST">
+				<form role="form"
+					  id="new-doctor-form"
+					  action="/new_doctors?invitation_token=<%= @doctor_invitation.invitation_token %>"
+					  method="POST">
+
 					<h3 class="send-form-title">Informacion personal</h3>
 					<hr>
 

@@ -7,6 +7,8 @@
 #  invitation_token :string(255)
 #  created_at       :datetime
 #  updated_at       :datetime
+#  doctor_created   :boolean          default(FALSE)
+#  email_sent       :boolean          default(FALSE)
 #
 
 require 'test_helper'

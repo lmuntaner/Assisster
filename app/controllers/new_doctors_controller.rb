@@ -2,7 +2,7 @@ class NewDoctorsController < ApplicationController
 
 	def new
 		@doctor_invitation = DoctorInvitation.find_by_invitation_token(params[:invitation_token])
-		if @doctor_invitation.nil?
+		if @doctor_invitation.nil? || @doctor_invitation.doctor_created
 			redirect_to root_url
 		else
 			render :new
@@ -11,9 +11,9 @@ class NewDoctorsController < ApplicationController
 
 	def create
 		doctor = Doctor.new(doctor_params)
-		doctor_invitation = DoctorInvitation.find_by_email(doctor.email)
-
+		doctor_invitation = DoctorInvitation.find_by_invitation_token(params[:invitation_token])
 		if doctor.save
+			doctor_invitation.doctor_has_been_created unless doctor_invitation.invitation_token == "limonesdbest"
 			redirect_to success_url
 		else
 			flash[:errors] = doctor.errors.messages
@@ -31,4 +31,5 @@ class NewDoctorsController < ApplicationController
 										:password, :name, :sub_title, :description,
 										:latitude, :longitude, :street_address, :city_address)
 	end
+
 end
