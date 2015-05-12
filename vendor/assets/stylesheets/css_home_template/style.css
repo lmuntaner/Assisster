@@ -107,15 +107,15 @@
 	text-transform: uppercase;
 }
 #top-nav #fixed-nav li a:hover {
-	color: #fff;
-	background-color: #94EDFD;
-	border-bottom: #84D4E2 2px solid;
+	color: gray;
+	background-color: #F7F7F7;
+	border-bottom: #B2CEE1 2px solid;
 }
 #top-nav #fixed-nav li.current a {
-	color: #FF5754;
-	background-color: #94EDFD;
-	border-bottom: #84D4E2 2px solid;
-}
+	color: gray;
+	background-color: #F7F7F7;
+/*	border-bottom: #B2CEE1 2px solid;
+*/}
 
 
 
@@ -175,19 +175,18 @@ a.button_slider:hover {
 	float: left;
 	width: 100%;
 	text-align: center;
-	background-color: #94EDFD;
-	color: #fff;
+	background-color: #f7f7f7;
+ color: gray;
 }
 .features_sec02 h1 {
 	font-size: 40px;
-	color: #fff;
 	padding: 0px;
 	margin: 0px 0px 45px 0px;
 	font-weight: 300;
 }
 .features_sec02 h1 i {
 	font-size: 18px;
-	color: #fff;
+	color: gray;
 	font-style: normal;
 	display: block;
 	padding-top: 18px;
@@ -204,7 +203,7 @@ a.button_slider:hover {
 	width: 130px;
 	height: 130px;
 	color: #fff;
-	background-color: #84D4E2;
+	background-color: #B2CEE1;
 	border-radius: 100%;
 	text-align: center;
 	vertical-align: middle;
@@ -225,16 +224,18 @@ a.button_slider:hover {
 	float: left;
 	width: 100%;
 	text-align: center;
+	padding-bottom: 50px;
 }
+
 .our_team h1 {
 	font-size: 40px;
-	color: #E44D4B;
+	color: gray;
 	padding: 0px;
 	margin: 0px 0px 45px 0px;
 	font-weight: 300;
 }
 .our_team h1 i {
-	color: #727272;
+	color: gray;
 	font-size: 18px;
 	font-style: normal;
 	display: block;
@@ -357,9 +358,9 @@ a.button_slider:hover {
 	width: 100%;
 	color: #999;
 	text-align: center;
-	background-color: #f3f3f3;
+	background-color: #fff;
 	font-size: 12px;
-	color: #999;
+  border-top: solid 2px #dbdbdb;
 }
 .copyright_info a {
 	margin-top: 10px;
@@ -367,7 +368,7 @@ a.button_slider:hover {
 	color: #999;
 }
 .copyright_info a:hover {
-	color: #3d3d48;
+	color: #B2CEE1;
 }
 
 /* footer social links */
@@ -509,6 +510,7 @@ ul.footer_social_links {
 	float: left;
 	width: 100%;
 	padding: 70px 0px;
+	background: #F7F7F7;
 }
 .contact_info h1 {
 	font-size: 34px;
@@ -572,10 +574,11 @@ ul.footer_social_links {
 	padding: 0px;
 	margin: 0px 0px 50px 0px;
 	font-weight: 300;
+	color: gray;
 }
 .four_col_fusection h1 i {
 	font-size: 18px;
-	color: #727272;
+	color: gray;
 	font-style: normal;
 	display: block;
 	padding-top: 18px;
@@ -587,7 +590,7 @@ ul.footer_social_links {
 	border-right: 1px solid #f6f6f6;
 }
 .four_col_fusection .one_fourth i {
-	color: #94EDFD;
+	color: #B2CEE1;
 	margin-bottom: 30px;
 	display: block;
 }
@@ -644,4 +647,9 @@ ul.footer_social_links {
     text-indent:-9999px;
     background: url(../img_home_template/scroll-top-arrow.png) no-repeat left top;
 	z-index: 999;
+}
+
+
+.services-assister{
+	background: #F7F7F7;
 }
