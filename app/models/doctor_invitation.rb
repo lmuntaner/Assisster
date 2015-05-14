@@ -22,6 +22,34 @@ class DoctorInvitation < ActiveRecord::Base
     self.save
   end
 
+  def send_creation_email
+    subject = "Email per a invitacio!"
+    body = "<p>Yey!</p>"
+    body += "<p>Algu se vol apuntar a Assisster!</p>"
+    body += "<p>Aquest es s'email: #{self.email}</p>"
+    body += "<p>Gracias.</p>"
+    body += "<p>Enviado por Assisster.</p>"
+    html_msg = body
+    begin
+      mandrill = Mandrill::API.new ENV["MANDRILL_API_KEY"]
+      message = {
+        "html"=>html_msg,
+        "text"=>body,
+        "subject"=>subject,
+        "from_email"=>"llorenc@assisster.com",
+        "from_name"=>"Assisster",
+        "to"=>
+          [{"email"=>"llorenc@assisster.com",
+              "type"=>"to"}],
+        "headers"=>{"Reply-To"=>"llorenc@assisster.com"}
+      }
+      async = true
+      result = mandrill.messages.send message, async
+    rescue Mandrill::Error => e
+      puts "A mandrill error occurred: #{e.class} - #{e.message}"
+    end
+  end
+
 	def send_invitation_email
     subject = "Invitación Assisster prueba!"
     body = "<p>Hola!</p>"
