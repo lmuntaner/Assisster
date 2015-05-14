@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     resources :doctors, only: [:index] do
       resources :services, only: [:index]
     end
+    resources :doctor_invitations, only: [:create]
     resources :appointments, only: [:create, :update, :show]
     get "/free_time/:date", to: "appointments#getFreeTime"
     resources :send_doctor_appointment_emails, only: [:create]
