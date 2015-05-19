@@ -290,20 +290,21 @@ a.button_slider:hover {
 	float: left;
 	width: 100%;
 	height: 400px;
-	padding: 110px 0px 0px 0px;
+	padding: 60px 0px 0px 0px;
 	text-align: center;
-	background: #E44D4B url(../img_home_template/para-bg1.jpg) no-repeat center top;
+	background: #fff;
+	color: #B2CEE1;
 }
 .parallax_sec1 h1 {
 	font-size: 58px;
 	line-height: 58px;
-	color: #fff;
+	color: #B2CEE1;
 	margin-bottom: 30px;
 	text-transform: uppercase;
-	text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+	/*text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);*/
 }
-.parallax_sec1 h2 {
-	color: #fff;
+.parallax_sec1 h3 {
+	color: #B2CEE1 !important;
 	font-weight: 300;
 }
 .parallax_sec1 a.but_transp {
@@ -322,6 +323,22 @@ a.button_slider:hover {
 	background-color: white;
 	text-decoration: none;
 }
+
+.btn-blue {
+	background: #B2CEE1;
+	color: #fff;
+	border: none;
+	font-size: 15px;
+	padding: 10px 60px !important;
+	margin: 40px;
+}
+
+.btn-blue:hover {
+	background: #fff;
+	color: #B2CEE1 !important;
+	border: 3px solid #B2CEE1;
+}
+
 
 
 /* clients */
@@ -652,4 +669,8 @@ ul.footer_social_links {
 
 .services-assister{
 	background: #F7F7F7;
+}
+
+.parallax_sec1 h3{
+	color: #fff;
 }
