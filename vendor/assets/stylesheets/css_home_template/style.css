@@ -674,3 +674,7 @@ ul.footer_social_links {
 .parallax_sec1 h3{
 	color: #fff;
 }
+
+.color-gray {
+	color: gray !important;
+}
