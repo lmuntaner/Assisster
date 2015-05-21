@@ -6,7 +6,7 @@ class Api::DoctorInvitationsController < ApplicationController
 
 		if doctor_invitation.save
 			doctor_invitation.send_creation_email
-			render :json doctor_invitation_email
+			render json: doctor_invitation_email
 		else
 			render json: doctor_invitation.errors.full_messages, status: :unprocessable_entity
 		end
