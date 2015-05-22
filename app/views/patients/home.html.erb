@@ -147,10 +147,15 @@
         <div class="clearfix mar_top3"></div>
         
         <!-- <a href="#" class="but_transp">Registrate ya!</a> -->
-        <div class="col-md-4 col-md-offset-4">
-            <input type="email" class="form-control" id="" placeholder="Enter email">
+        <div class="col-md-4 col-md-offset-4" id="doctor-invitation-container">
+            <input type="email" class="form-control" id="doctor-invitation-input" placeholder="Enter email">
 
-            <button type="button" class="btn btn-blue">Enviar</button>
+            <button type="button" class="btn btn-blue" id="doctor-invitation-button">Enviar</button>
+        </div>
+
+        <div id="doctor-invitation-thanks" class="hidden">
+            <h3>Gracias por apuntar-te!</h3>
+            <h5>Recibirás un email de invitación en breve, tu tranquilidad esta un pasito mas cerca!</h5>
         </div>
         
     </div>
@@ -904,4 +909,41 @@ $(".controlls li a").click(function(e) {
         });
 
     });
+</script>
+
+<!-- Doctor Invitation Input and button Feature -->
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        $("#doctor-invitation-button").on("click", get_email_and_create_invit);
+
+    });
+
+    function get_email_and_create_invit () {
+        var invitation_email = $("#doctor-invitation-input").val();
+        create_invitation(invitation_email);
+    };
+
+    function create_invitation(email) {
+        var params = {
+            doctor_invitation: {
+                email: email
+            }
+        }
+
+        $.ajax({
+            method: "POST",
+            data: params,
+            url: "/api/doctor_invitations",
+            success: function () {
+                say_thanks();
+            }
+        })
+    };
+
+    function say_thanks() {
+        $("#doctor-invitation-container").addClass("hidden");
+        $("#doctor-invitation-thanks").removeClass("hidden");
+    };
 </script>
