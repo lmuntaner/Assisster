@@ -92,6 +92,24 @@ body {
 	border-radius: 50%;
 }
 
+.btn-blue {
+	background: #B2CEE1;
+	color: #fff;
+	border: 2px solid #fff;
+}
+
+.btn-blue:hover {
+	background: #fff;
+	color: #B2CEE1 !important;
+	border: 2px solid #B2CEE1;
+}
+
+.btn-dr-invitation {
+	font-size: 15px;
+	padding: 10px 60px !important;
+	margin: 40px;
+}
+
 /* Footer */
 
 footer div.left-footer {

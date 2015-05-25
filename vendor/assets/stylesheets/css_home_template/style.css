@@ -324,21 +324,6 @@ a.button_slider:hover {
 	text-decoration: none;
 }
 
-.btn-blue {
-	background: #B2CEE1;
-	color: #fff;
-	border: none;
-	font-size: 15px;
-	padding: 10px 60px !important;
-	margin: 40px;
-}
-
-.btn-blue:hover {
-	background: #fff;
-	color: #B2CEE1 !important;
-	border: 3px solid #B2CEE1;
-}
-
 
 
 /* clients */
