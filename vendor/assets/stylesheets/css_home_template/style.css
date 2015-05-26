@@ -10,7 +10,8 @@
 	height:31px;
 	margin-top:18px;
 	text-indent:-999em;
-	background:url(../img_home_template/logo.png) no-repeat left bottom;
+	color: gray;
+	/*background:url(../img_home_template/logo.png) no-repeat left bottom;*/
 }
 
 
