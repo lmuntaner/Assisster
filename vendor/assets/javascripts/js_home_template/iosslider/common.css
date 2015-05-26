@@ -43,19 +43,24 @@
 	height: 100%;
 }
 
+.iosSlider .slider .right {
+	float: right;
+	width: 48%;
+}
+
 .iosSlider .slide_one {
 	float: left;
-	width: 100%;
+	width: 95%;
 	padding-top: 80px;
 }
-.iosSlider .slide_one .left {
+/*.iosSlider .slide_one .left {
 	float: left;
 	width: 35%;
 }
 .iosSlider .slide_one .right {
 	float: right;
 	width: 60%;
-}
+}*/
 .iosSlider .slide_one .right h3 {
 	font-weight: 300;
 	margin-bottom: 10px;
@@ -66,7 +71,6 @@
 }
 .iosSlider .slide_one .right ul {
 	float: left;
-	width: 44%;
 	padding: 0px;
 	margin: 20px 40px 0px 0px;
 }
@@ -83,7 +87,7 @@
 
 .iosSlider .slide_two {
 	float: left;
-	width: 100%;
+	width: 95%;
 	padding-top: 80px;
 }
 
@@ -110,7 +114,7 @@
 
 .iosSlider .slide_three {
 	float: left;
-	width: 100%;
+	width: 95%;
 	padding-top: 80px;
 }
 .iosSlider .slide_three h3 {
@@ -139,7 +143,7 @@
 
 .iosSlider .slide_four {
 	float: left;
-	width: 100%;
+	width: 95%;
 	padding-top: 80px;
 }
 
