@@ -690,13 +690,13 @@ $(window).load(function(){
 <!-- tweets -->
 <script type="text/javascript">//<![CDATA[ 
 $(window).load(function(){
-$(".controlls li a").click(function(e) {
-    e.preventDefault();
-    var id = $(this).attr('class');
-    $('#slider div:visible').fadeOut(500, function() {
-        $('div#' + id).fadeIn();
-    })
-});
+    $(".controlls li a").click(function(e) {
+        e.preventDefault();
+        var id = $(this).attr('class');
+        $('#slider div:visible').fadeOut(500, function() {
+            $('div#' + id).fadeIn();
+        })
+    });
 });//]]>  
 
 </script>
