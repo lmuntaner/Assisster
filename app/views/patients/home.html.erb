@@ -67,7 +67,7 @@
                                 
                                 <div class="caption lft large_text_two big_white color-gray" data-x="100" data-y="210" data-speed="900" data-start="1300" data-easing="easeOutExpo">PROPIA WEB</div>
 
-                                <div class="caption lfb small_text color-gray"  data-x="100" data-y="280" data-speed="900" data-start="1900" data-easing="easeOutExpo">Pruébalo tu mismo.<br /><a href="http://www.randomdoctor.com" class="btn btn-antiblue" role="button">Ir a probar</a></div>
+                                <div class="caption lfb small_text color-gray"  data-x="100" data-y="280" data-speed="900" data-start="1900" data-easing="easeOutExpo"><a href="http://www.randomdoctor.com" class="btn btn-antiblue" role="button">Pruébalo</a></div>
 
                             <!-- SLIDE CITA ONLINE -->
 							<li data-transition="fade" data-slotamount="9" data-thumb="http://placehold.it/1920x580">
@@ -735,7 +735,7 @@ $(window).load(function(){
 
 		var api = tpj('.fullwidthbanner').revolution(
 			{
-				delay:4000,
+				delay:6000,
 				startwidth:1170,
 				startheight:580,
 
@@ -823,7 +823,22 @@ $(window).load(function(){
 
     function get_email_and_create_invit () {
         var invitation_email = $("#doctor-invitation-input").val();
-        create_invitation(invitation_email);
+        if (validateEmail(invitation_email)) {
+            create_invitation(invitation_email);            
+        } else {
+
+        }
+    };
+
+    var validateEmail = function (email) {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (re.test(email)) {
+            $("#doctor-invitation-container").removeClass("has-error");
+            return true;
+        } else {
+            $("#doctor-invitation-container").addClass("has-error");
+            return false;
+        }
     };
 
     function create_invitation(email) {
