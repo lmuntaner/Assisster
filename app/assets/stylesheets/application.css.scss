@@ -110,6 +110,18 @@ a.header-logo {
 	border: 2px solid #B2CEE1;
 }
 
+.btn-antiblue {
+	background: #fff;
+	color: #B2CEE1;
+	border: 2px solid #B2CEE1;
+}
+
+.btn-antiblue:hover {
+	background: #B2CEE1;
+	color: #fff !important;
+	border: 2px solid #fff;
+}
+
 .btn-dr-invitation {
 	font-size: 15px;
 	padding: 10px 60px !important;
