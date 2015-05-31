@@ -146,6 +146,10 @@ a.button_slider:hover {
 	opacity: 0.8;
 }
 
+a.wider {
+	width: 410%;
+}
+
 
 /* features section 2 */
 .site_sec1 {
